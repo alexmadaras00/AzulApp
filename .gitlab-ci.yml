@@ -1,5 +1,18 @@
+stages:
+  - test
+  - build
+
 run_tests:
-  image: maven:3.8-openjdk-17
+  image: apache
+  stage: test
   script:
-    - whoami
-    - env
+    - ./mvnw test
+  artifacts:
+    reports:
+      junit: target/surefire-reports/TEST-*.xml
+
+build_app:
+  image: apache
+  stage: build
+  script:
+    - ./mvnw package
