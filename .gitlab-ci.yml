@@ -1,5 +1,5 @@
 run_tests:
-  image: maven
+  image: maven:3.8-openjdk-17
   script:
     - whoami
     - env
