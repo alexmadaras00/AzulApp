@@ -10,9 +10,11 @@ public class Bag {
         return tiles;
     }
     List<Tile> popTiles(int count){
-       return new ArrayList<>();
+        List<Tile> poppedTiles = tiles.subList(0, count);
+        poppedTiles.clear();
+        return poppedTiles;
     }
-    void addTiles(List<Tile> tiles){
-
+    void addTiles(List<Tile> t){
+        tiles.addAll(t);
     }
 }
