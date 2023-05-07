@@ -11,4 +11,26 @@ public class Game {
     private List<Player> turnOrder;
     private Bag bag;
     private Middle middle;
+
+    void startGame(List<String> playerNames){
+
+    }
+    void terminateGame(){
+
+    }
+    boolean isMoveValid(){
+        return false;
+    }
+    void performMove(){
+
+    }
+    int getState(){
+        return 0;
+    }
+    private void handleRound(){
+
+    }
+    private void handleEnd(){
+
+    }
 }
