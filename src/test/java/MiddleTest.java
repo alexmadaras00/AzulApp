@@ -2,7 +2,6 @@ import model.Color;
 import model.Middle;
 import model.Tile;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class MiddleTest {
     static Middle middle;
     static List<Tile> tiles = List.of(Color.BLUE,Color.YELLOW,Color.YELLOW,Color.RED);
-    @BeforeAll
-    public static void setUp() {
-        middle = new Middle();
-        middle.addTiles(tiles);
-    }
+
     @Test
     public void testGetAllTiles(){
+        middle = new Middle();
+        middle.addTiles(tiles);
         assertEquals(tiles,middle.getAllTiles());
     }
     @Test
     public void testGetTiles() {
+        middle = new Middle();
+        middle.addTiles(tiles);
         List<Tile> yellowTiles = middle.getTiles(Color.YELLOW);
         assertEquals(2,yellowTiles.size());
         assertEquals(Color.YELLOW,yellowTiles.get(0));
@@ -32,6 +31,8 @@ public class MiddleTest {
     }
     @Test
     public void testAddTiles(){
+        middle = new Middle();
+        middle.addTiles(tiles);
         assertTrue(middle.getAllTiles().size()<=4);
         List<Tile> newTiles = new ArrayList<>();
         newTiles.add(Color.RED);
