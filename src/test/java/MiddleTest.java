@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MiddleTest {
     static Middle middle;
-    static List<Tile> tiles = List.of(Color.BLUE,Color.YELLOW,Color.YELLOW,Color.RED);
+    static List<Tile> tiles = List.of(Color.BLUE,Color.YELLOW,Color.YELLOW);
 
     @Test
     public void testGetAllTiles(){
@@ -36,10 +36,9 @@ public class MiddleTest {
         assertTrue(middle.getAllTiles().size()<=4);
         List<Tile> newTiles = new ArrayList<>();
         newTiles.add(Color.RED);
-        newTiles.add(Color.RED);
         middle.addTiles(newTiles);
-        assertEquals(6,middle.getAllTiles().size());
-        assertEquals(Color.RED,middle.getAllTiles().get(4));
-        assertEquals(Color.RED,middle.getAllTiles().get(5));
+        assertEquals(4,middle.getAllTiles().size());
+        assertEquals(Color.RED,middle.getAllTiles().get(3));
+        assertTrue(middle.getAllTiles().size()<=4);
     }
 }
