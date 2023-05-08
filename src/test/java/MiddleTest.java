@@ -31,6 +31,7 @@ public class MiddleTest {
     }
     @Test
     public void testAddTiles(){
+
         middle = new Middle();
         middle.addTiles(tiles);
         assertTrue(middle.getAllTiles().size()<=4);
