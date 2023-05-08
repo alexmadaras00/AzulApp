@@ -15,10 +15,10 @@ public class Middle {
                 .filter(tile -> tile == type)
                 .collect(Collectors.toList());
     }
-    void addTiles(List<Tile> t){
+    public void addTiles(List<Tile> t){
         tiles.addAll(t);
     }
-    boolean hasTiles(Color type){
+    public boolean hasTiles(Color type){
         return tiles.contains(type);
     }
 }
