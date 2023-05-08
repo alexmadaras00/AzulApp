@@ -1,20 +1,22 @@
 import model.Color;
 import model.Middle;
 import model.Tile;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class MiddleTest {
-    Middle middle = new Middle();
-    List<Tile> tiles = List.of(Color.BLUE,Color.YELLOW,Color.YELLOW,Color.RED);
-    @Before
-    public void setUp() {
+    static Middle middle;
+    static List<Tile> tiles = List.of(Color.BLUE,Color.YELLOW,Color.YELLOW,Color.RED);
+    @BeforeAll
+    public static void setUp() {
+        middle = new Middle();
         middle.addTiles(tiles);
     }
     @Test
