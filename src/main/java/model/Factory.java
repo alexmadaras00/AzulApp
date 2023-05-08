@@ -18,7 +18,7 @@ public class Factory {
     public void addTiles(List<Tile> t){
       tiles.addAll(t);
     }
-    boolean hasTiles(Color type){
+    public boolean hasTiles(Color type){
         return tiles.contains(type);
     }
 
