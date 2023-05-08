@@ -6,7 +6,7 @@ import java.util.List;
 public class Bag {
     private final List<Tile> tiles = new ArrayList<>();
 
-    List<Tile> getTiles() {
+    public List<Tile> getTiles() {
         return tiles;
     }
 
