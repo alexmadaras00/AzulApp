@@ -5,9 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Middle {
-    public List<Tile> tiles;
+    private final List<Tile> tiles = new ArrayList<>();
 
+<<<<<<< Updated upstream
     List<Tile> getTiles(Color type){
+=======
+    public List<Tile> getAllTiles(){
+        return tiles;
+    }
+    public List<Tile> getTiles(Color type){
+>>>>>>> Stashed changes
         return tiles.stream()
                 .filter(tile -> tile == type)
                 .collect(Collectors.toList());
