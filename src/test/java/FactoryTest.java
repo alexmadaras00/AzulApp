@@ -1,18 +1,18 @@
 import model.Color;
 import model.Factory;
 import model.Tile;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FactoryTest {
-    Factory factory = new Factory();
-    @Before
-    public void setUp() {
+    static Factory factory = new Factory();
+    @BeforeAll
+    public static void setUp() {
         List<Tile> tiles = List.of(Color.BLUE,Color.BLUE,Color.YELLOW,Color.RED);
         factory.addTiles(tiles);
     }
