@@ -13,6 +13,7 @@ public class FactoryTest {
     static Factory factory;
     @BeforeAll
     public static void setUp() {
+        factory = new Factory();
         List<Tile> tiles = List.of(Color.BLUE,Color.BLUE,Color.YELLOW,Color.RED);
         factory.addTiles(tiles);
         assertTrue(factory.getAllTiles().size()<=4);
