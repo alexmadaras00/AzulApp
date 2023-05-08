@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FactoryTest {
-    static Factory factory = new Factory();
+    static Factory factory;
     @BeforeAll
     public static void setUp() {
         List<Tile> tiles = List.of(Color.BLUE,Color.BLUE,Color.YELLOW,Color.RED);
