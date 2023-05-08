@@ -15,6 +15,7 @@ public class FactoryTest {
     public static void setUp() {
         List<Tile> tiles = List.of(Color.BLUE,Color.BLUE,Color.YELLOW,Color.RED);
         factory.addTiles(tiles);
+        assertTrue(factory.getAllTiles().size()<=4);
     }
     //In each round there are no more than 4 tiles on a factory
     @Test
