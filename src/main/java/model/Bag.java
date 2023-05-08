@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bag {
-    private List<Tile> tiles;
+    private final List<Tile> tiles = new ArrayList<>();
 
-    List<Tile> getTiles(){
+    List<Tile> getTiles() {
         return tiles;
     }
-    List<Tile> popTiles(int count){
-        List<Tile> poppedTiles = tiles.subList(0, count);
-        poppedTiles.clear();
-        return poppedTiles;
+
+    public List<Tile> popTiles ( int count){
+            for (int i = 0; i < count; i++) {
+                tiles.remove(tiles.size() - 1);
+            }
+            return tiles;
+        }
+        public void addTiles (List < Tile > t) {
+            this.tiles.addAll(t);
+        }
     }
-    void addTiles(List<Tile> t){
-        tiles.addAll(t);
-    }
-}
