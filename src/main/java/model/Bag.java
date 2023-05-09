@@ -10,13 +10,16 @@ public class Bag {
         return tiles;
     }
 
-    public List<Tile> popTiles ( int count){
-            for (int i = 0; i < count; i++) {
-                tiles.remove(tiles.size() - 1);
-            }
-            return tiles;
+    public List<Tile> popTiles(int count) {
+        List<Tile> poppedTiles = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            poppedTiles.add(tiles.get(tiles.size()-1));
+            tiles.remove(tiles.size() - 1);
         }
-        public void addTiles (List < Tile > t) {
-            this.tiles.addAll(t);
-        }
+        return poppedTiles;
     }
+
+    public void addTiles(List<Tile> t) {
+        this.tiles.addAll(t);
+    }
+}

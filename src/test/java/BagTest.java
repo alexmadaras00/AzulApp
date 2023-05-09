@@ -15,16 +15,6 @@ public class BagTest {
     static Bag bag;
     static List<Tile> tiles = new ArrayList<>();
 
-    @BeforeAll
-    public static void setUp() {
-        bag = new Bag();
-        tiles.add(Color.BLUE);
-        tiles.add(Color.BLUE);
-        tiles.add(Color.YELLOW);
-        tiles.add(Color.RED);
-        assertTrue(bag.getTiles().size() <= 100);
-    }
-
     @Test
     public void testGetTiles() {
         bag.addTiles(tiles);
@@ -34,6 +24,12 @@ public class BagTest {
 
     @Test
     public void testAddTiles() {
+        bag = new Bag();
+        tiles.add(Color.BLUE);
+        tiles.add(Color.BLUE);
+        tiles.add(Color.YELLOW);
+        tiles.add(Color.RED);
+        assertTrue(bag.getTiles().size() <= 100);
         List<Tile> newTiles = new ArrayList<>();
         newTiles.add(Color.CYAN);
         newTiles.add(Color.RED);
@@ -44,14 +40,26 @@ public class BagTest {
     }
     @Test
     public void testPopTiles() {
-        int count = 2;
+        int count = 3;
+        bag = new Bag();
+        tiles.add(Color.BLUE);
+        tiles.add(Color.BLUE);
+        tiles.add(Color.YELLOW);
+        tiles.add(Color.RED);
+        bag.addTiles(tiles);
+        List<Tile> tilesBag = bag.getTiles();
+        //Before popping the tiles
+        assertTrue(bag.getTiles().size() <= 100);
         assertTrue(tiles.size() >= count);
-        System.out.println(bag.getTiles());
+        //When popping the tiles (poppedList)
         List<Tile> poppedTiles = bag.popTiles(count);
-        System.out.println(bag.getTiles());
-        assertEquals(4, bag.getTiles().size());
-        assertEquals(Color.RED, tiles.get(tiles.size() - 1));
-        assertEquals(tiles, poppedTiles);
+        assertEquals(1, tilesBag.size());
+        assertEquals(Color.BLUE, tilesBag.get(tilesBag.size() - 1));
+        //After popping the tiles
+        assertEquals(3, poppedTiles.size());
+        assertEquals(Color.RED, poppedTiles.get(0));
+        assertEquals(Color.YELLOW, poppedTiles.get(1));
+        assertEquals(Color.BLUE, poppedTiles.get(2));
     }
 
 
