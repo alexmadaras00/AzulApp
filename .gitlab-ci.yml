@@ -1,18 +1,44 @@
 stages:
-  - test
   - build
-
-run_tests:
-  image: maven:3.8-openjdk-17
-  stage: test
-  script:
-    - mvn test
-  artifacts:
-    reports:
-      junit: target/surefire-reports/TEST-*.xml
+  - test
+  - visualize
 
 build_app:
   image: maven:3.8-openjdk-17
+  tags:
+    - pppp
   stage: build
   script:
     - mvn package
+
+run_tests:
+  image: maven:3.8-openjdk-17
+  tags:
+    - pppp
+  stage: test
+  script:
+    - mvn jacoco:prepare-agent
+    - mvn test
+    - mvn jacoco:report
+    - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, "instructions covered"; print 100*covered/instructions, "% covered" }' target/site/jacoco/jacoco.csv
+  coverage: '/\d+.\d+ \% covered/'
+  artifacts:
+    reports:
+      junit: target/surefire-reports/TEST-*.xml
+    paths:
+      - target/site/jacoco/jacoco.xml
+
+run_coverage:
+  stage: visualize
+  tags:
+    - pppp
+  image: registry.gitlab.com/haynes/jacoco2cobertura:1.0.7
+  script:
+    # convert report from jacoco to cobertura, using relative project path
+    - python /opt/cover2cover.py target/site/jacoco/jacoco.xml $CI_PROJECT_DIR/src/main/java/ > target/site/cobertura.xml
+  needs: ["run_tests"]
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: target/site/cobertura.xml
