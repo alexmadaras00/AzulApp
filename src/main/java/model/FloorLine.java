@@ -6,10 +6,10 @@ public class FloorLine {
     private List<Tile> tiles;
     private List<Integer> scores;
 
-    void addTiles(Tile tile){
+    public void addTiles(Tile tile){
 
     }
-    int clear(){
+    public int clear(){
         return 0;
     }
 }
