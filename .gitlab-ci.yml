@@ -6,7 +6,7 @@ run_tests:
   image: maven:3.8-openjdk-17
   stage: test
   script:
-    - ./mvnw test
+    - mvn test
   artifacts:
     reports:
       junit: target/surefire-reports/TEST-*.xml
@@ -15,4 +15,4 @@ build_app:
   image: maven:3.8-openjdk-17
   stage: build
   script:
-    - ./mvnw package
+    - mvn package
