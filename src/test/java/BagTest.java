@@ -1,6 +1,7 @@
 import model.Bag;
 import model.Color;
 import model.Tile;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,7 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BagTest {
     static Bag bag;
-    static List<Tile> tiles = new ArrayList<>();
+    static List<Tile> tiles;
+
+    @BeforeEach
+    public void setUp() {
+        bag = new Bag();
+        tiles = new ArrayList<>();
+        tiles.add(Color.BLUE);
+        tiles.add(Color.BLUE);
+        tiles.add(Color.YELLOW);
+        tiles.add(Color.RED);
+    }
 
     @Test
     public void testGetTiles() {
@@ -23,15 +34,10 @@ public class BagTest {
 
     @Test
     public void testAddTiles() {
-        bag = new Bag();
-        tiles.add(Color.BLUE);
-        tiles.add(Color.BLUE);
-        tiles.add(Color.YELLOW);
-        tiles.add(Color.RED);
-        assertTrue(bag.getTiles().size() <= 100);
         List<Tile> newTiles = new ArrayList<>();
         newTiles.add(Color.CYAN);
         newTiles.add(Color.RED);
+        bag.addTiles(tiles);
         bag.addTiles(newTiles);
         assertEquals(6, bag.getTiles().size());
         assertEquals(Color.CYAN, bag.getTiles().get(4));
@@ -39,13 +45,8 @@ public class BagTest {
     }
     @Test
     public void testPopTiles() {
-        int count = 3;
-        bag = new Bag();
-        tiles.add(Color.BLUE);
-        tiles.add(Color.BLUE);
-        tiles.add(Color.YELLOW);
-        tiles.add(Color.RED);
         bag.addTiles(tiles);
+        int count = 3;
         List<Tile> tilesBag = bag.getTiles();
         //Before popping the tiles
         assertTrue(bag.getTiles().size() <= 100);
@@ -63,3 +64,4 @@ public class BagTest {
 
 
 }
+
