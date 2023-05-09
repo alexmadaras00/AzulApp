@@ -1,7 +1,6 @@
 import model.Bag;
 import model.Color;
 import model.Tile;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
