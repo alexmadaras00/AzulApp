@@ -1,36 +1,39 @@
 package model;
 
+import controller.IController;
+import controller.GameState;
+import controller.GameUpdate;
+import org.json.JSONObject;
+
 import java.util.List;
 
-public class Game {
+public class Game implements Model{
     private List<Player> players;
     private Boolean isPlaying;
-    private Integer round;
+    private int round;
     private List<Tile> box;
     private List<Factory> factories;
     private List<Player> turnOrder;
     private Bag bag;
     private Middle middle;
-
-    void startGame(List<String> playerNames){
-
-    }
-    void terminateGame(){
+    public void startGame(){
 
     }
-    boolean isMoveValid(){
+    public void terminateGame(){
+
+    }
+    public boolean isMoveValid(JSONObject move){
         return false;
     }
-    void performMove(){
+    public GameUpdate performMove(JSONObject move){
+        return new GameUpdate();
+    }
+    public GameState getState(){
+        return new GameState();
+    }
 
-    }
-    int getState(){
-        return 0;
-    }
-    private void handleRound(){
-
-    }
-    private void handleEnd(){
+    @Override
+    public void connectController(IController IController) {
 
     }
 }

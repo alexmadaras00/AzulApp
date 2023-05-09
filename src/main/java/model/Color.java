@@ -1,6 +1,6 @@
 package model;
 
-public enum Color implements Tile{
+public enum Color implements Tile {
     RED,
     BLUE,
     CYAN,

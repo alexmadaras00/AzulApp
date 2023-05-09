@@ -1,6 +1,6 @@
 package model;
 
-public class PlayerTile implements Tile{
+public class PlayerTile implements Tile {
     private static PlayerTile instance;
 
     private PlayerTile() {

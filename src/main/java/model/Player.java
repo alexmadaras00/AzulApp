@@ -3,11 +3,15 @@ package model;
 public class Player {
     private String name;
     private PlayerBoard board;
+    private int identifier;
 
-    String getName(){
-        return name;
+    public String getName(){
+        return "";
     }
-    void setName(String name){
-        this.name = name;
+    public void setName(String name){
+    }
+
+    public PlayerBoard getBoard() {
+        return new PlayerBoard();
     }
 }
