@@ -29,7 +29,7 @@ run_tests:
       - target/site/jacoco/jacoco.xml
 
 run_coverage:
-  stage: visualize
+  stage: test
   tags:
     - pppp
   image: registry.gitlab.com/haynes/jacoco2cobertura:1.0.7
