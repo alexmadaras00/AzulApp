@@ -11,14 +11,12 @@ public class Middle {
         return tiles;
     }
     public List<Tile> getTiles(Color type){
-        return tiles.stream()
-                .filter(tile -> tile == type)
-                .collect(Collectors.toList());
+        return new ArrayList<>();
     }
     public void addTiles(List<Tile> t){
-        tiles.addAll(t);
+
     }
     public boolean hasTiles(Color type){
-        return tiles.contains(type);
+        return false;
     }
 }
