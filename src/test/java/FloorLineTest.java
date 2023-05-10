@@ -1,57 +1,45 @@
 import model.Color;
 import model.Factory;
+import model.FloorLine;
 import model.Tile;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FactoryTest {
-    static Factory factory;
+public class FloorLineTest {
+    static FloorLine floorLine;
+    static List<Tile> excessTiles;
     @BeforeAll
     public static void setUp() {
-        factory = new Factory();
-        List<Tile> tiles = List.of(Color.BLUE,Color.BLUE,Color.YELLOW,Color.RED);
-        factory.addTiles(tiles);
-        assertTrue(factory.getAllTiles().size()<=4);
-    }
-    //In each round there are no more than 4 tiles on a factory
-    @Test
-    public void correctSize(){
-        assertTrue(factory.getAllTiles().size()<=4);
+        floorLine = new FloorLine();
+        List<Tile> excessTiles =List.of(Color.RED,Color.RED,Color.RED,Color.RED);
+        List<Integer> scores = List.of(-1, -1, -2, -2, -2, -3, -3);
     }
     @Test
     public void testGetAllTiles(){
-        List<Tile> tiles = List.of(Color.BLUE,Color.BLUE,Color.YELLOW,Color.RED);
-        assertEquals(tiles,factory.getAllTiles());
+        floorLine.addTiles(excessTiles);
+        assertEquals(excessTiles, floorLine.getCopyTiles());
+        assertTrue(floorLine.getCopyTiles().size() <= 7);
+    }
+
+    @Test
+    public void testReachMax(){
+        List<Tile> excessTiles =List.of(Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE);
+        floorLine.addTiles(excessTiles);
+        assertTrue(floorLine.getCopyTiles().size() <= 7);
     }
     @Test
-    public void testGetTiles() {
-        List<Tile> blueTiles = factory.getTiles(Color.BLUE);
-        assertEquals(2, blueTiles.size());
-        assertEquals(Color.BLUE, blueTiles.get(0));
-        assertEquals(Color.BLUE, blueTiles.get(1));
+    public void testScore(){
+        assertTrue(floorLine.getScore()>= -14);
     }
     @Test
-    public void testAddTiles(){
-        assertTrue(factory.getAllTiles().size()<=4);
-        factory.getAllTiles().clear();
-        List<Tile> newTiles = new ArrayList<>();
-        newTiles.add(Color.CYAN);
-        newTiles.add(Color.RED);
-        factory.addTiles(newTiles);
-        assertEquals(2,factory.getAllTiles().size());
-        assertEquals(Color.CYAN,factory.getAllTiles().get(0));
-        assertEquals(Color.RED,factory.getAllTiles().get(1));
-    }
-    @Test
-    public void testHasTiles(){
-        boolean isHavingRedTile = factory.hasTiles(Color.RED);
-        boolean isHavingBlackTile = factory.hasTiles(Color.BLACK);
-        assertTrue(isHavingRedTile);
-        assertFalse(isHavingBlackTile);
+    public void testClearTiles(){
+        floorLine.clearTiles();
+        assertEquals(floorLine.getCopyTiles().size(),0);
     }
 }
