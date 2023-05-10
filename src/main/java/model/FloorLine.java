@@ -1,14 +1,17 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FloorLine {
-    private List<Tile> tiles;
-    private List<Integer> scores;
+    private final List<Tile> tiles = new ArrayList<>();
+    private final List<Integer> scores = new ArrayList<>();
 
     public void addTiles(List<Tile> t){
-        if (tiles.size()<scores.size()) {
-            tiles.addAll(t);
+        for(int i=0; i<t.size(); i++) {
+            if (tiles.size() < 7) {
+                tiles.add(t.get(i));
+            }
         }
     }
     public int getScore(){
