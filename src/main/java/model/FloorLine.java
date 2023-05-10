@@ -1,11 +1,12 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FloorLine {
     private final List<Tile> tiles = new ArrayList<>();
-    private final List<Integer> scores = new ArrayList<>();
+    private final List<Integer> scores = Arrays.asList(-1,-1,-2,-2,-2,-3,-3);
 
     public void addTiles(List<Tile> t){
         for(int i=0; i<t.size(); i++) {

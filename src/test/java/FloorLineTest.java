@@ -15,39 +15,32 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FloorLineTest {
     static FloorLine floorLine;
     static List<Tile> excessTiles;
-    static List<Integer> scores;
     @BeforeEach
     public void setUp() {
         floorLine = new FloorLine();
         excessTiles = new ArrayList<>();
-        scores = new ArrayList<>();
         excessTiles.add(Color.RED);
         excessTiles.add(Color.RED);
         excessTiles.add(Color.RED);
         excessTiles.add(Color.RED);
-        scores.add(-1);
-        scores.add(-1);
-        scores.add(-2);
-        scores.add(-2);
-        scores.add(-2);
-        scores.add(-3);
-        scores.add(-3);
+        floorLine.addTiles(excessTiles);
     }
     @Test
     public void testGetAllTiles(){
-        floorLine.addTiles(excessTiles);
         List<Tile> theTiles = floorLine.getCopyTiles();
         assertEquals(excessTiles, theTiles);
         assertTrue(floorLine.getCopyTiles().size() <= 7);
     }
 
     @Test
-    public void testReachMax(){
+    public void testFullFloorLine(){
+        excessTiles = new ArrayList<>();
+        excessTiles.add(Color.BLUE);
+        excessTiles.add(Color.BLUE);
+        excessTiles.add(Color.BLUE);
+        excessTiles.add(Color.BLUE);
         floorLine.addTiles(excessTiles);
         assertTrue(floorLine.getCopyTiles().size() <= 7);
-    }
-    @Test
-    public void testScore(){
         assertTrue(floorLine.getScore()>= -14);
     }
     @Test
