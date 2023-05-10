@@ -1,21 +1,33 @@
 package model;
 
+import controller.PlayerBoardState;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerBoard {
-    private Integer score;
+    private int score;
+    private List<Object> scoreChanges;
     private Wall wall;
     private FloorLine floorLine;
     private PatternLine patternLine;
 
-    boolean canAddTypePattern(int rowIndex, Color type){
+    public boolean canAddTypePattern(int rowIndex, Color type){
         return false;
     }
-    List<Tile> wallTilting(){
+    public void performMovePatternLine(int rowIndex, List<Tile> tiles){
+
+    }
+    public void performMoveFloorLine(List<Tile> tiles){
+
+    }
+    public List<Tile> wallTilting(){
         return new ArrayList<>();
     }
-    void addFinalScores(){
+    public void addFinalScores(){
 
+    }
+    public PlayerBoardState toObject(){
+        return new PlayerBoardState();
     }
 }

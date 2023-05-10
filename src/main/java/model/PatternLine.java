@@ -7,13 +7,16 @@ import java.util.List;
 public class PatternLine {
     private List<List<Tile>> table;
 
-    void addTiles(int row, Tile tiles){
+    public void addTiles(int row, Tile tiles){
 
     }
-    void clearTiles(int row, Tile tiles){
+    public Boolean canAddTile(int row, Color type){
+        return false;
+    }
+    public void clearTiles(int row, Tile tiles){
 
     }
-    List<Integer> completedRows(){
+    public List<Integer> completedRows(){
         return new ArrayList<>();
     }
 }
