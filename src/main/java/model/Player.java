@@ -3,22 +3,26 @@ package model;
 public class Player {
     private String name;
     private final PlayerBoard board = new PlayerBoard();
-    private static int identifier = 0;
+    private static int counter = 0;
+    private final int identifier;
 
     public Player(){
-        ++identifier;
+        ++counter;
+        identifier = counter;
     }
     public Player(String name){
         this.name = name;
-        ++identifier;
+        ++counter;
+        identifier = counter;
+    }
+    public int getIdentifier(){
+        return identifier;
     }
     public String getName(){
         return name;
     }
 
-    public int getIdentifier(){
-        return identifier;
-    }
+
     public void setName(String name){
         this.name=name;
     }
