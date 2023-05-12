@@ -1,5 +1,4 @@
 import model.Color;
-import model.FloorLine;
 import model.PatternLine;
 import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +15,12 @@ public class PatternLineTest {
     static List<Tile> redTile;
     static List<Tile> blueTiles;
     static List<Integer> rows;
+
+    @Test
+    void ShouldBeImmutable() {
+        var table = patternLine.getCopyTable();
+        assertThrows(UnsupportedOperationException.class, () -> table.remove(0));
+    }
 
     @BeforeEach
     public void setUp() {
@@ -62,9 +67,11 @@ public class PatternLineTest {
     @Test
     public void testClearTiles(){
         patternLine.addTiles(3, redTiles);
-        patternLine.addTiles(4,blueTiles);
+        patternLine.addTiles(1,blueTiles);
         List<Tile> clearedTiles = patternLine.clearTiles(3);
         assertEquals(clearedTiles.size(),4);
+        clearedTiles = patternLine.clearTiles(1);
+        assertEquals(clearedTiles.size(),2);
     }
     @Test
     public void testCompletedRows(){
