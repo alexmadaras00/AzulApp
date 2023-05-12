@@ -2,19 +2,34 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class FloorLine {
-    private final List<Tile> tiles = new ArrayList<>();
-    private final List<Integer> scores = Arrays.asList(-1,-1,-2,-2,-2,-3,-3);
+    private List<Tile> tiles = new ArrayList<>();
+    private List<Integer> scores = Arrays.asList(-1,-1,-2,-2,-2,-3,-3);
 
-    public void addTiles(List<Tile> t){
+    /**
+     * method to add tile to floor line
+     * @param t = the tiles that will be added to floor line
+     * @return excess tiles if the floorline is full
+     */
+    public List<Tile> addTiles(List<Tile> t){
+        List<Tile> excessTiles = new ArrayList<>();
         for(int i=0; i<t.size(); i++) {
             if (tiles.size() < 7) {
                 tiles.add(t.get(i));
+            } else {
+                excessTiles.add(t.get(i));
             }
         }
+        return excessTiles;
     }
+
+    /**
+     * method to get penalty score from the floorline
+     * @return penalty score
+     */
     public int getScore(){
         Integer penalty = 0;
         for (var i = 0; i < tiles.size(); i++) {
@@ -22,11 +37,23 @@ public class FloorLine {
         }
         return penalty;
     }
+
+    /**
+     *
+     * @return immutable list of tiles in floor line
+     */
     public List<Tile> getCopyTiles(){
-        return tiles;
+        return Collections.unmodifiableList(tiles);
     }
+
+    /**
+     * method to clear the tiles in floor line
+     * @return clearedTiles
+     */
     public List<Tile> clearTiles(){
-        tiles.removeAll(tiles);
-        return tiles;
+
+        List<Tile> clearedTiles = tiles;
+        tiles = (new ArrayList<>());
+        return clearedTiles;
     }
 }
