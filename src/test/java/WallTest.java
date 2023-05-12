@@ -22,9 +22,10 @@ public class WallTest {
         template = new Color[size][size];
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
-                template[row][col] = colors[Math.abs((row - col) % size)];
+                template[row][col] = colors[(col - row + size) % size];
             }
         }
+        System.out.println(template);
         return;
     }
 
@@ -36,21 +37,29 @@ public class WallTest {
         return;
     }
 
+    private void assertEqualWall(Color[][] wall1, Color[][] wall2) {
+        for (int row = 0; row < wall1.length; row++) {
+            for (int col = 0; col < wall1[row].length; col++) {
+                assertEquals(wall1[row][col], wall2[row][col]);
+            }
+        }
+    }
+
     @Test
     public void testGetCopyTableEmpty() {
         Color[][] testWall = new Color[colors.length][colors.length];
-        assertEquals(testWall, wall.getCopyTable());
+        assertEqualWall(testWall, wall.getCopyTable());
         return;
     }
 
     @Test
     public void testGetCopyTablePartial() {
         for (Color c : colors) {
-            wall.addTile(5, c);
+            wall.addTile(4, c);
         }
         Color[][] testWall = new Color[colors.length][colors.length];
-        testWall[5] = template[5];
-        assertEquals(testWall, wall.getCopyTable());
+        testWall[4] = template[4];
+        assertEqualWall(testWall, wall.getCopyTable());
         return;
     }
 
@@ -61,7 +70,7 @@ public class WallTest {
                 wall.addTile(row, c);
             }
         }
-        assertEquals(template, wall.getCopyTable());
+        assertEqualWall(template, wall.getCopyTable());
         return;
     }
 
@@ -116,9 +125,9 @@ public class WallTest {
         assertEquals(0, wall.getCompletionScores());
         for (int col = 1; col < colors.length; col++) {
             for (int row = 0; row < colors.length; row++) {
-                wall.addTile(row, colors[Math.abs((col + row) % colors.length)]);
+                wall.addTile(row, wall.getTemplateColor(row, col));
             }
-            assertEquals(col*2, wall.getCompletionScores());
+            assertEquals(col * 7, wall.getCompletionScores());
         }
         return;
     }
@@ -130,7 +139,7 @@ public class WallTest {
             for (Color c : colors) {
                 wall.addTile(r, c);
             }
-            assertEquals(r*7, wall.getCompletionScores());
+            assertEquals(r * 2, wall.getCompletionScores());
         }
         return;
     }
@@ -142,7 +151,7 @@ public class WallTest {
             for (int r = 0; r < colors.length; r++) {
                 wall.addTile(r, colors[c]);
             }
-            assertEquals(c*10, wall.getCompletionScores());
+            assertEquals(c * 10, wall.getCompletionScores());
         }
         return;
     }
@@ -159,7 +168,7 @@ public class WallTest {
         assertEquals(5, colors.length);
         int[] tilesPlaced = { 4, 1, 2 };
         for (int tile : tilesPlaced) {
-            wall.addTile(0, colors[tile]);
+            wall.addTile(2, colors[tile]);
         }
         int score = wall.addTile(2, colors[0]);
         assertEquals(4, score);
@@ -171,7 +180,7 @@ public class WallTest {
         assertEquals(5, colors.length);
         int[] rowsPlaced = { 1, 3, 4 };
         for (int row : rowsPlaced) {
-            wall.addTile(row, colors[Math.abs((2 - row) % colors.length)]);
+            wall.addTile(row, wall.getTemplateColor(row, 2));
         }
         int score = wall.addTile(2, colors[0]);
         assertEquals(4, score);
@@ -183,11 +192,11 @@ public class WallTest {
         assertEquals(5, colors.length);
         int[] rowsPlaced = { 1, 3, 4 };
         for (int row : rowsPlaced) {
-            wall.addTile(row, colors[Math.abs((2 - row) % colors.length)]);
+            wall.addTile(row, wall.getTemplateColor(row, 2));
         }
         int[] tilesPlaced = { 4, 1, 2 };
         for (int tile : tilesPlaced) {
-            wall.addTile(0, colors[tile]);
+            wall.addTile(2, colors[tile]);
         }
         int score = wall.addTile(2, colors[0]);
         assertEquals(8, score);
