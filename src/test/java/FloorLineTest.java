@@ -25,6 +25,14 @@ public class FloorLineTest {
         excessTiles.add(Color.RED);
         floorLine.addTiles(excessTiles);
     }
+
+    @Test
+    void ShouldBeImmutable() {
+        List<Tile> copiedTiles = floorLine.getCopyTiles();
+        assertThrows(UnsupportedOperationException.class,()->copiedTiles.set(4,Color.RED));
+    }
+
+
     @Test
     public void testGetAllTiles(){
         List<Tile> theTiles = floorLine.getCopyTiles();
@@ -38,14 +46,13 @@ public class FloorLineTest {
         excessTiles.add(Color.BLUE);
         excessTiles.add(Color.BLUE);
         excessTiles.add(Color.BLUE);
-        excessTiles.add(Color.BLUE);
-        floorLine.addTiles(excessTiles);
+        excessTiles.add(Color.BLUE);;
+        assertTrue(floorLine.addTiles(excessTiles).size()>0);
         assertTrue(floorLine.getCopyTiles().size() <= 7);
         assertTrue(floorLine.getScore()>= -14);
     }
     @Test
     public void testClearTiles(){
-        floorLine.clearTiles();
-        assertEquals(floorLine.getCopyTiles().size(),0);
+        assertEquals(floorLine.clearTiles(),excessTiles);
     }
 }
