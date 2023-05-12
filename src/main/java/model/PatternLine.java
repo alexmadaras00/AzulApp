@@ -69,6 +69,7 @@ public class PatternLine {
     }
 
     public List<List<Tile>> getCopyTable(){
-        return Collections.unmodifiableList(table);
+        List<List<Tile>> line = Collections.unmodifiableList(table);
+        return line;
     }
 }
