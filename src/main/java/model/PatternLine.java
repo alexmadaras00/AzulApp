@@ -2,6 +2,7 @@ package model;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PatternLine {
@@ -39,7 +40,7 @@ public class PatternLine {
      * @return true if the pattern line is not null and the color matches, else return false
      */
     public Boolean canAddTile(int row, Color type){
-        return ((table.get(row).size()==0) || table.get(row).contains(type)) && table.get(row).size()<row+1;
+        return ((table.get(row).size()==0) || table.get(row).contains(type)) && table.get(row).size()<=row;
     }
 
     /**
@@ -48,12 +49,8 @@ public class PatternLine {
      * @return the tiles removed from the patternLine.
      */
     public List<Tile> clearTiles(int row){
-        List<Tile> clearedTiles = new ArrayList<>();
-        Tile tile = table.get(row).get(0);
-        for (int i=0; i<=row; i++){
-            clearedTiles.add(tile);
-        }
-        table.get(row).clear();
+        List<Tile> clearedTiles = table.get(row);
+        table.set(row, new ArrayList<>());
         return clearedTiles;
     }
 
@@ -69,5 +66,9 @@ public class PatternLine {
             }
         }
         return rows;
+    }
+
+    public List<List<Tile>> getCopyTable(){
+        return Collections.unmodifiableList(table);
     }
 }
