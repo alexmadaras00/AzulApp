@@ -1,5 +1,6 @@
 import model.Color;
 import model.Player;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,38 +8,41 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTest {
     static Player player;
     static String name = "Trump";
+    static int counter = 0;
+    @BeforeEach
+    void setUp(){
+        player = new Player(name);
+        assertEquals(++counter, player.getIdentifier());
+    }
+    @Test
+    void testGetIdentifier() {
+        String name2 = "Scholz";
+        Player player2 = new Player(name2);
+        assertEquals(++counter, player2.getIdentifier());
+    }
 
     @Test
     public void testDefaultConstructor() {
-        Player playerX = new Player();
-        assertNull(playerX.getName());
-        assertNotNull(playerX.getBoard());
+        Player player2 = new Player();
+        assertNull(player2.getName());
+        assertNotNull(player2.getBoard());
+        assertEquals(++counter, player2.getIdentifier());
     }
 
     @Test
     public void testConstructorWithName() {
-        Player playerY = new Player(name);
-        assertEquals(name, playerY.getName());
-        assertNotNull(playerY.getBoard());
-    }
-
-    @Test
-    public void testPlayer() {
-        Player player2 = new Player("Fabri Fibra");
-        assertEquals("Fabri Fibra", player2.getName());
-        assertEquals(1, player2.getIdentifier());
-        assertFalse(player2.getBoard().canAddTypePattern(2, Color.RED));
+        assertEquals(name, player.getName());
+        assertFalse(player.getBoard().canAddTypePattern(2, Color.RED));
+        assertEquals(counter, player.getIdentifier());
     }
 
     @Test
     public void testGetName() {
-        player = new Player(name);
         assertEquals(name, player.getName());
     }
 
     @Test
     public void testSetName() {
-        player = new Player(name);
         String name2 = "Messi";
         player.setName(name2);
         assertEquals(name2, player.getName());
@@ -46,16 +50,8 @@ public class PlayerTest {
 
     @Test
     public void testGetPlayerBoard() {
-        player = new Player();
         assertFalse(player.getBoard().canAddTypePattern(2, Color.RED));
     }
 
-    @Test
-    public void testGetIdentifier() {
-        String name2 = "Scholz";
-        player = new Player(name);
-        Player player2 = new Player(name2);
-        assertEquals(1, player.getIdentifier());
-        assertEquals(2, player2.getIdentifier());
-    }
+
 }
