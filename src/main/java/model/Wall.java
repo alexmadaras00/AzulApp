@@ -1,15 +1,29 @@
 package model;
 
-import java.util.List;
-
 public class Wall {
-    private List<Color> pattern;
-    private List<List<Tile>> table;
+    private Color[][] template;
+    private Color[][] wall;
 
-    public int addTiles(int row, Tile tile){
+    public Wall() {
+    }
+
+    public int addTile(int row, Tile tile) {
         return 0;
     }
-    public boolean canAddTile(int row, Color type){
+
+    public boolean canAddTile(int row, Color type) {
         return false;
+    }
+
+    public boolean hasCompleteRow() {
+        return false;
+    }
+
+    public int getCompletionScores() {
+        return 0;
+    }
+
+    public Color[][] getCopyTable() {
+        return null;
     }
 }
