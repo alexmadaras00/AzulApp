@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,12 +16,6 @@ public class PatternLineTest {
     static List<Tile> redTile;
     static List<Tile> blueTiles;
     static List<Integer> rows;
-
-    @Test
-    void ShouldBeImmutable() {
-        var table = patternLine.getCopyTable();
-        assertThrows(UnsupportedOperationException.class, () -> table.remove(0));
-    }
 
     @BeforeEach
     public void setUp() {
@@ -39,6 +34,16 @@ public class PatternLineTest {
         rows.add(1);
         rows.add(3);
     }
+
+
+    @Test
+    void ShouldBeImmutable() {
+        PatternLine patternLine = new PatternLine();
+        List<List<Tile>> copyTable = patternLine.getCopyTable();
+        assertThrows(UnsupportedOperationException.class,()->copyTable.set(4,redTiles));
+    }
+
+
     @Test
     public void testReturnExcessTiles(){
         List<Tile> excessTiles = patternLine.addTiles(2, redTile);
