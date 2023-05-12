@@ -1,7 +1,6 @@
 stages:
   - build
   - test
-  - visualize
 
 build_app:
   image: maven:3.8-openjdk-17
