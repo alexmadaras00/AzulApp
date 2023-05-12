@@ -1,6 +1,6 @@
 package model;
 
-import controller.PlayerBoardState;
+import dataobjects.PlayerBoardState;
 
 import java.util.ArrayList;
 import java.util.List;
