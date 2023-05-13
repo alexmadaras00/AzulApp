@@ -16,6 +16,11 @@ public class View implements Messager {
 
     }
 
+    @Override
+    public void handleResponse(DataObject message) {
+
+    }
+
     private void sendInput(DataObject object) {
 
     }
