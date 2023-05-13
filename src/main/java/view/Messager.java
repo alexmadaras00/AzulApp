@@ -3,5 +3,5 @@ package view;
 import controller.IController;
 
 public interface Messager {
-    void connectController(IController IController);
+    void connectController(IController controller);
 }

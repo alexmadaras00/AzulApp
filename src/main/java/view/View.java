@@ -8,7 +8,7 @@ public class View implements Messager {
     private UI userInterface;
 
     @Override
-    public void connectController(IController IController) {
+    public void connectController(IController controller) {
 
     }
 
