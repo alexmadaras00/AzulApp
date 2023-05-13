@@ -42,7 +42,7 @@ public class ViewTest {
         public boolean notified;
 
         @Override
-        public void notify(Object sender, JSONObject message) {
+        public void notify(Object sender, DataObject message) {
 
         }
     }

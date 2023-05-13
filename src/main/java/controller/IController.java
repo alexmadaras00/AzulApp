@@ -1,7 +1,5 @@
 package controller;
 
-import org.json.JSONObject;
-
 public interface IController {
-    void notify(Object sender, JSONObject message);
+    void notify(Object sender, DataObject message);
 }
