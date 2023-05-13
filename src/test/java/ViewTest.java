@@ -25,7 +25,7 @@ public class ViewTest {
     }
 
     private static class MockUI implements UI {
-        public boolean updated;
+        public DataObject updated;
         public boolean moveRequested;
 
         @Override
@@ -39,7 +39,7 @@ public class ViewTest {
     }
 
     private static class MockController implements IController {
-        public boolean notified;
+        public DataObject notified;
 
         @Override
         public void notify(Object sender, DataObject message) {
