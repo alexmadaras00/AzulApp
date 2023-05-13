@@ -2,11 +2,11 @@ package controller;
 
 import model.Game;
 import org.json.JSONObject;
-import view.IView;
+import view.Messager;
 
 public class Controller implements IController{
     private Game model;
-    private IView IView;
+    private Messager IView;
 
 
     @Override

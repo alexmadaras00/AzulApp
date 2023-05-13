@@ -2,6 +2,6 @@ package view;
 
 import controller.IController;
 
-public interface IView {
+public interface Messager {
     void connectController(IController IController);
 }
