@@ -56,10 +56,16 @@ public class ViewTest {
 
     private static class MockController implements IController {
         public List<DataObject> notified = new ArrayList<>();
+        private Messager view;
+
+        public MockController(Messager view) {
+            this.view = view;
+        }
 
         @Override
         public void notify(Object sender, DataObject message) {
             notified.add(message);
+            view.handleResponse(MockDataObject.UPDATE);
         }
     }
 
@@ -71,7 +77,7 @@ public class ViewTest {
     static void setUp() {
         ui = new MockUI();
         view = new View(ui);
-        controller = new MockController();
+        controller = new MockController(view);
         try {
             view.connectController(controller);
         } catch (MockLoopDone e) {
