@@ -1,3 +1,8 @@
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -9,6 +14,10 @@ import view.UI;
 import view.View;
 
 public class ViewTest {
+    private static class MockLoopDone extends Throwable {
+        private static final long serialVersionUID = 1L;
+    }
+
     private static enum MockDataObject implements DataObject {
         MOVE,
         UPDATE;
@@ -25,8 +34,8 @@ public class ViewTest {
     }
 
     private static class MockUI implements UI {
-        public DataObject updated;
-        public boolean moveRequested;
+        public List<DataObject> updated = new ArrayList<>();
+        public int moveRequested = 0;
 
         @Override
         public void update(DataObject object) {
@@ -39,7 +48,7 @@ public class ViewTest {
     }
 
     private static class MockController implements IController {
-        public DataObject notified;
+        public List<DataObject> notified = new ArrayList<>();
 
         @Override
         public void notify(Object sender, DataObject message) {
