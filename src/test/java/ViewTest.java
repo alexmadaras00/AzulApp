@@ -86,6 +86,7 @@ public class ViewTest {
 
     @Test
     void testAllUpdates() {
+        assertEquals(MockUI.MAX_MOVE_REQUESTED, ui.updated.size());
         for (DataObject object : ui.updated) {
             assertEquals(MockDataObject.UPDATE, object);
         }
@@ -93,6 +94,7 @@ public class ViewTest {
 
     @Test
     void testAllNotifications() {
+        assertEquals(MockUI.MAX_MOVE_REQUESTED, controller.notified.size());
         for (DataObject object : controller.notified) {
             assertEquals(MockDataObject.MOVE, object);
         }
