@@ -46,7 +46,7 @@ public class FloorLineTest {
         excessTiles.add(Color.BLUE);
         excessTiles.add(Color.BLUE);
         excessTiles.add(Color.BLUE);
-        excessTiles.add(Color.BLUE);;
+        excessTiles.add(Color.BLUE);
         assertTrue(floorLine.addTiles(excessTiles).size()>0);
         assertTrue(floorLine.getCopyTiles().size() <= 7);
         assertTrue(floorLine.getScore()>= -14);
