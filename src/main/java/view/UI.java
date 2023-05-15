@@ -1,6 +1,6 @@
 package view;
 
-import controller.DataObject;
+import dataobjects.DataObject;
 
 public interface UI {
     void update(DataObject object);
