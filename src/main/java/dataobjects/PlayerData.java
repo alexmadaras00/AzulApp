@@ -2,16 +2,14 @@ package dataobjects;
 
 import java.util.Optional;
 
-import model.PlayerBoard;
-
 public class PlayerData implements DataObject {
     private Optional<String> name;
     private int identifier;
-    private Optional<PlayerBoard> playerBoard;
+    private Optional<PlayerBoardState> playerBoard;
 
     public PlayerData() {
     }
-    public PlayerData(Optional<String> name, int identifier, Optional<PlayerBoard> playerBoard) {
+    public PlayerData(Optional<String> name, int identifier, Optional<PlayerBoardState> playerBoard) {
         this.name = name;
         this.identifier = identifier;
         this.playerBoard = playerBoard;
@@ -28,10 +26,10 @@ public class PlayerData implements DataObject {
     public void setIdentifier(int identifier) {
         this.identifier = identifier;
     }
-    public Optional<PlayerBoard> getPlayerBoard() {
+    public Optional<PlayerBoardState> getPlayerBoard() {
         return playerBoard;
     }
-    public void setPlayerBoard(Optional<PlayerBoard> playerBoard) {
+    public void setPlayerBoard(Optional<PlayerBoardState> playerBoard) {
         this.playerBoard = playerBoard;
     }
     
