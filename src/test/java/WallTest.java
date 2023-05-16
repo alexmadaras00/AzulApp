@@ -242,6 +242,8 @@ public class WallTest {
         return;
     }
 
+    // Unmodifiable list check
+
     @Test
     public void testUnmodifyableCopyTable() {
         wall.addTile(0, colors[0]);
