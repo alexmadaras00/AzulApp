@@ -48,7 +48,8 @@ sigridci:
   tags:
     - pppp
   script:
-    - sigridci.py --customer utst --system P42023T03 --source . 
+    - env | grep 'CI'
+    # - sigridci.py --customer utst --system P42023T03 --source .
   allow_failure: true
   artifacts:
     paths:
@@ -59,7 +60,7 @@ sigridci:
     when: always
   rules:
     - if: $CI_MERGE_REQUEST_ID
-    
+
 sigridpublish:
   stage: report
   image:
