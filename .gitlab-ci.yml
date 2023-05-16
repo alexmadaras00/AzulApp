@@ -41,7 +41,7 @@ run_coverage:
         coverage_format: cobertura
         path: target/site/cobertura.xml
 
-        sigridci:
+sigridci:
   stage: report
   image:
     name: softwareimprovementgroup/sigridci
