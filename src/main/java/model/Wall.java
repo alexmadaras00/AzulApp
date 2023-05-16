@@ -1,6 +1,10 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Wall {
@@ -160,7 +164,11 @@ public class Wall {
         return score;
     }
 
-    public Color[][] getCopyTable() {
-        return wall;
+    public List<List<Color>> getCopyTable() {
+        List<List<Color>> listCopy = new ArrayList<List<Color>>();
+        for (Color[] row : wall) {
+            listCopy.add(Collections.unmodifiableList(Arrays.asList(row)));
+        }
+        return Collections.unmodifiableList(listCopy);
     }
 }

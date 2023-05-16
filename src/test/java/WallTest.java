@@ -1,4 +1,9 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,10 +42,10 @@ public class WallTest {
         return;
     }
 
-    private void assertEqualWall(Color[][] wall1, Color[][] wall2) {
+    private void assertEqualWall(Color[][] wall1, List<List<Color>> wall2) {
         for (int row = 0; row < wall1.length; row++) {
             for (int col = 0; col < wall1[row].length; col++) {
-                assertEquals(wall1[row][col], wall2[row][col]);
+                assertEquals(wall1[row][col], wall2.get(row).get(col));
             }
         }
     }
@@ -203,8 +208,15 @@ public class WallTest {
         return;
     }
 
-    public static void main(String[] args) {
-        System.out.println(-11 % 5);
-
+    @Test
+    public void testUnmodifyableCopyTable() {
+        wall.addTile(0, colors[0]);
+        List<List<Color>> copyTable = wall.getCopyTable();
+        List<Color> newRow = new ArrayList<Color>(Arrays.asList(colors));
+        assertThrows(UnsupportedOperationException.class, () -> copyTable.set(1, newRow));
+        assertThrows(UnsupportedOperationException.class, () -> copyTable.get(1).set(1,colors[0]));
+        assertThrows(UnsupportedOperationException.class, () -> copyTable.clear());
+        assertThrows(UnsupportedOperationException.class, () -> copyTable.get(1).add(colors[0]));
+        assertThrows(UnsupportedOperationException.class, () -> copyTable.add(newRow));
     }
 }
