@@ -3,13 +3,15 @@ stages:
   - test
   - report
 
-build_app:
-  image: maven:3.8-openjdk-17
-  tags:
-    - pppp
-  stage: build
-  script:
-    - mvn package
+# build_app:
+#   image: maven:3.8-openjdk-17
+#   tags:
+#     - pppp
+#   stage: build
+#   script:
+#     - mvn package
+#   rules:
+#     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push"
 
 run_tests:
   image: maven:3.8-openjdk-17
@@ -25,6 +27,8 @@ run_tests:
       junit: target/surefire-reports/TEST-*.xml
     paths:
       - target/site/jacoco/jacoco.xml
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push"
 
 run_coverage:
   stage: test
@@ -40,6 +44,8 @@ run_coverage:
       coverage_report:
         coverage_format: cobertura
         path: target/site/cobertura.xml
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push"
 
 sigridci:
   stage: report
@@ -48,7 +54,7 @@ sigridci:
   tags:
     - pppp
   script:
-    - sigridci.py --customer utst --system P42023T03 --source . 
+    - sigridci.py --customer utst --system P42023T03 --source .
   allow_failure: true
   artifacts:
     paths:
@@ -58,8 +64,9 @@ sigridci:
     expire_in: 1 week
     when: always
   rules:
-    - if: $CI_MERGE_REQUEST_ID
-    
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+
 sigridpublish:
   stage: report
   image:
@@ -75,4 +82,4 @@ sigridpublish:
     expire_in: 1 week
     when: always
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: ($CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push") && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
