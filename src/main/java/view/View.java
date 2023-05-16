@@ -1,10 +1,10 @@
 package view;
 
-import controller.DataObject;
-import controller.IController;
+import dataobjects.DataObject;
+import controller.Mediator;
 
 public class View implements Messager {
-    private IController controller;
+    private Mediator mediator;
     private UI userInterface;
 
     public View(UI userInterface) {
@@ -12,19 +12,17 @@ public class View implements Messager {
     }
 
     @Override
-    public void connectController(IController controller) {
-        this.controller = controller;
-        while (true) {
-            sendInput(userInterface.getMove());
-        }
+    public void connectMediator(Mediator mediator) {
+        this.mediator = mediator;
     }
 
     @Override
-    public void handleResponse(DataObject message) {
+    public void notify(DataObject message) {
         userInterface.update(message);
     }
 
-    private void sendInput(DataObject object) {
-        controller.notify(this, object);
+    @Override
+    public void send(DataObject message) {
+        mediator.notify(message);
     }
 }

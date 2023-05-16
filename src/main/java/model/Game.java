@@ -1,6 +1,6 @@
 package model;
 
-import controller.IController;
+import controller.Mediator;
 import dataobjects.GameState;
 import dataobjects.GameUpdate;
 import org.json.JSONObject;
@@ -33,7 +33,7 @@ public class Game implements Model{
     }
 
     @Override
-    public void connectController(IController IController) {
+    public void connectController(Mediator IController) {
 
     }
 }

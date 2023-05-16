@@ -1,7 +1,7 @@
 package model;
 
-import controller.IController;
+import controller.Mediator;
 
 public interface Model {
-    void connectController(IController IController);
+    void connectController(Mediator IController);
 }
