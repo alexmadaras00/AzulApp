@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import dataobjects.ScoreChange;
 import model.Color;
 import model.Wall;
 
@@ -127,36 +129,68 @@ public class WallTest {
 
     @Test
     public void testGetCompletionScoreColumns() {
-        assertEquals(0, wall.getCompletionScores());
+        assertEquals(true, wall.getCompletionScores().isEmpty());
         for (int col = 1; col < colors.length; col++) {
             for (int row = 0; row < colors.length; row++) {
                 wall.addTile(row, wall.getTemplateColor(row, col));
             }
-            assertEquals(col * 7, wall.getCompletionScores());
+            List<ScoreChange> scoreChange = wall.getCompletionScores();
+            assertEquals(col, scoreChange.size());
+            for (ScoreChange sc : scoreChange) {
+                assertEquals(true, sc.getIsCompletionScore());
+                assertEquals(false, sc.getHasColor());
+                assertEquals(false, sc.getHasRowIndex());
+                assertEquals(null, sc.getColor());
+                assertInstanceOf(Integer.class, sc.getIndex());
+                assertEquals(true, sc.getIndex() < colors.length);
+                assertEquals(true, sc.getIndex() >= 0);
+                assertEquals(7, sc.getScoreDifference());
+            }
         }
         return;
     }
 
     @Test
     public void testGetCompletionScoresRows() {
-        assertEquals(0, wall.getCompletionScores());
+        assertEquals(true, wall.getCompletionScores().isEmpty());
         for (int r = 1; r < colors.length; r++) {
             for (Color c : colors) {
                 wall.addTile(r, c);
             }
-            assertEquals(r * 2, wall.getCompletionScores());
+            List<ScoreChange> scoreChange = wall.getCompletionScores();
+            assertEquals(r, scoreChange.size());
+            for (ScoreChange sc : scoreChange) {
+                assertEquals(true, sc.getIsCompletionScore());
+                assertEquals(false, sc.getHasColor());
+                assertEquals(true, sc.getHasRowIndex());
+                assertEquals(null, sc.getColor());
+                assertInstanceOf(Integer.class, sc.getIndex());
+                assertEquals(true, sc.getIndex() < colors.length);
+                assertEquals(true, sc.getIndex() >= 0);
+                assertEquals(2, sc.getScoreDifference());
+            }
         }
         return;
     }
 
     @Test
     public void testGetCompletionScoresColor() {
-        assertEquals(0, wall.getCompletionScores());
+        assertEquals(true, wall.getCompletionScores().isEmpty());
         for (int c = 1; c < colors.length; c++) {
             for (int r = 0; r < colors.length; r++) {
                 wall.addTile(r, colors[c]);
             }
-            assertEquals(c * 10, wall.getCompletionScores());
+            List<ScoreChange> scoreChange = wall.getCompletionScores();
+            assertEquals(c, scoreChange.size());
+            for (ScoreChange sc : scoreChange) {
+                assertEquals(true, sc.getIsCompletionScore());
+                assertEquals(true, sc.getHasColor());
+                assertEquals(false, sc.getHasRowIndex());
+                assertEquals(0, sc.getIndex());
+                assertInstanceOf(Color.class, sc.getColor());
+                assertEquals(true, Arrays.asList(colors).contains(sc.getColor()));
+                assertEquals(10, sc.getScoreDifference());
+            }
         }
         return;
     }
@@ -214,7 +248,7 @@ public class WallTest {
         List<List<Color>> copyTable = wall.getCopyTable();
         List<Color> newRow = new ArrayList<Color>(Arrays.asList(colors));
         assertThrows(UnsupportedOperationException.class, () -> copyTable.set(1, newRow));
-        assertThrows(UnsupportedOperationException.class, () -> copyTable.get(1).set(1,colors[0]));
+        assertThrows(UnsupportedOperationException.class, () -> copyTable.get(1).set(1, colors[0]));
         assertThrows(UnsupportedOperationException.class, () -> copyTable.clear());
         assertThrows(UnsupportedOperationException.class, () -> copyTable.get(1).add(colors[0]));
         assertThrows(UnsupportedOperationException.class, () -> copyTable.add(newRow));

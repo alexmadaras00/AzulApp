@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import dataobjects.ScoreChange;
 
 public class Wall {
     private Color[][] wall;
     private Color[] colors;
+    private int completedColorScore = 10;
+    private int completedRowScore = 2;
+    private int completedColumnScore = 7;
 
     public Wall() {
         colors = Color.values();
@@ -19,6 +25,76 @@ public class Wall {
 
     public Color getTemplateColor(int row, int col) {
         return colors[(col - row + colors.length) % colors.length];
+    }
+
+    public int addTile(int row, Tile tile) {
+        Color newTile = (Color) tile;
+        int index = getIndexOfTile(row, newTile);
+        int score = getPlacementScore(row, index);
+        wall[row][index] = newTile;
+        return score;
+    }
+
+    public boolean canAddTile(int row, Color type) {
+        int index = getIndexOfTile(row, type);
+        return wall[row][index] == null ? true : false;
+    }
+
+    public boolean hasCompleteRow() {
+        for (int row = 0; row < colors.length; row++) {
+            if (isCompleteRow(row)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<ScoreChange> getCompletionScores() {
+        List<ScoreChange> scoreList = new LinkedList<ScoreChange>();
+
+        List<Color> completedColors = getColorCompletions();
+        scoreList.addAll(generateColorScoreChange(completedColors));
+        List<Integer> completedRows = getHorizontalCompletions();
+        scoreList.addAll(generateLineScoreChange(completedRows, true));
+        List<Integer> completedColums = getVerticalCompletions();
+        scoreList.addAll(generateLineScoreChange(completedColums, false));
+        return scoreList;
+    }
+
+    public List<List<Color>> getCopyTable() {
+        List<List<Color>> listCopy = new ArrayList<List<Color>>();
+        for (Color[] row : wall) {
+            listCopy.add(Collections.unmodifiableList(Arrays.asList(row)));
+        }
+        return Collections.unmodifiableList(listCopy);
+    }
+
+    private List<ScoreChange> generateColorScoreChange(List<Color> completedColor) {
+        List<ScoreChange> scoreChanges = new LinkedList<>();
+        for (Color color : completedColor) {
+            ScoreChange scoreChange = new ScoreChange();
+            scoreChange.setIsCompletionScore(true);
+            scoreChange.setHasColor(true);
+            scoreChange.setHasRowIndex(false);
+            scoreChange.setColor(color);
+            scoreChange.setScoreDifference(completedColorScore);
+            scoreChanges.add(scoreChange);
+        }
+        return scoreChanges;
+    }
+
+    private List<ScoreChange> generateLineScoreChange(List<Integer> completedLines, boolean isRow) {
+        List<ScoreChange> scoreChanges = new LinkedList<>();
+        for (int line : completedLines) {
+            ScoreChange scoreChange = new ScoreChange();
+            scoreChange.setIsCompletionScore(true);
+            scoreChange.setHasColor(false);
+            scoreChange.setHasRowIndex(isRow);
+            scoreChange.setIndex(line);
+            scoreChange.setScoreDifference(isRow ? completedRowScore : completedColumnScore);
+            scoreChanges.add(scoreChange);
+        }
+        return scoreChanges;
     }
 
     private int getIndexOfTile(int row, Color tile) {
@@ -77,19 +153,6 @@ public class Wall {
         return (score == 0) ? 1 : score;
     }
 
-    public int addTile(int row, Tile tile) {
-        Color newTile = (Color) tile;
-        int index = getIndexOfTile(row, newTile);
-        int score = getPlacementScore(row, index);
-        wall[row][index] = newTile;
-        return score;
-    }
-
-    public boolean canAddTile(int row, Color type) {
-        int index = getIndexOfTile(row, type);
-        return wall[row][index] == null ? true : false;
-    }
-
     private boolean isCompleteRow(int row) {
         Color[] TileRow = wall[row];
         for (Color c : TileRow) {
@@ -109,17 +172,8 @@ public class Wall {
         return true;
     }
 
-    public boolean hasCompleteRow() {
-        for (int row = 0; row < colors.length; row++) {
-            if (isCompleteRow(row)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private int getColorCompletionScore() {
-        int score = 0;
+    private List<Color> getColorCompletions() {
+        List<Color> completedColors = new LinkedList<Color>();
         Map<Color, Integer> tileCount = new HashMap<Color, Integer>();
         for (Color[] row : wall) {
             for (Color tile : row) {
@@ -128,47 +182,32 @@ public class Wall {
                 }
             }
         }
-        for (int count : tileCount.values()) {
-            if (count == colors.length) {
-                score += 10;
+        for (Map.Entry<Color, Integer> entry : tileCount.entrySet()) {
+            if (entry.getValue() == colors.length) {
+                completedColors.add(entry.getKey());
             }
         }
-        return score;
+        return completedColors;
     }
 
-    private int getHorizontalCompletionScore() {
-        int score = 0;
+    private List<Integer> getHorizontalCompletions() {
+        List<Integer> completedRows = new LinkedList<Integer>();
         for (int row = 0; row < colors.length; row++) {
             if (isCompleteRow(row)) {
-                score += 2;
+                completedRows.add(row);
             }
         }
-        return score;
+        return completedRows;
     }
 
-    private int getVerticalCompletionScore() {
-        int score = 0;
+    private List<Integer> getVerticalCompletions() {
+        List<Integer> completedColumns = new LinkedList<Integer>();
         for (int col = 0; col < colors.length; col++) {
             if (isCompleteCol(col)) {
-                score += 7;
+                completedColumns.add(col);
             }
         }
-        return score;
+        return completedColumns;
     }
 
-    public int getCompletionScores() {
-        int score = 0;
-        score += getColorCompletionScore();
-        score += getHorizontalCompletionScore();
-        score += getVerticalCompletionScore();
-        return score;
-    }
-
-    public List<List<Color>> getCopyTable() {
-        List<List<Color>> listCopy = new ArrayList<List<Color>>();
-        for (Color[] row : wall) {
-            listCopy.add(Collections.unmodifiableList(Arrays.asList(row)));
-        }
-        return Collections.unmodifiableList(listCopy);
-    }
 }
