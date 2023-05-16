@@ -1,8 +1,8 @@
 package model;
 
 import controller.IController;
-import controller.GameState;
-import controller.GameUpdate;
+import dataobjects.GameState;
+import dataobjects.GameUpdate;
 import org.json.JSONObject;
 
 import java.util.List;

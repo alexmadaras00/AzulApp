@@ -1,6 +1,6 @@
 package view;
 
-import controller.DataObject;
+import dataobjects.DataObject;
 
 public class TUI implements UI {
 

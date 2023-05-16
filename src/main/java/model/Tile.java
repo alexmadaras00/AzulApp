@@ -1,6 +1,6 @@
 package model;
 
-import java.io.Serializable;
+import dataobjects.DataObject;;
 
-public interface Tile extends Serializable {
+public interface Tile extends DataObject {
 }
