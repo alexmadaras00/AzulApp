@@ -1,22 +1,27 @@
 package controller;
 
-import model.Game;
+import dataobjects.DataObject;
+import model.Model;
 import view.Messager;
 
-public class Controller implements IController {
-    private Game model;
-    private Messager IView;
+public class Controller implements Mediator {
+
 
     @Override
-    public void notify(Object sender, DataObject message) {
-
+    public void connectMessager(Messager messager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'connectMessager'");
     }
 
-    private void handleMove() {
-
+    @Override
+    public void connectModel(Model model) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'connectModel'");
     }
 
-    private void handleView() {
-
+    @Override
+    public void notify(DataObject message) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'notify'");
     }
 }
