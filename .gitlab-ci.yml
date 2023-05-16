@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - report
 
 build_app:
   image: maven:3.8-openjdk-17
@@ -39,3 +40,41 @@ run_coverage:
       coverage_report:
         coverage_format: cobertura
         path: target/site/cobertura.xml
+
+        sigridci:
+  stage: report
+  image:
+    name: softwareimprovementgroup/sigridci
+  tags:
+    - pppp
+
+  script:
+    - sigridci.py --customer utst --system P42023T03 --source . 
+  allow_failure: true
+  artifacts:
+    paths:
+      - "sigrid-ci-output/*"
+    reports:
+      junit: "sigrid-ci-output/sigridci-junit-format-report.xml"
+    expire_in: 1 week
+    when: always
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+    
+sigridpublish:
+  stage: report
+  image:
+    name: softwareimprovementgroup/sigridci
+  tags:
+    - pppp
+
+  script:
+    - sigridci.py --customer utst --system P42023T03 --source . --publish
+  allow_failure: true
+  artifacts:
+    paths:
+      - "sigrid-ci-output/*"
+    expire_in: 1 week
+    when: always
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
