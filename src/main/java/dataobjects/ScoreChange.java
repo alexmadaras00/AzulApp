@@ -1,66 +1,66 @@
 package dataobjects;
 
-import java.util.Optional;
-import java.util.OptionalInt;
-
 import model.Color;
 
 public class ScoreChange implements DataObject {
-    private Boolean isRoundScore;
-    private Boolean isPatternLine;
-    private Optional<Color> color;
-    private OptionalInt row;
-    private OptionalInt column;
+    private Boolean isCompletionScore;
+    private Boolean hasRowIndex;
+    private Boolean hasColor;
+    private Color color;
+    private int index;
     private int scoreDifference;
 
     public ScoreChange() {
     }
-    public ScoreChange(Boolean isRoundScore, Boolean isPatternLine, Optional<Color> color, OptionalInt row,
-            OptionalInt column, int scoreDifference) {
-        this.isRoundScore = isRoundScore;
-        this.isPatternLine = isPatternLine;
-        this.color = color;
-        this.row = row;
-        this.column = column;
-        this.scoreDifference = scoreDifference;
+
+    public Boolean getIsCompletionScore() {
+        return isCompletionScore;
     }
-    public Boolean getIsRoundScore() {
-        return isRoundScore;
+
+    public void setIsCompletionScore(Boolean isCompletionScore) {
+        this.isCompletionScore = isCompletionScore;
     }
-    public void setIsRoundScore(Boolean isRoundScore) {
-        this.isRoundScore = isRoundScore;
+
+    public Boolean getHasRowIndex() {
+        return hasRowIndex;
     }
-    public Boolean getIsPatternLine() {
-        return isPatternLine;
+
+    public void setHasRowIndex(Boolean hasRowIndex) {
+        this.hasRowIndex = hasRowIndex;
     }
-    public void setIsPatternLine(Boolean isPatternLine) {
-        this.isPatternLine = isPatternLine;
+
+    public Boolean getHasColor() {
+        return hasColor;
     }
-    public Optional<Color> getColor() {
+
+    public void setHasColor(Boolean hasColor) {
+        this.hasColor = hasColor;
+    }
+
+    public Color getColor() {
         return color;
     }
-    public void setColor(Optional<Color> color) {
+
+    public void setColor(Color color) {
         this.color = color;
     }
-    public OptionalInt getRow() {
-        return row;
+
+    public int getIndex() {
+        return index;
     }
-    public void setRow(OptionalInt row) {
-        this.row = row;
+
+    public void setIndex(int index) {
+        this.index = index;
     }
-    public OptionalInt getColumn() {
-        return column;
-    }
-    public void setColumn(OptionalInt column) {
-        this.column = column;
-    }
+
     public int getScoreDifference() {
         return scoreDifference;
     }
+
     public void setScoreDifference(int scoreDifference) {
         this.scoreDifference = scoreDifference;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -70,34 +70,29 @@ public class ScoreChange implements DataObject {
         if (getClass() != obj.getClass())
             return false;
         ScoreChange other = (ScoreChange) obj;
-        if (isRoundScore == null) {
-            if (other.isRoundScore != null)
+        if (isCompletionScore == null) {
+            if (other.isCompletionScore != null)
                 return false;
-        } else if (!isRoundScore.equals(other.isRoundScore))
+        } else if (!isCompletionScore.equals(other.isCompletionScore))
             return false;
-        if (isPatternLine == null) {
-            if (other.isPatternLine != null)
+        if (hasRowIndex == null) {
+            if (other.hasRowIndex != null)
                 return false;
-        } else if (!isPatternLine.equals(other.isPatternLine))
+        } else if (!hasRowIndex.equals(other.hasRowIndex))
             return false;
-        if (color == null) {
-            if (other.color != null)
+        if (hasColor == null) {
+            if (other.hasColor != null)
                 return false;
-        } else if (!color.equals(other.color))
+        } else if (!hasColor.equals(other.hasColor))
             return false;
-        if (row == null) {
-            if (other.row != null)
-                return false;
-        } else if (!row.equals(other.row))
+        if (color != other.color)
             return false;
-        if (column == null) {
-            if (other.column != null)
-                return false;
-        } else if (!column.equals(other.column))
+        if (index != other.index)
             return false;
         if (scoreDifference != other.scoreDifference)
             return false;
         return true;
     }
+
     
 }

@@ -1,48 +1,66 @@
 package dataobjects;
 
-import java.util.OptionalInt;
-
 import model.Color;
 
 public class Move implements DataObject {
-    private Boolean isFactory;
-    private OptionalInt number;
+    private Boolean fromFactory;
+    private int factoryNumber;
     private Color type;
+    private Boolean toPatternLine;
+    private int rowIndex;
     private PlayerData player;
 
     public Move() {
     }
-    public Move(Boolean isFactory, OptionalInt number, Color type, PlayerData player) {
-        this.isFactory = isFactory;
-        this.number = number;
-        this.type = type;
-        this.player = player;
+
+    public Boolean getFromFactory() {
+        return fromFactory;
     }
-    public Boolean getIsFactory() {
-        return isFactory;
+
+    public void setFromFactory(Boolean fromFactory) {
+        this.fromFactory = fromFactory;
     }
-    public void setIsFactory(Boolean isFactory) {
-        this.isFactory = isFactory;
+
+    public int getFactoryNumber() {
+        return factoryNumber;
     }
-    public OptionalInt getNumber() {
-        return number;
+
+    public void setFactoryNumber(int factoryNumber) {
+        this.factoryNumber = factoryNumber;
     }
-    public void setNumber(OptionalInt number) {
-        this.number = number;
-    }
+
     public Color getType() {
         return type;
     }
+
     public void setType(Color type) {
         this.type = type;
     }
+
+    public Boolean getToPatternLine() {
+        return toPatternLine;
+    }
+
+    public void setToPatternLine(Boolean toPatternLine) {
+        this.toPatternLine = toPatternLine;
+    }
+
+    public int getRowIndex() {
+        return rowIndex;
+    }
+
+    public void setRowIndex(int rowIndex) {
+        this.rowIndex = rowIndex;
+    }
+
     public PlayerData getPlayer() {
         return player;
     }
+
     public void setPlayer(PlayerData player) {
         this.player = player;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -52,17 +70,21 @@ public class Move implements DataObject {
         if (getClass() != obj.getClass())
             return false;
         Move other = (Move) obj;
-        if (isFactory == null) {
-            if (other.isFactory != null)
+        if (fromFactory == null) {
+            if (other.fromFactory != null)
                 return false;
-        } else if (!isFactory.equals(other.isFactory))
+        } else if (!fromFactory.equals(other.fromFactory))
             return false;
-        if (number == null) {
-            if (other.number != null)
-                return false;
-        } else if (!number.equals(other.number))
+        if (factoryNumber != other.factoryNumber)
             return false;
         if (type != other.type)
+            return false;
+        if (toPatternLine == null) {
+            if (other.toPatternLine != null)
+                return false;
+        } else if (!toPatternLine.equals(other.toPatternLine))
+            return false;
+        if (rowIndex != other.rowIndex)
             return false;
         if (player == null) {
             if (other.player != null)
@@ -70,6 +92,5 @@ public class Move implements DataObject {
         } else if (!player.equals(other.player))
             return false;
         return true;
-    }
-    
+    }   
 }

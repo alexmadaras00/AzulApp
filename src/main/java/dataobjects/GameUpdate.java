@@ -1,55 +1,56 @@
 package dataobjects;
 
 import java.util.List;
-import java.util.Optional;
 
 import model.Tile;
 
 public class GameUpdate implements DataObject {
-    private List<PlayerData> players;
-    private Optional<List<List<Tile>>> factories;
-    private Optional<List<Tile>> middle;
+    private List<PlayerBoardState> playerBoards;
+    private List<List<Tile>> factories;
+    private List<Tile> middle;
     private Move move;
-    private int nextPlayer;
-
+    private PlayerData nextPlayer;
+    
     public GameUpdate() {
     }
-    public GameUpdate(List<PlayerData> players, Optional<List<List<Tile>>> factories, Optional<List<Tile>> middle,
-            Move move, int nextPlayer) {
-        this.players = players;
-        this.factories = factories;
-        this.middle = middle;
-        this.move = move;
-        this.nextPlayer = nextPlayer;
+
+    public List<PlayerBoardState> getPlayerBoards() {
+        return playerBoards;
     }
-    public List<PlayerData> getPlayers() {
-        return players;
+
+    public void setPlayerBoards(List<PlayerBoardState> playerBoards) {
+        this.playerBoards = playerBoards;
     }
-    public void setPlayers(List<PlayerData> players) {
-        this.players = players;
-    }
-    public Optional<List<List<Tile>>> getFactories() {
+
+    public List<List<Tile>> getFactories() {
         return factories;
     }
-    public void setFactories(Optional<List<List<Tile>>> factories) {
+
+    public void setFactories(List<List<Tile>> factories) {
         this.factories = factories;
     }
-    public Optional<List<Tile>> getMiddle() {
+
+    public List<Tile> getMiddle() {
         return middle;
     }
-    public void setMiddle(Optional<List<Tile>> middle) {
+
+    public void setMiddle(List<Tile> middle) {
         this.middle = middle;
     }
+
     public Move getMove() {
         return move;
     }
+
     public void setMove(Move move) {
         this.move = move;
     }
-    public int getNextPlayer() {
+
+    public PlayerData getNextPlayer() {
         return nextPlayer;
     }
-    public void setNextPlayer(int nextPlayer) {
+
+    public void setNextPlayer(PlayerData nextPlayer) {
         this.nextPlayer = nextPlayer;
     }
 
@@ -62,10 +63,10 @@ public class GameUpdate implements DataObject {
         if (getClass() != obj.getClass())
             return false;
         GameUpdate other = (GameUpdate) obj;
-        if (players == null) {
-            if (other.players != null)
+        if (playerBoards == null) {
+            if (other.playerBoards != null)
                 return false;
-        } else if (!players.equals(other.players))
+        } else if (!playerBoards.equals(other.playerBoards))
             return false;
         if (factories == null) {
             if (other.factories != null)
@@ -82,9 +83,11 @@ public class GameUpdate implements DataObject {
                 return false;
         } else if (!move.equals(other.move))
             return false;
-        if (nextPlayer != other.nextPlayer)
+        if (nextPlayer == null) {
+            if (other.nextPlayer != null)
+                return false;
+        } else if (!nextPlayer.equals(other.nextPlayer))
             return false;
         return true;
     }
-    
 }
