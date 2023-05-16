@@ -8,9 +8,4 @@ public class TUI implements UI {
     public void update(DataObject object) {
     }
 
-    @Override
-    public DataObject getMove() {
-        return null;
-    }
-
 }
