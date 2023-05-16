@@ -1,13 +1,13 @@
 package main;
 
-import controller.IController;
+import controller.Mediator;
 import model.Game;
 import model.Model;
 import view.Messager;
 
 public class AzulApp {
     Model model;
-    IController IController;
+    Mediator IController;
     Messager IView;
     public static void main(String[] args) {
         Game azul = new Game();

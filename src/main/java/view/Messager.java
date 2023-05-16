@@ -1,10 +1,10 @@
 package view;
 
-import controller.DataObject;
-import controller.IController;
+import controller.Mediator;
+import dataobjects.DataObject;
 
 public interface Messager {
-    void connectController(IController controller);
-
-    void handleResponse(DataObject message);
+    void connectMediator(Mediator mediator);
+    void send(DataObject message);
+    void notify(DataObject message);
 }
