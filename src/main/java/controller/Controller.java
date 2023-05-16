@@ -1,22 +1,34 @@
 package controller;
 
-import model.Game;
+import dataobjects.DataObject;
+import model.Model;
 import view.Messager;
 
-public class Controller implements IController {
-    private Game model;
-    private Messager IView;
+public class Controller implements Mediator {
+    private Messager messager;
+    private Model model;
+    private ExecutorFactory executorFactory;
+     
+    public Controller(ExecutorFactory executorFactory) {
+        this.executorFactory = executorFactory;
+    }
 
     @Override
-    public void notify(Object sender, DataObject message) {
-
+    public void notify(DataObject message) {
+        Executor executor = executorFactory.createExecutor(message);
+        DataObject newMessage = executor.execute(model);
+        if (newMessage != null) {
+            messager.notify(newMessage);
+        }
     }
 
-    private void handleMove() {
-
+    @Override
+    public void connectMessager(Messager messager) {
+        this.messager = messager;
     }
 
-    private void handleView() {
-
+    @Override
+    public void connectModel(Model model) {
+        this.model = model;
     }
 }
