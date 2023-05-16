@@ -47,7 +47,6 @@ sigridci:
     name: softwareimprovementgroup/sigridci
   tags:
     - pppp
-
   script:
     - sigridci.py --customer utst --system P42023T03 --source . 
   allow_failure: true
@@ -67,7 +66,6 @@ sigridpublish:
     name: softwareimprovementgroup/sigridci
   tags:
     - pppp
-
   script:
     - sigridci.py --customer utst --system P42023T03 --source . --publish
   allow_failure: true
