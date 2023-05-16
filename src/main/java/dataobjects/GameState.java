@@ -5,44 +5,46 @@ import java.util.List;
 import model.Tile;
 
 public class GameState implements DataObject {
-    private List<PlayerData> players;
+    private List<PlayerBoardState> playerBoards;
     private List<List<Tile>> factories;
     private List<Tile> middle;
-    private int currentPlayer;
+    private PlayerData currentPlayer;
 
     public GameState() {
     }
-    public GameState(List<PlayerData> players, List<List<Tile>> factories, List<Tile> middle, int currentPlayer) {
-        this.players = players;
-        this.factories = factories;
-        this.middle = middle;
-        this.currentPlayer = currentPlayer;
+
+    public List<PlayerBoardState> getPlayerBoards() {
+        return playerBoards;
     }
-    public List<PlayerData> getPlayers() {
-        return players;
+
+    public void setPlayerBoards(List<PlayerBoardState> playerBoards) {
+        this.playerBoards = playerBoards;
     }
-    public void setPlayers(List<PlayerData> players) {
-        this.players = players;
-    }
+
     public List<List<Tile>> getFactories() {
         return factories;
     }
+
     public void setFactories(List<List<Tile>> factories) {
         this.factories = factories;
     }
+
     public List<Tile> getMiddle() {
         return middle;
     }
+
     public void setMiddle(List<Tile> middle) {
         this.middle = middle;
     }
-    public int getCurrentPlayer() {
+
+    public PlayerData getCurrentPlayer() {
         return currentPlayer;
     }
-    public void setCurrentPlayer(int currentPlayer) {
+    
+    public void setCurrentPlayer(PlayerData currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -52,10 +54,10 @@ public class GameState implements DataObject {
         if (getClass() != obj.getClass())
             return false;
         GameState other = (GameState) obj;
-        if (players == null) {
-            if (other.players != null)
+        if (playerBoards == null) {
+            if (other.playerBoards != null)
                 return false;
-        } else if (!players.equals(other.players))
+        } else if (!playerBoards.equals(other.playerBoards))
             return false;
         if (factories == null) {
             if (other.factories != null)
@@ -67,9 +69,11 @@ public class GameState implements DataObject {
                 return false;
         } else if (!middle.equals(other.middle))
             return false;
-        if (currentPlayer != other.currentPlayer)
+        if (currentPlayer == null) {
+            if (other.currentPlayer != null)
+                return false;
+        } else if (!currentPlayer.equals(other.currentPlayer))
             return false;
         return true;
     }
-    
 }

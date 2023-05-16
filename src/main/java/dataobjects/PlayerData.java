@@ -1,36 +1,26 @@
 package dataobjects;
 
-import java.util.Optional;
-
 public class PlayerData implements DataObject {
-    private Optional<String> name;
+    private String name;
     private int identifier;
-    private Optional<PlayerBoardState> playerBoard;
 
     public PlayerData() {
     }
-    public PlayerData(Optional<String> name, int identifier, Optional<PlayerBoardState> playerBoard) {
-        this.name = name;
-        this.identifier = identifier;
-        this.playerBoard = playerBoard;
-    }
-    public Optional<String> getName() {
+
+    public String getName() {
         return name;
     }
-    public void setName(Optional<String> name) {
+
+    public void setName(String name) {
         this.name = name;
     }
+
     public int getIdentifier() {
         return identifier;
     }
+
     public void setIdentifier(int identifier) {
         this.identifier = identifier;
-    }
-    public Optional<PlayerBoardState> getPlayerBoard() {
-        return playerBoard;
-    }
-    public void setPlayerBoard(Optional<PlayerBoardState> playerBoard) {
-        this.playerBoard = playerBoard;
     }
     
     @Override
@@ -49,12 +39,8 @@ public class PlayerData implements DataObject {
             return false;
         if (identifier != other.identifier)
             return false;
-        if (playerBoard == null) {
-            if (other.playerBoard != null)
-                return false;
-        } else if (!playerBoard.equals(other.playerBoard))
-            return false;
         return true;
     }
+
     
 }
