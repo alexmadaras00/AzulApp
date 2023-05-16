@@ -32,8 +32,4 @@ public class Game implements Model{
         return new GameState();
     }
 
-    @Override
-    public void connectController(Mediator IController) {
-
-    }
 }
