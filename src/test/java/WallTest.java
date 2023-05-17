@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import model.Tile;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,8 @@ import model.Color;
 import model.Wall;
 
 public class WallTest {
-    private static Color[][] template;
-    private static Color[] colors = Color.values();
+    private static Tile[][] template;
+    private static Tile[] colors = Color.values();
 
     // 01234
     // 40123
@@ -26,7 +27,7 @@ public class WallTest {
     @BeforeAll
     public static void setUp() {
         int size = colors.length;
-        template = new Color[size][size];
+        template = new Tile[size][size];
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 template[row][col] = colors[(col - row + size) % size];
@@ -44,7 +45,7 @@ public class WallTest {
         return;
     }
 
-    private void assertEqualWall(Color[][] wall1, List<List<Color>> wall2) {
+    private void assertEqualWall(Tile[][] wall1, List<List<Tile>> wall2) {
         for (int row = 0; row < wall1.length; row++) {
             for (int col = 0; col < wall1[row].length; col++) {
                 assertEquals(wall1[row][col], wall2.get(row).get(col));
@@ -54,17 +55,17 @@ public class WallTest {
 
     @Test
     public void testGetCopyTableEmpty() {
-        Color[][] testWall = new Color[colors.length][colors.length];
+        Tile[][] testWall = new Tile[colors.length][colors.length];
         assertEqualWall(testWall, wall.getCopyTable());
         return;
     }
 
     @Test
     public void testGetCopyTablePartial() {
-        for (Color c : colors) {
+        for (Tile c : colors) {
             wall.addTile(4, c);
         }
-        Color[][] testWall = new Color[colors.length][colors.length];
+        Tile[][] testWall = new Tile[colors.length][colors.length];
         testWall[4] = template[4];
         assertEqualWall(testWall, wall.getCopyTable());
         return;
@@ -73,7 +74,7 @@ public class WallTest {
     @Test
     public void testGetCopyTableFull() {
         for (int row = 0; row < colors.length; row++) {
-            for (Color c : colors) {
+            for (Tile c : colors) {
                 wall.addTile(row, c);
             }
         }
@@ -95,7 +96,7 @@ public class WallTest {
     @Test
     public void testHasCompleteRowFull() {
         assertEquals(false, wall.hasCompleteRow());
-        for (Color c : colors) {
+        for (Tile c : colors) {
             wall.addTile(2, c);
         }
         assertEquals(true, wall.hasCompleteRow());
@@ -115,7 +116,7 @@ public class WallTest {
     @Test
     public void testHasCompleteRowSome() {
         assertEquals(false, wall.hasCompleteRow());
-        for (Color c : colors) {
+        for (Tile c : colors) {
             wall.addTile(0, c);
         }
         for (int r = 1; r < colors.length; r++) {
@@ -154,7 +155,7 @@ public class WallTest {
     public void testGetCompletionScoresRows() {
         assertEquals(true, wall.getCompletionScores().isEmpty());
         for (int r = 1; r < colors.length; r++) {
-            for (Color c : colors) {
+            for (Tile c : colors) {
                 wall.addTile(r, c);
             }
             List<ScoreChange> scoreChange = wall.getCompletionScores();
@@ -247,8 +248,8 @@ public class WallTest {
     @Test
     public void testUnmodifyableCopyTable() {
         wall.addTile(0, colors[0]);
-        List<List<Color>> copyTable = wall.getCopyTable();
-        List<Color> newRow = new ArrayList<Color>(Arrays.asList(colors));
+        List<List<Tile>> copyTable = wall.getCopyTable();
+        List<Tile> newRow = new ArrayList<>(Arrays.asList(colors));
         assertThrows(UnsupportedOperationException.class, () -> copyTable.set(1, newRow));
         assertThrows(UnsupportedOperationException.class, () -> copyTable.get(1).set(1, colors[0]));
         assertThrows(UnsupportedOperationException.class, () -> copyTable.clear());

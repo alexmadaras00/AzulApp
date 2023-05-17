@@ -11,8 +11,8 @@ import java.util.Map;
 import dataobjects.ScoreChange;
 
 public class Wall {
-    private Color[][] wall;
-    private Color[] colors;
+    private Tile[][] wall;
+    private Tile[] colors;
     private int completedColorScore = 10;
     private int completedRowScore = 2;
     private int completedColumnScore = 7;
@@ -20,24 +20,24 @@ public class Wall {
     public Wall() {
         colors = Color.values();
         int size = colors.length;
-        wall = new Color[size][size];
+        wall = new Tile[size][size];
     }
 
-    public Color getTemplateColor(int row, int col) {
+    public Tile getTemplateColor(int row, int col) {
         return colors[(col - row + colors.length) % colors.length];
     }
 
     public int addTile(int row, Tile tile) {
-        Color newTile = (Color) tile;
+        Tile newTile = tile;
         int index = getIndexOfTile(row, newTile);
         int score = getPlacementScore(row, index);
         wall[row][index] = newTile;
         return score;
     }
 
-    public boolean canAddTile(int row, Color type) {
+    public boolean canAddTile(int row, Tile type) {
         int index = getIndexOfTile(row, type);
-        return wall[row][index] == null ? true : false;
+        return wall[row][index] == null;
     }
 
     public boolean hasCompleteRow() {
@@ -52,7 +52,7 @@ public class Wall {
     public List<ScoreChange> getCompletionScores() {
         List<ScoreChange> scoreList = new LinkedList<ScoreChange>();
 
-        List<Color> completedColors = getColorCompletions();
+        List<Tile> completedColors = getColorCompletions();
         scoreList.addAll(generateColorScoreChange(completedColors));
         List<Integer> completedRows = getHorizontalCompletions();
         scoreList.addAll(generateLineScoreChange(completedRows, true));
@@ -61,22 +61,22 @@ public class Wall {
         return scoreList;
     }
 
-    public List<List<Color>> getCopyTable() {
-        List<List<Color>> listCopy = new ArrayList<List<Color>>();
-        for (Color[] row : wall) {
+    public List<List<Tile>> getCopyTable() {
+        ArrayList<List<Tile>> listCopy = new ArrayList<List<Tile>>();
+        for (Tile[] row : wall) {
             listCopy.add(Collections.unmodifiableList(Arrays.asList(row)));
         }
         return Collections.unmodifiableList(listCopy);
     }
 
-    private List<ScoreChange> generateColorScoreChange(List<Color> completedColor) {
+    private List<ScoreChange> generateColorScoreChange(List<Tile> completedColor) {
         List<ScoreChange> scoreChanges = new LinkedList<>();
-        for (Color color : completedColor) {
+        for (Tile color : completedColor) {
             ScoreChange scoreChange = new ScoreChange();
             scoreChange.setIsCompletionScore(true);
             scoreChange.setHasColor(true);
             scoreChange.setHasRowIndex(false);
-            scoreChange.setColor(color);
+            scoreChange.setColor((Color) color);
             scoreChange.setScoreDifference(completedColorScore);
             scoreChanges.add(scoreChange);
         }
@@ -97,7 +97,7 @@ public class Wall {
         return scoreChanges;
     }
 
-    private int getIndexOfTile(int row, Color tile) {
+    private int getIndexOfTile(int row, Tile tile) {
         for (int i = 0; i < colors.length; i++) {
             if (getTemplateColor(row, i) == tile) {
                 return i;
@@ -154,8 +154,8 @@ public class Wall {
     }
 
     private boolean isCompleteRow(int row) {
-        Color[] TileRow = wall[row];
-        for (Color c : TileRow) {
+        Tile[] TileRow = wall[row];
+        for (Tile c : TileRow) {
             if (c == null) {
                 return false;
             }
@@ -172,17 +172,17 @@ public class Wall {
         return true;
     }
 
-    private List<Color> getColorCompletions() {
-        List<Color> completedColors = new LinkedList<Color>();
-        Map<Color, Integer> tileCount = new HashMap<Color, Integer>();
-        for (Color[] row : wall) {
-            for (Color tile : row) {
+    private List<Tile> getColorCompletions() {
+        List<Tile> completedColors = new LinkedList<>();
+        Map<Tile, Integer> tileCount = new HashMap<>();
+        for (Tile[] row : wall) {
+            for (Tile tile : row) {
                 if (tile != null) {
                     tileCount.put(tile, tileCount.get(tile) != null ? tileCount.get(tile) + 1 : 1);
                 }
             }
         }
-        for (Map.Entry<Color, Integer> entry : tileCount.entrySet()) {
+        for (Map.Entry<Tile, Integer> entry : tileCount.entrySet()) {
             if (entry.getValue() == colors.length) {
                 completedColors.add(entry.getKey());
             }
