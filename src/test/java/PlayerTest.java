@@ -1,3 +1,4 @@
+import dataobjects.PlayerBoardState;
 import model.Color;
 import model.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,8 @@ public class PlayerTest {
     @Test
     public void testConstructorWithName() {
         assertEquals(name, player.getName());
-        assertFalse(player.getBoard().canAddTypePatternLine(2, Color.RED));
+        assertTrue(player.getBoard().canAddTypePatternLine(2, Color.RED));
+        assertInstanceOf(PlayerBoardState.class,player.getBoard().toObject());
         assertEquals(counter, player.getIdentifier());
     }
 
@@ -50,7 +52,7 @@ public class PlayerTest {
 
     @Test
     public void testGetPlayerBoard() {
-        assertFalse(player.getBoard().canAddTypePatternLine(2, Color.RED));
+        assertTrue(player.getBoard().canAddTypePatternLine(2, Color.RED));
     }
 
 
