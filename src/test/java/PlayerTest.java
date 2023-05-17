@@ -32,7 +32,7 @@ public class PlayerTest {
     @Test
     public void testConstructorWithName() {
         assertEquals(name, player.getName());
-        assertFalse(player.getBoard().canAddTypePattern(2, Color.RED));
+        assertFalse(player.getBoard().canAddTypePatternLine(2, Color.RED));
         assertEquals(counter, player.getIdentifier());
     }
 
@@ -50,7 +50,7 @@ public class PlayerTest {
 
     @Test
     public void testGetPlayerBoard() {
-        assertFalse(player.getBoard().canAddTypePattern(2, Color.RED));
+        assertFalse(player.getBoard().canAddTypePatternLine(2, Color.RED));
     }
 
 
