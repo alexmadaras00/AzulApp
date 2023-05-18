@@ -5,23 +5,30 @@ import model.Model;
 import view.Messager;
 
 public class Controller implements Mediator {
-
-
-    @Override
-    public void connectMessager(Messager messager) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'connectMessager'");
-    }
-
-    @Override
-    public void connectModel(Model model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'connectModel'");
+    private Messager messager;
+    private Model model;
+    private ExecutorFactory executorFactory;
+     
+    public Controller(ExecutorFactory executorFactory) {
+        this.executorFactory = executorFactory;
     }
 
     @Override
     public void notify(DataObject message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'notify'");
+        Executor executor = executorFactory.createExecutor(message);
+        DataObject newMessage = executor.execute(model);
+        if (newMessage != null) {
+            messager.notify(newMessage);
+        }
+    }
+
+    @Override
+    public void connectMessager(Messager messager) {
+        this.messager = messager;
+    }
+
+    @Override
+    public void connectModel(Model model) {
+        this.model = model;
     }
 }
