@@ -1,6 +1,6 @@
 package model;
 
-import dataobjects.DataObject;;
+import dataobjects.DataObject;
 
 public interface Tile extends DataObject {
 }
