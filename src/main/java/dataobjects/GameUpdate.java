@@ -59,7 +59,7 @@ public class GameUpdate implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null || !(obj instanceof GameUpdate))
+        if (!(obj instanceof GameUpdate))
             return false;
         GameUpdate other = (GameUpdate) obj;
         return Objects.equals(playerBoards, other.playerBoards) &&

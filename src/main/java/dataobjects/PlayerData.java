@@ -29,7 +29,7 @@ public class PlayerData implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null || !(obj instanceof PlayerData))
+        if (!(obj instanceof PlayerData))
             return false;
         PlayerData other = (PlayerData) obj;
         return Objects.equals(name, other.name) &&

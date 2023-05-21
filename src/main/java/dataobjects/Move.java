@@ -67,7 +67,7 @@ public class Move implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null || !(obj instanceof Move))
+        if (!(obj instanceof Move))
             return false;
         Move other = (Move) obj;
         return Objects.equals(fromFactory, other.fromFactory) &&

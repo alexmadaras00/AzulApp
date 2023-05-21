@@ -50,7 +50,7 @@ public class GameState implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null || !(obj instanceof GameState))
+        if (!(obj instanceof GameState))
             return false;
         GameState other = (GameState) obj;
         return Objects.equals(playerBoards, other.playerBoards) &&

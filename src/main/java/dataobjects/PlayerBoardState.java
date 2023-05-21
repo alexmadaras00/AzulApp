@@ -68,7 +68,7 @@ public class PlayerBoardState implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null || !(obj instanceof PlayerBoardState))
+        if (!(obj instanceof PlayerBoardState))
             return false;
         PlayerBoardState other = (PlayerBoardState) obj;
         return Objects.equals(player, other.player) &&

@@ -67,7 +67,7 @@ public class ScoreChange implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null || !(obj instanceof ScoreChange))
+        if (!(obj instanceof ScoreChange))
             return false;
         ScoreChange other = (ScoreChange) obj;
         return Objects.equals(isCompletionScore, other.isCompletionScore) &&
