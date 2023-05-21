@@ -1,5 +1,7 @@
 package dataobjects;
 
+import java.util.Objects;
+
 import model.Color;
 
 public class Move implements DataObject {
@@ -65,32 +67,14 @@ public class Move implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
+        if (obj == null || !(obj instanceof Move))
             return false;
         Move other = (Move) obj;
-        if (fromFactory == null) {
-            if (other.fromFactory != null)
-                return false;
-        } else if (!fromFactory.equals(other.fromFactory))
-            return false;
-        if (factoryNumber != other.factoryNumber)
-            return false;
-        if (type != other.type)
-            return false;
-        if (toPatternLine == null) {
-            if (other.toPatternLine != null)
-                return false;
-        } else if (!toPatternLine.equals(other.toPatternLine))
-            return false;
-        if (rowIndex != other.rowIndex)
-            return false;
-        if (player == null) {
-            if (other.player != null)
-                return false;
-        } else if (!player.equals(other.player))
-            return false;
-        return true;
-    }   
+        return Objects.equals(fromFactory, other.fromFactory) &&
+                factoryNumber == other.factoryNumber &&
+                Objects.equals(type, other.type) &&
+                Objects.equals(toPatternLine, other.toPatternLine) &&
+                rowIndex == other.rowIndex &&
+                Objects.equals(player, other.player);
+    }
 }
