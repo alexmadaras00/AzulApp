@@ -1,5 +1,7 @@
 package dataobjects;
 
+import java.util.Objects;
+
 public class PlayerData implements DataObject {
     private String name;
     private int identifier;
@@ -27,20 +29,11 @@ public class PlayerData implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
+        if (obj == null || !(obj instanceof PlayerData))
             return false;
         PlayerData other = (PlayerData) obj;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        if (identifier != other.identifier)
-            return false;
-        return true;
+        return Objects.equals(name, other.name) &&
+                identifier == other.identifier;
     }
 
-    
 }
