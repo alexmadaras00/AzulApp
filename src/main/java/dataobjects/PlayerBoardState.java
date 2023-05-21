@@ -1,6 +1,7 @@
 package dataobjects;
 
 import java.util.List;
+import java.util.Objects;
 
 import model.Tile;
 
@@ -67,40 +68,15 @@ public class PlayerBoardState implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
+        if (obj == null || !(obj instanceof PlayerBoardState))
             return false;
         PlayerBoardState other = (PlayerBoardState) obj;
-        if (player == null) {
-            if (other.player != null)
-                return false;
-        } else if (!player.equals(other.player))
-            return false;
-        if (score != other.score)
-            return false;
-        if (scoreChanges == null) {
-            if (other.scoreChanges != null)
-                return false;
-        } else if (!scoreChanges.equals(other.scoreChanges))
-            return false;
-        if (patternLine == null) {
-            if (other.patternLine != null)
-                return false;
-        } else if (!patternLine.equals(other.patternLine))
-            return false;
-        if (floorLine == null) {
-            if (other.floorLine != null)
-                return false;
-        } else if (!floorLine.equals(other.floorLine))
-            return false;
-        if (wall == null) {
-            if (other.wall != null)
-                return false;
-        } else if (!wall.equals(other.wall))
-            return false;
-        return true;
+        return Objects.equals(player, other.player) &&
+                score == other.score &&
+                Objects.equals(scoreChanges, other.scoreChanges) &&
+                Objects.equals(patternLine, other.patternLine) &&
+                Objects.equals(floorLine, other.floorLine) &&
+                Objects.equals(wall, other.wall);
     }
-    
-    
+
 }
