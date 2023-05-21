@@ -1,6 +1,7 @@
 package dataobjects;
 
 import java.util.List;
+import java.util.Objects;
 
 import model.Tile;
 
@@ -40,7 +41,7 @@ public class GameState implements DataObject {
     public PlayerData getCurrentPlayer() {
         return currentPlayer;
     }
-    
+
     public void setCurrentPlayer(PlayerData currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
@@ -49,31 +50,12 @@ public class GameState implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
+        if (obj == null || !(obj instanceof GameState))
             return false;
         GameState other = (GameState) obj;
-        if (playerBoards == null) {
-            if (other.playerBoards != null)
-                return false;
-        } else if (!playerBoards.equals(other.playerBoards))
-            return false;
-        if (factories == null) {
-            if (other.factories != null)
-                return false;
-        } else if (!factories.equals(other.factories))
-            return false;
-        if (middle == null) {
-            if (other.middle != null)
-                return false;
-        } else if (!middle.equals(other.middle))
-            return false;
-        if (currentPlayer == null) {
-            if (other.currentPlayer != null)
-                return false;
-        } else if (!currentPlayer.equals(other.currentPlayer))
-            return false;
-        return true;
+        return Objects.equals(playerBoards, other.playerBoards) &&
+                Objects.equals(factories, other.factories) &&
+                Objects.equals(middle, other.middle) &&
+                Objects.equals(currentPlayer, other.currentPlayer);
     }
 }
