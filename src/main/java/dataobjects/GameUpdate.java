@@ -1,6 +1,7 @@
 package dataobjects;
 
 import java.util.List;
+import java.util.Objects;
 
 import model.Tile;
 
@@ -10,7 +11,7 @@ public class GameUpdate implements DataObject {
     private List<Tile> middle;
     private Move move;
     private PlayerData nextPlayer;
-    
+
     public GameUpdate() {
     }
 
@@ -58,36 +59,13 @@ public class GameUpdate implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
+        if (obj == null || !(obj instanceof GameUpdate))
             return false;
         GameUpdate other = (GameUpdate) obj;
-        if (playerBoards == null) {
-            if (other.playerBoards != null)
-                return false;
-        } else if (!playerBoards.equals(other.playerBoards))
-            return false;
-        if (factories == null) {
-            if (other.factories != null)
-                return false;
-        } else if (!factories.equals(other.factories))
-            return false;
-        if (middle == null) {
-            if (other.middle != null)
-                return false;
-        } else if (!middle.equals(other.middle))
-            return false;
-        if (move == null) {
-            if (other.move != null)
-                return false;
-        } else if (!move.equals(other.move))
-            return false;
-        if (nextPlayer == null) {
-            if (other.nextPlayer != null)
-                return false;
-        } else if (!nextPlayer.equals(other.nextPlayer))
-            return false;
-        return true;
+        return Objects.equals(playerBoards, other.playerBoards) &&
+                Objects.equals(factories, other.factories) &&
+                Objects.equals(middle, other.middle) &&
+                Objects.equals(move, other.move) &&
+                Objects.equals(nextPlayer, other.nextPlayer);
     }
 }
