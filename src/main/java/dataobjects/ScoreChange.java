@@ -1,5 +1,7 @@
 package dataobjects;
 
+import java.util.Objects;
+
 import model.Color;
 
 public class ScoreChange implements DataObject {
@@ -65,34 +67,15 @@ public class ScoreChange implements DataObject {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
+        if (obj == null || !(obj instanceof ScoreChange))
             return false;
         ScoreChange other = (ScoreChange) obj;
-        if (isCompletionScore == null) {
-            if (other.isCompletionScore != null)
-                return false;
-        } else if (!isCompletionScore.equals(other.isCompletionScore))
-            return false;
-        if (hasRowIndex == null) {
-            if (other.hasRowIndex != null)
-                return false;
-        } else if (!hasRowIndex.equals(other.hasRowIndex))
-            return false;
-        if (hasColor == null) {
-            if (other.hasColor != null)
-                return false;
-        } else if (!hasColor.equals(other.hasColor))
-            return false;
-        if (color != other.color)
-            return false;
-        if (index != other.index)
-            return false;
-        if (scoreDifference != other.scoreDifference)
-            return false;
-        return true;
+        return Objects.equals(isCompletionScore, other.isCompletionScore) &&
+                Objects.equals(hasRowIndex, other.hasRowIndex) &&
+                Objects.equals(hasColor, other.hasColor) &&
+                Objects.equals(color, other.color) &&
+                index == other.index &&
+                scoreDifference == other.scoreDifference;
     }
 
-    
 }
