@@ -5,11 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import controller.DOExecutorFactory;
-import controller.Executor;
-import controller.ExecutorFactory;
+import dataobjects.MediatorExecutorFactory;
 import dataobjects.DataObject;
+import dataobjects.ExecutorFactory;
 import dataobjects.Move;
+import dataobjects.executors.Executor;
 import model.Model;
 
 public class DOExecutorFactoryTest {
@@ -39,7 +39,7 @@ public class DOExecutorFactoryTest {
     @BeforeEach
     public static void setUp() {
         model = new MockModel();
-        factory = new DOExecutorFactory();
+        factory = new MediatorExecutorFactory();
     }
 
     @Disabled

@@ -1,5 +1,6 @@
 package model;
 
+import dataobjects.Executable;
 
-public interface Model {
+public interface Model extends Executable {
 }

@@ -7,12 +7,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import controller.Controller;
-import controller.Executor;
-import controller.ExecutorFactory;
 import controller.Mediator;
 import dataobjects.DataObject;
+import dataobjects.Executable;
+import dataobjects.ExecutorFactory;
+import dataobjects.executors.Executor;
 import model.Model;
 import view.Messager;
+import view.UI;
 
 public class ControllerTest {
 
@@ -38,6 +40,11 @@ public class ControllerTest {
         public void send(DataObject message) {
             mediator.notify(message);
         }
+
+        @Override
+        public void connectUI(UI userInterface) {
+            return;
+        }
     }
 
     private static class MockModel implements Model {
@@ -58,7 +65,7 @@ public class ControllerTest {
         public MockExecutor(DataObject message) {}
 
         @Override
-        public DataObject execute(Model model) {
+        public DataObject execute(Executable model) {
             MockModel newModel = (ControllerTest.MockModel) model;
             return newModel.doSomething();
         }
