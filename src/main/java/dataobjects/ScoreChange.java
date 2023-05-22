@@ -3,38 +3,12 @@ package dataobjects;
 import model.Color;
 
 public class ScoreChange implements DataObject {
-    private Boolean isCompletionScore;
-    private Boolean hasRowIndex;
-    private Boolean hasColor;
+    private ScoreType type;
     private Color color;
     private int index;
     private int scoreDifference;
 
     public ScoreChange() {
-    }
-
-    public Boolean getIsCompletionScore() {
-        return isCompletionScore;
-    }
-
-    public void setIsCompletionScore(Boolean isCompletionScore) {
-        this.isCompletionScore = isCompletionScore;
-    }
-
-    public Boolean getHasRowIndex() {
-        return hasRowIndex;
-    }
-
-    public void setHasRowIndex(Boolean hasRowIndex) {
-        this.hasRowIndex = hasRowIndex;
-    }
-
-    public Boolean getHasColor() {
-        return hasColor;
-    }
-
-    public void setHasColor(Boolean hasColor) {
-        this.hasColor = hasColor;
     }
 
     public Color getColor() {
@@ -61,38 +35,33 @@ public class ScoreChange implements DataObject {
         this.scoreDifference = scoreDifference;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        ScoreChange other = (ScoreChange) obj;
-        if (isCompletionScore == null) {
-            if (other.isCompletionScore != null)
-                return false;
-        } else if (!isCompletionScore.equals(other.isCompletionScore))
-            return false;
-        if (hasRowIndex == null) {
-            if (other.hasRowIndex != null)
-                return false;
-        } else if (!hasRowIndex.equals(other.hasRowIndex))
-            return false;
-        if (hasColor == null) {
-            if (other.hasColor != null)
-                return false;
-        } else if (!hasColor.equals(other.hasColor))
-            return false;
-        if (color != other.color)
-            return false;
-        if (index != other.index)
-            return false;
-        if (scoreDifference != other.scoreDifference)
-            return false;
-        return true;
+    public ScoreType getType() {
+        return type;
     }
 
-    
+    public void setType(ScoreType type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ScoreChange)) return false;
+
+        ScoreChange that = (ScoreChange) o;
+
+        if (getIndex() != that.getIndex()) return false;
+        if (getScoreDifference() != that.getScoreDifference()) return false;
+        if (getType() != that.getType()) return false;
+        return getColor() == that.getColor();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getType() != null ? getType().hashCode() : 0;
+        result = 31 * result + (getColor() != null ? getColor().hashCode() : 0);
+        result = 31 * result + getIndex();
+        result = 31 * result + getScoreDifference();
+        return result;
+    }
 }

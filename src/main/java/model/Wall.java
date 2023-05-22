@@ -73,9 +73,9 @@ public class Wall {
         List<ScoreChange> scoreChanges = new LinkedList<>();
         for (Tile color : completedColor) {
             ScoreChange scoreChange = new ScoreChange();
-            scoreChange.setIsCompletionScore(true);
-            scoreChange.setHasColor(true);
-            scoreChange.setHasRowIndex(false);
+            //scoreChange.setIsCompletionScore(true);
+            //scoreChange.setHasColor(true);
+            //scoreChange.setHasRowIndex(false);
             scoreChange.setColor((Color) color);
             scoreChange.setScoreDifference(completedColorScore);
             scoreChanges.add(scoreChange);
@@ -87,9 +87,9 @@ public class Wall {
         List<ScoreChange> scoreChanges = new LinkedList<>();
         for (int line : completedLines) {
             ScoreChange scoreChange = new ScoreChange();
-            scoreChange.setIsCompletionScore(true);
-            scoreChange.setHasColor(false);
-            scoreChange.setHasRowIndex(isRow);
+            //scoreChange.setIsCompletionScore(true);
+            //scoreChange.setHasColor(false);
+            //scoreChange.setHasRowIndex(isRow);
             scoreChange.setIndex(line);
             scoreChange.setScoreDifference(isRow ? completedRowScore : completedColumnScore);
             scoreChanges.add(scoreChange);
