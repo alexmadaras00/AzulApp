@@ -5,14 +5,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import dataobjects.MediatorExecutorFactory;
 import dataobjects.DataObject;
+import dataobjects.DataObjectExecutorFactory;
 import dataobjects.ExecutorFactory;
 import dataobjects.Move;
 import dataobjects.executors.Executor;
 import model.Model;
 
-public class DOExecutorFactoryTest {
+public class DataObjectExecutorFactoryTest {
     private static enum MockDataObject implements DataObject {
         MOVE, UPDATE;
     }
@@ -39,7 +39,7 @@ public class DOExecutorFactoryTest {
     @BeforeEach
     public static void setUp() {
         model = new MockModel();
-        factory = new MediatorExecutorFactory();
+        factory = new DataObjectExecutorFactory();
     }
 
     @Disabled
