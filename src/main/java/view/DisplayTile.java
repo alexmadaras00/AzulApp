@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Color;
+import model.PlayerTile;
 import model.Tile;
 
 public class DisplayTile implements Display {
@@ -16,9 +17,11 @@ public class DisplayTile implements Display {
     @Override
     public String toString() {
         if (tile instanceof Color) {
-            return tile.toString().substring(0,1);
+            return tile.toString().substring(0, 1);
+        } else if (tile instanceof PlayerTile) {
+            return "1";
         }
-        return "1";
+        return "_";
     }
 
     @Override
