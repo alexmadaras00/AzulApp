@@ -4,6 +4,9 @@ import dataobjects.GameState;
 import model.Tile;
 
 public class TUI implements UI {
+    private DisplayGameState gameState;
+    private InputHandler inputHandler;
+    private OutputHandler outputHandler;
 
     @Override
     public void addTileFactory(int factory, Tile tile) {
@@ -49,8 +52,7 @@ public class TUI implements UI {
 
     @Override
     public void commit() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'commit'");
+        outputHandler.printFrame(gameState);
     }
 
     @Override
