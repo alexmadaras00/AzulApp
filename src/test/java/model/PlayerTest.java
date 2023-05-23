@@ -1,3 +1,5 @@
+package model;
+
 import dataobjects.PlayerBoardState;
 import model.Color;
 import model.Player;
@@ -25,8 +27,9 @@ public class PlayerTest {
     @Test
     public void testDefaultConstructor() {
         Player player2 = new Player();
-        assertNull(player2.getName());
+        assertNotNull(player2.getName());
         assertNotNull(player2.getBoard());
+        assertEquals("Player"+player2.getIdentifier(),player2.getName());
         assertEquals(++counter, player2.getIdentifier());
     }
 
