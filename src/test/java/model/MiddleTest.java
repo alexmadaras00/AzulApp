@@ -1,3 +1,5 @@
+package model;
+
 import model.Color;
 import model.Middle;
 import model.Tile;

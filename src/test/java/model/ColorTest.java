@@ -1,3 +1,5 @@
+package model;
+
 import model.Color;
 import org.junit.jupiter.api.Test;
 
