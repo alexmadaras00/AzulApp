@@ -1,9 +1,14 @@
 package view;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class DisplayFloorLine implements Display {
     public List<DisplayTile> tiles;
+
+    public DisplayFloorLine() {
+        tiles = new LinkedList<DisplayTile>();
+    }
 
     @Override
     public int height() {
