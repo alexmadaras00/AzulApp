@@ -9,15 +9,26 @@ import model.Tile;
 
 public class DisplayTile implements Display {
     public Tile tile;
+    public boolean isPlaceholder;
 
     public DisplayTile(Tile tile) {
         this.tile = tile;
+        isPlaceholder = false;
+    }
+
+    public DisplayTile(Tile tile, boolean isPlaceholder) {
+        this.tile = tile;
+        this.isPlaceholder = isPlaceholder;
     }
 
     @Override
     public String toString() {
         if (tile instanceof Color) {
-            return tile.toString().substring(0, 1);
+            String character = tile.toString().substring(0, 1);
+            if (isPlaceholder) {
+                character = character.toLowerCase();
+            }
+            return character;
         } else if (tile instanceof PlayerTile) {
             return "1";
         }
