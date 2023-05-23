@@ -1,3 +1,5 @@
+package controller;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.LinkedList;
@@ -6,8 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import controller.Controller;
-import controller.Mediator;
 import dataobjects.DataObject;
 import dataobjects.Executable;
 import dataobjects.ExecutorFactory;

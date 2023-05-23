@@ -9,6 +9,7 @@ public class Player {
     public Player(){
         ++counter;
         identifier = counter;
+        this.name = "Player"+identifier;
     }
     public Player(String name){
         this.name = name;
