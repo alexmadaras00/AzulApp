@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dataobjects.ScoreChange;
+import dataobjects.ScoreType;
 import model.Color;
 import model.Wall;
 
@@ -138,9 +139,7 @@ public class WallTest {
             List<ScoreChange> scoreChange = wall.getCompletionScores();
             assertEquals(col, scoreChange.size());
             for (ScoreChange sc : scoreChange) {
-                //assertEquals(true, sc.getIsCompletionScore());
-                //assertEquals(false, sc.getHasColor());
-                //assertEquals(false, sc.getHasRowIndex());
+                assertEquals(ScoreType.COMPLETED_COLUMN, sc.getType());
                 assertEquals(null, sc.getColor());
                 assertInstanceOf(Integer.class, sc.getIndex());
                 assertEquals(true, sc.getIndex() < colors.length);
@@ -161,9 +160,7 @@ public class WallTest {
             List<ScoreChange> scoreChange = wall.getCompletionScores();
             assertEquals(r, scoreChange.size());
             for (ScoreChange sc : scoreChange) {
-                //assertEquals(true, sc.getIsCompletionScore());
-                //assertEquals(false, sc.getHasColor());
-                //assertEquals(true, sc.getHasRowIndex());
+                assertEquals(ScoreType.COMPLETED_ROW, sc.getType());
                 assertEquals(null, sc.getColor());
                 assertInstanceOf(Integer.class, sc.getIndex());
                 assertEquals(true, sc.getIndex() < colors.length);
@@ -184,9 +181,7 @@ public class WallTest {
             List<ScoreChange> scoreChange = wall.getCompletionScores();
             assertEquals(c, scoreChange.size());
             for (ScoreChange sc : scoreChange) {
-                //assertEquals(true, sc.getIsCompletionScore());
-                //assertEquals(true, sc.getHasColor());
-                //assertEquals(false, sc.getHasRowIndex());
+                assertEquals(ScoreType.COMPLETED_COLOR, sc.getType());
                 assertEquals(0, sc.getIndex());
                 assertInstanceOf(Color.class, sc.getColor());
                 assertEquals(true, Arrays.asList(colors).contains(sc.getColor()));
