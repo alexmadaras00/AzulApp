@@ -1,5 +1,6 @@
 package view;
 
+import dataobjects.GameState;
 import model.Tile;
 
 public class TUI implements UI {
@@ -128,6 +129,18 @@ public class TUI implements UI {
     public void clearPlayer(int PlayerID) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'clearPlayer'");
+    }
+
+    @Override
+    public void saveGameState(GameState gameState) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'saveGameState'");
+    }
+
+    @Override
+    public void clearGameState() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clearGameState'");
     }
 
 }

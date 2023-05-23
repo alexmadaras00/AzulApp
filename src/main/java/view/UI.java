@@ -1,9 +1,21 @@
 package view;
 
 import dataobjects.Executable;
+import dataobjects.GameState;
 import model.Tile;
 
 public interface UI extends Executable {
+    
+    // GENERAL
+
+    void saveGameState(GameState gameState);
+
+    void clearGameState();
+
+    void clearAll();
+
+    void commit();
+
     // Factory
     void addTileFactory(int factory, Tile tile);
 
@@ -18,11 +30,14 @@ public interface UI extends Executable {
 
     void clearMiddle();
 
-    void clearAll();
+    // PLAYER SPECIFIC
 
-    void commit();
+    void setPlayerName(int PlayerID, String name);
 
-    // Player specific
+    void setScore(int PlayerID, int Score);
+
+    void clearPlayer(int PlayerID);
+
     // wall
     void addTileWall(int PlayerID, int row, int column, Tile tile);
 
@@ -46,11 +61,5 @@ public interface UI extends Executable {
 
     void clearFloorLine(int PlayerID);
 
-    // player
-    void setPlayerName(int PlayerID, String name);
-
-    void setScore(int PlayerID, int Score);
-
-    void clearPlayer(int PlayerID);
 
 }

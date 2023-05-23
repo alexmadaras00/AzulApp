@@ -10,6 +10,7 @@ import controller.Mediator;
 import dataobjects.DataObject;
 import dataobjects.Executable;
 import dataobjects.ExecutorFactory;
+import dataobjects.GameState;
 import dataobjects.executors.Executor;
 import model.Model;
 import model.Tile;
@@ -158,6 +159,18 @@ public class ViewTest {
         public void clearPlayer(int PlayerID) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'clearPlayer'");
+        }
+
+        @Override
+        public void saveGameState(GameState gameState) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'saveGameState'");
+        }
+
+        @Override
+        public void clearGameState() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'clearGameState'");
         }
     }
 
