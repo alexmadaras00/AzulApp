@@ -8,7 +8,7 @@ public interface UI extends Executable {
 
     // GENERAL
 
-    void saveGameState(GameState gameState);
+    void loadGameState(GameState gameState);
 
     void clearGameState();
 

@@ -132,7 +132,7 @@ public class TUI implements UI {
     }
 
     @Override
-    public void saveGameState(GameState gameState) {
+    public void loadGameState(GameState gameState) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'saveGameState'");
     }

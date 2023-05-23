@@ -35,7 +35,7 @@ public class ViewTest {
 
         public void doSomething() {
             didSomethingCounter++;
-            }
+        }
 
         @Override
         public void addTileFactory(int factory, Tile tile) {
@@ -164,7 +164,7 @@ public class ViewTest {
         }
 
         @Override
-        public void saveGameState(GameState gameState) {
+        public void loadGameState(GameState gameState) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'saveGameState'");
         }
@@ -206,7 +206,8 @@ public class ViewTest {
 
     private static class MockExecutor implements Executor {
 
-        public MockExecutor(DataObject message) {}
+        public MockExecutor(DataObject message) {
+        }
 
         @Override
         public DataObject execute(Executable ui) {
