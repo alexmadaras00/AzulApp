@@ -14,10 +14,16 @@ public class DisplayColumnTest {
     private DisplayRow row;
 
     public static class MockDisplayTile extends DisplayTile {
+
+        public MockDisplayTile() {
+            super(null);
+        }
+
         @Override
         public String toString() {
             return "T";
         }
+
     }
 
     @BeforeEach

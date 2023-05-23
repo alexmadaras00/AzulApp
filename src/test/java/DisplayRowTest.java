@@ -1,12 +1,11 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import view.Display;
+import view.DisplayTile;
 import view.DisplayColumn;
 import view.DisplayRow;
 
@@ -14,27 +13,15 @@ public class DisplayRowTest {
     private DisplayColumn col;
     private DisplayRow row;
 
-    public static class MockDisplayTile implements Display {
-        @Override
-        public List<String> toStringList() {
-            List<String> a = new ArrayList<String>();
-            a.add("T");
-            return a;
+    public static class MockDisplayTile extends DisplayTile {
+
+        public MockDisplayTile() {
+            super(null);
         }
 
         @Override
         public String toString() {
             return "T";
-        }
-
-        @Override
-        public int height() {
-            return 1;
-        }
-
-        @Override
-        public int width() {
-            return 1;
         }
     }
 
@@ -46,7 +33,7 @@ public class DisplayRowTest {
 
     @Test
     public void MockWorking() {
-        Display tile = new MockDisplayTile();
+        DisplayTile tile = new MockDisplayTile();
         assertEquals("T", tile.toString());
     }
 
