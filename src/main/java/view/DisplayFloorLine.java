@@ -17,7 +17,7 @@ public class DisplayFloorLine implements Display {
 
     @Override
     public int width() {
-        return 5;
+        return 7;
     }
 
     @Override

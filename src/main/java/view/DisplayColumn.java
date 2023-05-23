@@ -38,6 +38,6 @@ public class DisplayColumn implements Display {
 
     @Override
     public int width() {
-        return 0;
+        return -1;
     }
 }
