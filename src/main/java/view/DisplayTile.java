@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Color;
 import model.Tile;
 
 public class DisplayTile implements Display {
@@ -14,7 +15,10 @@ public class DisplayTile implements Display {
 
     @Override
     public String toString() {
-        return tile.toString();
+        if (tile instanceof Color) {
+            return tile.toString().substring(0,1);
+        }
+        return "1";
     }
 
     @Override
