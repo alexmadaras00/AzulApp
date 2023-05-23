@@ -5,7 +5,7 @@ import dataobjects.GameState;
 import model.Tile;
 
 public interface UI extends Executable {
-    
+
     // GENERAL
 
     void saveGameState(GameState gameState);
@@ -36,6 +36,8 @@ public interface UI extends Executable {
 
     void setScore(int PlayerID, int Score);
 
+    void setActivePlayerView(int playerID);
+
     void clearPlayer(int PlayerID);
 
     // wall
@@ -60,6 +62,5 @@ public interface UI extends Executable {
     void removeTileFloorLine(int PlayerID, Tile tile);
 
     void clearFloorLine(int PlayerID);
-
 
 }

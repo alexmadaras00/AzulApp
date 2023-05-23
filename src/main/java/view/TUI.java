@@ -143,4 +143,10 @@ public class TUI implements UI {
         throw new UnsupportedOperationException("Unimplemented method 'clearGameState'");
     }
 
+    @Override
+    public void setActivePlayerView(int playerID) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setActivePlayerView'");
+    }
+
 }
