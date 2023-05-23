@@ -8,9 +8,6 @@ public class DisplayMiddle implements Display {
 
     public DisplayMiddle() {
         tiles = new ArrayList<DisplayTile>();
-        for (int i = 0; i < width() * height(); i++) {
-            tiles.add(new DisplayTile(null));
-        }
     }
 
     @Override
@@ -20,7 +17,7 @@ public class DisplayMiddle implements Display {
 
     @Override
     public int width() {
-        return 0;
+        return -1;
     }
 
     public List<String> toStringList() {
