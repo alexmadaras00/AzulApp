@@ -5,9 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import model.Color;
+import model.Tile;
 
 public class DisplayWall implements Display {
-    public List<List<DisplayTile>> wall;
+    private List<List<DisplayTile>> wall;
 
     public DisplayWall() {
         wall = new ArrayList<List<DisplayTile>>();
@@ -16,25 +17,25 @@ public class DisplayWall implements Display {
             List<DisplayTile> wallLine = new ArrayList<DisplayTile>();
             for (int j = 0; j < colors.size(); j++) {
                 Color color = colors.get((j - i + colors.size()) % colors.size());
-                wallLine.add(new DisplayTile(color, true));
+                wallLine.add(new DisplayTile(color, false));
             }
             wall.add(wallLine);
         }
     }
 
-    public int getIndexOfTile(int row, DisplayTile tile) {
+    private int getIndexOfTile(int row, Tile tile) {
         List<DisplayTile> wallLine = wall.get(row);
         for (int i = 0; i < wallLine.size(); i++) {
-            if (wallLine.get(i).tile == tile.tile) {
+            if (wallLine.get(i).tile == tile) {
                 return i;
             }
         }
         return -1;
     }
 
-    public void setTile(int row, DisplayTile tile, boolean isPlaceholder) {
+    public void setTile(int row, Tile tile, boolean isFilled) {
         int index = getIndexOfTile(row, tile);
-        wall.get(row).get(index).isPlaceholder = isPlaceholder;
+        wall.get(row).get(index).isFilled = isFilled;
     }
 
     @Override
