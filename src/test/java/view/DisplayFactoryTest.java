@@ -7,8 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Color;
-import view.DisplayFactory;
-import view.DisplayTile;
 
 public class DisplayFactoryTest {
     private DisplayFactory displayFactory;

@@ -3,11 +3,21 @@ package view;
 import java.util.LinkedList;
 import java.util.List;
 
+import model.Tile;
+
 public class DisplayFloorLine implements Display {
-    public List<DisplayTile> tiles;
+    private List<DisplayTile> tiles;
 
     public DisplayFloorLine() {
         tiles = new LinkedList<DisplayTile>();
+    }
+
+    public void addTile(DisplayTile tile) {
+        tiles.add(tile);
+    }
+
+    public void removeTiles(Tile tile) {
+        tiles.removeIf((t) -> (t.tile == tile));
     }
 
     @Override

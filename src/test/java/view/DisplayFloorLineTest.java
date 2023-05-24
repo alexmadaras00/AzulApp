@@ -7,8 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Color;
-import view.DisplayFloorLine;
-import view.DisplayTile;
 
 public class DisplayFloorLineTest {
     private DisplayFloorLine displayFloorLine;
@@ -28,7 +26,7 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testsingleTileFloorLine() {
-        displayFloorLine.tiles.add(new DisplayTile(Color.RED));
+        displayFloorLine.addTile(new DisplayTile(Color.RED));
         assertEquals("R", displayFloorLine.toString());
         List<String> result = displayFloorLine.toStringList();
         assertEquals(1, result.size());
@@ -38,13 +36,26 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testMultipleTileFloorLine() {
-        displayFloorLine.tiles.add(new DisplayTile(Color.RED));
-        displayFloorLine.tiles.add(new DisplayTile(Color.CYAN));
-        displayFloorLine.tiles.add(new DisplayTile(Color.BLUE));
+        displayFloorLine.addTile(new DisplayTile(Color.RED));
+        displayFloorLine.addTile(new DisplayTile(Color.CYAN));
+        displayFloorLine.addTile(new DisplayTile(Color.BLUE));
 
         assertEquals("RCB", displayFloorLine.toString());
         List<String> result = displayFloorLine.toStringList();
         assertEquals(1, result.size());
         assertEquals("RCB", result.get(0));
+    }
+
+    @Test
+    public void testRemoveTileFloorLine() {
+        displayFloorLine.addTile(new DisplayTile(Color.RED));
+        displayFloorLine.addTile(new DisplayTile(Color.CYAN));
+        displayFloorLine.addTile(new DisplayTile(Color.BLUE));
+        assertEquals("RCB", displayFloorLine.toString());
+        displayFloorLine.removeTiles(Color.BLUE);
+        assertEquals("RC", displayFloorLine.toString());
+        List<String> result = displayFloorLine.toStringList();
+        assertEquals(1, result.size());
+        assertEquals("RC", result.get(0));
     }
 }
