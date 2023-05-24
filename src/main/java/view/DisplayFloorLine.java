@@ -12,8 +12,8 @@ public class DisplayFloorLine implements Display {
         tiles = new LinkedList<DisplayTile>();
     }
 
-    public void addTile(DisplayTile tile) {
-        tiles.add(tile);
+    public void addTile(Tile tile) {
+        tiles.add(new DisplayTile(tile));
     }
 
     public void removeTiles(Tile tile) {

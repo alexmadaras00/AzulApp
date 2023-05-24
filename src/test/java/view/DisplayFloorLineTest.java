@@ -26,7 +26,7 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testsingleTileFloorLine() {
-        displayFloorLine.addTile(new DisplayTile(Color.RED));
+        displayFloorLine.addTile(Color.RED);
         assertEquals("R", displayFloorLine.toString());
         List<String> result = displayFloorLine.toStringList();
         assertEquals(1, result.size());
@@ -36,9 +36,9 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testMultipleTileFloorLine() {
-        displayFloorLine.addTile(new DisplayTile(Color.RED));
-        displayFloorLine.addTile(new DisplayTile(Color.CYAN));
-        displayFloorLine.addTile(new DisplayTile(Color.BLUE));
+        displayFloorLine.addTile(Color.RED);
+        displayFloorLine.addTile(Color.CYAN);
+        displayFloorLine.addTile(Color.BLUE);
 
         assertEquals("RCB", displayFloorLine.toString());
         List<String> result = displayFloorLine.toStringList();
@@ -48,9 +48,9 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testRemoveTileFloorLine() {
-        displayFloorLine.addTile(new DisplayTile(Color.RED));
-        displayFloorLine.addTile(new DisplayTile(Color.CYAN));
-        displayFloorLine.addTile(new DisplayTile(Color.BLUE));
+        displayFloorLine.addTile(Color.RED);
+        displayFloorLine.addTile(Color.CYAN);
+        displayFloorLine.addTile(Color.BLUE);
         assertEquals("RCB", displayFloorLine.toString());
         displayFloorLine.removeTiles(Color.BLUE);
         assertEquals("RC", displayFloorLine.toString());

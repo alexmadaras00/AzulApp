@@ -12,8 +12,8 @@ public class DisplayMiddle implements Display {
         tiles = new ArrayList<DisplayTile>();
     }
 
-    public void addTile(DisplayTile tile) {
-        tiles.add(tile);
+    public void addTile(Tile tile) {
+        tiles.add(new DisplayTile(tile));
     }
 
     public void removeTiles(Tile tile) {

@@ -27,7 +27,7 @@ public class DisplayFactoryTest {
 
     @Test
     public void testsingleTileFactory() {
-        displayFactory.addTile(new DisplayTile(Color.RED));
+        displayFactory.addTile(Color.RED);
         assertEquals("R_\n__", displayFactory.toString());
         List<String> result = displayFactory.toStringList();
         assertEquals(2, result.size());
@@ -38,9 +38,9 @@ public class DisplayFactoryTest {
 
     @Test
     public void testMultipleTileFactory() {
-        displayFactory.addTile(new DisplayTile(Color.RED));
-        displayFactory.addTile(new DisplayTile(Color.CYAN));
-        displayFactory.addTile(new DisplayTile(Color.BLUE));
+        displayFactory.addTile(Color.RED);
+        displayFactory.addTile(Color.CYAN);
+        displayFactory.addTile(Color.BLUE);
 
         assertEquals("RB\nC_", displayFactory.toString());
         List<String> result = displayFactory.toStringList();
@@ -51,9 +51,9 @@ public class DisplayFactoryTest {
 
     @Test
     public void testRemoveTileFactory() {
-        displayFactory.addTile(new DisplayTile(Color.RED));
-        displayFactory.addTile(new DisplayTile(Color.CYAN));
-        displayFactory.addTile(new DisplayTile(Color.RED));
+        displayFactory.addTile(Color.RED);
+        displayFactory.addTile(Color.CYAN);
+        displayFactory.addTile(Color.RED);
         assertEquals("RR\nC_", displayFactory.toString());
         displayFactory.removeTiles(Color.RED);
         assertEquals("C_\n__", displayFactory.toString());
