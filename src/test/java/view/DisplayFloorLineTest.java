@@ -1,4 +1,5 @@
 package view;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -57,5 +58,16 @@ public class DisplayFloorLineTest {
         List<String> result = displayFloorLine.toStringList();
         assertEquals(1, result.size());
         assertEquals("RC", result.get(0));
+    }
+
+    @Test
+    public void testClearFloorLine() {
+        displayFloorLine.addTile(Color.RED);
+        displayFloorLine.clear();
+
+        assertEquals("", displayFloorLine.toString());
+        List<String> result = displayFloorLine.toStringList();
+        assertEquals(1, result.size());
+        assertEquals("", result.get(0));
     }
 }

@@ -9,7 +9,7 @@ public class DisplayFloorLine implements Display {
     private List<DisplayTile> tiles;
 
     public DisplayFloorLine() {
-        tiles = new LinkedList<DisplayTile>();
+        clear();
     }
 
     public void addTile(Tile tile) {
@@ -42,5 +42,9 @@ public class DisplayFloorLine implements Display {
             block.addDisplay(tile);
         }
         return block.toStringList();
+    }
+
+    public void clear() {
+        tiles = new LinkedList<DisplayTile>();
     }
 }
