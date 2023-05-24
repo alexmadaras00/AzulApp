@@ -8,6 +8,8 @@ public interface UI extends Executable {
 
     // GENERAL
 
+    void connectMessager(Messager messager);
+
     void loadGameState(GameState gameState);
 
     void clearGameState();

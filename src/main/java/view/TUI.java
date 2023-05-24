@@ -5,6 +5,7 @@ import model.Tile;
 
 public class TUI implements UI {
     private DisplayGameState gameState;
+    private Messager messager;
     private InputHandler inputHandler;
     private OutputHandler outputHandler;
 
@@ -149,6 +150,11 @@ public class TUI implements UI {
     public void setActivePlayerView(int playerID) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setActivePlayerView'");
+    }
+
+    @Override
+    public void connectMessager(Messager messager) {
+        this.messager = messager;
     }
 
 }
