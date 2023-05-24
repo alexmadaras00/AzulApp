@@ -6,10 +6,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import view.DisplayColumn;
-import view.DisplayRow;
-import view.DisplayTile;
-
 public class DisplayColumnTest {
     private DisplayColumn col;
     private DisplayRow row;
