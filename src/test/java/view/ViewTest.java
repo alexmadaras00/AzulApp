@@ -16,9 +16,6 @@ import dataobjects.GameState;
 import dataobjects.executors.Executor;
 import model.Model;
 import model.Tile;
-import view.Messager;
-import view.UI;
-import view.View;
 
 public class ViewTest {
     private static enum MockDataObject implements DataObject {
@@ -179,6 +176,12 @@ public class ViewTest {
         public void setActivePlayerView(int playerID) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setActivePlayerView'");
+        }
+
+        @Override
+        public void connectMessager(Messager messager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'connectMessager'");
         }
     }
 
