@@ -14,7 +14,7 @@ public class DisplayFactoryTest {
 
     @BeforeEach
     public void setUp() {
-        displayFactory = new DisplayFactory();
+        displayFactory = new DisplayFactory(1);
     }
 
     @Test

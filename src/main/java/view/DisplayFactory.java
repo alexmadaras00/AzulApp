@@ -8,7 +8,10 @@ import model.Tile;
 public class DisplayFactory implements Display {
     private List<DisplayTile> tiles;
 
-    public DisplayFactory() {
+    public int id;
+
+    public DisplayFactory(int id) {
+        this.id = id;
         clear();
     }
 
