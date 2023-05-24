@@ -13,11 +13,7 @@ public class DisplayPatternLine implements Display {
 
     public DisplayPatternLine() {
         colors = Arrays.asList(Color.values());
-        tiles = new ArrayList<List<DisplayTile>>();
-        for (int i = 0; i < colors.size(); i++) {
-            List<DisplayTile> patternLine = new ArrayList<DisplayTile>();
-            tiles.add(patternLine);
-        }
+        clear();
     }
 
     public void addTile(int row, Tile tile) {
@@ -30,6 +26,14 @@ public class DisplayPatternLine implements Display {
 
     public void clearRow(int row) {
         tiles.set(row, new ArrayList<DisplayTile>());
+    }
+
+    public void clear() {
+        tiles = new ArrayList<List<DisplayTile>>();
+        for (int i = 0; i < colors.size(); i++) {
+            List<DisplayTile> patternLine = new ArrayList<DisplayTile>();
+            tiles.add(patternLine);
+        }
     }
 
     @Override

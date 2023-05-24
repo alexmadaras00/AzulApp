@@ -92,4 +92,19 @@ public class DisplayPatternLineTest {
         assertEquals("____", result.get(3));
         assertEquals("_____", result.get(4));
     }
+
+    @Test
+    public void testClearPatternLine() {
+        displayPatternLine.addTile(0, Color.RED);
+        displayPatternLine.clear();
+
+        assertEquals("_\n__\n___\n____\n_____", displayPatternLine.toString());
+        List<String> result = displayPatternLine.toStringList();
+        assertEquals(5, result.size());
+        assertEquals("_", result.get(0));
+        assertEquals("__", result.get(1));
+        assertEquals("___", result.get(2));
+        assertEquals("____", result.get(3));
+        assertEquals("_____", result.get(4));
+    }
 }
