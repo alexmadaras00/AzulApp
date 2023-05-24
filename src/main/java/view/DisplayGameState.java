@@ -53,12 +53,25 @@ public class DisplayGameState {
         return null;
     }
 
+    public DisplayFactory getFactory(int factoryID) {
+        for (DisplayFactory factory : factories) {
+            if (factory.id == factoryID) {
+                return factory;
+            }
+        }
+        return null;
+    }
+
     public void setWallPattern(List<List<Tile>> wallTemplate) {
         this.wallTemplate = wallTemplate;
     }
 
     public void addPlayer(int id, String name) {
         players.add(new DisplayPlayer(id, name, wallTemplate));
+    }
+
+    public void addFactory(int id) {
+        factories.add(new DisplayFactory(id));
     }
 
     public void setActivePlayer(int playerID) {

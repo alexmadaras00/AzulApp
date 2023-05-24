@@ -40,6 +40,23 @@ public class DisplayGameStateTest {
     }
 
     @Test
+    public void testAddFactory() {
+        gameState.addFactory(0);
+        assertEquals(1, gameState.factories.size());
+        assertEquals(0, gameState.factories.get(0).id);
+    }
+
+    @Test
+    public void testGetFGactory() {
+        gameState.addFactory(0);
+        DisplayFactory factory1 = gameState.getFactory(0);
+        DisplayFactory factory2 = gameState.getFactory(2);
+        assertEquals(0, factory1.id);
+        assertEquals(null, factory2);
+
+    }
+
+    @Test
     public void testSetActivePlayer() {
         gameState.setActivePlayer(2);
         assertEquals(0, gameState.activePlayer);
