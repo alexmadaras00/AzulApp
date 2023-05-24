@@ -17,11 +17,7 @@ public class DisplayFactory implements Display {
     }
 
     public void removeTiles(Tile tile) {
-        for (DisplayTile listTile : tiles) {
-            if (listTile.tile == tile) {
-                tiles.remove(listTile);
-            }
-        }
+        tiles.removeIf((t) -> (t.tile == tile));
     }
 
     @Override

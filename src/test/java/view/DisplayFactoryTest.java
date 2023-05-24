@@ -50,4 +50,18 @@ public class DisplayFactoryTest {
         assertEquals("RB", result.get(0));
         assertEquals("C_", result.get(1));
     }
+
+    @Test
+    public void testRemoveTileFactory() {
+        displayFactory.addTile(new DisplayTile(Color.RED));
+        displayFactory.addTile(new DisplayTile(Color.CYAN));
+        displayFactory.addTile(new DisplayTile(Color.RED));
+        assertEquals("RR\nC_", displayFactory.toString());
+        displayFactory.removeTiles(Color.RED);
+        assertEquals("C_\n__", displayFactory.toString());
+        List<String> result = displayFactory.toStringList();
+        assertEquals(2, result.size());
+        assertEquals("C_", result.get(0));
+        assertEquals("__", result.get(1));
+    }
 }
