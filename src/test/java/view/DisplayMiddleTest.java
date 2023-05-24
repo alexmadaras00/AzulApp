@@ -7,21 +7,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Color;
-import view.DisplayMiddle;
-import view.DisplayTile;
 
 public class DisplayMiddleTest {
-    private DisplayMiddle displayMidde;
+    private DisplayMiddle displayMiddle;
 
     @BeforeEach
     public void setUp() {
-        displayMidde = new DisplayMiddle();
+        displayMiddle = new DisplayMiddle();
     }
 
     @Test
     public void testEmptyFactory() {
-        assertEquals("\n", displayMidde.toString());
-        List<String> result = displayMidde.toStringList();
+        assertEquals("\n", displayMiddle.toString());
+        List<String> result = displayMiddle.toStringList();
         assertEquals(2, result.size());
         assertEquals("", result.get(0));
         assertEquals("", result.get(1));
@@ -29,9 +27,9 @@ public class DisplayMiddleTest {
 
     @Test
     public void testsingleTileFactory() {
-        displayMidde.tiles.add(new DisplayTile(Color.RED));
-        assertEquals("R\n", displayMidde.toString());
-        List<String> result = displayMidde.toStringList();
+        displayMiddle.addTile(new DisplayTile(Color.RED));
+        assertEquals("R\n", displayMiddle.toString());
+        List<String> result = displayMiddle.toStringList();
         assertEquals(2, result.size());
         assertEquals("R", result.get(0));
         assertEquals("", result.get(1));
@@ -39,16 +37,34 @@ public class DisplayMiddleTest {
 
     @Test
     public void testMultipleTileFactory() {
-        displayMidde.tiles.add(new DisplayTile(Color.RED));
-        displayMidde.tiles.add(new DisplayTile(Color.CYAN));
-        displayMidde.tiles.add(new DisplayTile(Color.BLUE));
-        displayMidde.tiles.add(new DisplayTile(Color.BLUE));
-        displayMidde.tiles.add(new DisplayTile(Color.CYAN));
+        displayMiddle.addTile(new DisplayTile(Color.RED));
+        displayMiddle.addTile(new DisplayTile(Color.CYAN));
+        displayMiddle.addTile(new DisplayTile(Color.BLUE));
+        displayMiddle.addTile(new DisplayTile(Color.BLUE));
+        displayMiddle.addTile(new DisplayTile(Color.CYAN));
 
-        assertEquals("RBC\nCB", displayMidde.toString());
-        List<String> result = displayMidde.toStringList();
+        assertEquals("RBC\nCB", displayMiddle.toString());
+        List<String> result = displayMiddle.toStringList();
         assertEquals(2, result.size());
         assertEquals("RBC", result.get(0));
         assertEquals("CB", result.get(1));
+    }
+
+    @Test
+    public void testRemoveTileFactory() {
+        displayMiddle.addTile(new DisplayTile(Color.RED));
+        displayMiddle.addTile(new DisplayTile(Color.CYAN));
+        displayMiddle.addTile(new DisplayTile(Color.BLUE));
+        displayMiddle.addTile(new DisplayTile(Color.BLUE));
+        displayMiddle.addTile(new DisplayTile(Color.CYAN));
+
+        assertEquals("RBC\nCB", displayMiddle.toString());
+        displayMiddle.removeTiles(Color.CYAN);
+        assertEquals("RB\nB", displayMiddle.toString());
+
+        List<String> result = displayMiddle.toStringList();
+        assertEquals(2, result.size());
+        assertEquals("RB", result.get(0));
+        assertEquals("B", result.get(1));
     }
 }

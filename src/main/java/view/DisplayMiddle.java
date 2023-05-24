@@ -3,11 +3,21 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Tile;
+
 public class DisplayMiddle implements Display {
-    public List<DisplayTile> tiles;
+    private List<DisplayTile> tiles;
 
     public DisplayMiddle() {
         tiles = new ArrayList<DisplayTile>();
+    }
+
+    public void addTile(DisplayTile tile) {
+        tiles.add(tile);
+    }
+
+    public void removeTiles(Tile tile) {
+        tiles.removeIf((t) -> (t.tile == tile));
     }
 
     @Override
