@@ -9,7 +9,7 @@ public class DisplayFactory implements Display {
     private List<DisplayTile> tiles;
 
     public DisplayFactory() {
-        tiles = new ArrayList<DisplayTile>();
+        clear();
     }
 
     public void addTile(Tile tile) {
@@ -50,5 +50,9 @@ public class DisplayFactory implements Display {
     @Override
     public String toString() {
         return String.join("\n", toStringList());
+    }
+
+    public void clear() {
+        tiles = new ArrayList<DisplayTile>();
     }
 }

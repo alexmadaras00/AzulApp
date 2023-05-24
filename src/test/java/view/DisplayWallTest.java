@@ -94,4 +94,18 @@ public class DisplayWallTest {
         assertEquals("cbyrb", result.get(3));
         assertEquals("bcbyr", result.get(4));
     }
+
+    @Test
+    public void testClearPatternLine() {
+        displayWall.addTile(0, Color.RED);
+        displayWall.clear();
+        assertEquals("rbcby\nyrbcb\nbyrbc\ncbyrb\nbcbyr", displayWall.toString());
+        List<String> result = displayWall.toStringList();
+        assertEquals(5, result.size());
+        assertEquals("rbcby", result.get(0));
+        assertEquals("yrbcb", result.get(1));
+        assertEquals("byrbc", result.get(2));
+        assertEquals("cbyrb", result.get(3));
+        assertEquals("bcbyr", result.get(4));
+    }
 }

@@ -1,4 +1,5 @@
 package view;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -60,6 +61,17 @@ public class DisplayFactoryTest {
         List<String> result = displayFactory.toStringList();
         assertEquals(2, result.size());
         assertEquals("C_", result.get(0));
+        assertEquals("__", result.get(1));
+    }
+
+    @Test
+    public void testClearFactory() {
+        displayFactory.addTile(Color.RED);
+        displayFactory.clear();
+        assertEquals("__\n__", displayFactory.toString());
+        List<String> result = displayFactory.toStringList();
+        assertEquals(2, result.size());
+        assertEquals("__", result.get(0));
         assertEquals("__", result.get(1));
     }
 }

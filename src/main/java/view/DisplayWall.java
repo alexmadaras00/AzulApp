@@ -11,11 +11,7 @@ public class DisplayWall implements Display {
 
     public DisplayWall(List<List<Tile>> templateWall) {
         this.templateWall = templateWall;
-        wall = new ArrayList<List<Tile>>();
-        for (int i = 0; i < templateWall.size(); i++) {
-            List<Tile> wallLine = new ArrayList<Tile>();
-            wall.add(wallLine);
-        }
+        clear();
     }
 
     public void addTile(int row, Tile tile) {
@@ -24,6 +20,14 @@ public class DisplayWall implements Display {
 
     public void removeTile(int row, Tile tile) {
         wall.get(row).removeIf((t) -> (t == tile));
+    }
+
+    public void clear() {
+        wall = new ArrayList<List<Tile>>();
+        for (int i = 0; i < templateWall.size(); i++) {
+            List<Tile> wallLine = new ArrayList<Tile>();
+            wall.add(wallLine);
+        }
     }
 
     @Override
