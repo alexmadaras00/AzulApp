@@ -1,7 +1,6 @@
 package view;
 
 import dataobjects.Executable;
-import dataobjects.GameState;
 import model.Tile;
 
 public interface UI extends Executable {
@@ -10,59 +9,61 @@ public interface UI extends Executable {
 
     void connectMessager(Messager messager);
 
-    void loadGameState(GameState gameState);
-
-    void clearGameState();
+    void resetGameState();
 
     void clearAll();
 
     void commit();
 
     // Factory
-    void addTileFactory(int factory, Tile tile);
+    void addFactory(int factoryID);
 
-    void removeTileFactory(int factory, Tile tile);
+    void addTileFactory(int factoryID, Tile tile);
 
-    void clearFactory(int factory);
+    void removeTilesFactory(int factoryID, Tile tile);
+
+    void clearFactory(int factoryID);
 
     // Middle
     void addTileMiddle(Tile tile);
 
-    void removeTileMiddle(Tile tile);
+    void removeTilesMiddle(Tile tile);
 
     void clearMiddle();
 
     // PLAYER SPECIFIC
 
-    void setPlayerName(int PlayerID, String name);
+    void addPlayer(int playerID, String name);
 
-    void setScore(int PlayerID, int Score);
+    void setPlayerName(int playerID, String name);
+
+    void setScore(int playerID, int score);
 
     void setActivePlayerView(int playerID);
 
-    void clearPlayer(int PlayerID);
+    void clearPlayer(int playerID);
 
     // wall
-    void addTileWall(int PlayerID, int row, int column, Tile tile);
+    void addTileWall(int PlayerID, int row, Tile tile);
 
-    void removeTileWall(int PlayerID, int row, int column, Tile tile);
+    void removeTilesWall(int playerID, int row, Tile tile);
 
-    void clearWall(int PlayerID);
+    void clearWall(int playerID);
 
     // paternline
-    void addTilePattern(int PlayerID, int row, Tile tile);
+    void addTilePattern(int playerID, int row, Tile tile);
 
-    void removeTilePattern(int PlayerID, int row, Tile tile);
+    void removeTilePattern(int playerID, int row, Tile tile);
 
-    void clearPatternLine(int PlayerID, int row);
+    void clearPatternLine(int playerID, int row);
 
-    void clearPattern(int PlayerID);
+    void clearPattern(int playerID);
 
     // floor
-    void addTileFloorLine(int PlayerID, Tile tile);
+    void addTileFloorLine(int playerID, Tile tile);
 
-    void removeTileFloorLine(int PlayerID, Tile tile);
+    void removeTilesFloorLine(int playerID, Tile tile);
 
-    void clearFloorLine(int PlayerID);
+    void clearFloorLine(int playerID);
 
 }

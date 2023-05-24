@@ -35,39 +35,15 @@ public class ViewTest {
         }
 
         @Override
-        public void addTileFactory(int factory, Tile tile) {
+        public void connectMessager(Messager messager) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addTileFactory'");
+            throw new UnsupportedOperationException("Unimplemented method 'connectMessager'");
         }
 
         @Override
-        public void removeTileFactory(int factory, Tile tile) {
+        public void resetGameState() {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'removeTileFactory'");
-        }
-
-        @Override
-        public void clearFactory(int factory) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'clearFactory'");
-        }
-
-        @Override
-        public void addTileMiddle(Tile tile) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addTileMiddle'");
-        }
-
-        @Override
-        public void removeTileMiddle(Tile tile) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'removeTileMiddle'");
-        }
-
-        @Override
-        public void clearMiddle() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'clearMiddle'");
+            throw new UnsupportedOperationException("Unimplemented method 'resetGameState'");
         }
 
         @Override
@@ -83,93 +59,63 @@ public class ViewTest {
         }
 
         @Override
-        public void addTileWall(int PlayerID, int row, int column, Tile tile) {
+        public void addFactory(int factoryID) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addTileWall'");
+            throw new UnsupportedOperationException("Unimplemented method 'addFactory'");
         }
 
         @Override
-        public void removeTileWall(int PlayerID, int row, int column, Tile tile) {
+        public void addTileFactory(int factoryID, Tile tile) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'removeTileWall'");
+            throw new UnsupportedOperationException("Unimplemented method 'addTileFactory'");
         }
 
         @Override
-        public void clearWall(int PlayerID) {
+        public void removeTilesFactory(int factoryID, Tile tile) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'clearWall'");
+            throw new UnsupportedOperationException("Unimplemented method 'removeTilesFactory'");
         }
 
         @Override
-        public void addTilePattern(int PlayerID, int row, Tile tile) {
+        public void clearFactory(int factoryID) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addTilePattern'");
+            throw new UnsupportedOperationException("Unimplemented method 'clearFactory'");
         }
 
         @Override
-        public void removeTilePattern(int PlayerID, int row, Tile tile) {
+        public void addTileMiddle(Tile tile) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'removeTilePattern'");
+            throw new UnsupportedOperationException("Unimplemented method 'addTileMiddle'");
         }
 
         @Override
-        public void clearPatternLine(int PlayerID, int row) {
+        public void removeTilesMiddle(Tile tile) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'clearPatternLine'");
+            throw new UnsupportedOperationException("Unimplemented method 'removeTilesMiddle'");
         }
 
         @Override
-        public void clearPattern(int PlayerID) {
+        public void clearMiddle() {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'clearPattern'");
+            throw new UnsupportedOperationException("Unimplemented method 'clearMiddle'");
         }
 
         @Override
-        public void addTileFloorLine(int PlayerID, Tile tile) {
+        public void addPlayer(int playerID, String name) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addTileFloorLine'");
+            throw new UnsupportedOperationException("Unimplemented method 'addPlayer'");
         }
 
         @Override
-        public void removeTileFloorLine(int PlayerID, Tile tile) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'removeTileFloorLine'");
-        }
-
-        @Override
-        public void clearFloorLine(int PlayerID) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'clearFloorLine'");
-        }
-
-        @Override
-        public void setPlayerName(int PlayerID, String name) {
+        public void setPlayerName(int playerID, String name) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setPlayerName'");
         }
 
         @Override
-        public void setScore(int PlayerID, int Score) {
+        public void setScore(int playerID, int score) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setScore'");
-        }
-
-        @Override
-        public void clearPlayer(int PlayerID) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'clearPlayer'");
-        }
-
-        @Override
-        public void loadGameState(GameState gameState) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'saveGameState'");
-        }
-
-        @Override
-        public void clearGameState() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'clearGameState'");
         }
 
         @Override
@@ -179,10 +125,71 @@ public class ViewTest {
         }
 
         @Override
-        public void connectMessager(Messager messager) {
+        public void clearPlayer(int playerID) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'connectMessager'");
+            throw new UnsupportedOperationException("Unimplemented method 'clearPlayer'");
         }
+
+        @Override
+        public void addTileWall(int PlayerID, int row, Tile tile) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addTileWall'");
+        }
+
+        @Override
+        public void removeTilesWall(int playerID, int row, Tile tile) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'removeTilesWall'");
+        }
+
+        @Override
+        public void clearWall(int playerID) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'clearWall'");
+        }
+
+        @Override
+        public void addTilePattern(int playerID, int row, Tile tile) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addTilePattern'");
+        }
+
+        @Override
+        public void removeTilePattern(int playerID, int row, Tile tile) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'removeTilePattern'");
+        }
+
+        @Override
+        public void clearPatternLine(int playerID, int row) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'clearPatternLine'");
+        }
+
+        @Override
+        public void clearPattern(int playerID) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'clearPattern'");
+        }
+
+        @Override
+        public void addTileFloorLine(int playerID, Tile tile) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addTileFloorLine'");
+        }
+
+        @Override
+        public void removeTilesFloorLine(int playerID, Tile tile) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'removeTilesFloorLine'");
+        }
+
+        @Override
+        public void clearFloorLine(int playerID) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'clearFloorLine'");
+        }
+
     }
 
     private static class MockController implements Mediator {
