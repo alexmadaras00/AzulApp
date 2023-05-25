@@ -64,9 +64,9 @@ public class PlayerBoard {
                     Tile wallTile = tilesCompleted.get(0);
                     remainderList.addAll(tilesCompleted.subList(1, tilesCompleted.size()));
                     ScoreChange wallTileScoreChange = new ScoreChange();
-                    wallTileScoreChange.setIsCompletionScore(false);
-                    wallTileScoreChange.setHasColor(true);
-                    wallTileScoreChange.setHasRowIndex(true);
+                    //wallTileScoreChange.setIsCompletionScore(false);
+                    //wallTileScoreChange.setHasColor(true);
+                    //wallTileScoreChange.setHasRowIndex(true);
                     wallTileScoreChange.setIndex(completedRow);
                     wallTileScoreChange.setColor((Color) wallTile);
                     wallTileScoreChange.setScoreDifference(wall.addTile(completedRow, wallTile));
@@ -75,9 +75,9 @@ public class PlayerBoard {
         remainderList.addAll(floorLine.getCopyTiles());
         floorLine.clearTiles();
         ScoreChange floorLineScoreChange = new ScoreChange();
-        floorLineScoreChange.setIsCompletionScore(false);
-        floorLineScoreChange.setHasColor(false);
-        floorLineScoreChange.setHasRowIndex(false);
+        //floorLineScoreChange.setIsCompletionScore(false);
+        //floorLineScoreChange.setHasColor(false);
+        //floorLineScoreChange.setHasRowIndex(false);
         floorLineScoreChange.setScoreDifference(floorLine.getScore());
 
         return remainderList;
@@ -94,7 +94,7 @@ public class PlayerBoard {
         playerBoardState.setWall(wall.getCopyTable());
         playerBoardState.setFloorLine(floorLine.getCopyTiles());
         playerBoardState.setPatternLine(patternLine.getCopyTable());
-        playerBoardState.setScoreChanges(scoreChanges);
+        //playerBoardState.setScoreChanges(scoreChanges);
         playerBoardState.setScore(score);
         return playerBoardState;
     }

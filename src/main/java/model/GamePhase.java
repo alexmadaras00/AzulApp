@@ -1,9 +1,9 @@
 package model;
 
 public enum GamePhase {
-    Initialized,
-    PreparingRound,
-    FactoryOffer,
-    Finished,
-    Terminated
+    INITIALIZED,
+    PREPARING_ROUND,
+    FACTORY_OFFER,
+    FINISHED,
+    TERMINATED
 }

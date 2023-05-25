@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import dataobjects.ScoreChange;
+import dataobjects.ScoreType;
 
 public class Wall {
     private Tile[][] wall;
@@ -73,9 +74,7 @@ public class Wall {
         List<ScoreChange> scoreChanges = new LinkedList<>();
         for (Tile color : completedColor) {
             ScoreChange scoreChange = new ScoreChange();
-            scoreChange.setIsCompletionScore(true);
-            scoreChange.setHasColor(true);
-            scoreChange.setHasRowIndex(false);
+            scoreChange.setType(ScoreType.COMPLETED_COLOR);
             scoreChange.setColor((Color) color);
             scoreChange.setScoreDifference(completedColorScore);
             scoreChanges.add(scoreChange);
@@ -87,9 +86,7 @@ public class Wall {
         List<ScoreChange> scoreChanges = new LinkedList<>();
         for (int line : completedLines) {
             ScoreChange scoreChange = new ScoreChange();
-            scoreChange.setIsCompletionScore(true);
-            scoreChange.setHasColor(false);
-            scoreChange.setHasRowIndex(isRow);
+            scoreChange.setType(isRow ? ScoreType.COMPLETED_ROW : ScoreType.COMPLETED_COLUMN );
             scoreChange.setIndex(line);
             scoreChange.setScoreDifference(isRow ? completedRowScore : completedColumnScore);
             scoreChanges.add(scoreChange);

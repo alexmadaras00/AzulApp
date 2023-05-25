@@ -16,25 +16,25 @@ public class GamePhaseTest {
 
     @Test
     public void testValueComparison() {
-        GamePhase initialized = GamePhase.Initialized;
-        GamePhase preparingRound = GamePhase.PreparingRound;
-        GamePhase factoryOffer = GamePhase.FactoryOffer;
-        GamePhase finished = GamePhase.Finished;
-        GamePhase terminated = GamePhase.Terminated;
+        GamePhase initialized = GamePhase.INITIALIZED;
+        GamePhase preparingRound = GamePhase.PREPARING_ROUND;
+        GamePhase factoryOffer = GamePhase.FACTORY_OFFER;
+        GamePhase finished = GamePhase.FINISHED;
+        GamePhase terminated = GamePhase.TERMINATED;
 
         // Assert equality
-        assertEquals(GamePhase.Initialized, initialized);
-        assertEquals(GamePhase.PreparingRound, preparingRound);
-        assertEquals(GamePhase.FactoryOffer, factoryOffer);
-        assertEquals(GamePhase.Finished, finished);
-        assertEquals(GamePhase.Terminated, terminated);
+        assertEquals(GamePhase.INITIALIZED, initialized);
+        assertEquals(GamePhase.PREPARING_ROUND, preparingRound);
+        assertEquals(GamePhase.FACTORY_OFFER, factoryOffer);
+        assertEquals(GamePhase.FINISHED, finished);
+        assertEquals(GamePhase.TERMINATED, terminated);
 
         // Assert inequality
-        assertNotEquals(GamePhase.Initialized, terminated);
-        assertNotEquals(GamePhase.FactoryOffer, initialized);
-        assertNotEquals(GamePhase.PreparingRound, terminated);
-        assertNotEquals(GamePhase.Finished, preparingRound);
-        assertNotEquals(GamePhase.Terminated, factoryOffer);
-        assertNotEquals(GamePhase.PreparingRound, finished);
+        assertNotEquals(GamePhase.INITIALIZED, terminated);
+        assertNotEquals(GamePhase.FACTORY_OFFER, initialized);
+        assertNotEquals(GamePhase.PREPARING_ROUND, terminated);
+        assertNotEquals(GamePhase.FINISHED, preparingRound);
+        assertNotEquals(GamePhase.TERMINATED, factoryOffer);
+        assertNotEquals(GamePhase.PREPARING_ROUND, finished);
     }
 }
