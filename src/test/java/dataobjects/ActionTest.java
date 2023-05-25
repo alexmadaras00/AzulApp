@@ -1,3 +1,5 @@
+package dataobjects;
+
 import dataobjects.Action;
 import org.junit.jupiter.api.Test;
 

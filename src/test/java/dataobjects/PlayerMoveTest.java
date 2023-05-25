@@ -1,3 +1,5 @@
+package dataobjects;
+
 import dataobjects.PlayerMove;
 import org.junit.jupiter.api.Test;
 
