@@ -14,12 +14,6 @@ public class PlayerBoard {
     private FloorLine floorLine;
     private PatternLine patternLine;
 
-    public PlayerBoard(Wall wall, PatternLine patternLine, FloorLine floorLine) {
-        this.wall = wall;
-        this.patternLine = patternLine;
-        this.floorLine = floorLine;
-    }
-
     public PlayerBoard() {
         floorLine = new FloorLine();
         wall = new Wall();
@@ -28,12 +22,24 @@ public class PlayerBoard {
         scoreChanges = new ArrayList<>();
     }
 
-    public PlayerBoard(Wall wall, PatternLine patternLine, FloorLine floorLine, int score, List<ScoreChange> scoreChanges) {
-        this.wall = wall;
-        this.patternLine = patternLine;
-        this.floorLine = floorLine;
-        this.score = score;
-        this.scoreChanges = scoreChanges;
+    public FloorLine getFloorLine() {
+        return floorLine;
+    }
+
+    public PatternLine getPatternLine() {
+        return patternLine;
+    }
+
+    public Wall getWall() {
+        return wall;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public List<ScoreChange> getScoreChanges() {
+        return scoreChanges;
     }
 
     public boolean canAddTypePatternLine(int rowIndex, Color type) {
@@ -67,7 +73,6 @@ public class PlayerBoard {
                 }
         );
         remainderList.addAll(floorLine.getCopyTiles());
-
         floorLine.clearTiles();
         ScoreChange floorLineScoreChange = new ScoreChange();
         //floorLineScoreChange.setIsCompletionScore(false);
@@ -84,7 +89,6 @@ public class PlayerBoard {
                 this.score += scoreChange.getScoreDifference());
         this.scoreChanges = scoreChangesList;
     }
-
     public PlayerBoardState toObject() {
         PlayerBoardState playerBoardState = new PlayerBoardState();
         playerBoardState.setWall(wall.getCopyTable());

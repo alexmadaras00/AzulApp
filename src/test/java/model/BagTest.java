@@ -1,3 +1,5 @@
+package model;
+
 import model.Bag;
 import model.Color;
 import model.Tile;

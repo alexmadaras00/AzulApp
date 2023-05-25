@@ -1,3 +1,5 @@
+package view;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
