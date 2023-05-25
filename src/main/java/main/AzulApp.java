@@ -12,7 +12,7 @@ import view.GUI;
 import view.Messager;
 import view.View;
 
-public class AzulApp extends Application{
+public class AzulApp extends Application {
 
     public static void main(String[] args) {
         launch();

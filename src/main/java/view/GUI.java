@@ -12,7 +12,7 @@ public class GUI extends Stage implements UI {
 
 
     public void start(Stage stage) {
-        this.messager.send(new RequestGameState());
+        // this.messager.send(new RequestGameState());
         gameState = new DisplayGameState();
         Scene scene = new Scene(gameState);
         stage.setScene(scene);
