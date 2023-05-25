@@ -7,7 +7,6 @@ import model.Tile;
 public class PlayerBoardState implements DataObject {
     private PlayerData player;
     private int score;
-    private List<ScoreChange> scoreChanges;
     private List<List<Tile>> patternLine;
     private List<Tile> floorLine;
     private List<List<Tile>> wall;
@@ -29,14 +28,6 @@ public class PlayerBoardState implements DataObject {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public List<ScoreChange> getScoreChanges() {
-        return scoreChanges;
-    }
-
-    public void setScoreChanges(List<ScoreChange> scoreChanges) {
-        this.scoreChanges = scoreChanges;
     }
 
     public List<List<Tile>> getPatternLine() {
@@ -64,43 +55,19 @@ public class PlayerBoardState implements DataObject {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlayerBoardState)) return false;
+
+        PlayerBoardState that = (PlayerBoardState) o;
+
+        if (getScore() != that.getScore()) return false;
+        if (getPlayer() != null ? !getPlayer().equals(that.getPlayer()) : that.getPlayer() != null) return false;
+        if (getPatternLine() != null ? !getPatternLine().equals(that.getPatternLine()) : that.getPatternLine() != null)
             return false;
-        if (getClass() != obj.getClass())
+        if (getFloorLine() != null ? !getFloorLine().equals(that.getFloorLine()) : that.getFloorLine() != null)
             return false;
-        PlayerBoardState other = (PlayerBoardState) obj;
-        if (player == null) {
-            if (other.player != null)
-                return false;
-        } else if (!player.equals(other.player))
-            return false;
-        if (score != other.score)
-            return false;
-        if (scoreChanges == null) {
-            if (other.scoreChanges != null)
-                return false;
-        } else if (!scoreChanges.equals(other.scoreChanges))
-            return false;
-        if (patternLine == null) {
-            if (other.patternLine != null)
-                return false;
-        } else if (!patternLine.equals(other.patternLine))
-            return false;
-        if (floorLine == null) {
-            if (other.floorLine != null)
-                return false;
-        } else if (!floorLine.equals(other.floorLine))
-            return false;
-        if (wall == null) {
-            if (other.wall != null)
-                return false;
-        } else if (!wall.equals(other.wall))
-            return false;
-        return true;
+        return getWall() != null ? getWall().equals(that.getWall()) : that.getWall() == null;
     }
-    
-    
+
 }

@@ -148,7 +148,7 @@ public class PlayerBoardTest {
         playerBoardState.setWall(playerBoard.getWall().getCopyTable());
         playerBoardState.setFloorLine(playerBoard.getFloorLine().getCopyTiles());
         playerBoardState.setPatternLine(playerBoard.getPatternLine().getCopyTable());
-        playerBoardState.setScoreChanges(playerBoard.getScoreChanges());
+        //playerBoardState.setScoreChanges(playerBoard.getScoreChanges());
         playerBoardState.setScore(playerBoard.getScore());
         assertNotNull(playerBoardState);
         assertEquals(playerBoardState, playerBoard.toObject());
