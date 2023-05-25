@@ -1,7 +1,7 @@
 package model;
 
 import dataobjects.PlayerBoardState;
-import model.Color;
+import model.TileColor;
 import model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,11 +12,13 @@ public class PlayerTest {
     static Player player;
     static String name = "Trump";
     static int counter = 0;
+
     @BeforeEach
-    void setUp(){
+    void setUp() {
         player = new Player(name);
         assertEquals(++counter, player.getIdentifier());
     }
+
     @Test
     void testGetIdentifier() {
         String name2 = "Scholz";
@@ -29,15 +31,15 @@ public class PlayerTest {
         Player player2 = new Player();
         assertNotNull(player2.getName());
         assertNotNull(player2.getBoard());
-        assertEquals("Player"+player2.getIdentifier(),player2.getName());
+        assertEquals("Player" + player2.getIdentifier(), player2.getName());
         assertEquals(++counter, player2.getIdentifier());
     }
 
     @Test
     public void testConstructorWithName() {
         assertEquals(name, player.getName());
-        assertTrue(player.getBoard().canAddTypePatternLine(2, Color.RED));
-        assertInstanceOf(PlayerBoardState.class,player.getBoard().toObject());
+        assertTrue(player.getBoard().canAddTypePatternLine(2, TileColor.RED));
+        assertInstanceOf(PlayerBoardState.class, player.getBoard().toObject());
         assertEquals(counter, player.getIdentifier());
     }
 
@@ -55,8 +57,7 @@ public class PlayerTest {
 
     @Test
     public void testGetPlayerBoard() {
-        assertTrue(player.getBoard().canAddTypePatternLine(2, Color.RED));
+        assertTrue(player.getBoard().canAddTypePatternLine(2, TileColor.RED));
     }
-
 
 }

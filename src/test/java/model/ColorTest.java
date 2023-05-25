@@ -1,34 +1,33 @@
 package model;
 
-import model.Color;
+import model.TileColor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-
 public class ColorTest {
 
     @Test
     public void testValueComparison() {
-        Color red = Color.RED;
-        Color blue = Color.BLUE;
-        Color cyan = Color.CYAN;
-        Color black = Color.BLACK;
-        Color yellow = Color.YELLOW;
+        TileColor red = TileColor.RED;
+        TileColor blue = TileColor.BLUE;
+        TileColor cyan = TileColor.CYAN;
+        TileColor black = TileColor.BLACK;
+        TileColor yellow = TileColor.YELLOW;
 
         // Assert equality
-        assertEquals(Color.RED, red);
-        assertEquals(Color.BLUE, blue);
-        assertEquals(Color.CYAN, cyan);
-        assertEquals(Color.BLACK, black);
-        assertEquals(Color.YELLOW, yellow);
+        assertEquals(TileColor.RED, red);
+        assertEquals(TileColor.BLUE, blue);
+        assertEquals(TileColor.CYAN, cyan);
+        assertEquals(TileColor.BLACK, black);
+        assertEquals(TileColor.YELLOW, yellow);
 
         // Assert inequality
-        assertNotEquals(Color.RED, blue);
-        assertNotEquals(Color.CYAN, black);
-        assertNotEquals(Color.RED, cyan);
-        assertNotEquals(Color.BLUE, yellow);
-        assertNotEquals(Color.YELLOW, red);
+        assertNotEquals(TileColor.RED, blue);
+        assertNotEquals(TileColor.CYAN, black);
+        assertNotEquals(TileColor.RED, cyan);
+        assertNotEquals(TileColor.BLUE, yellow);
+        assertNotEquals(TileColor.YELLOW, red);
     }
 }

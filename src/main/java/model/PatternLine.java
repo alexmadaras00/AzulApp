@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,9 +16,11 @@ public class PatternLine {
     /**
      * add tiles to pattern line
      *
-     * @param row = index of the pattern line, also means the size-1 of the pattern line [0..4]
+     * @param row = index of the pattern line, also means the size-1 of the pattern
+     *            line [0..4]
      * @param t   = the tiles that will be added to the line
-     * @return excess tiles if the pattern line is full and will be added to floor line
+     * @return excess tiles if the pattern line is full and will be added to floor
+     *         line
      */
     public List<Tile> addTiles(int row, List<Tile> t) {
         List<Tile> excessTiles = new ArrayList<>();
@@ -38,18 +39,21 @@ public class PatternLine {
     /**
      * check if the pattern line can be added
      *
-     * @param row  = index of the pattern line, also means the size-1 of the pattern line [0..4]
+     * @param row  = index of the pattern line, also means the size-1 of the pattern
+     *             line [0..4]
      * @param type = the color or the tiles
-     * @return true if the pattern line is not null and the color matches, else return false
+     * @return true if the pattern line is not null and the color matches, else
+     *         return false
      */
-    public Boolean canAddTile(int row, Color type) {
+    public Boolean canAddTile(int row, TileColor type) {
         return ((table.get(row).size() == 0) || table.get(row).contains(type)) && table.get(row).size() <= row;
     }
 
     /**
      * clear the patternLine[row]
      *
-     * @param row = index of the pattern line, also means the size-1 of the pattern line [0..4]
+     * @param row = index of the pattern line, also means the size-1 of the pattern
+     *            line [0..4]
      * @return the tiles removed from the patternLine.
      */
     public List<Tile> clearTiles(int row) {

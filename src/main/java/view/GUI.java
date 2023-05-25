@@ -1,14 +1,31 @@
 package view;
 
-import dataobjects.GameState;
-import model.Color;
+import dataobjects.RequestGameState;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.Tile;
+import model.TileColor;
 
-public class TUI implements UI {
+public class GUI extends Application implements UI {
     private DisplayGameState gameState;
     private Messager messager;
-    private InputHandler inputHandler;
-    private OutputHandler outputHandler;
+
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        messager.send(new RequestGameState());
+        gameState = new DisplayGameState();
+        Scene scene = new Scene(gameState);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void connectMessager(Messager messager) {
+        this.messager = messager;
+        launch();
+    }
 
     @Override
     public void addTileFactory(int factory, Tile tile) {
@@ -22,9 +39,7 @@ public class TUI implements UI {
 
     @Override
     public void clearFactory(int factory) {
-        for (Color color : Color.values()) {
-            gameState.factories.get(factory).removeTiles(color);
-        }
+        gameState.factories.get(factory).clear();
     }
 
     @Override
@@ -39,8 +54,8 @@ public class TUI implements UI {
 
     @Override
     public void clearMiddle() {
-        for (Color color : Color.values()) {
-            gameState.middle.removeTiles(color);
+        for (TileColor TileColor : TileColor.values()) {
+            gameState.middle.removeTiles(TileColor);
         }
     }
 
@@ -57,7 +72,7 @@ public class TUI implements UI {
 
     @Override
     public void commit() {
-        outputHandler.printFrame(gameState);
+        return;
     }
 
     @Override
@@ -140,11 +155,6 @@ public class TUI implements UI {
     @Override
     public void setActivePlayerView(int playerID) {
         gameState.setActivePlayer(playerID);
-    }
-
-    @Override
-    public void connectMessager(Messager messager) {
-        this.messager = messager;
     }
 
     @Override

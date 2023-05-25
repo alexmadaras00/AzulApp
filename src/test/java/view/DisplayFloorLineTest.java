@@ -1,14 +1,13 @@
 package view;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Color;
+import model.TileColor;
 
-public class DisplayFloorLineTest {
+public class DisplayFloorLineTest extends FXTest {
     private DisplayFloorLine displayFloorLine;
 
     @BeforeEach
@@ -17,56 +16,33 @@ public class DisplayFloorLineTest {
     }
 
     @Test
-    public void testEmptyFloorLine() {
-        assertEquals("", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("", result.get(0));
+    public void testConstructorFloorLine() {
+        assertDoesNotThrow(() -> {
+            displayFloorLine = new DisplayFloorLine();
+        });
     }
 
     @Test
-    public void testsingleTileFloorLine() {
-        displayFloorLine.addTile(Color.RED);
-        assertEquals("R", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("R", result.get(0));
+    public void testAddTileFactory() {
+        assertDoesNotThrow(() -> {
+            displayFloorLine.addTile(TileColor.RED);
+        });
+    }
+
+    @Test
+    public void testRemoveTileFactory() {
+        displayFloorLine.addTile(TileColor.RED);
+        assertDoesNotThrow(() -> {
+            displayFloorLine.removeTiles(TileColor.RED);
+        });
 
     }
 
     @Test
-    public void testMultipleTileFloorLine() {
-        displayFloorLine.addTile(Color.RED);
-        displayFloorLine.addTile(Color.CYAN);
-        displayFloorLine.addTile(Color.BLUE);
-
-        assertEquals("RCB", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("RCB", result.get(0));
-    }
-
-    @Test
-    public void testRemoveTileFloorLine() {
-        displayFloorLine.addTile(Color.RED);
-        displayFloorLine.addTile(Color.CYAN);
-        displayFloorLine.addTile(Color.BLUE);
-        assertEquals("RCB", displayFloorLine.toString());
-        displayFloorLine.removeTiles(Color.BLUE);
-        assertEquals("RC", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("RC", result.get(0));
-    }
-
-    @Test
-    public void testClearFloorLine() {
-        displayFloorLine.addTile(Color.RED);
-        displayFloorLine.clear();
-
-        assertEquals("", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("", result.get(0));
+    public void testClearFactory() {
+        displayFloorLine.addTile(TileColor.RED);
+        assertDoesNotThrow(() -> {
+            displayFloorLine.clear();
+        });
     }
 }

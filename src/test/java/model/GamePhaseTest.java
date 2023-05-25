@@ -1,6 +1,6 @@
 package model;
 
-import model.Color;
+import model.TileColor;
 import model.GamePhase;
 import model.Middle;
 import model.Tile;
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 
 public class GamePhaseTest {
 

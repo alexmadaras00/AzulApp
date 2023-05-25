@@ -2,9 +2,10 @@ package view;
 
 import java.util.List;
 
+import javafx.scene.Group;
 import model.Tile;
 
-public class DisplayPlayer {
+public class DisplayPlayer extends Group {
     public DisplayWall wall;
     public DisplayPatternLine patternLine;
     public DisplayFloorLine floorLine;

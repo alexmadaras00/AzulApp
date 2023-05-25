@@ -1,14 +1,13 @@
 package view;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Color;
+import model.TileColor;
 
-public class DisplayPatternLineTest {
+public class DisplayPatternLineTest extends FXTest {
     private DisplayPatternLine displayPatternLine;
 
     @BeforeEach
@@ -17,93 +16,33 @@ public class DisplayPatternLineTest {
     }
 
     @Test
-    public void testEmptyPatternLine() {
-        assertEquals("_\n__\n___\n____\n_____", displayPatternLine.toString());
-        List<String> result = displayPatternLine.toStringList();
-        assertEquals(5, result.size());
-        assertEquals("_", result.get(0));
-        assertEquals("__", result.get(1));
-        assertEquals("___", result.get(2));
-        assertEquals("____", result.get(3));
-        assertEquals("_____", result.get(4));
+    public void testConstructorPatternLine() {
+        assertDoesNotThrow(() -> {
+            displayPatternLine = new DisplayPatternLine();
+        });
     }
 
     @Test
-    public void testsingleTilePatternLine() {
-        displayPatternLine.addTile(2, Color.RED);
-        assertEquals("_\n__\nRrr\n____\n_____", displayPatternLine.toString());
-        List<String> result = displayPatternLine.toStringList();
-        assertEquals(5, result.size());
-        assertEquals("_", result.get(0));
-        assertEquals("__", result.get(1));
-        assertEquals("Rrr", result.get(2));
-        assertEquals("____", result.get(3));
-        assertEquals("_____", result.get(4));
-
-    }
-
-    @Test
-    public void testMultipleTilePatternLine() {
-        displayPatternLine.addTile(0, Color.RED);
-        displayPatternLine.addTile(2, Color.BLUE);
-        displayPatternLine.addTile(2, Color.BLUE);
-
-        assertEquals("R\n__\nBBb\n____\n_____", displayPatternLine.toString());
-        List<String> result = displayPatternLine.toStringList();
-        assertEquals(5, result.size());
-        assertEquals("R", result.get(0));
-        assertEquals("__", result.get(1));
-        assertEquals("BBb", result.get(2));
-        assertEquals("____", result.get(3));
-        assertEquals("_____", result.get(4));
+    public void testAddTilePatternLine() {
+        assertDoesNotThrow(() -> {
+            displayPatternLine.addTile(0, TileColor.RED);
+        });
     }
 
     @Test
     public void testRemoveTilePatternLine() {
-        displayPatternLine.addTile(0, Color.RED);
-        displayPatternLine.addTile(2, Color.BLUE);
-        displayPatternLine.addTile(2, Color.BLUE);
-        displayPatternLine.removeTile(2);
+        displayPatternLine.addTile(0, TileColor.RED);
+        assertDoesNotThrow(() -> {
+            displayPatternLine.removeTile(0);
+        });
 
-        assertEquals("R\n__\nBbb\n____\n_____", displayPatternLine.toString());
-        List<String> result = displayPatternLine.toStringList();
-        assertEquals(5, result.size());
-        assertEquals("R", result.get(0));
-        assertEquals("__", result.get(1));
-        assertEquals("Bbb", result.get(2));
-        assertEquals("____", result.get(3));
-        assertEquals("_____", result.get(4));
-    }
-
-    @Test
-    public void testClearTilePatternLine() {
-        displayPatternLine.addTile(0, Color.RED);
-        displayPatternLine.addTile(2, Color.BLUE);
-        displayPatternLine.addTile(2, Color.BLUE);
-        displayPatternLine.clearRow(2);
-
-        assertEquals("R\n__\n___\n____\n_____", displayPatternLine.toString());
-        List<String> result = displayPatternLine.toStringList();
-        assertEquals(5, result.size());
-        assertEquals("R", result.get(0));
-        assertEquals("__", result.get(1));
-        assertEquals("___", result.get(2));
-        assertEquals("____", result.get(3));
-        assertEquals("_____", result.get(4));
     }
 
     @Test
     public void testClearPatternLine() {
-        displayPatternLine.addTile(0, Color.RED);
-        displayPatternLine.clear();
-
-        assertEquals("_\n__\n___\n____\n_____", displayPatternLine.toString());
-        List<String> result = displayPatternLine.toStringList();
-        assertEquals(5, result.size());
-        assertEquals("_", result.get(0));
-        assertEquals("__", result.get(1));
-        assertEquals("___", result.get(2));
-        assertEquals("____", result.get(3));
-        assertEquals("_____", result.get(4));
+        displayPatternLine.addTile(0, TileColor.RED);
+        assertDoesNotThrow(() -> {
+            displayPatternLine.clear();
+        });
     }
 }

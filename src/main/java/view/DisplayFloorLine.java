@@ -3,9 +3,10 @@ package view;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.scene.layout.HBox;
 import model.Tile;
 
-public class DisplayFloorLine implements Display {
+public class DisplayFloorLine extends HBox {
     private List<DisplayTile> tiles;
 
     public DisplayFloorLine() {
@@ -18,30 +19,6 @@ public class DisplayFloorLine implements Display {
 
     public void removeTiles(Tile tile) {
         tiles.removeIf((t) -> (t.tile == tile));
-    }
-
-    @Override
-    public int height() {
-        return 1;
-    }
-
-    @Override
-    public int width() {
-        return 7;
-    }
-
-    @Override
-    public String toString() {
-        return String.join("\n", toStringList());
-    }
-
-    @Override
-    public List<String> toStringList() {
-        DisplayRow block = new DisplayRow(1);
-        for (DisplayTile tile : tiles) {
-            block.addDisplay(tile);
-        }
-        return block.toStringList();
     }
 
     public void clear() {

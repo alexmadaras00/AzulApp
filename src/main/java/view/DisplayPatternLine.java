@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import model.Color;
+import javafx.scene.layout.GridPane;
+import model.TileColor;
 import model.Tile;
 
-public class DisplayPatternLine implements Display {
+public class DisplayPatternLine extends GridPane {
     private List<List<DisplayTile>> tiles;
-    private List<Color> colors;
+    private List<TileColor> colors;
 
     public DisplayPatternLine() {
-        colors = Arrays.asList(Color.values());
+        colors = Arrays.asList(TileColor.values());
         clear();
     }
 
@@ -35,41 +36,4 @@ public class DisplayPatternLine implements Display {
             tiles.add(patternLine);
         }
     }
-
-    @Override
-    public int height() {
-        return 5;
-    }
-
-    @Override
-    public int width() {
-        return 5;
-    }
-
-    @Override
-    public List<String> toStringList() {
-        List<List<DisplayTile>> newTiles = new ArrayList<List<DisplayTile>>(tiles);
-        for (int i = 0; i < colors.size(); i++) {
-            Tile type = newTiles.get(i).isEmpty() ? null : newTiles.get(i).get(0).tile;
-            for (int j = tiles.get(i).size(); j < i + 1; j++) {
-                newTiles.get(i).add(new DisplayTile(type, false));
-            }
-        }
-
-        DisplayColumn column = new DisplayColumn();
-        for (List<DisplayTile> row : newTiles) {
-            DisplayRow patternLine = new DisplayRow(1);
-            for (DisplayTile tile : row) {
-                patternLine.addDisplay(tile);
-            }
-            column.addDisplay(patternLine);
-        }
-        return column.toStringList();
-    }
-
-    @Override
-    public String toString() {
-        return String.join("\n", toStringList());
-    }
-
 }

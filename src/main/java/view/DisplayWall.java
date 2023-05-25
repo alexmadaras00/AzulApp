@@ -3,9 +3,10 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.layout.GridPane;
 import model.Tile;
 
-public class DisplayWall implements Display {
+public class DisplayWall extends GridPane {
     private List<List<Tile>> templateWall;
     private List<List<Tile>> wall;
 
@@ -28,33 +29,5 @@ public class DisplayWall implements Display {
             List<Tile> wallLine = new ArrayList<Tile>();
             wall.add(wallLine);
         }
-    }
-
-    @Override
-    public int height() {
-        return 5;
-    }
-
-    @Override
-    public int width() {
-        return 5;
-    }
-
-    @Override
-    public List<String> toStringList() {
-        DisplayColumn column = new DisplayColumn();
-        for (int row = 0; row < wall.size(); row++) {
-            DisplayRow wallLine = new DisplayRow(1);
-            for (Tile tile : templateWall.get(row)) {
-                wallLine.addDisplay(new DisplayTile(tile, wall.get(row).contains(tile)));
-            }
-            column.addDisplay(wallLine);
-        }
-        return column.toStringList();
-    }
-
-    @Override
-    public String toString() {
-        return String.join("\n", toStringList());
     }
 }

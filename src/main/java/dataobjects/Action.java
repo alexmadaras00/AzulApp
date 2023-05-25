@@ -1,10 +1,10 @@
 package dataobjects;
 
-import model.Color;
+import model.TileColor;
 
 public class Action implements DataObject {
     private ActionType type;
-    private Color color;
+    private TileColor color;
     private int amount;
     private Location from;
     private Location to;
@@ -20,11 +20,11 @@ public class Action implements DataObject {
         this.type = type;
     }
 
-    public Color getColor() {
+    public TileColor getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(TileColor color) {
         this.color = color;
     }
 
@@ -54,15 +54,21 @@ public class Action implements DataObject {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Action)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Action))
+            return false;
 
         Action action = (Action) o;
 
-        if (getAmount() != action.getAmount()) return false;
-        if (getType() != action.getType()) return false;
-        if (getColor() != action.getColor()) return false;
-        if (getFrom() != null ? !getFrom().equals(action.getFrom()) : action.getFrom() != null) return false;
+        if (getAmount() != action.getAmount())
+            return false;
+        if (getType() != action.getType())
+            return false;
+        if (getColor() != action.getColor())
+            return false;
+        if (getFrom() != null ? !getFrom().equals(action.getFrom()) : action.getFrom() != null)
+            return false;
         return getTo() != null ? getTo().equals(action.getTo()) : action.getTo() == null;
     }
 

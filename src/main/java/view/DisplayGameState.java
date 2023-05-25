@@ -3,9 +3,12 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.Group;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import model.Tile;
 
-public class DisplayGameState {
+public class DisplayGameState extends Group {
 
     public List<DisplayFactory> factories;
     public DisplayMiddle middle;
@@ -13,35 +16,17 @@ public class DisplayGameState {
     public int activePlayer;
     public List<List<Tile>> wallTemplate;
 
+    private GridPane playerView;
+    private VBox factoryView;
+
     public DisplayGameState() {
         factories = new ArrayList<DisplayFactory>();
         middle = new DisplayMiddle();
         activePlayer = 0;
         players = new ArrayList<DisplayPlayer>();
-    }
-
-    private DisplayColumn blockSetup() {
-        DisplayColumn column = new DisplayColumn();
-        DisplayRow tableBlock = new DisplayRow(2);
-        for (DisplayFactory factory : factories) {
-            tableBlock.addDisplay(factory);
-        }
-        tableBlock.addDisplay(middle);
-        column.addDisplay(tableBlock);
-        DisplayRow boardBlock = new DisplayRow(5);
-        boardBlock.addDisplay(players.get(activePlayer).patternLine);
-        boardBlock.addDisplay(players.get(activePlayer).wall);
-        column.addDisplay(boardBlock);
-        DisplayRow floorLineBoard = new DisplayRow(1);
-        floorLineBoard.addDisplay(players.get(activePlayer).floorLine);
-        column.addDisplay(floorLineBoard);
-        return column;
-
-    }
-
-    public String toString() {
-        DisplayColumn blocks = blockSetup();
-        return blocks.toString();
+        playerView = new GridPane();
+        factoryView = new VBox();
+        getChildren().addAll(factoryView,middle,playerView);
     }
 
     public DisplayPlayer getPlayer(int playerID) {
@@ -67,11 +52,16 @@ public class DisplayGameState {
     }
 
     public void addPlayer(int id, String name) {
-        players.add(new DisplayPlayer(id, name, wallTemplate));
+        DisplayPlayer player = new DisplayPlayer(id, name, wallTemplate);
+        players.add(player);
+        playerView.add(player, players.size() % 2, players.size() / 2);
     }
 
     public void addFactory(int id) {
-        factories.add(new DisplayFactory(id));
+        DisplayFactory factory = new DisplayFactory(id);
+        factories.add(factory);
+        factoryView.getChildren().add(factory);
+
     }
 
     public void setActivePlayer(int playerID) {
