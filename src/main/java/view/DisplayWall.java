@@ -1,40 +1,33 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import model.Color;
+import model.Tile;
 
 public class DisplayWall implements Display {
-    public List<List<DisplayTile>> wall;
+    private List<List<Tile>> templateWall;
+    private List<List<Tile>> wall;
 
-    public DisplayWall() {
-        wall = new ArrayList<List<DisplayTile>>();
-        List<Color> colors = Arrays.asList(Color.values());
-        for (int i = 0; i < colors.size(); i++) {
-            List<DisplayTile> wallLine = new ArrayList<DisplayTile>();
-            for (int j = 0; j < colors.size(); j++) {
-                Color color = colors.get((j - i + colors.size()) % colors.size());
-                wallLine.add(new DisplayTile(color, true));
-            }
+    public DisplayWall(List<List<Tile>> templateWall) {
+        this.templateWall = templateWall;
+        clear();
+    }
+
+    public void addTile(int row, Tile tile) {
+        wall.get(row).add(tile);
+    }
+
+    public void removeTile(int row, Tile tile) {
+        wall.get(row).removeIf((t) -> (t == tile));
+    }
+
+    public void clear() {
+        wall = new ArrayList<List<Tile>>();
+        for (int i = 0; i < templateWall.size(); i++) {
+            List<Tile> wallLine = new ArrayList<Tile>();
             wall.add(wallLine);
         }
-    }
-
-    public int getIndexOfTile(int row, DisplayTile tile) {
-        List<DisplayTile> wallLine = wall.get(row);
-        for (int i = 0; i < wallLine.size(); i++) {
-            if (wallLine.get(i).tile == tile.tile) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public void setTile(int row, DisplayTile tile, boolean isPlaceholder) {
-        int index = getIndexOfTile(row, tile);
-        wall.get(row).get(index).isPlaceholder = isPlaceholder;
     }
 
     @Override
@@ -50,10 +43,10 @@ public class DisplayWall implements Display {
     @Override
     public List<String> toStringList() {
         DisplayColumn column = new DisplayColumn();
-        for (List<DisplayTile> row : wall) {
+        for (int row = 0; row < wall.size(); row++) {
             DisplayRow wallLine = new DisplayRow(1);
-            for (DisplayTile tile : row) {
-                wallLine.addDisplay(tile);
+            for (Tile tile : templateWall.get(row)) {
+                wallLine.addDisplay(new DisplayTile(tile, wall.get(row).contains(tile)));
             }
             column.addDisplay(wallLine);
         }

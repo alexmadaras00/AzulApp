@@ -1,32 +1,37 @@
 package view;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Color;
-import model.Wall;
-import view.DisplayPatternLine;
-import view.DisplayWall;
+import model.Tile;
 
 public class DisplayWallTest {
     private DisplayWall displayWall;
-    private Wall wall;
-    @BeforeEach
-    public void setUp() {
-        displayWall = new DisplayWall();
-        wall = new Wall();
+
+    public static List<List<Tile>> wallPattern() {
+        List<List<Tile>> wallTemplate = new ArrayList<List<Tile>>();
+        List<Color> colors = Arrays.asList(Color.values());
+        for (int i = 0; i < colors.size(); i++) {
+            List<Tile> wallLine = new ArrayList<Tile>();
+            for (int j = 0; j < colors.size(); j++) {
+                Color color = colors.get((j - i + colors.size()) % colors.size());
+                wallLine.add(color);
+            }
+            wallTemplate.add(wallLine);
+        }
+        return wallTemplate;
     }
 
-    @Test
-    public void testWallPattern() {
-        for (int row = 0; row < displayWall.wall.size(); row++) {
-            for (int column = 0; column < displayWall.wall.size(); column++) {
-                assertEquals(wall.getTemplateColor(row, column), displayWall.wall.get(row).get(column).tile);
-            }
-        }
+    @BeforeEach
+    public void setUp() {
+        displayWall = new DisplayWall(DisplayWallTest.wallPattern());
     }
 
     @Test
@@ -43,7 +48,7 @@ public class DisplayWallTest {
 
     @Test
     public void testsingleTilePatternLine() {
-        displayWall.wall.get(0).get(0).isPlaceholder = false;
+        displayWall.addTile(0, Color.RED);
         assertEquals("Rbcby\nyrbcb\nbyrbc\ncbyrb\nbcbyr", displayWall.toString());
         List<String> result = displayWall.toStringList();
         assertEquals(5, result.size());
@@ -57,16 +62,49 @@ public class DisplayWallTest {
 
     @Test
     public void testMultipleTilePatternLine() {
-        displayWall.wall.get(0).get(0).isPlaceholder = false;
-        displayWall.wall.get(2).get(3).isPlaceholder = false;
-        displayWall.wall.get(1).get(4).isPlaceholder = false;
-        displayWall.wall.get(0).get(3).isPlaceholder = false;
+        displayWall.addTile(0, Color.RED);
+        displayWall.addTile(2, Color.BLUE);
+        displayWall.addTile(0, Color.BLACK);
+        displayWall.addTile(1, Color.BLACK);
+
         assertEquals("RbcBy\nyrbcB\nbyrBc\ncbyrb\nbcbyr", displayWall.toString());
         List<String> result = displayWall.toStringList();
         assertEquals(5, result.size());
         assertEquals("RbcBy", result.get(0));
         assertEquals("yrbcB", result.get(1));
         assertEquals("byrBc", result.get(2));
+        assertEquals("cbyrb", result.get(3));
+        assertEquals("bcbyr", result.get(4));
+    }
+
+    @Test
+    public void testRemoveTilePatternLine() {
+        displayWall.addTile(0, Color.RED);
+        displayWall.addTile(2, Color.BLUE);
+        displayWall.addTile(0, Color.BLACK);
+        displayWall.addTile(1, Color.BLACK);
+        displayWall.removeTile(0, Color.BLACK);
+
+        assertEquals("Rbcby\nyrbcB\nbyrBc\ncbyrb\nbcbyr", displayWall.toString());
+        List<String> result = displayWall.toStringList();
+        assertEquals(5, result.size());
+        assertEquals("Rbcby", result.get(0));
+        assertEquals("yrbcB", result.get(1));
+        assertEquals("byrBc", result.get(2));
+        assertEquals("cbyrb", result.get(3));
+        assertEquals("bcbyr", result.get(4));
+    }
+
+    @Test
+    public void testClearPatternLine() {
+        displayWall.addTile(0, Color.RED);
+        displayWall.clear();
+        assertEquals("rbcby\nyrbcb\nbyrbc\ncbyrb\nbcbyr", displayWall.toString());
+        List<String> result = displayWall.toStringList();
+        assertEquals(5, result.size());
+        assertEquals("rbcby", result.get(0));
+        assertEquals("yrbcb", result.get(1));
+        assertEquals("byrbc", result.get(2));
         assertEquals("cbyrb", result.get(3));
         assertEquals("bcbyr", result.get(4));
     }

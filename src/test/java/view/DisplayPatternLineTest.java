@@ -7,17 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Color;
-import view.DisplayPatternLine;
-import view.DisplayTile;
 
 public class DisplayPatternLineTest {
     private DisplayPatternLine displayPatternLine;
-    
+
     @BeforeEach
     public void setUp() {
         displayPatternLine = new DisplayPatternLine();
     }
-
 
     @Test
     public void testEmptyPatternLine() {
@@ -33,13 +30,13 @@ public class DisplayPatternLineTest {
 
     @Test
     public void testsingleTilePatternLine() {
-        displayPatternLine.tiles.get(2).set(0,new DisplayTile(Color.RED));
-        assertEquals("_\n__\nR__\n____\n_____", displayPatternLine.toString());
+        displayPatternLine.addTile(2, Color.RED);
+        assertEquals("_\n__\nRrr\n____\n_____", displayPatternLine.toString());
         List<String> result = displayPatternLine.toStringList();
         assertEquals(5, result.size());
         assertEquals("_", result.get(0));
         assertEquals("__", result.get(1));
-        assertEquals("R__", result.get(2));
+        assertEquals("Rrr", result.get(2));
         assertEquals("____", result.get(3));
         assertEquals("_____", result.get(4));
 
@@ -47,17 +44,66 @@ public class DisplayPatternLineTest {
 
     @Test
     public void testMultipleTilePatternLine() {
-        displayPatternLine.tiles.get(0).set(0,new DisplayTile(Color.RED));
-        displayPatternLine.tiles.get(2).set(0,new DisplayTile(Color.BLUE));
-        displayPatternLine.tiles.get(3).set(2,new DisplayTile(Color.CYAN));
+        displayPatternLine.addTile(0, Color.RED);
+        displayPatternLine.addTile(2, Color.BLUE);
+        displayPatternLine.addTile(2, Color.BLUE);
 
-        assertEquals("R\n__\nB__\n__C_\n_____", displayPatternLine.toString());
+        assertEquals("R\n__\nBBb\n____\n_____", displayPatternLine.toString());
         List<String> result = displayPatternLine.toStringList();
         assertEquals(5, result.size());
         assertEquals("R", result.get(0));
         assertEquals("__", result.get(1));
-        assertEquals("B__", result.get(2));
-        assertEquals("__C_", result.get(3));
+        assertEquals("BBb", result.get(2));
+        assertEquals("____", result.get(3));
+        assertEquals("_____", result.get(4));
+    }
+
+    @Test
+    public void testRemoveTilePatternLine() {
+        displayPatternLine.addTile(0, Color.RED);
+        displayPatternLine.addTile(2, Color.BLUE);
+        displayPatternLine.addTile(2, Color.BLUE);
+        displayPatternLine.removeTile(2);
+
+        assertEquals("R\n__\nBbb\n____\n_____", displayPatternLine.toString());
+        List<String> result = displayPatternLine.toStringList();
+        assertEquals(5, result.size());
+        assertEquals("R", result.get(0));
+        assertEquals("__", result.get(1));
+        assertEquals("Bbb", result.get(2));
+        assertEquals("____", result.get(3));
+        assertEquals("_____", result.get(4));
+    }
+
+    @Test
+    public void testClearTilePatternLine() {
+        displayPatternLine.addTile(0, Color.RED);
+        displayPatternLine.addTile(2, Color.BLUE);
+        displayPatternLine.addTile(2, Color.BLUE);
+        displayPatternLine.clearRow(2);
+
+        assertEquals("R\n__\n___\n____\n_____", displayPatternLine.toString());
+        List<String> result = displayPatternLine.toStringList();
+        assertEquals(5, result.size());
+        assertEquals("R", result.get(0));
+        assertEquals("__", result.get(1));
+        assertEquals("___", result.get(2));
+        assertEquals("____", result.get(3));
+        assertEquals("_____", result.get(4));
+    }
+
+    @Test
+    public void testClearPatternLine() {
+        displayPatternLine.addTile(0, Color.RED);
+        displayPatternLine.clear();
+
+        assertEquals("_\n__\n___\n____\n_____", displayPatternLine.toString());
+        List<String> result = displayPatternLine.toStringList();
+        assertEquals(5, result.size());
+        assertEquals("_", result.get(0));
+        assertEquals("__", result.get(1));
+        assertEquals("___", result.get(2));
+        assertEquals("____", result.get(3));
         assertEquals("_____", result.get(4));
     }
 }

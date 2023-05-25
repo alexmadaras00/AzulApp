@@ -19,10 +19,12 @@ public class DisplayRow implements Display {
         } 
     }
 
+    @Override
     public String toString() {
         return String.join("\n", toStringList());
     }
 
+    @Override
     public List<String> toStringList() {
         List<List<String>> stringList = new LinkedList<List<String>>();
         for (Display display : displays) {

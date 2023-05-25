@@ -9,23 +9,23 @@ import model.Tile;
 
 public class DisplayTile implements Display {
     public Tile tile;
-    public boolean isPlaceholder;
+    public boolean isFilled;
 
     public DisplayTile(Tile tile) {
         this.tile = tile;
-        isPlaceholder = false;
+        isFilled = true;
     }
 
-    public DisplayTile(Tile tile, boolean isPlaceholder) {
+    public DisplayTile(Tile tile, boolean isFilled) {
         this.tile = tile;
-        this.isPlaceholder = isPlaceholder;
+        this.isFilled = isFilled;
     }
 
     @Override
     public String toString() {
         if (tile instanceof Color) {
             String character = tile.toString().substring(0, 1);
-            if (isPlaceholder) {
+            if (!isFilled) {
                 character = character.toLowerCase();
             }
             return character;

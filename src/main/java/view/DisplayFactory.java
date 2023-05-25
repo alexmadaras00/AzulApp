@@ -3,14 +3,24 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisplayFactory implements Display {
-    public List<DisplayTile> tiles;
+import model.Tile;
 
-    public DisplayFactory() {
-        tiles = new ArrayList<DisplayTile>();
-        for (int i= 0; i < width() * height(); i++) {
-            tiles.add(new DisplayTile(null));
-        }
+public class DisplayFactory implements Display {
+    private List<DisplayTile> tiles;
+
+    public int id;
+
+    public DisplayFactory(int id) {
+        this.id = id;
+        clear();
+    }
+
+    public void addTile(Tile tile) {
+        tiles.add(new DisplayTile(tile));
+    }
+
+    public void removeTiles(Tile tile) {
+        tiles.removeIf((t) -> (t.tile == tile));
     }
 
     @Override
@@ -24,9 +34,13 @@ public class DisplayFactory implements Display {
     }
 
     public List<String> toStringList() {
+        List<DisplayTile> filledFactoryTiles = new ArrayList<DisplayTile>(tiles);
+        for (int i = tiles.size(); i < width() * height(); i++) {
+            filledFactoryTiles.add(new DisplayTile(null));
+        }
         DisplayRow row = new DisplayRow(height());
         for (int i = 0; i < width(); i++) {
-            List<DisplayTile> tileSubset = tiles.subList(i * height(), (i + 1) * height());
+            List<DisplayTile> tileSubset = filledFactoryTiles.subList(i * height(), (i + 1) * height());
             DisplayColumn column = new DisplayColumn();
             for (DisplayTile tile : tileSubset) {
                 column.addDisplay(tile);
@@ -39,5 +53,9 @@ public class DisplayFactory implements Display {
     @Override
     public String toString() {
         return String.join("\n", toStringList());
+    }
+
+    public void clear() {
+        tiles = new ArrayList<DisplayTile>();
     }
 }

@@ -3,22 +3,21 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Tile;
+
 public class DisplayGameState {
 
     public List<DisplayFactory> factories;
     public DisplayMiddle middle;
     public List<DisplayPlayer> players;
     public int activePlayer;
+    public List<List<Tile>> wallTemplate;
 
-
-    
     public DisplayGameState() {
         factories = new ArrayList<DisplayFactory>();
-        factories.add(new DisplayFactory());
         middle = new DisplayMiddle();
         activePlayer = 0;
         players = new ArrayList<DisplayPlayer>();
-        players.add(new DisplayPlayer(activePlayer, "Bob"));
     }
 
     private DisplayColumn blockSetup() {
@@ -43,5 +42,39 @@ public class DisplayGameState {
     public String toString() {
         DisplayColumn blocks = blockSetup();
         return blocks.toString();
+    }
+
+    public DisplayPlayer getPlayer(int playerID) {
+        for (DisplayPlayer player : players) {
+            if (player.id == playerID) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public DisplayFactory getFactory(int factoryID) {
+        for (DisplayFactory factory : factories) {
+            if (factory.id == factoryID) {
+                return factory;
+            }
+        }
+        return null;
+    }
+
+    public void setWallPattern(List<List<Tile>> wallTemplate) {
+        this.wallTemplate = wallTemplate;
+    }
+
+    public void addPlayer(int id, String name) {
+        players.add(new DisplayPlayer(id, name, wallTemplate));
+    }
+
+    public void addFactory(int id) {
+        factories.add(new DisplayFactory(id));
+    }
+
+    public void setActivePlayer(int playerID) {
+        activePlayer = players.indexOf(getPlayer(playerID));
     }
 }

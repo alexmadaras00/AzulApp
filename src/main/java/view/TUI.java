@@ -1,53 +1,58 @@
 package view;
 
 import dataobjects.GameState;
+import model.Color;
 import model.Tile;
 
 public class TUI implements UI {
     private DisplayGameState gameState;
+    private Messager messager;
     private InputHandler inputHandler;
     private OutputHandler outputHandler;
 
     @Override
     public void addTileFactory(int factory, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTileFactory'");
+        gameState.factories.get(factory).addTile(tile);
     }
 
     @Override
-    public void removeTileFactory(int factory, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeTileFactory'");
+    public void removeTilesFactory(int factory, Tile tile) {
+        gameState.factories.get(factory).removeTiles(tile);
     }
 
     @Override
     public void clearFactory(int factory) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearFactory'");
+        for (Color color : Color.values()) {
+            gameState.factories.get(factory).removeTiles(color);
+        }
     }
 
     @Override
     public void addTileMiddle(Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTileMiddle'");
+        gameState.middle.addTile(tile);
     }
 
     @Override
-    public void removeTileMiddle(Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeTileMiddle'");
+    public void removeTilesMiddle(Tile tile) {
+        gameState.middle.removeTiles(tile);
     }
 
     @Override
     public void clearMiddle() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearMiddle'");
+        for (Color color : Color.values()) {
+            gameState.middle.removeTiles(color);
+        }
     }
 
     @Override
     public void clearAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearAll'");
+        this.clearMiddle();
+        gameState.factories.forEach((DisplayFactory factory) -> {
+            factory.clear();
+        });
+        gameState.players.forEach((DisplayPlayer player) -> {
+            clearPlayer(player.id);
+        });
     }
 
     @Override
@@ -56,99 +61,101 @@ public class TUI implements UI {
     }
 
     @Override
-    public void addTileWall(int PlayerID, int row, int column, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTileWall'");
+    public void addTileWall(int playerID, int row, Tile tile) {
+        gameState.getPlayer(playerID).wall.addTile(row, tile);
     }
 
     @Override
-    public void removeTileWall(int PlayerID, int row, int column, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeTileWall'");
+    public void removeTilesWall(int playerID, int row, Tile tile) {
+        gameState.getPlayer(playerID).wall.removeTile(row, tile);
     }
 
     @Override
-    public void clearWall(int PlayerID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearWall'");
+    public void clearWall(int playerID) {
+        gameState.getPlayer(playerID).wall.clear();
     }
 
     @Override
-    public void addTilePattern(int PlayerID, int row, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTilePattern'");
+    public void addTilePattern(int playerID, int row, Tile tile) {
+        gameState.getPlayer(playerID).patternLine.addTile(row, tile);
     }
 
     @Override
-    public void removeTilePattern(int PlayerID, int row, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeTilePattern'");
+    public void removeTilePattern(int playerID, int row, Tile tile) {
+        gameState.getPlayer(playerID).patternLine.removeTile(row);
+
     }
 
     @Override
-    public void clearPatternLine(int PlayerID, int row) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearPatternLine'");
+    public void clearPatternLine(int playerID, int row) {
+        gameState.getPlayer(playerID).patternLine.clearRow(row);
     }
 
     @Override
-    public void clearPattern(int PlayerID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearPattern'");
+    public void clearPattern(int playerID) {
+        gameState.getPlayer(playerID).patternLine.clear();
     }
 
     @Override
-    public void addTileFloorLine(int PlayerID, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTileFloorLine'");
+    public void addTileFloorLine(int playerID, Tile tile) {
+        gameState.getPlayer(playerID).floorLine.addTile(tile);
     }
 
     @Override
-    public void removeTileFloorLine(int PlayerID, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeTileFloorLine'");
+    public void removeTilesFloorLine(int playerID, Tile tile) {
+        gameState.getPlayer(playerID).floorLine.removeTiles(tile);
+
     }
 
     @Override
-    public void clearFloorLine(int PlayerID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearFloorLine'");
+    public void clearFloorLine(int playerID) {
+        gameState.getPlayer(playerID).floorLine.clear();
     }
 
     @Override
-    public void setPlayerName(int PlayerID, String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPlayerName'");
+    public void setPlayerName(int playerID, String name) {
+        gameState.getPlayer(playerID).name = name;
     }
 
     @Override
-    public void setScore(int PlayerID, int Score) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setScore'");
+    public void setScore(int playerID, int score) {
+        gameState.getPlayer(playerID).score = score;
+
     }
 
     @Override
-    public void clearPlayer(int PlayerID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearPlayer'");
+    public void clearPlayer(int playerID) {
+        DisplayPlayer player = gameState.getPlayer(playerID);
+        player.floorLine.clear();
+        player.wall.clear();
+        player.patternLine.clear();
+        player.score = 0;
     }
 
     @Override
-    public void loadGameState(GameState gameState) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveGameState'");
-    }
-
-    @Override
-    public void clearGameState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearGameState'");
+    public void resetGameState() {
+        gameState = new DisplayGameState();
     }
 
     @Override
     public void setActivePlayerView(int playerID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setActivePlayerView'");
+        gameState.setActivePlayer(playerID);
+    }
+
+    @Override
+    public void connectMessager(Messager messager) {
+        this.messager = messager;
+    }
+
+    @Override
+    public void addFactory(int factoryID) {
+        gameState.addFactory(factoryID);
+    }
+
+    @Override
+    public void addPlayer(int playerID, String name) {
+        gameState.addPlayer(playerID, name);
+
     }
 
 }

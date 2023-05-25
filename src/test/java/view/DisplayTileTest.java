@@ -36,7 +36,7 @@ public class DisplayTileTest {
     public void testPlaceholderStrings() {
         List<Color> colors = Arrays.asList(Color.values());
         for (Color color : colors) {
-            displayTile = new DisplayTile(color, true);
+            displayTile = new DisplayTile(color, false);
             assertEquals(color.toString().substring(0, 1).toLowerCase(), displayTile.toString());
             List<String> result = displayTile.toStringList();
             assertEquals(1, result.size());
