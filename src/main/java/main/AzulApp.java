@@ -8,6 +8,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Game;
 import model.Model;
+import model.TileColor;
+import model.Wall;
+import view.DisplayWall;
 import view.GUI;
 import view.Messager;
 import view.View;
@@ -16,7 +19,7 @@ public class AzulApp extends Application {
 
     public static void main(String[] args) {
         launch();
-        
+
     }
 
     @Override
@@ -30,7 +33,21 @@ public class AzulApp extends Application {
         mediator.connectMessager(messager);
         messager.connectMediator(mediator);
         messager.connectUI(gui);
+
         gui.start(stage);
+        gui.setWallPattern(Wall.wallPattern());
+        gui.addFactory(0);
+        gui.addFactory(1);
+
+        gui.addPlayer(0, "Bob");
+        gui.addTileMiddle(TileColor.RED);
+        gui.addTileMiddle(TileColor.RED);
+        gui.addTileMiddle(TileColor.RED);
+        gui.addTileFactory(0, TileColor.BLUE);
+        gui.addTileFactory(0, TileColor.BLUE);
+        gui.addTileFactory(0, TileColor.BLUE);
+        gui.addTileFactory(1, TileColor.YELLOW);
+        gui.addTileFactory(1, TileColor.YELLOW);
     }
 
 }

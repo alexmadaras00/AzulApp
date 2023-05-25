@@ -1,7 +1,10 @@
 package view;
 
+import java.util.List;
+
 import dataobjects.Executable;
 import model.Tile;
+import model.TileColor;
 
 public interface UI extends Executable {
 
@@ -66,4 +69,5 @@ public interface UI extends Executable {
 
     void clearFloorLine(int playerID);
 
+    void setWallPattern(List<List<TileColor>> pttern);
 }

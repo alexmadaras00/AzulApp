@@ -3,18 +3,18 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Tile;
+import model.TileColor;
 
-public class DisplayGameState extends Group {
+public class DisplayGameState extends HBox {
 
     public List<DisplayFactory> factories;
     public DisplayMiddle middle;
     public List<DisplayPlayer> players;
     public int activePlayer;
-    public List<List<Tile>> wallTemplate;
+    public List<List<TileColor>> wallTemplate;
 
     private GridPane playerView;
     private VBox factoryView;
@@ -47,7 +47,7 @@ public class DisplayGameState extends Group {
         return null;
     }
 
-    public void setWallPattern(List<List<Tile>> wallTemplate) {
+    public void setWallPattern(List<List<TileColor>> wallTemplate) {
         this.wallTemplate = wallTemplate;
     }
 

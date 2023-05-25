@@ -6,13 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.Wall;
+
 public class DisplayGameStateTest {
     private DisplayGameState gameState;
 
     @BeforeEach
     public void setUp() {
         gameState = new DisplayGameState();
-        gameState.setWallPattern(DisplayWallTest.wallPattern());
+        gameState.setWallPattern(Wall.wallPattern());
         gameState.addPlayer(2, "Bob");
     }
 

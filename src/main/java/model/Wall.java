@@ -24,7 +24,22 @@ public class Wall {
         wall = new Tile[size][size];
     }
 
-    public Tile getTemplateColor(int row, int col) {
+    public static List<List<TileColor>> wallPattern() {
+        List<List<TileColor>> wallTemplate = new ArrayList<List<TileColor>>();
+        List<TileColor> colors = Arrays.asList(TileColor.values());
+        for (int i = 0; i < colors.size(); i++) {
+            List<TileColor> wallLine = new ArrayList<TileColor>();
+            for (int j = 0; j < colors.size(); j++) {
+                TileColor color = getTemplateColor(i,j);
+                wallLine.add(color);
+            }
+            wallTemplate.add(wallLine);
+        }
+        return wallTemplate;
+    }
+
+    public static TileColor getTemplateColor(int row, int col) {
+        TileColor[] colors = TileColor.values();
         return colors[(col - row + colors.length) % colors.length];
     }
 

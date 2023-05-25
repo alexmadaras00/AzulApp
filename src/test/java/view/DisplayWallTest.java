@@ -2,41 +2,26 @@ package view;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.TileColor;
-import model.Tile;
+import model.Wall;
 
 public class DisplayWallTest extends FXTest {
     private DisplayWall displayWall;
 
-    public static List<List<Tile>> wallPattern() {
-        List<List<Tile>> wallTemplate = new ArrayList<List<Tile>>();
-        List<TileColor> colors = Arrays.asList(TileColor.values());
-        for (int i = 0; i < colors.size(); i++) {
-            List<Tile> wallLine = new ArrayList<Tile>();
-            for (int j = 0; j < colors.size(); j++) {
-                TileColor color = colors.get((j - i + colors.size()) % colors.size());
-                wallLine.add(color);
-            }
-            wallTemplate.add(wallLine);
-        }
-        return wallTemplate;
-    }
+    
 
     @BeforeEach
     public void setUp() {
-        displayWall = new DisplayWall(DisplayWallTest.wallPattern());
+        displayWall = new DisplayWall(Wall.wallPattern());
     }
     @Test
     public void testConstructorWall() {
         assertDoesNotThrow(() -> {
-            displayWall = new DisplayWall(DisplayWallTest.wallPattern());
+            displayWall = new DisplayWall(Wall.wallPattern());
         });
     }
 

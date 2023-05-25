@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 import dataobjects.RequestGameState;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -22,6 +24,12 @@ public class GUI extends Stage implements UI {
     @Override
     public void connectMessager(Messager messager) {
         this.messager = messager;
+    }
+
+
+    @Override
+    public void setWallPattern(List<List<TileColor>> pattern) {
+        gameState.setWallPattern(pattern);
     }
 
     @Override
@@ -164,5 +172,6 @@ public class GUI extends Stage implements UI {
         gameState.addPlayer(playerID, name);
 
     }
+
 
 }

@@ -5,12 +5,13 @@ import java.util.List;
 
 import javafx.scene.layout.GridPane;
 import model.Tile;
+import model.TileColor;
 
 public class DisplayWall extends GridPane {
-    private List<List<Tile>> templateWall;
+    private List<List<TileColor>> templateWall;
     private List<List<Tile>> wall;
 
-    public DisplayWall(List<List<Tile>> templateWall) {
+    public DisplayWall(List<List<TileColor>> templateWall) {
         this.templateWall = templateWall;
         clear();
     }

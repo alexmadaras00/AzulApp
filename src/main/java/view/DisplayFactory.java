@@ -17,11 +17,15 @@ public class DisplayFactory extends GridPane {
     }
 
     public void addTile(Tile tile) {
-        tiles.add(new DisplayTile(tile));
+        DisplayTile displayTile = new DisplayTile(tile);
+        tiles.add(displayTile);
+        add(displayTile,(tiles.size()-1) % 2,(tiles.size()-1) / 2);
     }
 
     public void removeTiles(Tile tile) {
         tiles.removeIf((t) -> (t.tile == tile));
+        getChildren().removeIf((t) -> (((DisplayTile) t).tile == tile));
+
     }
 
     public void clear() {
