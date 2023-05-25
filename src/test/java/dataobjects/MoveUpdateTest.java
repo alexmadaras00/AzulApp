@@ -1,24 +1,24 @@
-import dataobjects.RoundUpdate;
-import org.junit.jupiter.api.Test;
+package dataobjects;
 
+import dataobjects.MoveUpdate;
+import org.junit.jupiter.api.Test;
 import static com.google.code.beanmatchers.BeanMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
-public class RoundUpdateTest {
+public class MoveUpdateTest {
 
     @Test
     public void testNoArgsConstructor() {
-        assertThat(RoundUpdate.class, hasValidBeanConstructor());
+        assertThat(MoveUpdate.class, hasValidBeanConstructor());
     }
 
     @Test
     public void testSettersAndGetters() {
-        assertThat(RoundUpdate.class, hasValidGettersAndSetters());
+        assertThat(MoveUpdate.class, hasValidGettersAndSetters());
     }
     
     @Test
     public void allPropertiesShouldBeComparedDuringEquals() {
-        assertThat(RoundUpdate.class, hasValidBeanEquals());
+        assertThat(MoveUpdate.class, hasValidBeanEquals());
     }
 }
