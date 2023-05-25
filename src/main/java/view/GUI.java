@@ -1,20 +1,18 @@
 package view;
 
 import dataobjects.RequestGameState;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Tile;
 import model.TileColor;
 
-public class GUI extends Application implements UI {
+public class GUI extends Stage implements UI {
     private DisplayGameState gameState;
     private Messager messager;
 
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        messager.send(new RequestGameState());
+    public void start(Stage stage) {
+        this.messager.send(new RequestGameState());
         gameState = new DisplayGameState();
         Scene scene = new Scene(gameState);
         stage.setScene(scene);
@@ -24,7 +22,6 @@ public class GUI extends Application implements UI {
     @Override
     public void connectMessager(Messager messager) {
         this.messager = messager;
-        launch();
     }
 
     @Override
