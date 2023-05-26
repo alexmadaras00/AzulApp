@@ -1,15 +1,9 @@
 package model;
 
-import model.Color;
-import model.Factory;
-import model.FloorLine;
-import model.Tile;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +25,7 @@ public class FloorLineTest {
     @Test
     void ShouldBeImmutable() {
         List<Tile> copiedTiles = floorLine.getCopyTiles();
-        assertThrows(UnsupportedOperationException.class,()->copiedTiles.set(4,Color.RED));
+        assertThrows(UnsupportedOperationException.class,()->copiedTiles.set(4, Color.RED));
     }
 
 

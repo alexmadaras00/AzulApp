@@ -10,6 +10,5 @@ public class AzulApp {
     Mediator IController;
     Messager IView;
     public static void main(String[] args) {
-        Game azul = new Game();
     }
 }

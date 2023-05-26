@@ -1,8 +1,6 @@
 package model;
 
 import dataobjects.PlayerBoardState;
-import model.Color;
-import model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

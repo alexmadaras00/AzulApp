@@ -1,8 +1,5 @@
 package model;
 
-import model.Color;
-import model.Middle;
-import model.Tile;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MiddleTest {
     static Middle middle;
-    static List<Tile> tiles = List.of(Color.BLUE,Color.YELLOW,Color.YELLOW);
+    static List<Tile> tiles = List.of(Color.BLUE, Color.YELLOW, Color.YELLOW);
 
     @Test
     public void testGetAllTiles(){
