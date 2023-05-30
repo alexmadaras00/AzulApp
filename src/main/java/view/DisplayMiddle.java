@@ -25,7 +25,8 @@ public class DisplayMiddle extends VBox {
 
     public void removeTiles(Tile tile) {
         tiles.removeIf((t) -> (t.tile == tile));
-        getChildren().removeIf((t) -> (((DisplayTile) t).tile == tile));
+        this.getChildren().setAll(tiles);
+        // getChildren().removeIf((t) -> (((DisplayTile) t).tile == tile));
     }
 
     public void clear() {

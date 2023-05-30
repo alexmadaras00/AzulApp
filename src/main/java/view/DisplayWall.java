@@ -3,7 +3,9 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import model.Tile;
 import model.TileColor;
 
@@ -13,6 +15,7 @@ public class DisplayWall extends GridPane {
 
     public DisplayWall(List<List<TileColor>> templateWall) {
         this.templateWall = templateWall;
+        this.setBackground(Background.fill(Color.WHITESMOKE));
         clear();
     }
 

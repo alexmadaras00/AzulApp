@@ -26,7 +26,7 @@ public class DisplayFactory extends GridPane {
 
     public void removeTiles(Tile tile) {
         tiles.removeIf((t) -> (t.tile == tile));
-        getChildren().removeIf((t) -> (((DisplayTile) t).tile == tile));
+        this.getChildren().setAll(tiles);
 
     }
 

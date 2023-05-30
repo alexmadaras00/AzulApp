@@ -2,6 +2,8 @@ package view;
 
 import java.util.List;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -24,7 +26,8 @@ public class DisplayPlayer extends VBox {
         score = 0;
         this.setBackground(Background.fill(Color.BISQUE));
         this.setSpacing(7);
-        this.getChildren().addAll(patternLine, wall, floorLine);
+        this.getChildren().addAll(new Label(name), new Label("" + score), patternLine, wall, floorLine);
+        this.setAlignment(Pos.CENTER);
     }
 
 }

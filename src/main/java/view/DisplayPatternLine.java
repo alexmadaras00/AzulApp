@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import model.TileColor;
 import model.Tile;
 
@@ -15,6 +17,8 @@ public class DisplayPatternLine extends GridPane {
     public DisplayPatternLine() {
         colors = Arrays.asList(TileColor.values());
         clear();
+        this.setBackground(Background.fill(Color.CHOCOLATE));
+
     }
 
     public void addTile(int row, Tile tile) {
