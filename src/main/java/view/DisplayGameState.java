@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import model.TileColor;
 
 public class DisplayGameState extends HBox {
@@ -29,17 +34,32 @@ public class DisplayGameState extends HBox {
         setupFactoryView();
         this.setSpacing(40);
         this.setPadding(new Insets(30, 30, 30, 30));
+        this.setBackground(Background.fill(Color.AQUAMARINE));
+        HBox.setHgrow(playerView, Priority.ALWAYS);
         getChildren().addAll(factoryView, middle, playerView);
     }
 
     private void setupPlayerView() {
         playerView = new GridPane();
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setPercentWidth(100);
+        RowConstraints row1 = new RowConstraints();
+        row1.setPercentHeight(100);
+        playerView.getColumnConstraints().add(column1);
+        playerView.getColumnConstraints().add(column1);
+
+        for (int i = -1; i < players.size() / 2; i++) {
+            playerView.getRowConstraints().add(row1);
+        }
+        playerView.setBackground(Background.fill(Color.HOTPINK));
         playerView.setHgap(20);
         playerView.setVgap(40);
     }
 
     private void setupFactoryView() {
         factoryView = new VBox();
+        factoryView.setBackground(Background.fill(Color.SILVER));
+
         factoryView.setSpacing(20);
     }
 

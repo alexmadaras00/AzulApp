@@ -2,7 +2,9 @@ package view;
 
 import java.util.List;
 
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import model.TileColor;
 
 public class DisplayPlayer extends VBox {
@@ -20,7 +22,9 @@ public class DisplayPlayer extends VBox {
         this.id = id;
         this.name = name;
         score = 0;
-        this.getChildren().addAll(patternLine, wall,floorLine);
+        this.setBackground(Background.fill(Color.BISQUE));
+        this.setSpacing(7);
+        this.getChildren().addAll(patternLine, wall, floorLine);
     }
 
 }

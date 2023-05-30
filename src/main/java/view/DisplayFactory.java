@@ -13,6 +13,8 @@ public class DisplayFactory extends GridPane {
 
     public DisplayFactory(int id) {
         this.id = id;
+        this.setVgap(3);
+        this.setHgap(3);
         clear();
     }
 
