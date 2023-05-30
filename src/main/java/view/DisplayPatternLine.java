@@ -18,14 +18,20 @@ public class DisplayPatternLine extends GridPane {
     }
 
     public void addTile(int row, Tile tile) {
-        tiles.get(row).add(new DisplayTile(tile));
+        DisplayTile displayTile = new DisplayTile(tile);
+        this.add(displayTile, tiles.get(row).size(), row);
+        tiles.get(row).add(displayTile);
     }
 
     public void removeTile(int row) {
         tiles.get(row).remove(0);
+        this.add(null, tiles.get(row).size(), row);
     }
 
     public void clearRow(int row) {
+        for (DisplayTile displayTile : tiles.get(row)) {
+            this.getChildren().remove(displayTile);
+        }
         tiles.set(row, new ArrayList<DisplayTile>());
     }
 
@@ -35,5 +41,6 @@ public class DisplayPatternLine extends GridPane {
             List<DisplayTile> patternLine = new ArrayList<DisplayTile>();
             tiles.add(patternLine);
         }
+        this.getChildren().clear();
     }
 }

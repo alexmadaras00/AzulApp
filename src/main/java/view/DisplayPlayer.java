@@ -2,10 +2,10 @@ package view;
 
 import java.util.List;
 
-import javafx.scene.Group;
+import javafx.scene.layout.VBox;
 import model.TileColor;
 
-public class DisplayPlayer extends Group {
+public class DisplayPlayer extends VBox {
     public DisplayWall wall;
     public DisplayPatternLine patternLine;
     public DisplayFloorLine floorLine;
@@ -20,6 +20,7 @@ public class DisplayPlayer extends Group {
         this.id = id;
         this.name = name;
         score = 0;
+        this.getChildren().addAll(patternLine, wall,floorLine);
     }
 
 }

@@ -19,7 +19,7 @@ public class DisplayFactory extends GridPane {
     public void addTile(Tile tile) {
         DisplayTile displayTile = new DisplayTile(tile);
         tiles.add(displayTile);
-        add(displayTile,(tiles.size()-1) % 2,(tiles.size()-1) / 2);
+        add(displayTile, (tiles.size() - 1) % 2, (tiles.size() - 1) / 2);
     }
 
     public void removeTiles(Tile tile) {
@@ -30,5 +30,6 @@ public class DisplayFactory extends GridPane {
 
     public void clear() {
         tiles = new ArrayList<DisplayTile>();
+        this.getChildren().clear();
     }
 }

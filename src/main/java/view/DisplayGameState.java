@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -24,9 +25,22 @@ public class DisplayGameState extends HBox {
         middle = new DisplayMiddle();
         activePlayer = 0;
         players = new ArrayList<DisplayPlayer>();
+        setupPlayerView();
+        setupFactoryView();
+        this.setSpacing(40);
+        this.setPadding(new Insets(30, 30, 30, 30));
+        getChildren().addAll(factoryView, middle, playerView);
+    }
+
+    private void setupPlayerView() {
         playerView = new GridPane();
+        playerView.setHgap(20);
+        playerView.setVgap(40);
+    }
+
+    private void setupFactoryView() {
         factoryView = new VBox();
-        getChildren().addAll(factoryView,middle,playerView);
+        factoryView.setSpacing(20);
     }
 
     public DisplayPlayer getPlayer(int playerID) {
@@ -54,7 +68,7 @@ public class DisplayGameState extends HBox {
     public void addPlayer(int id, String name) {
         DisplayPlayer player = new DisplayPlayer(id, name, wallTemplate);
         players.add(player);
-        playerView.add(player, players.size() % 2, players.size() / 2);
+        playerView.add(player, players.size() % 2, (players.size() - 1) / 2);
     }
 
     public void addFactory(int id) {

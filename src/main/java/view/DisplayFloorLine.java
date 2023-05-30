@@ -14,14 +14,19 @@ public class DisplayFloorLine extends HBox {
     }
 
     public void addTile(Tile tile) {
-        tiles.add(new DisplayTile(tile));
+        DisplayTile displayTile = new DisplayTile(tile);
+        tiles.add(displayTile);
+        this.getChildren().add(displayTile);
     }
 
     public void removeTiles(Tile tile) {
         tiles.removeIf((t) -> (t.tile == tile));
+        getChildren().removeIf((t) -> (((DisplayTile) t).tile == tile));
+
     }
 
     public void clear() {
         tiles = new LinkedList<DisplayTile>();
+        this.getChildren().clear();
     }
 }
