@@ -5,14 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.TileColor;
 import model.Wall;
 
-public class DisplayWallTest extends FXTest {
+public class DisplayWallTest extends ApplicationTest {
     private DisplayWall displayWall;
 
-    
+    @Override
+    public void start(Stage stage) {
+        displayWall = new DisplayWall(Wall.wallPattern());
+        Scene scene = new Scene(displayWall);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @BeforeEach
     public void setUp() {

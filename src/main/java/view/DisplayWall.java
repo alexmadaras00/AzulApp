@@ -27,7 +27,9 @@ public class DisplayWall extends GridPane {
 
     public void removeTile(int row, Tile tile) {
         wall.get(row).removeIf((t) -> (t.tile == tile));
-        this.add(null, wall.get(row).size(), row);
+        this.getChildren()
+                .removeIf(node -> GridPane.getColumnIndex(node) == wall.get(row).size()
+                        && GridPane.getRowIndex(node) == row);
 
     }
 

@@ -4,11 +4,22 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.TileColor;
 
-public class DisplayPatternLineTest extends FXTest {
+public class DisplayPatternLineTest extends ApplicationTest {
     private DisplayPatternLine displayPatternLine;
+
+    @Override
+    public void start(Stage stage) {
+        displayPatternLine = new DisplayPatternLine();
+        Scene scene = new Scene(displayPatternLine);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @BeforeEach
     public void setUp() {

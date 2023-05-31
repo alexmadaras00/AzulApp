@@ -29,7 +29,9 @@ public class DisplayPatternLine extends GridPane {
 
     public void removeTile(int row) {
         tiles.get(row).remove(0);
-        this.add(null, tiles.get(row).size(), row);
+        this.getChildren()
+                .removeIf(node -> GridPane.getColumnIndex(node) == tiles.get(row).size()
+                        && GridPane.getRowIndex(node) == row);
     }
 
     public void clearRow(int row) {
