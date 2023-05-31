@@ -47,23 +47,16 @@ public class GameTest {
 
     @Test
     public void testStartGame() {
-        int numberOfPlayers = game.getPlayers().size();
         players = game.getPlayers();
-        assertPreConditionsStart(numberOfPlayers);
+        assertPreConditionsStart();
         GameState gameState = game.startGame();
         assertPostConditionsStart(gameState);
     }
 
 
-    private void assertPreConditionsStart(int numberOfPlayers) {
-        assertTrue(numberOfPlayers >= 2 && numberOfPlayers <= 4);
-        assertFalse(game.isPlaying());
-        assertEquals(0, game.getRound());
-        assertEquals(0, game.getMiddle().getAllTiles().size());
-        assertEquals(game.getTurnOrder().size(), game.getPlayers().size());
-        assertEquals(0, game.getBox().size());
-        assertEquals(0, game.getBag().getTiles().size());
-        game.getFactories().forEach(factory -> assertEquals(0, factory.getAllTiles().size()));
+    private void assertPreConditionsStart() {
+        assertTrue(game.isValidStartGame());
+
     }
 
     private void assertPostConditionsStart(GameState gameState) {
@@ -166,7 +159,6 @@ public class GameTest {
         assertEquals(scoreUpdates, roundUpdate.getScoreUpdates());
         assertEquals(0, game.getBox().size());
         assertEquals(1, game.getMiddle().getAllTiles().size());
-        assertTurnOrderChange();
         assertEquals(GamePhase.PREPARING_ROUND, game.getGamePhase());
     }
 
@@ -190,6 +182,7 @@ public class GameTest {
         assertEquals(0, game.getBox().size());
         assertEquals(1, game.getMiddle().getAllTiles().size());
         assertEquals(GamePhase.PREPARING_ROUND, game.getGamePhase());
+        assertTurnOrderChange();
         for (Player p : game.getPlayers()) {
             if (p.getBoard().getWall().hasCompleteRow()) {
                 assertFalse(game.isPlaying());
@@ -214,7 +207,7 @@ public class GameTest {
         game.getPlayers().forEach(player -> {
             if (player.getBoard().getFloorLine().getCopyTiles().contains(PlayerTile.getInstance())) {
                 newTurnOrder.add(player);
-                System.out.println("Starting: "+player);
+                System.out.println("Starting: " + player);
             }
         });
         game.getPlayers().forEach(player -> {
@@ -287,7 +280,7 @@ public class GameTest {
 
     @Test
     public void testIsValidStartGame() {
-        assertFalse(game.isValidStartGame());
+        assertTrue(game.isValidStartGame());
     }
 
     @Test

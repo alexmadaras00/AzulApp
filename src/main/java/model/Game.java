@@ -16,7 +16,6 @@ public class Game implements Model {
     private GamePhase gamePhase;
     private List<Player> turnOrder;
     private Bag bag;
-    private Controller controller;
     private Middle middle;
 
     public Game(List<Player> players) {
@@ -69,6 +68,7 @@ public class Game implements Model {
 
     @Override
     public GameState startGame() {
+
         GameState gameState = new GameState();
         Collections.shuffle(turnOrder);
         fillBag();
@@ -257,7 +257,7 @@ public class Game implements Model {
             if (floorLineTiles.contains(PlayerTile.getInstance())) {
                 nextPlayerData.setIdentifier(players.get(i).getIdentifier());
                 nextPlayerData.setName(players.get(i).getName());
-                swap(turnOrder, 0,i );
+                swap(turnOrder, 0, i);
             }
         }
     }
@@ -307,7 +307,10 @@ public class Game implements Model {
 
     @Override
     public boolean isValidStartGame() {
-        return false;
+        return players.size() >= 2 && players.size() <= 4 && !isPlaying && round == 0
+                && middle.getAllTiles().size() == 0 && turnOrder.size() == players.size()
+                && box.size() == 0 && bag.getTiles().size() == 0
+                && factories.stream().allMatch(factory -> factory.getAllTiles().size() == 0);
     }
 
     @Override
