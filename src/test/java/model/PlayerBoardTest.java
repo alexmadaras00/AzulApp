@@ -2,7 +2,6 @@ package model;
 
 import dataobjects.PlayerBoardState;
 import dataobjects.ScoreChange;
-import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.ExceptionInvalidOperation;
@@ -76,7 +75,7 @@ public class PlayerBoardTest {
         Color redTile = Color.RED;
         Color yellowTile = Color.YELLOW;
         List<Tile> tiles = Arrays.asList(redTile, redTile, redTile, redTile, redTile, redTile, redTile);
-        List<Tile> moreTiles = Arrays.asList(yellowTile);
+        List<Tile> moreTiles = List.of(yellowTile);
         assertTrue(playerBoard.getFloorLine().getCopyTiles().size() <= 7);
         playerBoard.performMoveFloorLine(tiles);
         assertEquals(7, playerBoard.getFloorLine().getCopyTiles().size());
@@ -104,8 +103,6 @@ public class PlayerBoardTest {
         // and exceeded tiles (size=length(completedRow)-1) from patternLine
         assertTrue(playerBoard.getWall().canAddTile(completedRow, clearedTile));
         assertEquals(remainingTiles, playerBoard.wallTilting());
-        List<Tile> checkClearedTiles = playerBoard.getPatternLine().getCopyTable().get(completedRow).subList(1, playerBoard.getPatternLine().clearTiles(completedRow).size());
-        assertEquals(clearedTiles, checkClearedTiles);
         //Testing the adding operation of the tile to the wall
 
         assertTrue(playerBoard.getWall().getCopyTable().get(completedRow).contains(clearedTile));
@@ -113,6 +110,7 @@ public class PlayerBoardTest {
         //Checking if the new ScoreChange Object has been created
         assertNotNull(scoreChange);
         assertEquals(0, playerBoard.getFloorLine().getCopyTiles().size());
+        assertEquals(0, playerBoard.getPatternLine().getCopyTable().get(completedRow).size());
         //Checking again if the new ScoreChange Object has been created, after deleting the floorLine
         assertNotNull(scoreChange);
     }

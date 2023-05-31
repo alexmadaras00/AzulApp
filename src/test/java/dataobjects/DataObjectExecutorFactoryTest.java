@@ -1,16 +1,15 @@
 package dataobjects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import dataobjects.executors.Executor;
+import model.Color;
+import model.Model;
+import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 
-import dataobjects.DataObject;
-import dataobjects.DataObjectExecutorFactory;
-import dataobjects.ExecutorFactory;
-import dataobjects.Move;
-import dataobjects.executors.Executor;
-import model.Model;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DataObjectExecutorFactoryTest {
     private static enum MockDataObject implements DataObject {
@@ -30,6 +29,96 @@ public class DataObjectExecutorFactoryTest {
         public DataObject doSomethingElse() {
             didSomethingElseCounter++;
             return MockDataObject.UPDATE;
+        }
+
+        @Override
+        public GameState startGame() {
+            return new GameState();
+        }
+
+        @Override
+        public RoundUpdate startRound() {
+            return new RoundUpdate();
+        }
+
+        @Override
+        public RoundUpdate endRound() {
+            return new RoundUpdate();
+        }
+
+        @Override
+        public GameState terminateGame() {
+            return new GameState();
+        }
+
+        @Override
+        public GameState endGame() {
+            return new GameState();
+        }
+
+        @Override
+        public boolean isCurrentPlayer(PlayerData player) {
+            return false;
+        }
+
+        @Override
+        public PlayerData addPlayer(PlayerData playerData) {
+            return new PlayerData();
+        }
+
+        @Override
+        public boolean isValidStartGame() {
+            return false;
+        }
+
+        @Override
+        public MoveUpdate performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color color) {
+            return new MoveUpdate();
+        }
+
+        @Override
+        public MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color) {
+            return new MoveUpdate();
+        }
+
+        @Override
+        public MoveUpdate performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
+            return new MoveUpdate();
+        }
+
+        @Override
+        public MoveUpdate performMoveMiddleFloorLine(List<Tile> tiles) {
+            return new MoveUpdate();
+        }
+
+        @Override
+        public MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color) {
+            return new MoveUpdate();
+        }
+
+        @Override
+        public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color color) {
+            return false;
+        }
+
+        @Override
+        public boolean isValidMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
+            return false;
+        }
+
+        @Override
+        public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color) {
+            return false;
+        }
+
+        @Override
+        public boolean isValidMoveMiddleFloorLine(List<Tile> tiles) {
+            return false;
+        }
+
+        @Override
+        public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color) {
+            return false;
         }
     }
 

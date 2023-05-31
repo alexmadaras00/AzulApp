@@ -57,7 +57,7 @@ public class PlayerBoard {
     }
 
     public List<Tile> wallTilting() {
-        List<Integer> completedRows = patternLine.completedRows();
+        List<Integer> completedRows = this.patternLine.completedRows();
         List<Tile> remainderList = new ArrayList<>();
         completedRows.forEach(completedRow -> {
                     List<Tile> tilesCompleted = patternLine.getCopyTable().get(completedRow);
@@ -79,6 +79,9 @@ public class PlayerBoard {
         //floorLineScoreChange.setHasColor(false);
         //floorLineScoreChange.setHasRowIndex(false);
         floorLineScoreChange.setScoreDifference(floorLine.getScore());
+        completedRows.forEach(completedRow -> {
+            patternLine.clearTiles(completedRow);
+        });
 
         return remainderList;
     }
