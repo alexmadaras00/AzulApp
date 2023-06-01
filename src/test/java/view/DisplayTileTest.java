@@ -17,7 +17,6 @@ public class DisplayTileTest extends ApplicationTest {
         displayTile = new DisplayTile(TileColor.RED);
         Scene scene = new Scene(displayTile);
         stage.setScene(scene);
-        stage.show();
     }
 
     @Test

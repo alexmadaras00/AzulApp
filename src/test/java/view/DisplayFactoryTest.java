@@ -20,7 +20,6 @@ public class DisplayFactoryTest extends ApplicationTest {
         displayFactory = new DisplayFactory(id);
         Scene scene = new Scene(displayFactory);
         stage.setScene(scene);
-        stage.show();
     }
 
     @BeforeEach

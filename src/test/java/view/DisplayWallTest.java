@@ -20,7 +20,6 @@ public class DisplayWallTest extends ApplicationTest {
         displayWall = new DisplayWall(Wall.wallPattern());
         Scene scene = new Scene(displayWall);
         stage.setScene(scene);
-        stage.show();
     }
 
     @BeforeEach

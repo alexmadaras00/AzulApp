@@ -19,7 +19,7 @@ public class DisplayMiddleTest extends ApplicationTest {
         displayMiddle = new DisplayMiddle();
         Scene scene = new Scene(displayMiddle);
         stage.setScene(scene);
-        stage.show();
+        ;
     }
     
     @BeforeEach

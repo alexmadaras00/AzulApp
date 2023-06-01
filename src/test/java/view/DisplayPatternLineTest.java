@@ -18,7 +18,7 @@ public class DisplayPatternLineTest extends ApplicationTest {
         displayPatternLine = new DisplayPatternLine();
         Scene scene = new Scene(displayPatternLine);
         stage.setScene(scene);
-        stage.show();
+        ;
     }
 
     @BeforeEach

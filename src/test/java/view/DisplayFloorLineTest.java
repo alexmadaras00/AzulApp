@@ -18,7 +18,6 @@ public class DisplayFloorLineTest extends ApplicationTest {
         displayFloorLine = new DisplayFloorLine();
         Scene scene = new Scene(displayFloorLine);
         stage.setScene(scene);
-        stage.show();
     }
     
     @BeforeEach
