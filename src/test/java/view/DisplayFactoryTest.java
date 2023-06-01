@@ -3,23 +3,31 @@ package view;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import model.TileColor;
 
-public class DisplayFactoryTest extends ApplicationTest {
+public class DisplayFactoryTest {
     private DisplayFactory displayFactory;
     private int id;
+    static {
 
-    @Override
-    public void start(Stage stage) {
-        displayFactory = new DisplayFactory(id);
-        Scene scene = new Scene(displayFactory);
-        stage.setScene(scene);
+        System.setProperty("java.awt.headless", "false");
+    }
+
+    @BeforeAll
+    public static void setupSpec() throws Exception {
+        if (Boolean.getBoolean("headless")) {
+            System.setProperty("testfx.robot", "glass");
+            System.setProperty("testfx.headless", "true");
+            System.setProperty("prism.order", "sw");
+            System.setProperty("prism.text", "t2k");
+        }
+        FxToolkit.registerPrimaryStage();
     }
 
     @BeforeEach

@@ -2,7 +2,7 @@ package view;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -10,16 +10,24 @@ import org.testfx.framework.junit5.ApplicationTest;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.TileColor;
+import static org.testfx.api.FxToolkit.registerPrimaryStage;
 
-public class DisplayMiddleTest extends ApplicationTest {
+public class DisplayMiddleTest {
     private DisplayMiddle displayMiddle;
+    static {
 
-    @Override
-    public void start(Stage stage) {
-        displayMiddle = new DisplayMiddle();
-        Scene scene = new Scene(displayMiddle);
-        stage.setScene(scene);
-        ;
+        System.setProperty("java.awt.headless", "false");
+    }
+    @BeforeAll
+    public static void setupSpec() throws Exception {
+        if (Boolean.getBoolean("headless")) {
+            System.setProperty("testfx.robot", "glass");
+            System.setProperty("testfx.headless", "true");
+            System.setProperty("prism.order", "sw");
+            System.setProperty("prism.text", "t2k");
+            System.setProperty("java.awt.headless", "true");
+        }
+        registerPrimaryStage();
     }
     
     @BeforeEach
