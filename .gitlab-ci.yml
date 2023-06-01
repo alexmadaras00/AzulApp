@@ -19,7 +19,7 @@ run_tests:
     - pppp
   stage: test
   script:
-    - sudo apt-get install xvfb
+    - apt-get install xvfb
     - Xvfb :99 &>/dev/null &
     - export DISPLAY=:99
     - mvn verify
