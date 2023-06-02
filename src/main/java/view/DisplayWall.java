@@ -3,58 +3,42 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import model.Tile;
+import model.TileColor;
 
-public class DisplayWall implements Display {
-    private List<List<Tile>> templateWall;
-    private List<List<Tile>> wall;
+public class DisplayWall extends GridPane {
+    private List<List<TileColor>> templateWall;
+    private List<List<DisplayTile>> wall;
 
-    public DisplayWall(List<List<Tile>> templateWall) {
+    public DisplayWall(List<List<TileColor>> templateWall) {
         this.templateWall = templateWall;
+        this.setBackground(Background.fill(Color.WHITESMOKE));
         clear();
     }
 
     public void addTile(int row, Tile tile) {
-        wall.get(row).add(tile);
+        DisplayTile displayTile = new DisplayTile(tile);
+        this.add(displayTile, wall.get(row).size(), row);
+        wall.get(row).add(displayTile);
     }
 
     public void removeTile(int row, Tile tile) {
-        wall.get(row).removeIf((t) -> (t == tile));
+        wall.get(row).removeIf((t) -> (t.tile == tile));
+        this.getChildren()
+                .removeIf(node -> GridPane.getColumnIndex(node) == wall.get(row).size()
+                        && GridPane.getRowIndex(node) == row);
+
     }
 
     public void clear() {
-        wall = new ArrayList<List<Tile>>();
+        wall = new ArrayList<List<DisplayTile>>();
         for (int i = 0; i < templateWall.size(); i++) {
-            List<Tile> wallLine = new ArrayList<Tile>();
+            List<DisplayTile> wallLine = new ArrayList<DisplayTile>();
             wall.add(wallLine);
         }
-    }
-
-    @Override
-    public int height() {
-        return 5;
-    }
-
-    @Override
-    public int width() {
-        return 5;
-    }
-
-    @Override
-    public List<String> toStringList() {
-        DisplayColumn column = new DisplayColumn();
-        for (int row = 0; row < wall.size(); row++) {
-            DisplayRow wallLine = new DisplayRow(1);
-            for (Tile tile : templateWall.get(row)) {
-                wallLine.addDisplay(new DisplayTile(tile, wall.get(row).contains(tile)));
-            }
-            column.addDisplay(wallLine);
-        }
-        return column.toStringList();
-    }
-
-    @Override
-    public String toString() {
-        return String.join("\n", toStringList());
+        this.getChildren().clear();
     }
 }

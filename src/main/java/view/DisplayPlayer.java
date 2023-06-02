@@ -2,9 +2,14 @@ package view;
 
 import java.util.List;
 
-import model.Tile;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import model.TileColor;
 
-public class DisplayPlayer {
+public class DisplayPlayer extends VBox {
     public DisplayWall wall;
     public DisplayPatternLine patternLine;
     public DisplayFloorLine floorLine;
@@ -12,13 +17,17 @@ public class DisplayPlayer {
     public int id;
     public String name;
 
-    public DisplayPlayer(int id, String name, List<List<Tile>> wallTemplate) {
+    public DisplayPlayer(int id, String name, List<List<TileColor>> wallTemplate) {
         wall = new DisplayWall(wallTemplate);
         patternLine = new DisplayPatternLine();
         floorLine = new DisplayFloorLine();
         this.id = id;
         this.name = name;
         score = 0;
+        this.setBackground(Background.fill(Color.BISQUE));
+        this.setSpacing(7);
+        this.getChildren().addAll(new Label(name), new Label("" + score), patternLine, wall, floorLine);
+        this.setAlignment(Pos.CENTER);
     }
 
 }

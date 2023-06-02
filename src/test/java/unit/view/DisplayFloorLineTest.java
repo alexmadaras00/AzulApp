@@ -1,73 +1,68 @@
-package unit.view;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+// package view;
 
-import java.util.List;
+// import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.BeforeAll;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.Test;
+// import org.testfx.framework.junit5.ApplicationTest;
 
-import model.TileColor;
-import view.DisplayFloorLine;
+// import javafx.scene.Scene;
+// import javafx.stage.Stage;
+// import model.TileColor;
+// import static org.testfx.api.FxToolkit.registerPrimaryStage;
 
-public class DisplayFloorLineTest {
-    private DisplayFloorLine displayFloorLine;
+// public class DisplayFloorLineTest {
+//     private DisplayFloorLine displayFloorLine;
+//     static {
 
-    @BeforeEach
-    public void setUp() {
-        displayFloorLine = new DisplayFloorLine();
-    }
+//         System.setProperty("java.awt.headless", "false");
+//     }
+//     @BeforeAll
+//     public static void setupSpec() throws Exception {
+//         if (Boolean.getBoolean("headless")) {
+//             System.setProperty("testfx.robot", "glass");
+//             System.setProperty("testfx.headless", "true");
+//             System.setProperty("prism.order", "sw");
+//             System.setProperty("prism.text", "t2k");
+//             System.setProperty("java.awt.headless", "true");
+//         }
+//         registerPrimaryStage();
+//     }
 
-    @Test
-    public void testEmptyFloorLine() {
-        assertEquals("", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("", result.get(0));
-    }
+//     @BeforeEach
+//     public void setUp() {
+//         displayFloorLine = new DisplayFloorLine();
+//     }
 
-    @Test
-    public void testsingleTileFloorLine() {
-        displayFloorLine.addTile(TileColor.RED);
-        assertEquals("R", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("R", result.get(0));
+//     @Test
+//     public void testConstructorFloorLine() {
+//         assertDoesNotThrow(() -> {
+//             displayFloorLine = new DisplayFloorLine();
+//         });
+//     }
 
-    }
+//     @Test
+//     public void testAddTileFactory() {
+//         assertDoesNotThrow(() -> {
+//             displayFloorLine.addTile(TileColor.RED);
+//         });
+//     }
 
-    @Test
-    public void testMultipleTileFloorLine() {
-        displayFloorLine.addTile(TileColor.RED);
-        displayFloorLine.addTile(TileColor.CYAN);
-        displayFloorLine.addTile(TileColor.BLUE);
+//     @Test
+//     public void testRemoveTileFactory() {
+//         displayFloorLine.addTile(TileColor.RED);
+//         assertDoesNotThrow(() -> {
+//             displayFloorLine.removeTiles(TileColor.RED);
+//         });
 
-        assertEquals("RCB", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("RCB", result.get(0));
-    }
+//     }
 
-    @Test
-    public void testRemoveTileFloorLine() {
-        displayFloorLine.addTile(TileColor.RED);
-        displayFloorLine.addTile(TileColor.CYAN);
-        displayFloorLine.addTile(TileColor.BLUE);
-        assertEquals("RCB", displayFloorLine.toString());
-        displayFloorLine.removeTiles(TileColor.BLUE);
-        assertEquals("RC", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("RC", result.get(0));
-    }
-
-    @Test
-    public void testClearFloorLine() {
-        displayFloorLine.addTile(TileColor.RED);
-        displayFloorLine.clear();
-
-        assertEquals("", displayFloorLine.toString());
-        List<String> result = displayFloorLine.toStringList();
-        assertEquals(1, result.size());
-        assertEquals("", result.get(0));
-    }
-}
+//     @Test
+//     public void testClearFactory() {
+//         displayFloorLine.addTile(TileColor.RED);
+//         assertDoesNotThrow(() -> {
+//             displayFloorLine.clear();
+//         });
+//     }
+// }

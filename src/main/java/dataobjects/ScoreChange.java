@@ -4,7 +4,7 @@ import model.TileColor;
 
 public class ScoreChange implements DataObject {
     private ScoreType type;
-    private TileColor tileColor;
+    private TileColor color;
     private int index;
     private int scoreDifference;
 
@@ -12,11 +12,11 @@ public class ScoreChange implements DataObject {
     }
 
     public TileColor getColor() {
-        return tileColor;
+        return color;
     }
 
-    public void setColor(TileColor tileColor) {
-        this.tileColor = tileColor;
+    public void setColor(TileColor color) {
+        this.color = color;
     }
 
     public int getIndex() {
@@ -45,14 +45,19 @@ public class ScoreChange implements DataObject {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ScoreChange)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof ScoreChange))
+            return false;
 
         ScoreChange that = (ScoreChange) o;
 
-        if (getIndex() != that.getIndex()) return false;
-        if (getScoreDifference() != that.getScoreDifference()) return false;
-        if (getType() != that.getType()) return false;
+        if (getIndex() != that.getIndex())
+            return false;
+        if (getScoreDifference() != that.getScoreDifference())
+            return false;
+        if (getType() != that.getType())
+            return false;
         return getColor() == that.getColor();
     }
 

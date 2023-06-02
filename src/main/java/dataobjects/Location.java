@@ -1,5 +1,9 @@
 package dataobjects;
 
+import model.TileColor;
+
+import java.util.Objects;
+
 public class Location implements DataObject {
     private LocationType type;
     private int index;
@@ -25,12 +29,15 @@ public class Location implements DataObject {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Location)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Location))
+            return false;
 
         Location location = (Location) o;
 
-        if (getIndex() != location.getIndex()) return false;
+        if (getIndex() != location.getIndex())
+            return false;
         return getType() == location.getType();
     }
 

@@ -1,5 +1,7 @@
 package dataobjects;
 
+import model.TileColor;
+
 import java.util.List;
 
 public class MoveUpdate implements DataObject {
@@ -36,13 +38,17 @@ public class MoveUpdate implements DataObject {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MoveUpdate)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof MoveUpdate))
+            return false;
 
         MoveUpdate that = (MoveUpdate) o;
 
-        if (getPlayer() != null ? !getPlayer().equals(that.getPlayer()) : that.getPlayer() != null) return false;
-        if (getSteps() != null ? !getSteps().equals(that.getSteps()) : that.getSteps() != null) return false;
+        if (getPlayer() != null ? !getPlayer().equals(that.getPlayer()) : that.getPlayer() != null)
+            return false;
+        if (getSteps() != null ? !getSteps().equals(that.getSteps()) : that.getSteps() != null)
+            return false;
         return getNextPlayer() != null ? getNextPlayer().equals(that.getNextPlayer()) : that.getNextPlayer() == null;
     }
 

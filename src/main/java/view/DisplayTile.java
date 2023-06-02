@@ -1,55 +1,42 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import model.TileColor;
-import model.PlayerTile;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import model.Tile;
+import model.TileColor;
 
-public class DisplayTile implements Display {
+public class DisplayTile extends Button {
     public Tile tile;
-    public boolean isFilled;
+
+    private Color translateColor(Tile tile) {
+        if (tile == TileColor.BLACK) {
+            return Color.BLACK;
+        } else if (tile == TileColor.CYAN) {
+            return Color.CYAN;
+        } else if (tile == TileColor.BLUE) {
+            return Color.BLUE;
+        } else if (tile == TileColor.RED) {
+            return Color.RED;
+        } else if (tile == TileColor.YELLOW) {
+            return Color.YELLOW;
+        }
+        return null;
+    }
 
     public DisplayTile(Tile tile) {
+        super();
         this.tile = tile;
-        isFilled = true;
-    }
-
-    public DisplayTile(Tile tile, boolean isFilled) {
-        this.tile = tile;
-        this.isFilled = isFilled;
-    }
-
-    @Override
-    public String toString() {
-        if (tile instanceof TileColor) {
-            String character = tile.toString().substring(0, 1);
-            if (!isFilled) {
-                character = character.toLowerCase();
-            }
-            return character;
-        } else if (tile instanceof PlayerTile) {
-            return "1";
-        }
-        return "_";
-    }
-
-    @Override
-    public int height() {
-        return 1;
-    }
-
-    @Override
-    public int width() {
-        return 1;
-    }
-
-    @Override
-    public List<String> toStringList() {
-        List<String> stringList = new ArrayList<String>();
-        stringList.add(toString());
-        return stringList;
+        this.setBackground(Background.fill(translateColor(tile)));
+        this.setBorder(Border.stroke(Color.ANTIQUEWHITE));
+        this.setPrefWidth(40);
+        this.setPrefHeight(40);
+        this.setMinWidth(40);
+        this.setMinHeight(40);
+        this.setMaxWidth(40);
+        this.setMaxHeight(40);
     }
 
 }

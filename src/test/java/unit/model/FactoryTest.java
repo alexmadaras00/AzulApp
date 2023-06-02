@@ -1,8 +1,5 @@
-package unit.model;
+package model;
 
-import model.TileColor;
-import model.Factory;
-import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +12,9 @@ public class FactoryTest {
     private static List<Tile> tiles;
 
     @BeforeEach
-    public  void setUp() {
+    public void setUp() {
         factory = new Factory();
-         tiles = List.of(TileColor.BLUE, TileColor.BLUE, TileColor.YELLOW, TileColor.RED);
+        tiles = List.of(TileColor.BLUE, TileColor.BLUE, TileColor.YELLOW, TileColor.RED);
     }
 
     // In each round there are no more than 4 tiles on a factory

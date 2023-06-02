@@ -92,5 +92,5 @@ public class Move implements DataObject {
         } else if (!player.equals(other.player))
             return false;
         return true;
-    }   
+    }
 }
