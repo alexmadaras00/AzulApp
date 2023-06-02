@@ -19,9 +19,6 @@ run_tests:
     - pppp
   stage: test
   script:
-    - apt-get install xvfb
-    - Xvfb :99 &>/dev/null &
-    - export DISPLAY=:99
     - mvn verify
     - awk -F"," '{ total += $4 + $5; covered += $5 } END { print 100*covered/total, "% covered" }' target/site/jacoco/jacoco.csv
   coverage: '/\d+.\d+ \% covered/'
