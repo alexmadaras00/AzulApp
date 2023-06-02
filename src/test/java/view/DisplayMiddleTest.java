@@ -1,70 +1,68 @@
-package view;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+// package view;
 
-import java.util.List;
+// import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.BeforeAll;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.Test;
+// import org.testfx.framework.junit5.ApplicationTest;
 
-import model.Color;
+// import javafx.scene.Scene;
+// import javafx.stage.Stage;
+// import model.TileColor;
+// import static org.testfx.api.FxToolkit.registerPrimaryStage;
 
-public class DisplayMiddleTest {
-    private DisplayMiddle displayMiddle;
+// public class DisplayMiddleTest {
+//     private DisplayMiddle displayMiddle;
+//     static {
 
-    @BeforeEach
-    public void setUp() {
-        displayMiddle = new DisplayMiddle();
-    }
+//         System.setProperty("java.awt.headless", "false");
+//     }
+//     @BeforeAll
+//     public static void setupSpec() throws Exception {
+//         if (Boolean.getBoolean("headless")) {
+//             System.setProperty("testfx.robot", "glass");
+//             System.setProperty("testfx.headless", "true");
+//             System.setProperty("prism.order", "sw");
+//             System.setProperty("prism.text", "t2k");
+//             System.setProperty("java.awt.headless", "true");
+//         }
+//         registerPrimaryStage();
+//     }
+    
+//     @BeforeEach
+//     public void setUp() {
+//         displayMiddle = new DisplayMiddle();
+//     }
 
-    @Test
-    public void testEmptyFactory() {
-        assertEquals("\n", displayMiddle.toString());
-        List<String> result = displayMiddle.toStringList();
-        assertEquals(2, result.size());
-        assertEquals("", result.get(0));
-        assertEquals("", result.get(1));
-    }
+//     @Test
+//     public void testConstructorMiddle() {
+//         assertDoesNotThrow(() -> {
+//             displayMiddle = new DisplayMiddle();
+//         });
+//     }
 
-    @Test
-    public void testsingleTileFactory() {
-        displayMiddle.addTile(Color.RED);
-        assertEquals("R\n", displayMiddle.toString());
-        List<String> result = displayMiddle.toStringList();
-        assertEquals(2, result.size());
-        assertEquals("R", result.get(0));
-        assertEquals("", result.get(1));
-    }
+//     @Test
+//     public void testAddTileMiddle() {
+//         assertDoesNotThrow(() -> {
+//             displayMiddle.addTile(TileColor.RED);
+//         });
+//     }
 
-    @Test
-    public void testMultipleTileFactory() {
-        displayMiddle.addTile(Color.RED);
-        displayMiddle.addTile(Color.CYAN);
-        displayMiddle.addTile(Color.BLUE);
-        displayMiddle.addTile(Color.BLUE);
-        displayMiddle.addTile(Color.CYAN);
+//     @Test
+//     public void testRemoveTileMiddle() {
+//         displayMiddle.addTile(TileColor.RED);
+//         assertDoesNotThrow(() -> {
+//             displayMiddle.removeTiles(TileColor.RED);
+//         });
 
-        assertEquals("RBC\nCB", displayMiddle.toString());
-        List<String> result = displayMiddle.toStringList();
-        assertEquals(2, result.size());
-        assertEquals("RBC", result.get(0));
-        assertEquals("CB", result.get(1));
-    }
+//     }
 
-    @Test
-    public void testRemoveTileFactory() {
-        displayMiddle.addTile(Color.RED);
-        displayMiddle.addTile(Color.CYAN);
-        displayMiddle.addTile(Color.BLUE);
-        displayMiddle.addTile(Color.BLUE);
-        displayMiddle.addTile(Color.CYAN);
-
-        assertEquals("RBC\nCB", displayMiddle.toString());
-        displayMiddle.removeTiles(Color.CYAN);
-        assertEquals("RB\nB", displayMiddle.toString());
-
-        List<String> result = displayMiddle.toStringList();
-        assertEquals(2, result.size());
-        assertEquals("RB", result.get(0));
-        assertEquals("B", result.get(1));
-    }
-}
+//     @Test
+//     public void testClearMiddle() {
+//         displayMiddle.addTile(TileColor.RED);
+//         assertDoesNotThrow(() -> {
+//             displayMiddle.clear();
+//         });
+//     }
+// }

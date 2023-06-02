@@ -1,14 +1,36 @@
 package view;
 
-import dataobjects.GameState;
-import model.Color;
-import model.Tile;
+import java.util.List;
 
-public class TUI implements UI {
+import dataobjects.RequestGameState;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import model.Tile;
+import model.TileColor;
+
+public class GUI extends Stage implements UI {
     private DisplayGameState gameState;
     private Messager messager;
-    private InputHandler inputHandler;
-    private OutputHandler outputHandler;
+
+
+    public void start(Stage stage) {
+        // this.messager.send(new RequestGameState());
+        gameState = new DisplayGameState();
+        Scene scene = new Scene(gameState);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void connectMessager(Messager messager) {
+        this.messager = messager;
+    }
+
+
+    @Override
+    public void setWallPattern(List<List<TileColor>> pattern) {
+        gameState.setWallPattern(pattern);
+    }
 
     @Override
     public void addTileFactory(int factory, Tile tile) {
@@ -22,9 +44,7 @@ public class TUI implements UI {
 
     @Override
     public void clearFactory(int factory) {
-        for (Color color : Color.values()) {
-            gameState.factories.get(factory).removeTiles(color);
-        }
+        gameState.factories.get(factory).clear();
     }
 
     @Override
@@ -39,8 +59,8 @@ public class TUI implements UI {
 
     @Override
     public void clearMiddle() {
-        for (Color color : Color.values()) {
-            gameState.middle.removeTiles(color);
+        for (TileColor TileColor : TileColor.values()) {
+            gameState.middle.removeTiles(TileColor);
         }
     }
 
@@ -57,7 +77,7 @@ public class TUI implements UI {
 
     @Override
     public void commit() {
-        outputHandler.printFrame(gameState);
+        return;
     }
 
     @Override
@@ -143,11 +163,6 @@ public class TUI implements UI {
     }
 
     @Override
-    public void connectMessager(Messager messager) {
-        this.messager = messager;
-    }
-
-    @Override
     public void addFactory(int factoryID) {
         gameState.addFactory(factoryID);
     }
@@ -157,5 +172,6 @@ public class TUI implements UI {
         gameState.addPlayer(playerID, name);
 
     }
+
 
 }

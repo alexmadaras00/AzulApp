@@ -19,12 +19,27 @@ public class Wall {
     private int completedColumnScore = 7;
 
     public Wall() {
-        colors = Color.values();
+        colors = TileColor.values();
         int size = colors.length;
         wall = new Tile[size][size];
     }
 
-    public Tile getTemplateColor(int row, int col) {
+    public static List<List<TileColor>> wallPattern() {
+        List<List<TileColor>> wallTemplate = new ArrayList<List<TileColor>>();
+        List<TileColor> colors = Arrays.asList(TileColor.values());
+        for (int i = 0; i < colors.size(); i++) {
+            List<TileColor> wallLine = new ArrayList<TileColor>();
+            for (int j = 0; j < colors.size(); j++) {
+                TileColor color = getTemplateColor(i,j);
+                wallLine.add(color);
+            }
+            wallTemplate.add(wallLine);
+        }
+        return wallTemplate;
+    }
+
+    public static TileColor getTemplateColor(int row, int col) {
+        TileColor[] colors = TileColor.values();
         return colors[(col - row + colors.length) % colors.length];
     }
 
@@ -75,7 +90,7 @@ public class Wall {
         for (Tile color : completedColor) {
             ScoreChange scoreChange = new ScoreChange();
             scoreChange.setType(ScoreType.COMPLETED_COLOR);
-            scoreChange.setColor((Color) color);
+            scoreChange.setColor((TileColor) color);
             scoreChange.setScoreDifference(completedColorScore);
             scoreChanges.add(scoreChange);
         }
@@ -86,7 +101,7 @@ public class Wall {
         List<ScoreChange> scoreChanges = new LinkedList<>();
         for (int line : completedLines) {
             ScoreChange scoreChange = new ScoreChange();
-            scoreChange.setType(isRow ? ScoreType.COMPLETED_ROW : ScoreType.COMPLETED_COLUMN );
+            scoreChange.setType(isRow ? ScoreType.COMPLETED_ROW : ScoreType.COMPLETED_COLUMN);
             scoreChange.setIndex(line);
             scoreChange.setScoreDifference(isRow ? completedRowScore : completedColumnScore);
             scoreChanges.add(scoreChange);

@@ -22,6 +22,7 @@ public class View implements Messager {
     @Override
     public void connectUI(UI userInterface) {
         this.userInterface = userInterface;
+        this.userInterface.connectMessager(this);
     }
 
     @Override

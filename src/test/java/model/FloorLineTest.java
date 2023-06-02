@@ -1,6 +1,6 @@
 package model;
 
-import model.Color;
+import model.TileColor;
 import model.Factory;
 import model.FloorLine;
 import model.Tile;
@@ -17,44 +17,45 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FloorLineTest {
     static FloorLine floorLine;
     static List<Tile> excessTiles;
+
     @BeforeEach
     public void setUp() {
         floorLine = new FloorLine();
         excessTiles = new ArrayList<>();
-        excessTiles.add(Color.RED);
-        excessTiles.add(Color.RED);
-        excessTiles.add(Color.RED);
-        excessTiles.add(Color.RED);
+        excessTiles.add(TileColor.RED);
+        excessTiles.add(TileColor.RED);
+        excessTiles.add(TileColor.RED);
+        excessTiles.add(TileColor.RED);
         floorLine.addTiles(excessTiles);
     }
 
     @Test
     void ShouldBeImmutable() {
         List<Tile> copiedTiles = floorLine.getCopyTiles();
-        assertThrows(UnsupportedOperationException.class,()->copiedTiles.set(4,Color.RED));
+        assertThrows(UnsupportedOperationException.class, () -> copiedTiles.set(4, TileColor.RED));
     }
 
-
     @Test
-    public void testGetAllTiles(){
+    public void testGetAllTiles() {
         List<Tile> theTiles = floorLine.getCopyTiles();
         assertEquals(excessTiles, theTiles);
         assertTrue(floorLine.getCopyTiles().size() <= 7);
     }
 
     @Test
-    public void testFullFloorLine(){
+    public void testFullFloorLine() {
         excessTiles = new ArrayList<>();
-        excessTiles.add(Color.BLUE);
-        excessTiles.add(Color.BLUE);
-        excessTiles.add(Color.BLUE);
-        excessTiles.add(Color.BLUE);
-        assertTrue(floorLine.addTiles(excessTiles).size()>0);
+        excessTiles.add(TileColor.BLUE);
+        excessTiles.add(TileColor.BLUE);
+        excessTiles.add(TileColor.BLUE);
+        excessTiles.add(TileColor.BLUE);
+        assertTrue(floorLine.addTiles(excessTiles).size() > 0);
         assertTrue(floorLine.getCopyTiles().size() <= 7);
-        assertTrue(floorLine.getScore()>= -14);
+        assertTrue(floorLine.getScore() >= -14);
     }
+
     @Test
-    public void testClearTiles(){
-        assertEquals(floorLine.clearTiles(),excessTiles);
+    public void testClearTiles() {
+        assertEquals(floorLine.clearTiles(), excessTiles);
     }
 }

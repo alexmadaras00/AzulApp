@@ -1,11 +1,11 @@
 package dataobjects;
 
-import model.Color;
+import model.TileColor;
 
 public class Move implements DataObject {
     private Boolean fromFactory;
     private int factoryNumber;
-    private Color type;
+    private TileColor type;
     private Boolean toPatternLine;
     private int rowIndex;
     private PlayerData player;
@@ -29,11 +29,11 @@ public class Move implements DataObject {
         this.factoryNumber = factoryNumber;
     }
 
-    public Color getType() {
+    public TileColor getType() {
         return type;
     }
 
-    public void setType(Color type) {
+    public void setType(TileColor type) {
         this.type = type;
     }
 
@@ -92,5 +92,5 @@ public class Move implements DataObject {
         } else if (!player.equals(other.player))
             return false;
         return true;
-    }   
+    }
 }

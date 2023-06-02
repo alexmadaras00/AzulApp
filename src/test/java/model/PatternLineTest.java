@@ -1,6 +1,6 @@
 package model;
 
-import model.Color;
+import model.TileColor;
 import model.PatternLine;
 import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,65 +23,64 @@ public class PatternLineTest {
     public void setUp() {
         patternLine = new PatternLine();
         redTile = new ArrayList<>();
-        redTile.add(Color.RED);
+        redTile.add(TileColor.RED);
         redTiles = new ArrayList<>();
-        redTiles.add(Color.RED);
-        redTiles.add(Color.RED);
-        redTiles.add(Color.RED);
-        redTiles.add(Color.RED);
+        redTiles.add(TileColor.RED);
+        redTiles.add(TileColor.RED);
+        redTiles.add(TileColor.RED);
+        redTiles.add(TileColor.RED);
         blueTiles = new ArrayList<>();
-        blueTiles.add(Color.BLUE);
-        blueTiles.add(Color.BLUE);
+        blueTiles.add(TileColor.BLUE);
+        blueTiles.add(TileColor.BLUE);
         rows = new ArrayList<>();
         rows.add(1);
         rows.add(3);
     }
 
-
     @Test
     void ShouldBeImmutable() {
         PatternLine patternLine = new PatternLine();
         List<List<Tile>> copyTable = patternLine.getCopyTable();
-        assertThrows(UnsupportedOperationException.class,()->copyTable.set(4,redTiles));
+        assertThrows(UnsupportedOperationException.class, () -> copyTable.set(4, redTiles));
     }
 
-
     @Test
-    public void testReturnExcessTiles(){
+    public void testReturnExcessTiles() {
         List<Tile> excessTiles = patternLine.addTiles(2, redTile);
-        assertEquals(excessTiles.size(),0);
+        assertEquals(excessTiles.size(), 0);
         excessTiles = patternLine.addTiles(2, redTiles);
         assertEquals(excessTiles.size(), 2);
     }
 
     @Test
-    public void testCannotAddTilesDifferentColor(){
+    public void testCannotAddTilesDifferentColor() {
         patternLine.addTiles(4, redTiles);
-        assertTrue(patternLine.canAddTile(4, Color.RED));
-        assertFalse(patternLine.canAddTile(4, Color.BLUE));
+        assertTrue(patternLine.canAddTile(4, TileColor.RED));
+        assertFalse(patternLine.canAddTile(4, TileColor.BLUE));
     }
 
     @Test
-    public void testCannotAddTilesIfFull(){
+    public void testCannotAddTilesIfFull() {
         patternLine.addTiles(3, redTile);
-        assertTrue(patternLine.canAddTile(3, Color.RED));
+        assertTrue(patternLine.canAddTile(3, TileColor.RED));
         patternLine.addTiles(3, redTiles);
-        assertFalse(patternLine.canAddTile(3, Color.RED));
+        assertFalse(patternLine.canAddTile(3, TileColor.RED));
         patternLine.clearTiles(3);
-        assertTrue(patternLine.canAddTile(3, Color.RED));
+        assertTrue(patternLine.canAddTile(3, TileColor.RED));
     }
 
     @Test
-    public void testClearTiles(){
+    public void testClearTiles() {
         patternLine.addTiles(3, redTiles);
-        patternLine.addTiles(1,blueTiles);
+        patternLine.addTiles(1, blueTiles);
         List<Tile> clearedTiles = patternLine.clearTiles(3);
-        assertEquals(clearedTiles.size(),4);
+        assertEquals(clearedTiles.size(), 4);
         clearedTiles = patternLine.clearTiles(1);
-        assertEquals(clearedTiles.size(),2);
+        assertEquals(clearedTiles.size(), 2);
     }
+
     @Test
-    public void testCompletedRows(){
+    public void testCompletedRows() {
         patternLine.addTiles(3, redTiles);
         patternLine.addTiles(1, blueTiles);
         patternLine.addTiles(2, blueTiles);
