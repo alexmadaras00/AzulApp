@@ -19,7 +19,7 @@ public class Wall {
     private int completedColumnScore = 7;
 
     public Wall() {
-        colors = Color.values();
+        colors = TileColor.values();
         int size = colors.length;
         wall = new Tile[size][size];
     }
@@ -75,7 +75,7 @@ public class Wall {
         for (Tile color : completedColor) {
             ScoreChange scoreChange = new ScoreChange();
             scoreChange.setType(ScoreType.COMPLETED_COLOR);
-            scoreChange.setColor((Color) color);
+            scoreChange.setColor((TileColor) color);
             scoreChange.setScoreDifference(completedColorScore);
             scoreChanges.add(scoreChange);
         }

@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Color;
+import model.TileColor;
 import view.DisplayMiddle;
 
 public class DisplayMiddleTest {
@@ -28,7 +28,7 @@ public class DisplayMiddleTest {
 
     @Test
     public void testsingleTileFactory() {
-        displayMiddle.addTile(Color.RED);
+        displayMiddle.addTile(TileColor.RED);
         assertEquals("R\n", displayMiddle.toString());
         List<String> result = displayMiddle.toStringList();
         assertEquals(2, result.size());
@@ -38,11 +38,11 @@ public class DisplayMiddleTest {
 
     @Test
     public void testMultipleTileFactory() {
-        displayMiddle.addTile(Color.RED);
-        displayMiddle.addTile(Color.CYAN);
-        displayMiddle.addTile(Color.BLUE);
-        displayMiddle.addTile(Color.BLUE);
-        displayMiddle.addTile(Color.CYAN);
+        displayMiddle.addTile(TileColor.RED);
+        displayMiddle.addTile(TileColor.CYAN);
+        displayMiddle.addTile(TileColor.BLUE);
+        displayMiddle.addTile(TileColor.BLUE);
+        displayMiddle.addTile(TileColor.CYAN);
 
         assertEquals("RBC\nCB", displayMiddle.toString());
         List<String> result = displayMiddle.toStringList();
@@ -53,14 +53,14 @@ public class DisplayMiddleTest {
 
     @Test
     public void testRemoveTileFactory() {
-        displayMiddle.addTile(Color.RED);
-        displayMiddle.addTile(Color.CYAN);
-        displayMiddle.addTile(Color.BLUE);
-        displayMiddle.addTile(Color.BLUE);
-        displayMiddle.addTile(Color.CYAN);
+        displayMiddle.addTile(TileColor.RED);
+        displayMiddle.addTile(TileColor.CYAN);
+        displayMiddle.addTile(TileColor.BLUE);
+        displayMiddle.addTile(TileColor.BLUE);
+        displayMiddle.addTile(TileColor.CYAN);
 
         assertEquals("RBC\nCB", displayMiddle.toString());
-        displayMiddle.removeTiles(Color.CYAN);
+        displayMiddle.removeTiles(TileColor.CYAN);
         assertEquals("RB\nB", displayMiddle.toString());
 
         List<String> result = displayMiddle.toStringList();

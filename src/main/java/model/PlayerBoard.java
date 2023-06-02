@@ -22,6 +22,14 @@ public class PlayerBoard {
         scoreChanges = new ArrayList<>();
     }
 
+    public PlayerBoard(Wall wall, PatternLine patternLine, FloorLine floorLine) {
+        this.wall = wall;
+        this.patternLine = patternLine;
+        this.floorLine = floorLine;
+        score = 0;
+        scoreChanges = new ArrayList<>();
+    }
+
     public FloorLine getFloorLine() {
         return floorLine;
     }
@@ -42,21 +50,21 @@ public class PlayerBoard {
         return scoreChanges;
     }
 
-    public boolean canAddTypePatternLine(int rowIndex, Color type) {
+    public boolean canAddTypePatternLine(int rowIndex, TileColor type) {
         return wall.canAddTile(rowIndex, type) && patternLine.canAddTile(rowIndex, type);
     }
 
-    public void performMovePatternLine(int rowIndex, List<Tile> tiles) {
-        if (canAddTypePatternLine(rowIndex, (Color) tiles.get(0)))
-            patternLine.addTiles(rowIndex, tiles);
+    public List<Tile> performMovePatternLine(int rowIndex, List<Tile> tiles) {
+        if (canAddTypePatternLine(rowIndex, (TileColor) tiles.get(0)))
+            return patternLine.addTiles(rowIndex, tiles);
         else throw new ExceptionInvalidOperation("Pattern Line Invalid move. Cannot add a tile in the current format.");
     }
 
-    public void performMoveFloorLine(List<Tile> tiles) {
-        floorLine.addTiles(tiles);
+    public List<Tile> performMoveFloorLine(List<Tile> tiles) {
+        return floorLine.addTiles(tiles);
     }
 
-    public List<Tile> wallTilting() {
+    public List<Tile> wallTilling() {
         List<Integer> completedRows = this.patternLine.completedRows();
         List<Tile> remainderList = new ArrayList<>();
         completedRows.forEach(completedRow -> {
@@ -68,7 +76,7 @@ public class PlayerBoard {
                     //wallTileScoreChange.setHasColor(true);
                     //wallTileScoreChange.setHasRowIndex(true);
                     wallTileScoreChange.setIndex(completedRow);
-                    wallTileScoreChange.setColor((Color) wallTile);
+                    wallTileScoreChange.setColor((TileColor) wallTile);
                     wallTileScoreChange.setScoreDifference(wall.addTile(completedRow, wallTile));
                 }
         );

@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Color;
+import model.TileColor;
 import model.PlayerTile;
 import view.DisplayTile;
 
@@ -21,26 +21,26 @@ public class DisplayTileTest {
 
     @Test
     public void testColorStrings() {
-        List<Color> colors = Arrays.asList(Color.values());
-        for (Color color : colors) {
-            displayTile = new DisplayTile(color);
-            assertEquals(color.toString().substring(0, 1), displayTile.toString());
+        List<TileColor> tileColors = Arrays.asList(TileColor.values());
+        for (TileColor tileColor : tileColors) {
+            displayTile = new DisplayTile(tileColor);
+            assertEquals(tileColor.toString().substring(0, 1), displayTile.toString());
             List<String> result = displayTile.toStringList();
             assertEquals(1, result.size());
-            assertEquals(color.toString().substring(0, 1), result.get(0));
+            assertEquals(tileColor.toString().substring(0, 1), result.get(0));
 
         }
     }
 
     @Test
     public void testPlaceholderStrings() {
-        List<Color> colors = Arrays.asList(Color.values());
-        for (Color color : colors) {
-            displayTile = new DisplayTile(color, false);
-            assertEquals(color.toString().substring(0, 1).toLowerCase(), displayTile.toString());
+        List<TileColor> tileColors = Arrays.asList(TileColor.values());
+        for (TileColor tileColor : tileColors) {
+            displayTile = new DisplayTile(tileColor, false);
+            assertEquals(tileColor.toString().substring(0, 1).toLowerCase(), displayTile.toString());
             List<String> result = displayTile.toStringList();
             assertEquals(1, result.size());
-            assertEquals(color.toString().substring(0, 1).toLowerCase(), result.get(0));
+            assertEquals(tileColor.toString().substring(0, 1).toLowerCase(), result.get(0));
 
         }
     }

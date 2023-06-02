@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import dataobjects.ScoreChange;
 import dataobjects.ScoreType;
-import model.Color;
+import model.TileColor;
 import model.Wall;
 
 public class WallTest {
     private static Tile[][] template;
-    private static Tile[] colors = Color.values();
+    private static Tile[] colors = TileColor.values();
 
     // 01234
     // 40123
@@ -185,7 +185,7 @@ public class WallTest {
             for (ScoreChange sc : scoreChange) {
                 assertEquals(ScoreType.COMPLETED_COLOR, sc.getType());
                 assertEquals(0, sc.getIndex());
-                assertInstanceOf(Color.class, sc.getColor());
+                assertInstanceOf(TileColor.class, sc.getColor());
                 assertEquals(true, Arrays.asList(colors).contains(sc.getColor()));
                 assertEquals(10, sc.getScoreDifference());
             }

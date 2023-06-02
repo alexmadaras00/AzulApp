@@ -8,7 +8,7 @@ import java.util.List;
 import controller.Controller;
 import controller.Mediator;
 import dataobjects.*;
-import model.Color;
+import model.TileColor;
 import model.Tile;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -102,12 +102,12 @@ public class ControllerTest {
         }
 
         @Override
-        public MoveUpdate performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color color) {
+        public DataObject performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
             return null;
         }
 
         @Override
-        public MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color) {
+        public MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
             return null;
         }
 
@@ -122,12 +122,12 @@ public class ControllerTest {
         }
 
         @Override
-        public MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color) {
+        public MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
             return null;
         }
 
         @Override
-        public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color color) {
+        public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
             return false;
         }
 
@@ -137,7 +137,7 @@ public class ControllerTest {
         }
 
         @Override
-        public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color) {
+        public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
             return false;
         }
 
@@ -147,7 +147,7 @@ public class ControllerTest {
         }
 
         @Override
-        public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color) {
+        public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
             return false;
         }
     }

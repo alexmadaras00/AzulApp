@@ -2,6 +2,7 @@ package model;
 
 import dataobjects.*;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 public interface Model extends Executable {
@@ -13,16 +14,16 @@ public interface Model extends Executable {
     boolean isCurrentPlayer(PlayerData player);
     PlayerData addPlayer(PlayerData playerData);
     boolean isValidStartGame();
-    MoveUpdate performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color color);
-    MoveUpdate performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex);
-    MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color);
-    MoveUpdate performMoveMiddleFloorLine(List<Tile> tiles);
-    MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color);
-    boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color color);
+    DataObject performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor);
+    DataObject performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex);
+    DataObject performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);
+    DataObject performMoveMiddleFloorLine(List<Tile> tiles);
+    DataObject performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);
+    boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor);
     boolean isValidMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex);
-    boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color);
+    boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);
     boolean isValidMoveMiddleFloorLine(List<Tile> tiles);
-    boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color);
+    boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);
 
 
 }

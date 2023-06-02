@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Color;
+import model.TileColor;
 import view.DisplayFloorLine;
 
 public class DisplayFloorLineTest {
@@ -27,7 +27,7 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testsingleTileFloorLine() {
-        displayFloorLine.addTile(Color.RED);
+        displayFloorLine.addTile(TileColor.RED);
         assertEquals("R", displayFloorLine.toString());
         List<String> result = displayFloorLine.toStringList();
         assertEquals(1, result.size());
@@ -37,9 +37,9 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testMultipleTileFloorLine() {
-        displayFloorLine.addTile(Color.RED);
-        displayFloorLine.addTile(Color.CYAN);
-        displayFloorLine.addTile(Color.BLUE);
+        displayFloorLine.addTile(TileColor.RED);
+        displayFloorLine.addTile(TileColor.CYAN);
+        displayFloorLine.addTile(TileColor.BLUE);
 
         assertEquals("RCB", displayFloorLine.toString());
         List<String> result = displayFloorLine.toStringList();
@@ -49,11 +49,11 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testRemoveTileFloorLine() {
-        displayFloorLine.addTile(Color.RED);
-        displayFloorLine.addTile(Color.CYAN);
-        displayFloorLine.addTile(Color.BLUE);
+        displayFloorLine.addTile(TileColor.RED);
+        displayFloorLine.addTile(TileColor.CYAN);
+        displayFloorLine.addTile(TileColor.BLUE);
         assertEquals("RCB", displayFloorLine.toString());
-        displayFloorLine.removeTiles(Color.BLUE);
+        displayFloorLine.removeTiles(TileColor.BLUE);
         assertEquals("RC", displayFloorLine.toString());
         List<String> result = displayFloorLine.toStringList();
         assertEquals(1, result.size());
@@ -62,7 +62,7 @@ public class DisplayFloorLineTest {
 
     @Test
     public void testClearFloorLine() {
-        displayFloorLine.addTile(Color.RED);
+        displayFloorLine.addTile(TileColor.RED);
         displayFloorLine.clear();
 
         assertEquals("", displayFloorLine.toString());

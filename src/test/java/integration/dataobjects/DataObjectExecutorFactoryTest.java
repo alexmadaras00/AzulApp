@@ -2,7 +2,7 @@ package integration.dataobjects;
 
 import dataobjects.*;
 import dataobjects.executors.Executor;
-import model.Color;
+import model.TileColor;
 import model.Model;
 import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,12 +73,12 @@ public class DataObjectExecutorFactoryTest {
         }
 
         @Override
-        public MoveUpdate performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color color) {
+        public DataObject performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
             return new MoveUpdate();
         }
 
         @Override
-        public MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color) {
+        public MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
             return new MoveUpdate();
         }
 
@@ -93,12 +93,12 @@ public class DataObjectExecutorFactoryTest {
         }
 
         @Override
-        public MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color) {
+        public MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
             return new MoveUpdate();
         }
 
         @Override
-        public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color color) {
+        public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
             return false;
         }
 
@@ -108,7 +108,7 @@ public class DataObjectExecutorFactoryTest {
         }
 
         @Override
-        public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color) {
+        public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
             return false;
         }
 
@@ -118,7 +118,7 @@ public class DataObjectExecutorFactoryTest {
         }
 
         @Override
-        public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color) {
+        public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
             return false;
         }
     }

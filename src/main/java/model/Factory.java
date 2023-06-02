@@ -11,7 +11,7 @@ public class Factory {
         return tiles;
     }
 
-    private List<Tile> getTiles(Color type) {
+    private List<Tile> getTiles(TileColor type) {
         return tiles.stream()
                 .filter(tile -> tile == type)
                 .collect(Collectors.toList());
@@ -23,7 +23,7 @@ public class Factory {
         return copyTiles;
     }
 
-    public List<Tile> popTiles(Color tile) {
+    public List<Tile> popTiles(TileColor tile) {
         List<Tile> removeTiles = this.getTiles(tile);
         tiles.removeAll(removeTiles);
         return removeTiles;
@@ -33,7 +33,7 @@ public class Factory {
         tiles.addAll(t);
     }
 
-    public boolean hasTiles(Color type) {
+    public boolean hasTiles(TileColor type) {
         return tiles.contains(type);
     }
 

@@ -1,22 +1,22 @@
 package dataobjects;
 
-import model.Color;
+import model.TileColor;
 
 public class ScoreChange implements DataObject {
     private ScoreType type;
-    private Color color;
+    private TileColor tileColor;
     private int index;
     private int scoreDifference;
 
     public ScoreChange() {
     }
 
-    public Color getColor() {
-        return color;
+    public TileColor getColor() {
+        return tileColor;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(TileColor tileColor) {
+        this.tileColor = tileColor;
     }
 
     public int getIndex() {

@@ -10,7 +10,7 @@ public class Middle {
     public List<Tile> getAllTiles(){
         return tiles;
     }
-    public List<Tile> getTiles(Color type){
+    public List<Tile> getTiles(TileColor type){
         return tiles.stream()
                 .filter(tile -> tile == type)
                 .collect(Collectors.toList());
@@ -18,7 +18,7 @@ public class Middle {
     public void addTiles(List<Tile> t){
         tiles.addAll(t);
     }
-    public boolean hasTiles(Color type){
+    public boolean hasTiles(TileColor type){
         return tiles.contains(type);
     }
 }

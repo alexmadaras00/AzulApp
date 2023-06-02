@@ -1,6 +1,6 @@
 package unit.model;
 
-import model.Color;
+import model.TileColor;
 import model.Factory;
 import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +17,7 @@ public class FactoryTest {
     @BeforeEach
     public  void setUp() {
         factory = new Factory();
-         tiles = List.of(Color.BLUE, Color.BLUE, Color.YELLOW, Color.RED);
+         tiles = List.of(TileColor.BLUE, TileColor.BLUE, TileColor.YELLOW, TileColor.RED);
     }
 
     // In each round there are no more than 4 tiles on a factory
@@ -35,10 +35,10 @@ public class FactoryTest {
     @Test
     public void testPopTiles() {
         factory.addTiles(tiles);
-        List<Tile> blueTiles = factory.popTiles(Color.BLUE);
+        List<Tile> blueTiles = factory.popTiles(TileColor.BLUE);
         assertEquals(2, blueTiles.size());
-        assertEquals(Color.BLUE, blueTiles.get(0));
-        assertEquals(Color.BLUE, blueTiles.get(1));
+        assertEquals(TileColor.BLUE, blueTiles.get(0));
+        assertEquals(TileColor.BLUE, blueTiles.get(1));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class FactoryTest {
     @Test
     public void testHasTiles() {
         factory.addTiles(tiles);
-        assertTrue(factory.hasTiles(Color.RED));
-        assertFalse(factory.hasTiles(Color.BLACK));
+        assertTrue(factory.hasTiles(TileColor.RED));
+        assertFalse(factory.hasTiles(TileColor.BLACK));
     }
 }

@@ -1,9 +1,5 @@
 package dataobjects;
 
-import model.Color;
-
-import java.util.Objects;
-
 public class Location implements DataObject {
     private LocationType type;
     private int index;

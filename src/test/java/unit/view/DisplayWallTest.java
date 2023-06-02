@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Color;
+import model.TileColor;
 import model.Tile;
 import view.DisplayWall;
 
@@ -18,12 +18,12 @@ public class DisplayWallTest {
 
     public static List<List<Tile>> wallPattern() {
         List<List<Tile>> wallTemplate = new ArrayList<List<Tile>>();
-        List<Color> colors = Arrays.asList(Color.values());
-        for (int i = 0; i < colors.size(); i++) {
+        List<TileColor> tileColors = Arrays.asList(TileColor.values());
+        for (int i = 0; i < tileColors.size(); i++) {
             List<Tile> wallLine = new ArrayList<Tile>();
-            for (int j = 0; j < colors.size(); j++) {
-                Color color = colors.get((j - i + colors.size()) % colors.size());
-                wallLine.add(color);
+            for (int j = 0; j < tileColors.size(); j++) {
+                TileColor tileColor = tileColors.get((j - i + tileColors.size()) % tileColors.size());
+                wallLine.add(tileColor);
             }
             wallTemplate.add(wallLine);
         }
@@ -49,7 +49,7 @@ public class DisplayWallTest {
 
     @Test
     public void testsingleTilePatternLine() {
-        displayWall.addTile(0, Color.RED);
+        displayWall.addTile(0, TileColor.RED);
         assertEquals("Rbcby\nyrbcb\nbyrbc\ncbyrb\nbcbyr", displayWall.toString());
         List<String> result = displayWall.toStringList();
         assertEquals(5, result.size());
@@ -63,10 +63,10 @@ public class DisplayWallTest {
 
     @Test
     public void testMultipleTilePatternLine() {
-        displayWall.addTile(0, Color.RED);
-        displayWall.addTile(2, Color.BLUE);
-        displayWall.addTile(0, Color.BLACK);
-        displayWall.addTile(1, Color.BLACK);
+        displayWall.addTile(0, TileColor.RED);
+        displayWall.addTile(2, TileColor.BLUE);
+        displayWall.addTile(0, TileColor.BLACK);
+        displayWall.addTile(1, TileColor.BLACK);
 
         assertEquals("RbcBy\nyrbcB\nbyrBc\ncbyrb\nbcbyr", displayWall.toString());
         List<String> result = displayWall.toStringList();
@@ -80,11 +80,11 @@ public class DisplayWallTest {
 
     @Test
     public void testRemoveTilePatternLine() {
-        displayWall.addTile(0, Color.RED);
-        displayWall.addTile(2, Color.BLUE);
-        displayWall.addTile(0, Color.BLACK);
-        displayWall.addTile(1, Color.BLACK);
-        displayWall.removeTile(0, Color.BLACK);
+        displayWall.addTile(0, TileColor.RED);
+        displayWall.addTile(2, TileColor.BLUE);
+        displayWall.addTile(0, TileColor.BLACK);
+        displayWall.addTile(1, TileColor.BLACK);
+        displayWall.removeTile(0, TileColor.BLACK);
 
         assertEquals("Rbcby\nyrbcB\nbyrBc\ncbyrb\nbcbyr", displayWall.toString());
         List<String> result = displayWall.toStringList();
@@ -98,7 +98,7 @@ public class DisplayWallTest {
 
     @Test
     public void testClearPatternLine() {
-        displayWall.addTile(0, Color.RED);
+        displayWall.addTile(0, TileColor.RED);
         displayWall.clear();
         assertEquals("rbcby\nyrbcb\nbyrbc\ncbyrb\nbcbyr", displayWall.toString());
         List<String> result = displayWall.toStringList();

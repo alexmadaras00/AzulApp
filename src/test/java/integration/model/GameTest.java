@@ -141,8 +141,8 @@ public class GameTest {
 
     @Test
     public void testEndRoundInitial() {
-        game.getPlayers().get(1).getBoard().getPatternLine().addTiles(2, List.of(Color.RED, Color.RED, Color.RED));
-        game.getPlayers().get(1).getBoard().getFloorLine().addTiles(List.of(PlayerTile.getInstance(), Color.BLUE));
+        game.getPlayers().get(1).getBoard().getPatternLine().addTiles(2, List.of(TileColor.RED, TileColor.RED, TileColor.RED));
+        game.getPlayers().get(1).getBoard().getFloorLine().addTiles(List.of(PlayerTile.getInstance(), TileColor.BLUE));
         game.startGame();
         game.startRound();
         List<ScoreUpdate> scoreUpdates = new ArrayList<>();
@@ -166,8 +166,8 @@ public class GameTest {
 
     @Test
     public void testEndRoundDuringGame() {
-        game.getPlayers().get(1).getBoard().getPatternLine().addTiles(2, List.of(Color.RED, Color.RED, Color.RED));
-        game.getPlayers().get(1).getBoard().getFloorLine().addTiles(List.of(PlayerTile.getInstance(), Color.BLUE));
+        game.getPlayers().get(1).getBoard().getPatternLine().addTiles(2, List.of(TileColor.RED, TileColor.RED, TileColor.RED));
+        game.getPlayers().get(1).getBoard().getFloorLine().addTiles(List.of(PlayerTile.getInstance(), TileColor.BLUE));
         game.startGame();
         game.startRound();
         game.endRound();
@@ -223,7 +223,7 @@ public class GameTest {
     private void assertScoreUpdates(List<ScoreUpdate> scoreUpdates, RoundUpdate roundUpdate) {
         game.getPlayers().forEach(player -> {
             List<Integer> completedRows = player.getBoard().getPatternLine().completedRows();
-            assertEquals(player.getBoard().wallTilting(), game.getBox());
+            assertEquals(player.getBoard().wallTilling(), game.getBox());
             ScoreUpdate scoreUpdatePlayer = roundUpdate.getScoreUpdates().stream().filter(scoreUpdate -> scoreUpdate.getPlayer().getIdentifier() == player.getIdentifier()).toList().get(0);
             assertEquals(player.getIdentifier(), scoreUpdatePlayer.getPlayer().getIdentifier());
             assertEquals(player.getBoard().getScoreChanges(), scoreUpdatePlayer.getScoreChanges());
@@ -287,67 +287,67 @@ public class GameTest {
 
     @Test
     public void testPerformMoveFactoryPatternLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
-        assertNotNull(game.performMoveFactoryPatternLine(tiles, 1, 2, Color.RED));
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
+        assertNotNull(game.performMoveFactoryPatternLine(tiles, 1, 2, TileColor.RED));
     }
 
     @Test
     public void testPerformMoveFactoryFloorLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
         assertNotNull(game.performMoveFactoryFloorLine(tiles, 1));
 
     }
 
     @Test
     public void testPerformMoveMiddlePatternLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
-        assertNotNull(game.performMoveMiddlePatternLine(tiles, 1, (Color) tiles.get(0)));
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
+        assertNotNull(game.performMoveMiddlePatternLine(tiles, 1, (TileColor) tiles.get(0)));
     }
 
     @Test
     public void testPerformMoveMiddleFloorLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
         assertNotNull(game.performMoveMiddleFloorLine(tiles));
 
     }
 
     @Test
     public void testPerformMovePatternLineFloorLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
-        assertNotNull(game.performMovePatternLineFloorLine(tiles, 2, Color.RED));
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
+        assertNotNull(game.performMovePatternLineFloorLine(tiles, 2, TileColor.RED));
 
     }
 
     @Test
     public void testIsValidMoveFactoryPatternLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
-        assertFalse(game.isValidMoveFactoryPatternLine(tiles, 1, 2, Color.RED));
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
+        assertFalse(game.isValidMoveFactoryPatternLine(tiles, 1, 2, TileColor.RED));
     }
 
     @Test
     public void testIsValidMoveFactoryFloorLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
         assertFalse(game.isValidMoveFactoryFloorLine(tiles, 1));
 
     }
 
     @Test
     public void testIsValidMoveMiddlePatternLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
-        assertFalse(game.isValidMoveMiddlePatternLine(tiles, 1, (Color) tiles.get(0)));
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
+        assertFalse(game.isValidMoveMiddlePatternLine(tiles, 1, (TileColor) tiles.get(0)));
     }
 
     @Test
     public void testIsValidMoveMiddleFloorLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
         assertFalse(game.isValidMoveMiddleFloorLine(tiles));
 
     }
 
     @Test
     public void testIsValidMovePatternLineFloorLine() {
-        List<Tile> tiles = List.of(Color.RED, Color.RED);
-        assertFalse(game.isValidMovePatternLineFloorLine(tiles, 2, Color.RED));
+        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
+        assertFalse(game.isValidMovePatternLineFloorLine(tiles, 2, TileColor.RED));
 
     }
 

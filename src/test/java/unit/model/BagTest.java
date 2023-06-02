@@ -1,7 +1,7 @@
 package unit.model;
 
 import model.Bag;
-import model.Color;
+import model.TileColor;
 import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,10 +21,10 @@ public class BagTest {
     public void setUp() {
         bag = new Bag();
         tiles = new ArrayList<>();
-        tiles.add(Color.BLUE);
-        tiles.add(Color.BLUE);
-        tiles.add(Color.YELLOW);
-        tiles.add(Color.RED);
+        tiles.add(TileColor.BLUE);
+        tiles.add(TileColor.BLUE);
+        tiles.add(TileColor.YELLOW);
+        tiles.add(TileColor.RED);
     }
 
     @Test
@@ -37,13 +37,13 @@ public class BagTest {
     @Test
     public void testAddTiles() {
         List<Tile> newTiles = new ArrayList<>();
-        newTiles.add(Color.CYAN);
-        newTiles.add(Color.RED);
+        newTiles.add(TileColor.CYAN);
+        newTiles.add(TileColor.RED);
         bag.addTiles(tiles);
         bag.addTiles(newTiles);
         assertEquals(6, bag.getTiles().size());
-        assertEquals(Color.CYAN, bag.getTiles().get(4));
-        assertEquals(Color.RED, bag.getTiles().get(5));
+        assertEquals(TileColor.CYAN, bag.getTiles().get(4));
+        assertEquals(TileColor.RED, bag.getTiles().get(5));
     }
     @Test
     public void testPopTiles() {
@@ -56,12 +56,12 @@ public class BagTest {
         //When popping the tiles (poppedList)
         List<Tile> poppedTiles = bag.popTiles(count);
         assertEquals(1, tilesBag.size());
-        assertEquals(Color.BLUE, tilesBag.get(tilesBag.size() - 1));
+        assertEquals(TileColor.BLUE, tilesBag.get(tilesBag.size() - 1));
         //After popping the tiles
         assertEquals(3, poppedTiles.size());
-        assertEquals(Color.RED, poppedTiles.get(0));
-        assertEquals(Color.YELLOW, poppedTiles.get(1));
-        assertEquals(Color.BLUE, poppedTiles.get(2));
+        assertEquals(TileColor.RED, poppedTiles.get(0));
+        assertEquals(TileColor.YELLOW, poppedTiles.get(1));
+        assertEquals(TileColor.BLUE, poppedTiles.get(2));
     }
 
 

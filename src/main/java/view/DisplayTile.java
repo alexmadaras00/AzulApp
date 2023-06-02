@@ -3,7 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Color;
+import model.TileColor;
 import model.PlayerTile;
 import model.Tile;
 
@@ -23,7 +23,7 @@ public class DisplayTile implements Display {
 
     @Override
     public String toString() {
-        if (tile instanceof Color) {
+        if (tile instanceof TileColor) {
             String character = tile.toString().substring(0, 1);
             if (!isFilled) {
                 character = character.toLowerCase();

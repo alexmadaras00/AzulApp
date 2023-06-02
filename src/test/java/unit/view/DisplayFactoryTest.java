@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.Color;
+import model.TileColor;
 import view.DisplayFactory;
 
 public class DisplayFactoryTest {
@@ -28,7 +28,7 @@ public class DisplayFactoryTest {
 
     @Test
     public void testsingleTileFactory() {
-        displayFactory.addTile(Color.RED);
+        displayFactory.addTile(TileColor.RED);
         assertEquals("R_\n__", displayFactory.toString());
         List<String> result = displayFactory.toStringList();
         assertEquals(2, result.size());
@@ -39,9 +39,9 @@ public class DisplayFactoryTest {
 
     @Test
     public void testMultipleTileFactory() {
-        displayFactory.addTile(Color.RED);
-        displayFactory.addTile(Color.CYAN);
-        displayFactory.addTile(Color.BLUE);
+        displayFactory.addTile(TileColor.RED);
+        displayFactory.addTile(TileColor.CYAN);
+        displayFactory.addTile(TileColor.BLUE);
 
         assertEquals("RB\nC_", displayFactory.toString());
         List<String> result = displayFactory.toStringList();
@@ -52,11 +52,11 @@ public class DisplayFactoryTest {
 
     @Test
     public void testRemoveTileFactory() {
-        displayFactory.addTile(Color.RED);
-        displayFactory.addTile(Color.CYAN);
-        displayFactory.addTile(Color.RED);
+        displayFactory.addTile(TileColor.RED);
+        displayFactory.addTile(TileColor.CYAN);
+        displayFactory.addTile(TileColor.RED);
         assertEquals("RR\nC_", displayFactory.toString());
-        displayFactory.removeTiles(Color.RED);
+        displayFactory.removeTiles(TileColor.RED);
         assertEquals("C_\n__", displayFactory.toString());
         List<String> result = displayFactory.toStringList();
         assertEquals(2, result.size());
@@ -66,7 +66,7 @@ public class DisplayFactoryTest {
 
     @Test
     public void testClearFactory() {
-        displayFactory.addTile(Color.RED);
+        displayFactory.addTile(TileColor.RED);
         displayFactory.clear();
         assertEquals("__\n__", displayFactory.toString());
         List<String> result = displayFactory.toStringList();

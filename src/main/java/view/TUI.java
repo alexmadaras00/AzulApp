@@ -1,7 +1,6 @@
 package view;
 
-import dataobjects.GameState;
-import model.Color;
+import model.TileColor;
 import model.Tile;
 
 public class TUI implements UI {
@@ -22,8 +21,8 @@ public class TUI implements UI {
 
     @Override
     public void clearFactory(int factory) {
-        for (Color color : Color.values()) {
-            gameState.factories.get(factory).removeTiles(color);
+        for (TileColor tileColor : TileColor.values()) {
+            gameState.factories.get(factory).removeTiles(tileColor);
         }
     }
 
@@ -39,8 +38,8 @@ public class TUI implements UI {
 
     @Override
     public void clearMiddle() {
-        for (Color color : Color.values()) {
-            gameState.middle.removeTiles(color);
+        for (TileColor tileColor : TileColor.values()) {
+            gameState.middle.removeTiles(tileColor);
         }
     }
 

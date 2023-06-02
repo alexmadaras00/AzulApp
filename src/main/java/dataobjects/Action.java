@@ -1,10 +1,10 @@
 package dataobjects;
 
-import model.Color;
+import model.TileColor;
 
 public class Action implements DataObject {
     private ActionType type;
-    private Color color;
+    private TileColor tileColor;
     private int amount;
     private Location from;
     private Location to;
@@ -20,12 +20,12 @@ public class Action implements DataObject {
         this.type = type;
     }
 
-    public Color getColor() {
-        return color;
+    public TileColor getColor() {
+        return tileColor;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(TileColor tileColor) {
+        this.tileColor = tileColor;
     }
 
     public int getAmount() {

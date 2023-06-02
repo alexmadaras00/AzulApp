@@ -1,6 +1,5 @@
 package model;
 
-import controller.Controller;
 import dataobjects.*;
 
 import java.util.ArrayList;
@@ -81,11 +80,11 @@ public class Game implements Model {
     private void fillBag() {
         for (int i = 0; i < 20; i++) {
             List<Tile> colorTiles = new ArrayList<>();
-            colorTiles.add(Color.RED);
-            colorTiles.add(Color.BLACK);
-            colorTiles.add(Color.BLUE);
-            colorTiles.add(Color.CYAN);
-            colorTiles.add(Color.YELLOW);
+            colorTiles.add(TileColor.RED);
+            colorTiles.add(TileColor.BLACK);
+            colorTiles.add(TileColor.BLUE);
+            colorTiles.add(TileColor.CYAN);
+            colorTiles.add(TileColor.YELLOW);
             bag.addTiles(colorTiles);
         }
     }
@@ -217,14 +216,12 @@ public class Game implements Model {
                 break;
             }
         }
-
         return roundUpdate;
     }
 
     private void wallTilting(List<Action> updates) {
-
         this.players.forEach(player -> {
-            List<Tile> remainingTiles = player.getBoard().wallTilting();
+            List<Tile> remainingTiles = player.getBoard().wallTilling();
             box.addAll(remainingTiles);
             Action actionFloorLine = new Action();
             Location floorLineLocation = new Location();
@@ -236,7 +233,6 @@ public class Game implements Model {
             updates.add(actionFloorLine);
         });
     }
-
     private void updateScore(List<ScoreUpdate> scoreUpdates) {
         players.forEach(player -> {
             ScoreUpdate scoreUpdate = new ScoreUpdate();
@@ -248,9 +244,7 @@ public class Game implements Model {
             scoreUpdate.setNewScore(player.getBoard().getScore());
             scoreUpdates.add(scoreUpdate);
         });
-
     }
-
     private void assignNextStartingPlayer(PlayerData nextPlayerData) {
         for (int i = 0; i < players.size(); i++) {
             List<Tile> floorLineTiles = players.get(i).getBoard().getFloorLine().getCopyTiles();
@@ -261,7 +255,6 @@ public class Game implements Model {
             }
         }
     }
-
     public GameState terminateGame() {
         GameState gameState = new GameState();
         List<List<Tile>> factoryTiles = new ArrayList<>();
@@ -276,7 +269,6 @@ public class Game implements Model {
 
         return gameState;
     }
-
     @Override
     public GameState endGame() {
         GameState gameState = new GameState();
@@ -290,7 +282,6 @@ public class Game implements Model {
         isPlaying = false;
         return gameState;
     }
-
     @Override
     public boolean isCurrentPlayer(PlayerData player) {
         for (Player p : players) {
@@ -299,7 +290,6 @@ public class Game implements Model {
         }
         return false;
     }
-
     @Override
     public PlayerData addPlayer(PlayerData playerData) {
         return new PlayerData();
@@ -314,34 +304,32 @@ public class Game implements Model {
     }
 
     @Override
-    public MoveUpdate performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color
-            color) {
+    public DataObject performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor
+            tileColor) {
         return new MoveUpdate();
     }
 
     @Override
-    public MoveUpdate performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
+    public DataObject performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
+        return new MoveUpdate();
+    }
+    @Override
+    public DataObject performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
+        return new MoveUpdate();
+    }
+    @Override
+    public DataObject performMoveMiddleFloorLine(List<Tile> tiles) {
         return new MoveUpdate();
     }
 
     @Override
-    public MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color) {
+    public DataObject performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
         return new MoveUpdate();
     }
 
     @Override
-    public MoveUpdate performMoveMiddleFloorLine(List<Tile> tiles) {
-        return new MoveUpdate();
-    }
-
-    @Override
-    public MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color) {
-        return new MoveUpdate();
-    }
-
-    @Override
-    public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, Color
-            color) {
+    public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor
+            tileColor) {
         return false;
     }
 
@@ -351,7 +339,7 @@ public class Game implements Model {
     }
 
     @Override
-    public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, Color color) {
+    public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
         return false;
     }
 
@@ -361,7 +349,7 @@ public class Game implements Model {
     }
 
     @Override
-    public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, Color color) {
+    public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
         return false;
     }
 

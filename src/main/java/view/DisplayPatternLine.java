@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import model.Color;
+import model.TileColor;
 import model.Tile;
 
 public class DisplayPatternLine implements Display {
     private List<List<DisplayTile>> tiles;
-    private List<Color> colors;
+    private List<TileColor> tileColors;
 
     public DisplayPatternLine() {
-        colors = Arrays.asList(Color.values());
+        tileColors = Arrays.asList(TileColor.values());
         clear();
     }
 
@@ -30,7 +30,7 @@ public class DisplayPatternLine implements Display {
 
     public void clear() {
         tiles = new ArrayList<List<DisplayTile>>();
-        for (int i = 0; i < colors.size(); i++) {
+        for (int i = 0; i < tileColors.size(); i++) {
             List<DisplayTile> patternLine = new ArrayList<DisplayTile>();
             tiles.add(patternLine);
         }
@@ -49,7 +49,7 @@ public class DisplayPatternLine implements Display {
     @Override
     public List<String> toStringList() {
         List<List<DisplayTile>> newTiles = new ArrayList<List<DisplayTile>>(tiles);
-        for (int i = 0; i < colors.size(); i++) {
+        for (int i = 0; i < tileColors.size(); i++) {
             Tile type = newTiles.get(i).isEmpty() ? null : newTiles.get(i).get(0).tile;
             for (int j = tiles.get(i).size(); j < i + 1; j++) {
                 newTiles.get(i).add(new DisplayTile(type, false));

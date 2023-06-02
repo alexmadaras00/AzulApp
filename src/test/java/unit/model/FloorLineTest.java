@@ -1,6 +1,6 @@
 package unit.model;
 
-import model.Color;
+import model.TileColor;
 import model.FloorLine;
 import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,17 +18,17 @@ public class FloorLineTest {
     public void setUp() {
         floorLine = new FloorLine();
         excessTiles = new ArrayList<>();
-        excessTiles.add(Color.RED);
-        excessTiles.add(Color.RED);
-        excessTiles.add(Color.RED);
-        excessTiles.add(Color.RED);
+        excessTiles.add(TileColor.RED);
+        excessTiles.add(TileColor.RED);
+        excessTiles.add(TileColor.RED);
+        excessTiles.add(TileColor.RED);
         floorLine.addTiles(excessTiles);
     }
 
     @Test
     void ShouldBeImmutable() {
         List<Tile> copiedTiles = floorLine.getCopyTiles();
-        assertThrows(UnsupportedOperationException.class,()->copiedTiles.set(4, Color.RED));
+        assertThrows(UnsupportedOperationException.class,()->copiedTiles.set(4, TileColor.RED));
     }
 
 
@@ -42,10 +42,10 @@ public class FloorLineTest {
     @Test
     public void testFullFloorLine(){
         excessTiles = new ArrayList<>();
-        excessTiles.add(Color.BLUE);
-        excessTiles.add(Color.BLUE);
-        excessTiles.add(Color.BLUE);
-        excessTiles.add(Color.BLUE);
+        excessTiles.add(TileColor.BLUE);
+        excessTiles.add(TileColor.BLUE);
+        excessTiles.add(TileColor.BLUE);
+        excessTiles.add(TileColor.BLUE);
         assertTrue(floorLine.addTiles(excessTiles).size()>0);
         assertTrue(floorLine.getCopyTiles().size() <= 7);
         assertTrue(floorLine.getScore()>= -14);

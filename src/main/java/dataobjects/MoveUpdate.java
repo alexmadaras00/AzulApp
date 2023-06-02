@@ -1,7 +1,5 @@
 package dataobjects;
 
-import model.Color;
-
 import java.util.List;
 
 public class MoveUpdate implements DataObject {

@@ -1,6 +1,6 @@
 package unit.model;
 
-import model.Color;
+import model.TileColor;
 import model.Middle;
 import model.Tile;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MiddleTest {
     static Middle middle;
-    static List<Tile> tiles = List.of(Color.BLUE, Color.YELLOW, Color.YELLOW);
+    static List<Tile> tiles = List.of(TileColor.BLUE, TileColor.YELLOW, TileColor.YELLOW);
 
     @Test
     public void testGetAllTiles(){
@@ -26,10 +26,10 @@ public class MiddleTest {
     public void testGetTiles() {
         middle = new Middle();
         middle.addTiles(tiles);
-        List<Tile> yellowTiles = middle.getTiles(Color.YELLOW);
+        List<Tile> yellowTiles = middle.getTiles(TileColor.YELLOW);
         assertEquals(2,yellowTiles.size());
-        assertEquals(Color.YELLOW,yellowTiles.get(0));
-        assertEquals(Color.YELLOW,yellowTiles.get(1));
+        assertEquals(TileColor.YELLOW,yellowTiles.get(0));
+        assertEquals(TileColor.YELLOW,yellowTiles.get(1));
     }
     @Test
     public void testAddTiles(){
@@ -38,10 +38,10 @@ public class MiddleTest {
         middle.addTiles(tiles);
         assertTrue(middle.getAllTiles().size()<=4);
         List<Tile> newTiles = new ArrayList<>();
-        newTiles.add(Color.RED);
+        newTiles.add(TileColor.RED);
         middle.addTiles(newTiles);
         assertEquals(4,middle.getAllTiles().size());
-        assertEquals(Color.RED,middle.getAllTiles().get(3));
+        assertEquals(TileColor.RED,middle.getAllTiles().get(3));
         assertTrue(middle.getAllTiles().size()<=4);
     }
 }
