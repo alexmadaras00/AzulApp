@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,30 +54,51 @@ public class PlayerBoardTest {
 
     @Test
     public void testPerformMovePatternLine() {
-        int rowIndex = 0;
         TileColor blueTile = TileColor.BLUE;
-        List<Tile> tiles = List.of(blueTile);
-        assertTrue(playerBoard.getWall().canAddTile(rowIndex, blueTile));
-        assertTrue(playerBoard.getPatternLine().canAddTile(rowIndex, blueTile));
-        assertTrue(playerBoard.canAddTypePatternLine(rowIndex, blueTile));
-        playerBoard.performMovePatternLine(rowIndex, tiles);
-        assertEquals(1, playerBoard.getPatternLine().getCopyTable().get(rowIndex).size());
+        TileColor redTile = TileColor.RED;
+        assertExceedingTiles(redTile);
+        assertNoExceedingTiles(blueTile);
+    }
+    private void assertExceedingTiles(TileColor tile) {
+        List<Tile> extraTiles = List.of(tile, tile, tile, tile, tile, tile);
+        List<Tile> patternLineExcessTiles = playerBoard.performMovePatternLine(0, extraTiles);
+        assertEquals(5, patternLineExcessTiles.size() );
+
+
+        List<Tile> patternLineExcessTiles2 = playerBoard.performMovePatternLine(1, extraTiles);
+        assertEquals(4, patternLineExcessTiles2.size() );
+
+
+        List<Tile> patternLineExcessTiles3 = playerBoard.performMovePatternLine(2, extraTiles);
+        assertEquals(3, patternLineExcessTiles3.size() );
+
+        List<Tile> patternLineExcessTiles4 = playerBoard.performMovePatternLine(3, extraTiles);
+        assertEquals(2, patternLineExcessTiles4.size() );
+
+        List<Tile> patternLineExcessTiles5 = playerBoard.performMovePatternLine(4, extraTiles);
+        assertEquals(1, patternLineExcessTiles5.size() );
+
+
+    }
+
+    private void assertNoExceedingTiles(TileColor tile) {
+        playerBoard.getPatternLine().clearTiles(0);
+
+        List<Tile> tiles = List.of(tile);
+        assertTrue(playerBoard.getWall().canAddTile(0, tile));
+        assertTrue(playerBoard.getPatternLine().canAddTile(0, tile));
+        assertTrue(playerBoard.canAddTypePatternLine(0, tile));
+        List<Tile> patternLineExcessTiles = playerBoard.performMovePatternLine(0, tiles);
+        assertEquals(1, playerBoard.getPatternLine().getCopyTable().get(0).size());
+        assertEquals(0, patternLineExcessTiles.size());
         assertEquals(tiles, playerBoard.getPatternLine().getCopyTable().get(0));
-        assertFalse(playerBoard.getPatternLine().canAddTile(rowIndex, blueTile));
-        assertFalse(playerBoard.canAddTypePatternLine(rowIndex, blueTile));
-        try {
-            assertEquals(playerBoard.getPatternLine().addTiles(0, tiles), playerBoard.performMovePatternLine(0, tiles));
-            fail("Expected exception not thrown");
-        } catch (ExceptionInvalidOperation e) {
-            // Assert that the exception message is correct
-            assertEquals("Pattern Line Invalid move. Cannot add a tile in the current format.", e.getMessage());
-        }
+        assertFalse(playerBoard.getPatternLine().canAddTile(0, tile));
+        assertFalse(playerBoard.canAddTypePatternLine(0, tile));
     }
 
     @Test
     public void testPerformMoveFloorLine() {
         TileColor redTile = TileColor.RED;
-        TileColor yellowTile = TileColor.YELLOW;
         List<Tile> tiles = Arrays.asList(redTile, redTile, redTile, redTile, redTile, redTile, redTile);
         assertTrue(playerBoard.getFloorLine().getCopyTiles().size() <= 7);
         playerBoard.performMoveFloorLine(tiles);
@@ -118,6 +140,11 @@ public class PlayerBoardTest {
     }
 
     @Test
+    public void testHasFufliffledFinalCondition() {
+        assertEquals(playerBoard.hasFulfilledEndCondition(), playerBoard.getWall().hasCompleteRow());
+    }
+
+    @Test
     public void testAddFinalScores() {
         //Init
         int scoreDifference = 0, initialScore = playerBoard.getScore();
@@ -137,9 +164,12 @@ public class PlayerBoardTest {
         assertEquals(1, scoreChangeList.size());
         //Checking if the score is indeed updated
         ////score = row: 2, color completion, column: 7, color :10
-        for (ScoreChange sc : scoreChangeList)
-            scoreDifference += sc.getScoreDifference();
-        assertEquals(2, initialScore + scoreDifference);
+        AtomicInteger wallScore = new AtomicInteger();
+        int floorLineScore = playerBoard.getFloorLine().getScore();
+        scoreChangeList.forEach(scoreChange -> wallScore.addAndGet(scoreChange.getScoreDifference()));
+        int finalScore = playerBoard.getScore();
+        assertEquals(wallScore.get() - floorLineScore, finalScore);
+        assertNotEquals(initialScore, finalScore);
     }
 
     @Test
@@ -148,7 +178,6 @@ public class PlayerBoardTest {
         playerBoardState.setWall(playerBoard.getWall().getCopyTable());
         playerBoardState.setFloorLine(playerBoard.getFloorLine().getCopyTiles());
         playerBoardState.setPatternLine(playerBoard.getPatternLine().getCopyTable());
-        //playerBoardState.setScoreChanges(playerBoard.getScoreChanges());
         playerBoardState.setScore(playerBoard.getScore());
         assertNotNull(playerBoardState);
         assertEquals(playerBoardState, playerBoard.toObject());

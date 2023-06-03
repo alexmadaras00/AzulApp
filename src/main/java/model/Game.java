@@ -1,6 +1,7 @@
 package model;
 
 import dataobjects.*;
+import utils.ExceptionGameStart;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,14 +68,20 @@ public class Game implements Model {
 
     @Override
     public GameState startGame() {
+        if (isValidStartGame()) {
+            PlayerTile startingPlayerTile = PlayerTile.getInstance();
+            GameState gameState = new GameState();
+            Collections.shuffle(turnOrder);
+            middle.getAllTiles().add(startingPlayerTile);
+            fillBag();
+            initFactories();
+            initGameState(gameState);
+            isPlaying = true;
+            gamePhase = GamePhase.PREPARING_ROUND;
+            return gameState;
+        } else
+            throw new ExceptionGameStart("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.");
 
-        GameState gameState = new GameState();
-        Collections.shuffle(turnOrder);
-        fillBag();
-        initFactories();
-        initGameState(gameState);
-        isPlaying = true;
-        return gameState;
     }
 
     private void fillBag() {
@@ -110,8 +117,8 @@ public class Game implements Model {
             factoryTiles.add(factory.getAllTiles());
         });
         PlayerData player1Data = new PlayerData();
-        player1Data.setName(players.get(0).getName());
-        player1Data.setIdentifier(players.get(0).getIdentifier());
+        player1Data.setName(turnOrder.get(0).getName());
+        player1Data.setIdentifier(turnOrder.get(0).getIdentifier());
         initPlayerBoardStates(playerBoardStates);
         gameState.setFactories(factoryTiles);
         gameState.setMiddle(middle.getAllTiles());
@@ -136,11 +143,13 @@ public class Game implements Model {
 
     @Override
     public RoundUpdate startRound() {
-
+        gamePhase = GamePhase.PREPARING_ROUND;
         RoundUpdate roundUpdate = new RoundUpdate();
         MoveUpdate moveUpdate = new MoveUpdate();
         PlayerData playerData = new PlayerData();
+        List<Action> updates = new ArrayList<>();
 
+        fillFactories(updates);
         playerData.setIdentifier(turnOrder.get(0).getIdentifier());
         playerData.setName(turnOrder.get(0).getName());
         PlayerData nextPlayerData = new PlayerData();
@@ -151,6 +160,7 @@ public class Game implements Model {
         moveUpdate.setNextPlayer(nextPlayerData);
 
         roundUpdate.setMove(moveUpdate);
+        roundUpdate.setUpdates(updates);
 
         gamePhase = GamePhase.FACTORY_OFFER;
         round += 1;
@@ -180,38 +190,33 @@ public class Game implements Model {
     @Override
     public RoundUpdate endRound() {
         RoundUpdate roundUpdate = new RoundUpdate();
-        Tile startingPlayerTile = PlayerTile.getInstance();
         List<ScoreUpdate> scoreUpdates = new ArrayList<>();
         List<Action> updates = new ArrayList<>();
         List<Action> steps = new ArrayList<>();
         MoveUpdate moveUpdate = new MoveUpdate();
         PlayerData currentPlayerData = new PlayerData();
         PlayerData nextPlayerData = new PlayerData();
-        if (round > 1) {
-            updateScore(scoreUpdates);
-        }
 
+        updateScore(scoreUpdates);
         currentPlayerData.setName(turnOrder.get(turnOrder.size() - 1).getName());
         currentPlayerData.setIdentifier(turnOrder.get(turnOrder.size() - 1).getIdentifier());
         moveUpdate.setPlayer(currentPlayerData);
         assignNextStartingPlayer(nextPlayerData);
         moveUpdate.setNextPlayer(nextPlayerData);
-
-        wallTilting(updates);
+        wallTilling(updates);
         moveUpdate.setSteps(steps);
 
-        gamePhase = GamePhase.PREPARING_ROUND;
+        gamePhase = GamePhase.WALL_TILLING;
         middle.getAllTiles().clear();
         box.clear();
-        middle.addTiles(List.of(startingPlayerTile));
+        middle.getAllTiles().clear();
 
-        fillFactories(updates);
         roundUpdate.setScoreUpdates(scoreUpdates);
         roundUpdate.setMove(moveUpdate);
         roundUpdate.setUpdates(updates);
 
         for (Player p : players) {
-            if (p.getBoard().getWall().hasCompleteRow()) {
+            if (p.getBoard().hasFulfilledEndCondition()) {
                 endGame();
                 break;
             }
@@ -219,7 +224,7 @@ public class Game implements Model {
         return roundUpdate;
     }
 
-    private void wallTilting(List<Action> updates) {
+    private void wallTilling(List<Action> updates) {
         this.players.forEach(player -> {
             List<Tile> remainingTiles = player.getBoard().wallTilling();
             box.addAll(remainingTiles);
@@ -233,8 +238,10 @@ public class Game implements Model {
             updates.add(actionFloorLine);
         });
     }
+
     private void updateScore(List<ScoreUpdate> scoreUpdates) {
         players.forEach(player -> {
+            player.getBoard().addFinalScores();
             ScoreUpdate scoreUpdate = new ScoreUpdate();
             PlayerData playerData = new PlayerData();
             scoreUpdate.setScoreChanges(player.getBoard().getScoreChanges());
@@ -245,6 +252,7 @@ public class Game implements Model {
             scoreUpdates.add(scoreUpdate);
         });
     }
+
     private void assignNextStartingPlayer(PlayerData nextPlayerData) {
         for (int i = 0; i < players.size(); i++) {
             List<Tile> floorLineTiles = players.get(i).getBoard().getFloorLine().getCopyTiles();
@@ -255,6 +263,8 @@ public class Game implements Model {
             }
         }
     }
+
+    @Override
     public GameState terminateGame() {
         GameState gameState = new GameState();
         List<List<Tile>> factoryTiles = new ArrayList<>();
@@ -269,19 +279,44 @@ public class Game implements Model {
 
         return gameState;
     }
+
     @Override
     public GameState endGame() {
         GameState gameState = new GameState();
         List<List<Tile>> factoryTiles = new ArrayList<>();
-        factories.forEach(factory -> {
-            factoryTiles.add(factory.getAllTiles());
-        });
-        gameState.setFactories(factoryTiles);
+
         gameState.setMiddle(middle.getAllTiles());
+
+        factories.forEach(factory -> factoryTiles.add(factory.getAllTiles()));
+        gameState.setFactories(factoryTiles);
+        updateFinalScores(gameState);
+
         gamePhase = GamePhase.FINISHED;
         isPlaying = false;
         return gameState;
     }
+
+    private void updateFinalScores(GameState gameState) {
+        PlayerData playerDataCompleteRow = new PlayerData();
+        List<PlayerBoardState> playerBoards = new ArrayList<>();
+        players.forEach(player -> {
+            PlayerBoardState playerBoardState = player.getBoard().toObject();
+            if (player.getBoard().getWall().hasCompleteRow()) {
+                playerDataCompleteRow.setIdentifier(player.getIdentifier());
+                playerDataCompleteRow.setName(player.getName());
+                playerBoardState.setPlayer(playerDataCompleteRow);
+            } else {
+                PlayerData playerDataOtherPlayers = new PlayerData();
+                playerDataOtherPlayers.setIdentifier(player.getIdentifier());
+                playerDataOtherPlayers.setName(player.getName());
+                playerBoardState.setPlayer(playerDataOtherPlayers);
+            }
+            playerBoards.add(playerBoardState);
+        });
+        gameState.setCurrentPlayer(playerDataCompleteRow);
+        gameState.setPlayerBoards(playerBoards);
+    }
+
     @Override
     public boolean isCurrentPlayer(PlayerData player) {
         for (Player p : players) {
@@ -290,6 +325,7 @@ public class Game implements Model {
         }
         return false;
     }
+
     @Override
     public PlayerData addPlayer(PlayerData playerData) {
         return new PlayerData();
@@ -313,10 +349,12 @@ public class Game implements Model {
     public DataObject performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
         return new MoveUpdate();
     }
+
     @Override
     public DataObject performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
         return new MoveUpdate();
     }
+
     @Override
     public DataObject performMoveMiddleFloorLine(List<Tile> tiles) {
         return new MoveUpdate();

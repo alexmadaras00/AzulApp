@@ -1,12 +1,12 @@
 package model;
 
 import dataobjects.*;
+import utils.ExceptionGameStart;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 
 public interface Model extends Executable {
-    GameState startGame();
+    GameState startGame() throws ExceptionGameStart;
     RoundUpdate startRound();
     RoundUpdate endRound();
     GameState terminateGame();

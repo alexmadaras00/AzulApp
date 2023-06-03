@@ -6,14 +6,14 @@ import dataobjects.DataObjectExecutorFactory;
 import dataobjects.ExecutorFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Game;
-import model.Model;
-import model.TileColor;
-import model.Wall;
+import model.*;
 import view.DisplayWall;
 import view.GUI;
 import view.Messager;
 import view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AzulApp extends Application {
 
@@ -24,7 +24,8 @@ public class AzulApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Model model = new Game();
+        List<Player> playerList = new ArrayList<>();
+        Model model = new Game(playerList);
         ExecutorFactory executorFactory = new DataObjectExecutorFactory();
         Mediator mediator = new Controller(executorFactory);
         Messager messager = new View(executorFactory);

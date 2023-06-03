@@ -1,5 +1,6 @@
 package dataobjects;
 
+
 import model.TileColor;
 
 public class Action implements DataObject {
@@ -20,11 +21,11 @@ public class Action implements DataObject {
         this.type = type;
     }
 
-    public Color getColor() {
+    public TileColor getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(TileColor color) {
         this.color = color;
     }
 

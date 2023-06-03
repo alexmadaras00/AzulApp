@@ -5,6 +5,7 @@ import model.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utils.ExceptionGameStart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,17 +49,41 @@ public class GameTest {
     }
 
     @Test
-    public void testStartGame() {
+    public void testStartGame() throws ExceptionGameStart {
         players = game.getPlayers();
-        assertPreConditionsStart();
+        assertEquals(GamePhase.INITIALIZED, game.getGamePhase());
         GameState gameState = game.startGame();
         assertPostConditionsStart(gameState);
-    }
-
-
-    private void assertPreConditionsStart() {
-        assertTrue(game.isValidStartGame());
-
+        try {
+            Player p1 = new Player();
+            p1.setName("Nano");
+            Game gameFailFewerPlayers = new Game(List.of(p1));
+            gameFailFewerPlayers.startGame();
+            assertTrue(gameFailFewerPlayers.getPlayers().size() < 2);
+            assertFalse(gameFailFewerPlayers.isValidStartGame());
+            fail("Expected exception not thrown");
+        } catch (ExceptionGameStart e) {
+            assertEquals("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.", e.getMessage());
+        }
+        try {
+            Player p1 = new Player();
+            p1.setName("Nano");
+            Player p2 = new Player();
+            p1.setName("Miguel");
+            Player p3 = new Player();
+            p1.setName("Santo");
+            Player p4 = new Player();
+            p1.setName("Matei");
+            Player p5 = new Player();
+            p1.setName("Rutter");
+            Game gameFailTooManyPlayers = new Game(List.of(p1, p2, p3, p4, p5));
+            gameFailTooManyPlayers.startGame();
+            assertTrue(gameFailTooManyPlayers.getPlayers().size() < 2);
+            assertFalse(gameFailTooManyPlayers.isValidStartGame());
+            fail("Expected exception not thrown");
+        } catch (ExceptionGameStart e) {
+            assertEquals("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.", e.getMessage());
+        }
     }
 
     private void assertPostConditionsStart(GameState gameState) {
@@ -68,11 +93,13 @@ public class GameTest {
         else if (numberOfPlayers == 3) assertEquals(7, game.getFactories().size());
         else assertEquals(9, game.getFactories().size());
         assertEquals(game.getTurnOrder().size(), game.getPlayers().size());
-        assertEquals(0, game.getMiddle().getAllTiles().size());
+        assertEquals(1, game.getMiddle().getAllTiles().size());
         assertEquals(0, game.getBox().size());
         assertEquals(100, game.getBag().getTiles().size());
+        PlayerTile startingTile = PlayerTile.getInstance();
+        assertTrue(game.getMiddle().getAllTiles().contains(startingTile));
         assertTrue(game.isPlaying());
-        assertEquals(GamePhase.INITIALIZED, game.getGamePhase());
+        assertEquals(GamePhase.PREPARING_ROUND, game.getGamePhase());
         assertGameState(gameState, factories);
     }
 
@@ -96,135 +123,100 @@ public class GameTest {
     }
 
     @Test
-    public void testStartRoundInitial() {
+    public void testStartRound() {
         game.startGame();
-        assertEquals(GamePhase.INITIALIZED, game.getGamePhase());
-        game.endRound();
-        game.getFactories().forEach(factory -> assertEquals(4, factory.getAllTiles().size()));
+        assertEquals(GamePhase.PREPARING_ROUND, game.getGamePhase());
+        int initialBagSize = game.getBag().getTiles().size();
         player1 = game.getPlayers().get(0);
         player2 = game.getPlayers().get(1);
         PlayerTile startingPlayerTile = PlayerTile.getInstance();
+        int countFactoriesNotFull = (int) game.getFactories().stream().filter(factory -> factory.getAllTiles().size() < 4).count();
+        assertEquals(5, countFactoriesNotFull);
+
         RoundUpdate roundUpdate = game.startRound();
 
-        assertEquals(80, game.getBag().getTiles().size());
+        game.getFactories().forEach(factory -> assertEquals(4, factory.getAllTiles().size()));
+        assertFactoryUpdates(roundUpdate);
+        assertEquals(initialBagSize - (game.getFactories().size() * 4), game.getBag().getTiles().size());
         assertEquals(List.of(startingPlayerTile), game.getMiddle().getAllTiles());
         assertEquals(game.getTurnOrder().get(0).getIdentifier(), roundUpdate.getMove().getPlayer().getIdentifier());
         assertEquals(game.getTurnOrder().get(1).getIdentifier(), roundUpdate.getMove().getNextPlayer().getIdentifier());
-
         assertNull(roundUpdate.getScoreUpdates());
-        assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
         assertEquals(1, game.getRound());
-    }
-
-    @Test
-    public void testStartRoundDuringGame() {
-        game.startGame();
-        game.endRound();
-        game.startRound();
-        System.out.println(game.getTurnOrder());
-        List<Action> endGameUpdates = game.endRound().getUpdates();
-        System.out.println(game.getTurnOrder());
-        assertEquals(7, endGameUpdates.size());
-        game.getFactories().forEach(factory -> assertEquals(4, factory.getAllTiles().size()));
-        player1 = game.getPlayers().get(0);
-        player2 = game.getPlayers().get(1);
-        PlayerTile startingPlayerTile = PlayerTile.getInstance();
-        RoundUpdate roundUpdateStartRound = game.startRound();
         assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
-        game.getFactories().forEach(factory -> assertEquals(4, factory.getAllTiles().size()));
-        assertEquals(2, game.getRound());
-        assertEquals(List.of(startingPlayerTile), game.getMiddle().getAllTiles());
-        assertEquals(game.getTurnOrder().get(0).getIdentifier(), roundUpdateStartRound.getMove().getPlayer().getIdentifier());
-        assertEquals(game.getTurnOrder().get(1).getIdentifier(), roundUpdateStartRound.getMove().getNextPlayer().getIdentifier());
-
-    }
-
-    @Test
-    public void testEndRoundInitial() {
-        game.getPlayers().get(1).getBoard().getPatternLine().addTiles(2, List.of(TileColor.RED, TileColor.RED, TileColor.RED));
-        game.getPlayers().get(1).getBoard().getFloorLine().addTiles(List.of(PlayerTile.getInstance(), TileColor.BLUE));
-        game.startGame();
-        game.startRound();
-        List<ScoreUpdate> scoreUpdates = new ArrayList<>();
-        int countFactoriesNotFull;
-        assertTrue(game.getRound() >= 1);
-        assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
-        countFactoriesNotFull = (int) game.getFactories().stream()
-                .filter(factory -> factory.getAllTiles().size() < 4)
-                .count();
-        assertEquals(5, countFactoriesNotFull);
-
-        RoundUpdate roundUpdate = game.endRound();
-
-        game.getFactories().forEach(factory -> assertEquals(4, factory.getAllTiles().size()));
-        assertFactoryUpdates(roundUpdate);
-        assertEquals(scoreUpdates, roundUpdate.getScoreUpdates());
-        assertEquals(0, game.getBox().size());
-        assertEquals(1, game.getMiddle().getAllTiles().size());
-        assertEquals(GamePhase.PREPARING_ROUND, game.getGamePhase());
-    }
-
-    @Test
-    public void testEndRoundDuringGame() {
-        game.getPlayers().get(1).getBoard().getPatternLine().addTiles(2, List.of(TileColor.RED, TileColor.RED, TileColor.RED));
-        game.getPlayers().get(1).getBoard().getFloorLine().addTiles(List.of(PlayerTile.getInstance(), TileColor.BLUE));
-        game.startGame();
-        game.startRound();
-        game.endRound();
-        game.startRound();
-        List<ScoreUpdate> scoreUpdates = new ArrayList<>();
-        assertTrue(game.getRound() >= 1);
-        assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
-
-        RoundUpdate roundUpdate = game.endRound();
-
-        assertScoreUpdates(scoreUpdates, roundUpdate);
-        assertFactoryUpdates(roundUpdate);
-        assertEquals(scoreUpdates, roundUpdate.getScoreUpdates());
-        assertEquals(0, game.getBox().size());
-        assertEquals(1, game.getMiddle().getAllTiles().size());
-        assertEquals(GamePhase.PREPARING_ROUND, game.getGamePhase());
-        assertTurnOrderChange();
-        for (Player p : game.getPlayers()) {
-            if (p.getBoard().getWall().hasCompleteRow()) {
-                assertFalse(game.isPlaying());
-                break;
-            }
-        }
     }
 
     private void assertFactoryUpdates(RoundUpdate roundUpdate) {
         game.getFactories().forEach(factory -> assertEquals(4, factory.getAllTiles().size()));
-        int countFactoriesNotFull = (int) game.getFactories().stream()
-                .filter(factory -> factory.getAllTiles().size() < 4)
-                .count();
-        assertEquals(game.getFactories().size() + 2, roundUpdate.getUpdates().size());
+        int countFactoriesNotFull = (int) game.getFactories().stream().filter(factory -> factory.getAllTiles().size() < 4).count();
+        assertEquals(game.getFactories().size(), roundUpdate.getUpdates().size());
         assertEquals(0, countFactoriesNotFull);
         List<Action> factoryUpdates = roundUpdate.getUpdates().stream().filter(r -> r.getTo() != null).toList();
         factoryUpdates.forEach(f -> assertEquals(4, f.getAmount()));
     }
 
-    private void assertTurnOrderChange() {
+    @Test
+    public void testEndRound() {
+        game.startGame();
+        game.startRound();
+        game.endRound();
+        assertEquals(1, game.getRound());
+        game.startRound();
+        List<Player> players = game.getPlayers();
+        players.get(1).getBoard().getPatternLine().addTiles(2, List.of(TileColor.RED, TileColor.RED, TileColor.RED));
+        players.get(1).getBoard().getFloorLine().addTiles(List.of(PlayerTile.getInstance(), TileColor.BLUE));
+        List<ScoreUpdate> scoreUpdates = new ArrayList<>();
+        PlayerData lastPlayer = new PlayerData();
+        lastPlayer.setName(game.getTurnOrder().get(game.getTurnOrder().size() - 1).getName());
+        lastPlayer.setIdentifier(game.getTurnOrder().get(game.getTurnOrder().size() - 1).getIdentifier());
+        assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
+        PlayerData nextPlayer = getTurnOrderChange();
+
+        RoundUpdate roundUpdate = game.endRound();
+
+        assertEquals(2, game.getRound());
+        assertScoreUpdates(scoreUpdates, roundUpdate);
+        assertEquals(0, game.getBox().size());
+        assertEquals(0, game.getMiddle().getAllTiles().size());
+        assertEquals(GamePhase.WALL_TILLING, game.getGamePhase());
+        assertEquals(nextPlayer.getIdentifier(), roundUpdate.getMove().getNextPlayer().getIdentifier());
+        assertEquals(lastPlayer.getIdentifier(), roundUpdate.getMove().getPlayer().getIdentifier());
+        assertGameEnded(players);
+    }
+
+    private PlayerData getTurnOrderChange() {
         List<Player> newTurnOrder = new ArrayList<>();
+        PlayerData nextPlayer = new PlayerData();
+        Player nextStartingPlayer = game.getPlayers().stream().filter(player -> player.getBoard().getFloorLine().getCopyTiles().contains(PlayerTile.getInstance())).findFirst().orElseThrow();
+        newTurnOrder.add(nextStartingPlayer);
         game.getPlayers().forEach(player -> {
-            if (player.getBoard().getFloorLine().getCopyTiles().contains(PlayerTile.getInstance())) {
-                newTurnOrder.add(player);
-                System.out.println("Starting: " + player);
-            }
+            if (!newTurnOrder.contains(player)) newTurnOrder.add(player);
         });
-        game.getPlayers().forEach(player -> {
-            if (!newTurnOrder.contains(player))
-                newTurnOrder.add(player);
-        });
-        assertEquals(game.getPlayers().size(), turnOrder.size());
-        assertEquals(newTurnOrder.get(0), game.getTurnOrder().get(0));
+        nextPlayer.setName(nextStartingPlayer.getName());
+        nextPlayer.setIdentifier(nextStartingPlayer.getIdentifier());
+        return nextPlayer;
+    }
+
+    private void assertGameEnded(List<Player> players) {
+        incrementRound();
+        game.startRound();
+        Player p = players.get(0);
+        p.getBoard().getWall().addTile(0, TileColor.RED);
+        p.getBoard().getWall().addTile(0, TileColor.CYAN);
+        p.getBoard().getWall().addTile(0, TileColor.YELLOW);
+        p.getBoard().getWall().addTile(0, TileColor.BLUE);
+        p.getBoard().getWall().addTile(0, TileColor.BLACK);
+        game.endRound();
+        assertTrue(p.getBoard().hasFulfilledEndCondition());
+        assertFalse(game.isPlaying());
+        assertEquals(GamePhase.FINISHED, game.getGamePhase());
     }
 
     private void assertScoreUpdates(List<ScoreUpdate> scoreUpdates, RoundUpdate roundUpdate) {
         game.getPlayers().forEach(player -> {
             List<Integer> completedRows = player.getBoard().getPatternLine().completedRows();
             assertEquals(player.getBoard().wallTilling(), game.getBox());
-            ScoreUpdate scoreUpdatePlayer = roundUpdate.getScoreUpdates().stream().filter(scoreUpdate -> scoreUpdate.getPlayer().getIdentifier() == player.getIdentifier()).toList().get(0);
+            ScoreUpdate scoreUpdatePlayer = roundUpdate.getScoreUpdates().stream().filter(scoreUpdate -> scoreUpdate.getPlayer().getIdentifier() == player.getIdentifier()).findFirst().orElseThrow();
             assertEquals(player.getIdentifier(), scoreUpdatePlayer.getPlayer().getIdentifier());
             assertEquals(player.getBoard().getScoreChanges(), scoreUpdatePlayer.getScoreChanges());
             assertEquals(player.getBoard().getScore(), scoreUpdatePlayer.getNewScore());
@@ -232,16 +224,16 @@ public class GameTest {
             completedRows.forEach(completedRow -> assertEquals(0, player.getBoard().getPatternLine().getCopyTable().get(completedRow).size()));
             scoreUpdates.add(scoreUpdatePlayer);
         });
+        assertEquals(scoreUpdates, roundUpdate.getScoreUpdates());
     }
 
     @Test
     public void testTerminateGame() {
         game.startGame();
         assertTrue(game.isPlaying());
-        assertFalse(game.getPlayers().get(0).getBoard().getWall().hasCompleteRow());
-        game.getPlayers().forEach(p -> assertFalse(p.getBoard().getWall().hasCompleteRow()));
+        assertFalse(game.getPlayers().get(0).getBoard().hasFulfilledEndCondition());
+        game.getPlayers().forEach(p -> assertFalse(p.getBoard().hasFulfilledEndCondition()));
         assertNotNull(game.terminateGame());
-
         assertFalse(game.isPlaying());
         assertEquals(GamePhase.TERMINATED, game.getGamePhase());
     }
@@ -249,13 +241,41 @@ public class GameTest {
     @Test
     public void testEndGame() {
         game.startGame();
-        game.endGame();
+        incrementRound();
+        assertTrue(game.getRound() >= 5);
         List<List<Tile>> factoryTiles = new ArrayList<>();
+        GameState endedGame = game.endGame();
         game.getFactories().forEach(factory -> factoryTiles.add(factory.getAllTiles()));
         assertEquals(GamePhase.FINISHED, game.getGamePhase());
-        assertEquals(game.endGame().getMiddle(), game.getMiddle().getAllTiles());
-        assertEquals(game.endGame().getFactories(), factoryTiles);
+        assertEquals(endedGame.getMiddle(), game.getMiddle().getAllTiles());
+        assertEquals(factoryTiles, endedGame.getFactories());
+        assertUpdateFinalScores(endedGame);
         assertFalse(game.isPlaying());
+    }
+
+    private void assertUpdateFinalScores(GameState endedGame) {
+        assertEquals(game.getPlayers().size(), endedGame.getPlayerBoards().size());
+        game.getPlayers().forEach(player -> {
+            PlayerBoardState playerBoardState = endedGame.getPlayerBoards().stream().filter(ps -> ps.getPlayer().getIdentifier() == player.getIdentifier()).findFirst().orElseThrow();
+            assertEquals(player.getBoard().getScore(), playerBoardState.getScore());
+            assertEquals(player.getBoard().getFloorLine().getCopyTiles(), playerBoardState.getFloorLine());
+            assertEquals(player.getBoard().getPatternLine().getCopyTable(), playerBoardState.getPatternLine());
+            assertEquals(player.getBoard().getWall().getCopyTable(), playerBoardState.getWall());
+        });
+
+    }
+
+    private void incrementRound() {
+        game.startRound();
+        game.endRound();
+        game.startRound();
+        game.endRound();
+        game.startRound();
+        game.endRound();
+        game.startRound();
+        game.endRound();
+        game.startRound();
+        game.endRound();
     }
 
     @Test
