@@ -122,11 +122,6 @@ public class ControllerTest {
         }
 
         @Override
-        public MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-            return null;
-        }
-
-        @Override
         public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
             return false;
         }

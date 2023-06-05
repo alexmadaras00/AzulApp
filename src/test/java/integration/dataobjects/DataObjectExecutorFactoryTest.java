@@ -93,11 +93,6 @@ public class DataObjectExecutorFactoryTest {
         }
 
         @Override
-        public MoveUpdate performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-            return new MoveUpdate();
-        }
-
-        @Override
         public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
             return false;
         }

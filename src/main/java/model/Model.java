@@ -18,7 +18,6 @@ public interface Model extends Executable {
     DataObject performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex);
     DataObject performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);
     DataObject performMoveMiddleFloorLine(List<Tile> tiles);
-    DataObject performMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);
     boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor);
     boolean isValidMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex);
     boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);

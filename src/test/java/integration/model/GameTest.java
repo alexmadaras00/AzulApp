@@ -332,13 +332,6 @@ public class GameTest {
     }
 
     @Test
-    public void testPerformMovePatternLineFloorLine() {
-        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
-        assertNotNull(game.performMovePatternLineFloorLine(tiles, 2, TileColor.RED));
-
-    }
-
-    @Test
     public void testIsValidMoveFactoryPatternLine() {
         List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
         assertFalse(game.isValidMoveFactoryPatternLine(tiles, 1, 2, TileColor.RED));
