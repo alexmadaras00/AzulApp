@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import model.Tile;
 import model.TileColor;
 import model.factory.twinteam.FactoryDisplay;
 import model.factory.twinteam.FactoryDisplayInterface;
@@ -33,7 +32,7 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
                 return null;
         }
     }
-    
+
     private TileColour translateTwinTileColour(TileColor color) {
         switch (color) {
             case RED:
@@ -56,7 +55,7 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
         Collection<model.factory.twinteam.Tile> twinTiles = factory.getTiles();
         List<TileColor> ourTiles = new ArrayList<>();
         for (model.factory.twinteam.Tile twinTile : twinTiles) {
-            Tile ourTile = translateTileColor(twinTile.getColour());
+            TileColor ourTile = translateTileColor(twinTile.getColour());
             if (ourTile != null) {
                 ourTiles.add(ourTile);
             }
@@ -76,7 +75,7 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
         Collection<model.factory.twinteam.Tile> twinTiles = factory.grab(translateTwinTileColour(tile));
         List<TileColor> ourTiles = new ArrayList<>();
         for (model.factory.twinteam.Tile twinTile : twinTiles) {
-            Tile ourTile = translateTileColor(twinTile.getColour());
+            TileColor ourTile = translateTileColor(twinTile.getColour());
             if (ourTile != null) {
                 ourTiles.add(ourTile);
             }
@@ -87,15 +86,15 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
     @Override
     public void addTiles(List<TileColor> ourTiles) {
         Collection<model.factory.twinteam.Tile> twinTiles = new ArrayList<>();
-        for (Tile ourTile : ourTiles) {
-            twinTiles.add(Tile(translateTwinTileColour(ourTile)))
+        for (TileColor ourTile : ourTiles) {
+            twinTiles.add(new model.factory.twinteam.Tile(translateTwinTileColour(ourTile)));
         }
     }
 
     @Override
     public boolean hasTiles(TileColor type) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hasTiles'");
+        List<TileColor> tilesInFactory = this.getAllTiles();
+        return tilesInFactory.contains(type);
     }
 
 }
