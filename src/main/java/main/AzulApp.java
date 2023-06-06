@@ -24,8 +24,7 @@ public class AzulApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        List<Player> playerList = new ArrayList<>();
-        Model model = new Game(playerList);
+        Model model = new Game();
         ExecutorFactory executorFactory = new DataObjectExecutorFactory();
         Mediator mediator = new Controller(executorFactory);
         Messager messager = new View(executorFactory);

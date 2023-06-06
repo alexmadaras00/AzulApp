@@ -8,6 +8,7 @@ import java.util.List;
 import controller.Controller;
 import controller.Mediator;
 import dataobjects.*;
+import model.Player;
 import model.TileColor;
 import model.Tile;
 import org.junit.jupiter.api.BeforeAll;
@@ -92,7 +93,7 @@ public class ControllerTest {
         }
 
         @Override
-        public PlayerData addPlayer(PlayerData playerData) {
+        public PlayerData addPlayer(Player playerData) {
             return null;
         }
 
@@ -141,10 +142,6 @@ public class ControllerTest {
             return false;
         }
 
-        @Override
-        public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-            return false;
-        }
     }
 
     private static class MockExecutor implements Executor {

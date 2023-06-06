@@ -2,6 +2,7 @@ package integration.dataobjects;
 
 import dataobjects.*;
 import dataobjects.executors.Executor;
+import model.Player;
 import model.TileColor;
 import model.Model;
 import model.Tile;
@@ -63,7 +64,7 @@ public class DataObjectExecutorFactoryTest {
         }
 
         @Override
-        public PlayerData addPlayer(PlayerData playerData) {
+        public PlayerData addPlayer(Player playerData) {
             return new PlayerData();
         }
 
@@ -112,10 +113,6 @@ public class DataObjectExecutorFactoryTest {
             return false;
         }
 
-        @Override
-        public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-            return false;
-        }
     }
 
     private static ExecutorFactory factory;

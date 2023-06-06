@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameTest {
     static List<Factory> factories;
     static List<Player> players;
-    static List<Player> turnOrder;
     static Player player1;
     static Player player2;
     List<List<Tile>> factoryTiles;
@@ -23,26 +22,24 @@ public class GameTest {
 
     @BeforeEach
     public void init() {
-        players = new ArrayList<>();
+        game = new Game();
         factories = new ArrayList<>();
         player1 = new Player("Boris");
         player2 = new Player("Giani");
-        players.add(player1);
-        players.add(player2);
-        turnOrder = new ArrayList<>(players);
+        assertEquals(0,game.getPlayers().size());
+        assertEquals(0,game.getTurnOrder().size());
+        assertEquals(0,game.getBox().size());
+        game.addPlayer(player1);
+        game.addPlayer(player2);
         factoryTiles = new ArrayList<>();
-        game = new Game(players);
     }
 
     @Test
     public void testDefaultConstructor() {
-        assertNotNull(game.getMiddle());
-        assertNotNull(game.getFactories());
+        assertEquals(0,game.getMiddle().getAllTiles().size());
+        assertEquals(0,game.getFactories().size());
         assertEquals(0, game.getRound());
-        assertNotNull(game.getPlayers());
-        assertNotNull(game.getTurnOrder());
         assertEquals(game.getPlayers(), game.getTurnOrder());
-        assertNotNull(game.getBox());
         assertEquals(0, game.getBag().getTiles().size());
         assertFalse(game.isPlaying());
         Assertions.assertEquals(GamePhase.INITIALIZED, game.getGamePhase());
@@ -57,7 +54,8 @@ public class GameTest {
         try {
             Player p1 = new Player();
             p1.setName("Nano");
-            Game gameFailFewerPlayers = new Game(List.of(p1));
+            Game gameFailFewerPlayers = new Game();
+            game.addPlayer(player1);
             gameFailFewerPlayers.startGame();
             assertTrue(gameFailFewerPlayers.getPlayers().size() < 2);
             assertFalse(gameFailFewerPlayers.isValidStartGame());
@@ -76,7 +74,12 @@ public class GameTest {
             p1.setName("Matei");
             Player p5 = new Player();
             p1.setName("Rutter");
-            Game gameFailTooManyPlayers = new Game(List.of(p1, p2, p3, p4, p5));
+            Game gameFailTooManyPlayers = new Game();
+            gameFailTooManyPlayers.addPlayer(p1);
+            gameFailTooManyPlayers.addPlayer(p2);
+            gameFailTooManyPlayers.addPlayer(p3);
+            gameFailTooManyPlayers.addPlayer(p4);
+            gameFailTooManyPlayers.addPlayer(p5);
             gameFailTooManyPlayers.startGame();
             assertTrue(gameFailTooManyPlayers.getPlayers().size() < 2);
             assertFalse(gameFailTooManyPlayers.isValidStartGame());
@@ -240,6 +243,7 @@ public class GameTest {
 
     @Test
     public void testEndGame() {
+        System.out.println(game.getTurnOrder().size());
         game.startGame();
         incrementRound();
         assertTrue(game.getRound() >= 5);
@@ -297,7 +301,13 @@ public class GameTest {
 
     @Test
     public void testAddPlayer() {
-        assertNotNull(game.addPlayer(new PlayerData()));
+        Player player = new Player();
+        player.setName("Marcelo");
+        PlayerData playerData = game.addPlayer(player);
+        assertEquals(player.getIdentifier(), playerData.getIdentifier());
+        assertEquals(player.getName(), playerData.getName());
+        assertTrue(game.getPlayers().contains(player));
+        assertTrue(game.getTurnOrder().contains(player));
     }
 
     @Test
@@ -354,16 +364,7 @@ public class GameTest {
     public void testIsValidMoveMiddleFloorLine() {
         List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
         assertFalse(game.isValidMoveMiddleFloorLine(tiles));
-
     }
-
-    @Test
-    public void testIsValidMovePatternLineFloorLine() {
-        List<Tile> tiles = List.of(TileColor.RED, TileColor.RED);
-        assertFalse(game.isValidMovePatternLineFloorLine(tiles, 2, TileColor.RED));
-
-    }
-
 
 }
 

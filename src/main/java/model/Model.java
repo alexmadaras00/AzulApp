@@ -12,7 +12,7 @@ public interface Model extends Executable {
     GameState terminateGame();
     GameState endGame();
     boolean isCurrentPlayer(PlayerData player);
-    PlayerData addPlayer(PlayerData playerData);
+    PlayerData addPlayer(Player player);
     boolean isValidStartGame();
     DataObject performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor);
     DataObject performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex);
@@ -22,7 +22,6 @@ public interface Model extends Executable {
     boolean isValidMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex);
     boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);
     boolean isValidMoveMiddleFloorLine(List<Tile> tiles);
-    boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor);
 
 
 }

@@ -18,8 +18,8 @@ public class Game implements Model {
     private Bag bag;
     private Middle middle;
 
-    public Game(List<Player> players) {
-        this.players = players;
+    public Game() {
+        this.players = new ArrayList<>();
         this.factories = new ArrayList<>();
         this.gamePhase = GamePhase.INITIALIZED;
         this.middle = new Middle();
@@ -327,8 +327,13 @@ public class Game implements Model {
     }
 
     @Override
-    public PlayerData addPlayer(PlayerData playerData) {
-        return new PlayerData();
+    public PlayerData addPlayer(Player player) {
+        players.add(player);
+        turnOrder.add(player);
+        PlayerData playerData = new PlayerData();
+        playerData.setIdentifier(player.getIdentifier());
+        playerData.setName(player.getName());
+        return playerData;
     }
 
     @Override
@@ -381,10 +386,6 @@ public class Game implements Model {
         return false;
     }
 
-    @Override
-    public boolean isValidMovePatternLineFloorLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-        return false;
-    }
 
     public static void swap(List<Player> list, int index1, int index2) {
         Player temp = list.get(index1);
