@@ -2,7 +2,6 @@ package unit.model;
 
 import model.Bag;
 import model.TileColor;
-import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BagTest {
     static Bag bag;
-    static List<Tile> tiles;
+    static List<TileColor> tiles;
 
     @BeforeEach
     public void setUp() {
@@ -36,7 +35,7 @@ public class BagTest {
 
     @Test
     public void testAddTiles() {
-        List<Tile> newTiles = new ArrayList<>();
+        List<TileColor> newTiles = new ArrayList<>();
         newTiles.add(TileColor.CYAN);
         newTiles.add(TileColor.RED);
         bag.addTiles(tiles);
@@ -49,12 +48,12 @@ public class BagTest {
     public void testPopTiles() {
         bag.addTiles(tiles);
         int count = 3;
-        List<Tile> tilesBag = bag.getTiles();
+        List<TileColor> tilesBag = bag.getTiles();
         //Before popping the tiles
         assertTrue(bag.getTiles().size() <= 100);
         assertTrue(tiles.size() >= count);
         //When popping the tiles (poppedList)
-        List<Tile> poppedTiles = bag.popTiles(count);
+        List<TileColor> poppedTiles = bag.popTiles(count);
         assertEquals(1, tilesBag.size());
         assertEquals(TileColor.BLUE, tilesBag.get(tilesBag.size() - 1));
         //After popping the tiles
