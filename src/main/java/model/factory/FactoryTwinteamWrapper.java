@@ -39,7 +39,7 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
         Collection<model.factory.twinteam.Tile> tiles = factory.getTiles();
         List<Tile> ourTiles = new ArrayList<>();
         for (model.factory.twinteam.Tile tile : tiles) {
-            Tile t = translateTileColor(tile.getColour())
+            Tile t = translateTileColor(tile.getColour());
             if (t != null) {
                 ourTiles.add(t);
             }
