@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.factory.Factory;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

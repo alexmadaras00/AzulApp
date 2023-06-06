@@ -1,6 +1,7 @@
 package model;
 
 import dataobjects.*;
+import model.factory.Factory;
 import utils.ExceptionGameStart;
 
 import java.util.*;

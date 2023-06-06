@@ -1,10 +1,13 @@
-package model;
+package model.factory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Factory {
+import model.Tile;
+import model.TileColor;
+
+public class Factory implements FactoryInterface {
     private List<Tile> tiles = new ArrayList<>();
 
     public List<Tile> getAllTiles() {
