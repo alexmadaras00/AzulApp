@@ -2,7 +2,6 @@ package model;
 
 import dataobjects.PlayerBoardState;
 import dataobjects.ScoreChange;
-import utils.ExceptionInvalidOperation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,72 +20,70 @@ public class PlayerBoard {
         score = 0;
         scoreChanges = new ArrayList<>();
     }
-
     public FloorLine getFloorLine() {
         return floorLine;
     }
-
     public PatternLine getPatternLine() {
         return patternLine;
     }
-
     public Wall getWall() {
         return wall;
     }
-
     public int getScore() {
         return score;
     }
-
     public List<ScoreChange> getScoreChanges() {
         return scoreChanges;
     }
 
     public boolean canAddTypePatternLine(int rowIndex, TileColor type) {
+
         return wall.canAddTile(rowIndex, type) && patternLine.canAddTile(rowIndex, type);
     }
-
-    public void performMovePatternLine(int rowIndex, List<Tile> tiles) {
-        if (canAddTypePatternLine(rowIndex, (TileColor) tiles.get(0)))
-            patternLine.addTiles(rowIndex, tiles);
-        else
-            throw new ExceptionInvalidOperation("Pattern Line Invalid move. Cannot add a tile in the current format.");
+    public List<Tile> performMovePatternLine(int rowIndex, List<Tile> tiles) {
+        tiles.forEach(tile -> {
+            if (!canAddTypePatternLine(rowIndex, (TileColor) tile))
+                throw new RuntimeException("This tile cannot be added on the current pattern line.");
+        });
+        return patternLine.addTiles(rowIndex, tiles);
+    }
+    public List<Tile> performMoveFloorLine(List<Tile> tiles) {
+        return floorLine.addTiles(tiles);
     }
 
-    public void performMoveFloorLine(List<Tile> tiles) {
-        floorLine.addTiles(tiles);
-    }
-
-    public List<Tile> wallTilting() {
-        List<Integer> completedRows = patternLine.completedRows();
+    public List<Tile> wallTilling() {
+        List<Integer> completedRows = this.patternLine.completedRows();
         List<Tile> remainderList = new ArrayList<>();
         completedRows.forEach(completedRow -> {
-            List<Tile> tilesCompleted = patternLine.getCopyTable().get(completedRow);
-            Tile wallTile = tilesCompleted.get(0);
-            remainderList.addAll(tilesCompleted.subList(1, tilesCompleted.size()));
-            ScoreChange wallTileScoreChange = new ScoreChange();
-            // wallTileScoreChange.setIsCompletionScore(false);
-            // wallTileScoreChange.setHasColor(true);
-            // wallTileScoreChange.setHasRowIndex(true);
-            wallTileScoreChange.setIndex(completedRow);
-            wallTileScoreChange.setColor((TileColor) wallTile);
-            wallTileScoreChange.setScoreDifference(wall.addTile(completedRow, wallTile));
-        });
+                    List<Tile> tilesCompleted = patternLine.getCopyTable().get(completedRow);
+                    Tile wallTile = tilesCompleted.get(0);
+                    remainderList.addAll(tilesCompleted.subList(1, tilesCompleted.size()));
+                    ScoreChange wallTileScoreChange = new ScoreChange();
+                    wallTileScoreChange.setIndex(completedRow);
+                    wallTileScoreChange.setColor((TileColor) wallTile);
+                    wallTileScoreChange.setScoreDifference(wall.addTile(completedRow, wallTile));
+                }
+        );
         remainderList.addAll(floorLine.getCopyTiles());
         floorLine.clearTiles();
         ScoreChange floorLineScoreChange = new ScoreChange();
-        // floorLineScoreChange.setIsCompletionScore(false);
-        // floorLineScoreChange.setHasColor(false);
-        // floorLineScoreChange.setHasRowIndex(false);
+
         floorLineScoreChange.setScoreDifference(floorLine.getScore());
+        completedRows.forEach(completedRow -> patternLine.clearTiles(completedRow));
 
         return remainderList;
     }
+    public boolean hasFulfilledEndCondition(){
+        return wall.hasCompleteRow();
+    }
 
     public void addFinalScores() {
-        List<ScoreChange> scoreChangesList = wall.getCompletionScores();
-        scoreChangesList.forEach(scoreChange -> this.score += scoreChange.getScoreDifference());
-        this.scoreChanges = scoreChangesList;
+        List<ScoreChange> scoreChangesWallList = wall.getCompletionScores();
+        int scoreFloorLine = floorLine.getScore();
+        scoreChangesWallList.forEach(scoreChange ->
+                this.score += scoreChange.getScoreDifference());
+        this.score -= scoreFloorLine;
+        this.scoreChanges = scoreChangesWallList;
     }
 
     public PlayerBoardState toObject() {
@@ -94,8 +91,8 @@ public class PlayerBoard {
         playerBoardState.setWall(wall.getCopyTable());
         playerBoardState.setFloorLine(floorLine.getCopyTiles());
         playerBoardState.setPatternLine(patternLine.getCopyTable());
-        // playerBoardState.setScoreChanges(scoreChanges);
         playerBoardState.setScore(score);
+
         return playerBoardState;
     }
 }

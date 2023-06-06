@@ -1,14 +1,16 @@
 package dataobjects;
 
+import model.*;
+
 import java.util.List;
 
-import model.Tile;
 
 public class GameState implements DataObject {
     private List<PlayerBoardState> playerBoards;
     private List<List<Tile>> factories;
     private List<Tile> middle;
     private PlayerData currentPlayer;
+    private PlayerData winnerPlayer;
 
     public GameState() {
     }
@@ -40,9 +42,17 @@ public class GameState implements DataObject {
     public PlayerData getCurrentPlayer() {
         return currentPlayer;
     }
-    
+
     public void setCurrentPlayer(PlayerData currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+
+    public PlayerData getWinnerPlayer() {
+        return winnerPlayer;
+    }
+
+    public void setWinnerPlayer(PlayerData winnerPlayer) {
+        this.winnerPlayer = winnerPlayer;
     }
 
     @Override
@@ -73,6 +83,11 @@ public class GameState implements DataObject {
             if (other.currentPlayer != null)
                 return false;
         } else if (!currentPlayer.equals(other.currentPlayer))
+            return false;
+        if (winnerPlayer == null) {
+            if (other.winnerPlayer != null)
+                return false;
+        } else if (!winnerPlayer.equals(other.winnerPlayer))
             return false;
         return true;
     }

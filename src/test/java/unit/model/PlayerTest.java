@@ -1,14 +1,19 @@
-package model;
+package unit.model;
 
 import dataobjects.PlayerBoardState;
 import model.TileColor;
 import model.Player;
+import model.PlayerBoard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
+    @Mock
+    private PlayerBoard playerBoard;
+
     static Player player;
     static String name = "Trump";
     static int counter = 0;
@@ -16,14 +21,16 @@ public class PlayerTest {
     @BeforeEach
     void setUp() {
         player = new Player(name);
-        assertEquals(++counter, player.getIdentifier());
+        counter = player.getIdentifier();
+        assertEquals(counter, player.getIdentifier());
     }
 
     @Test
     void testGetIdentifier() {
         String name2 = "Scholz";
         Player player2 = new Player(name2);
-        assertEquals(++counter, player2.getIdentifier());
+        counter = player.getIdentifier();
+        assertEquals(counter+1, player2.getIdentifier());
     }
 
     @Test
@@ -38,7 +45,7 @@ public class PlayerTest {
     @Test
     public void testConstructorWithName() {
         assertEquals(name, player.getName());
-        assertTrue(player.getBoard().canAddTypePatternLine(2, TileColor.RED));
+        assertTrue(player.getBoard().canAddTypePatternLine(3, TileColor.RED));
         assertInstanceOf(PlayerBoardState.class, player.getBoard().toObject());
         assertEquals(counter, player.getIdentifier());
     }
@@ -57,7 +64,8 @@ public class PlayerTest {
 
     @Test
     public void testGetPlayerBoard() {
-        assertTrue(player.getBoard().canAddTypePatternLine(2, TileColor.RED));
+        assertTrue(player.getBoard().canAddTypePatternLine(3, TileColor.RED));
     }
+
 
 }

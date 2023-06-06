@@ -6,14 +6,14 @@ import dataobjects.DataObjectExecutorFactory;
 import dataobjects.ExecutorFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Game;
-import model.Model;
-import model.TileColor;
-import model.Wall;
+import model.*;
 import view.DisplayWall;
 import view.GUI;
 import view.Messager;
 import view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AzulApp extends Application {
 

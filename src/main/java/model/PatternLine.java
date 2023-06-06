@@ -25,11 +25,11 @@ public class PatternLine {
     public List<Tile> addTiles(int row, List<Tile> t) {
         List<Tile> excessTiles = new ArrayList<>();
         List<Tile> tiles = table.get(row);
-        for (int i = 0; i < t.size(); i++) {
+        for (Tile tile : t) {
             if (tiles.size() <= row) {
-                tiles.add(t.get(i));
+                tiles.add(tile);
             } else {
-                excessTiles.add(t.get(i));
+                excessTiles.add(tile);
             }
         }
         table.set(row, tiles);
@@ -45,10 +45,9 @@ public class PatternLine {
      * @return true if the pattern line is not null and the color matches, else
      *         return false
      */
-    public Boolean canAddTile(int row, TileColor type) {
+    public boolean canAddTile(int row, TileColor type) {
         return ((table.get(row).size() == 0) || table.get(row).contains(type)) && table.get(row).size() <= row;
     }
-
     /**
      * clear the patternLine[row]
      *

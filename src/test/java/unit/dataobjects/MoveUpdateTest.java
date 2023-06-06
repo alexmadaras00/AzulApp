@@ -1,27 +1,24 @@
-package dataobjects;
+package unit.dataobjects;
 
+import dataobjects.MoveUpdate;
 import org.junit.jupiter.api.Test;
-
 import static com.google.code.beanmatchers.BeanMatchers.*;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import dataobjects.PlayerData;
-
-public class PlayerDataTest {
+public class MoveUpdateTest {
 
     @Test
     public void testNoArgsConstructor() {
-        assertThat(PlayerData.class, hasValidBeanConstructor());
+        assertThat(MoveUpdate.class, hasValidBeanConstructor());
     }
 
     @Test
     public void testSettersAndGetters() {
-        assertThat(PlayerData.class, hasValidGettersAndSetters());
+        assertThat(MoveUpdate.class, hasValidGettersAndSetters());
     }
     
     @Test
     public void allPropertiesShouldBeComparedDuringEquals() {
-        assertThat(PlayerData.class, hasValidBeanEquals());
+        assertThat(MoveUpdate.class, hasValidBeanEquals());
     }
 }

@@ -1,4 +1,4 @@
-package dataobjects;
+package unit.dataobjects;
 
 import org.junit.jupiter.api.Test;
 

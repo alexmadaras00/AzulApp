@@ -1,4 +1,5 @@
-package dataobjects;
+package unit.dataobjects;
+import dataobjects.Action;
 import org.junit.jupiter.api.Test;
 
 import static com.google.code.beanmatchers.BeanMatchers.*;
