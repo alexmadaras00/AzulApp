@@ -2,12 +2,11 @@ package integration.model;
 
 import dataobjects.PlayerBoardState;
 import dataobjects.ScoreChange;
-import model.TileColor;
 import model.PlayerBoard;
 import model.Tile;
+import model.TileColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.ExceptionInvalidOperation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,32 +55,50 @@ public class PlayerBoardTest {
     public void testPerformMovePatternLine() {
         TileColor blueTile = TileColor.BLUE;
         TileColor redTile = TileColor.RED;
-        assertExceedingTiles(redTile);
-        assertNoExceedingTiles(blueTile);
+        assertExceedingTilesCase(redTile);
+        assertNoExceedingTilesCase(blueTile);
+        assertRuntimeExceptionCase();
     }
-    private void assertExceedingTiles(TileColor tile) {
+
+    private void assertRuntimeExceptionCase() {
+        playerBoard.getPatternLine().clearTiles(1);
+        playerBoard.getPatternLine().addTiles(1, List.of(TileColor.BLUE));
+        try {
+            playerBoard.performMovePatternLine(1, List.of(TileColor.YELLOW));
+        } catch (RuntimeException e) {
+            assertEquals("This tile cannot be added on the current pattern line.", e.getMessage());
+        }
+        playerBoard.getPatternLine().addTiles(1, List.of(TileColor.BLUE));
+        try {
+            playerBoard.performMovePatternLine(1, List.of(TileColor.BLUE));
+            fail("Expected exception not thrown");
+        } catch (RuntimeException e) {
+            assertEquals("This tile cannot be added on the current pattern line.", e.getMessage());
+        }
+    }
+
+    private void assertExceedingTilesCase(TileColor tile) {
         List<Tile> extraTiles = List.of(tile, tile, tile, tile, tile, tile);
         List<Tile> patternLineExcessTiles = playerBoard.performMovePatternLine(0, extraTiles);
-        assertEquals(5, patternLineExcessTiles.size() );
+        assertEquals(5, patternLineExcessTiles.size());
 
 
         List<Tile> patternLineExcessTiles2 = playerBoard.performMovePatternLine(1, extraTiles);
-        assertEquals(4, patternLineExcessTiles2.size() );
+        assertEquals(4, patternLineExcessTiles2.size());
 
 
         List<Tile> patternLineExcessTiles3 = playerBoard.performMovePatternLine(2, extraTiles);
-        assertEquals(3, patternLineExcessTiles3.size() );
+        assertEquals(3, patternLineExcessTiles3.size());
 
         List<Tile> patternLineExcessTiles4 = playerBoard.performMovePatternLine(3, extraTiles);
-        assertEquals(2, patternLineExcessTiles4.size() );
+        assertEquals(2, patternLineExcessTiles4.size());
 
         List<Tile> patternLineExcessTiles5 = playerBoard.performMovePatternLine(4, extraTiles);
-        assertEquals(1, patternLineExcessTiles5.size() );
-
+        assertEquals(1, patternLineExcessTiles5.size());
 
     }
 
-    private void assertNoExceedingTiles(TileColor tile) {
+    private void assertNoExceedingTilesCase(TileColor tile) {
         playerBoard.getPatternLine().clearTiles(0);
 
         List<Tile> tiles = List.of(tile);

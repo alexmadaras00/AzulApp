@@ -20,35 +20,33 @@ public class PlayerBoard {
         score = 0;
         scoreChanges = new ArrayList<>();
     }
-
     public FloorLine getFloorLine() {
         return floorLine;
     }
-
     public PatternLine getPatternLine() {
         return patternLine;
     }
-
     public Wall getWall() {
         return wall;
     }
-
     public int getScore() {
         return score;
     }
-
     public List<ScoreChange> getScoreChanges() {
         return scoreChanges;
     }
 
     public boolean canAddTypePatternLine(int rowIndex, TileColor type) {
+
         return wall.canAddTile(rowIndex, type) && patternLine.canAddTile(rowIndex, type);
     }
-
     public List<Tile> performMovePatternLine(int rowIndex, List<Tile> tiles) {
+        tiles.forEach(tile -> {
+            if (!canAddTypePatternLine(rowIndex, (TileColor) tile))
+                throw new RuntimeException("This tile cannot be added on the current pattern line.");
+        });
         return patternLine.addTiles(rowIndex, tiles);
     }
-
     public List<Tile> performMoveFloorLine(List<Tile> tiles) {
         return floorLine.addTiles(tiles);
     }

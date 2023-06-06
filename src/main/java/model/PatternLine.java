@@ -45,10 +45,9 @@ public class PatternLine {
      * @return true if the pattern line is not null and the color matches, else
      *         return false
      */
-    public Boolean canAddTile(int row, TileColor type) {
+    public boolean canAddTile(int row, TileColor type) {
         return ((table.get(row).size() == 0) || table.get(row).contains(type)) && table.get(row).size() <= row;
     }
-
     /**
      * clear the patternLine[row]
      *
