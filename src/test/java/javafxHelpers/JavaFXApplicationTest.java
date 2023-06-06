@@ -1,4 +1,4 @@
-package view;
+package javafxHelpers;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.condition.DisabledIf;

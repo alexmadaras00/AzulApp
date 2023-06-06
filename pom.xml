@@ -33,9 +33,9 @@
                 <version>0.8.10</version>
                 <configuration>
                     <excludes>
-                        <exclude>view/Display*</exclude>
-                        <exclude>view/GUI.class</exclude>
-                        <exclude>main/AzulApp.class</exclude>
+                        <exclude>**/Display*</exclude>
+                        <exclude>**/GUI.class</exclude>
+                        <exclude>**/AzulApp.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
