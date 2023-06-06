@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import model.Tile;
 import model.TileColor;
 
 public class Factory implements FactoryInterface {
