@@ -84,7 +84,7 @@ public class Game implements Model {
 
     private void fillBag() {
         for (int i = 0; i < 20; i++) {
-            List<Tile> colorTiles = new ArrayList<>();
+            List<TileColor> colorTiles = new ArrayList<>();
             colorTiles.add(TileColor.RED);
             colorTiles.add(TileColor.BLACK);
             colorTiles.add(TileColor.BLUE);
@@ -109,7 +109,7 @@ public class Game implements Model {
 
 
     private void initGameState(GameState gameState) {
-        List<List<Tile>> factoryTiles = new ArrayList<>();
+        List<List<TileColor>> factoryTiles = new ArrayList<>();
         List<PlayerBoardState> playerBoardStates = new ArrayList<>();
         factories.forEach(factory -> {
             factoryTiles.add(factory.getAllTiles());
@@ -172,7 +172,7 @@ public class Game implements Model {
                 if (factory.getAllTiles().size() >= 4) {
                     break;
                 }
-                List<Tile> bagTiles = bag.popTiles(1);
+                List<TileColor> bagTiles = bag.popTiles(1);
                 factory.addTiles(bagTiles);
             }
             Action actionFillFactories = new Action();
@@ -265,7 +265,7 @@ public class Game implements Model {
     @Override
     public GameState terminateGame() {
         GameState gameState = new GameState();
-        List<List<Tile>> factoryTiles = new ArrayList<>();
+        List<List<TileColor>> factoryTiles = new ArrayList<>();
         factories.forEach(factory -> {
             factoryTiles.add(factory.getAllTiles());
         });
@@ -281,7 +281,7 @@ public class Game implements Model {
     @Override
     public GameState endGame() {
         GameState gameState = new GameState();
-        List<List<Tile>> factoryTiles = new ArrayList<>();
+        List<List<TileColor>> factoryTiles = new ArrayList<>();
 
         gameState.setMiddle(middle.getAllTiles());
 
