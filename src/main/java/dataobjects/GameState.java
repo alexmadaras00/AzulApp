@@ -10,6 +10,7 @@ public class GameState implements DataObject {
     private List<List<Tile>> factories;
     private List<Tile> middle;
     private PlayerData currentPlayer;
+    private PlayerData winnerPlayer;
 
     public GameState() {
     }
@@ -41,9 +42,12 @@ public class GameState implements DataObject {
     public PlayerData getCurrentPlayer() {
         return currentPlayer;
     }
-    
     public void setCurrentPlayer(PlayerData currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+    public PlayerData getWinnerPlayer() {return winnerPlayer;}
+    public void setWinnerPlayerPlayer(PlayerData winnerPlayer) {
+        this.winnerPlayer = winnerPlayer;
     }
 
     @Override

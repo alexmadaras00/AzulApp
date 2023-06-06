@@ -26,9 +26,9 @@ public class GameTest {
         factories = new ArrayList<>();
         player1 = new Player("Boris");
         player2 = new Player("Giani");
-        assertEquals(0,game.getPlayers().size());
-        assertEquals(0,game.getTurnOrder().size());
-        assertEquals(0,game.getBox().size());
+        assertEquals(0, game.getPlayers().size());
+        assertEquals(0, game.getTurnOrder().size());
+        assertEquals(0, game.getBox().size());
         game.addPlayer(player1);
         game.addPlayer(player2);
         factoryTiles = new ArrayList<>();
@@ -36,8 +36,8 @@ public class GameTest {
 
     @Test
     public void testDefaultConstructor() {
-        assertEquals(0,game.getMiddle().getAllTiles().size());
-        assertEquals(0,game.getFactories().size());
+        assertEquals(0, game.getMiddle().getAllTiles().size());
+        assertEquals(0, game.getFactories().size());
         assertEquals(0, game.getRound());
         assertEquals(game.getPlayers(), game.getTurnOrder());
         assertEquals(0, game.getBag().getTiles().size());
@@ -243,16 +243,46 @@ public class GameTest {
 
     @Test
     public void testEndGame() {
-        System.out.println(game.getTurnOrder().size());
+        player1 = new Player();
+        player2 = new Player();
+        game.addPlayer(player1);
+        game.addPlayer(player2);
         game.startGame();
         incrementRound();
         assertTrue(game.getRound() >= 5);
         List<List<Tile>> factoryTiles = new ArrayList<>();
+
+        player1.getBoard().getWall().addTile(0, TileColor.BLUE);
+        player1.getBoard().getWall().addTile(1, TileColor.BLUE);
+        player1.getBoard().getWall().addTile(1, TileColor.RED);
+        player1.getBoard().getWall().addTile(1, TileColor.CYAN);
+        player1.getBoard().getWall().addTile(1, TileColor.BLACK);
+        player1.getBoard().getWall().addTile(1, TileColor.YELLOW);
+        player1.getBoard().getWall().addTile(2, TileColor.BLACK);
+        player1.getBoard().getWall().addTile(3, TileColor.RED);
+        player1.getBoard().getWall().addTile(4, TileColor.YELLOW);
+        player2.getBoard().getWall().addTile(0, TileColor.BLUE);
+        player2.getBoard().getWall().addTile(1, TileColor.BLUE);
+        player2.getBoard().getWall().addTile(2, TileColor.BLUE);
+        player2.getBoard().getWall().addTile(3, TileColor.BLUE);
+        player2.getBoard().getWall().addTile(4, TileColor.BLUE);
+        player2.getBoard().addFinalScores();
+        player1.getBoard().addFinalScores();
+        PlayerData playerData2 = new PlayerData();
+        playerData2.setIdentifier(player2.getIdentifier());
+        playerData2.setName(player2.getName());
+        PlayerData playerData1 = new PlayerData();
+        playerData1.setIdentifier(player1.getIdentifier());
+        playerData1.setName(player1.getName());
+        playerData1.setName(player1.getName());
+
         GameState endedGame = game.endGame();
         game.getFactories().forEach(factory -> factoryTiles.add(factory.getAllTiles()));
         assertEquals(GamePhase.FINISHED, game.getGamePhase());
         assertEquals(endedGame.getMiddle(), game.getMiddle().getAllTiles());
         assertEquals(factoryTiles, endedGame.getFactories());
+        assertEquals(playerData2, endedGame.getWinnerPlayer());
+        assertEquals(10, player2.getBoard().getScore());
         assertUpdateFinalScores(endedGame);
         assertFalse(game.isPlaying());
     }

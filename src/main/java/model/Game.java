@@ -3,9 +3,9 @@ package model;
 import dataobjects.*;
 import utils.ExceptionGameStart;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Game implements Model {
     private List<Player> players;
@@ -27,21 +27,18 @@ public class Game implements Model {
         this.isPlaying = false;
         this.box = new ArrayList<>();
         this.round = 0;
-        this.turnOrder = new ArrayList<>(players);
+        this.turnOrder = new ArrayList<>();
     }
 
     public List<Tile> getBox() {
         return box;
     }
-
     public List<Player> getTurnOrder() {
         return turnOrder;
     }
-
     public List<Player> getPlayers() {
         return players;
     }
-
     public Middle getMiddle() {
         return middle;
     }
@@ -290,10 +287,29 @@ public class Game implements Model {
         factories.forEach(factory -> factoryTiles.add(factory.getAllTiles()));
         gameState.setFactories(factoryTiles);
         updateFinalScores(gameState);
+        determineWinner(gameState);
 
         gamePhase = GamePhase.FINISHED;
         isPlaying = false;
         return gameState;
+    }
+    private void determineWinner(GameState gameState) {
+        Map<Player,Integer> scores = new HashMap<>();
+        AtomicInteger maxScore = new AtomicInteger();
+        AtomicReference<Player> maxScorePlayer = new AtomicReference<>();
+        PlayerData winnerData = new PlayerData();
+        players.forEach(player -> {
+            scores.put(player,player.getBoard().getScore());
+        });
+        scores.forEach((player, integer) -> {
+                if(integer > maxScore.get()){
+                    maxScore.set(integer);
+                    maxScorePlayer.set(player);
+                }
+        });
+        winnerData.setName(maxScorePlayer.get().getName());
+        winnerData.setIdentifier(maxScorePlayer.get().getIdentifier());
+        gameState.setWinnerPlayerPlayer(winnerData);
     }
 
     private void updateFinalScores(GameState gameState) {
