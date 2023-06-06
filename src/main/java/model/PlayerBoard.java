@@ -69,9 +69,7 @@ public class PlayerBoard {
         ScoreChange floorLineScoreChange = new ScoreChange();
 
         floorLineScoreChange.setScoreDifference(floorLine.getScore());
-        completedRows.forEach(completedRow -> {
-            patternLine.clearTiles(completedRow);
-        });
+        completedRows.forEach(completedRow -> patternLine.clearTiles(completedRow));
 
         return remainderList;
     }
