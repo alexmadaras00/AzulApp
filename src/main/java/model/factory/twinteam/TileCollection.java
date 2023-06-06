@@ -1,5 +1,5 @@
 package model.factory.twinteam;
 
-public class TileCollection {
+public abstract class TileCollection {
 
 }

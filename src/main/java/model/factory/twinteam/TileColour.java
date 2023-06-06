@@ -1,5 +1,5 @@
 package model.factory.twinteam;
 
-public class TileColour {
-
+public enum TileColour {
+    RED, GREEN, BLUE, WHITE, YELLOW
 }
