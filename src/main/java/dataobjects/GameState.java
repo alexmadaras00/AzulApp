@@ -42,11 +42,16 @@ public class GameState implements DataObject {
     public PlayerData getCurrentPlayer() {
         return currentPlayer;
     }
+
     public void setCurrentPlayer(PlayerData currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
-    public PlayerData getWinnerPlayer() {return winnerPlayer;}
-    public void setWinnerPlayerPlayer(PlayerData winnerPlayer) {
+
+    public PlayerData getWinnerPlayer() {
+        return winnerPlayer;
+    }
+
+    public void setWinnerPlayer(PlayerData winnerPlayer) {
         this.winnerPlayer = winnerPlayer;
     }
 
@@ -78,6 +83,11 @@ public class GameState implements DataObject {
             if (other.currentPlayer != null)
                 return false;
         } else if (!currentPlayer.equals(other.currentPlayer))
+            return false;
+        if (winnerPlayer == null) {
+            if (other.winnerPlayer != null)
+                return false;
+        } else if (!winnerPlayer.equals(other.winnerPlayer))
             return false;
         return true;
     }

@@ -309,7 +309,7 @@ public class Game implements Model {
         });
         winnerData.setName(maxScorePlayer.get().getName());
         winnerData.setIdentifier(maxScorePlayer.get().getIdentifier());
-        gameState.setWinnerPlayerPlayer(winnerData);
+        gameState.setWinnerPlayer(winnerData);
     }
 
     private void updateFinalScores(GameState gameState) {
