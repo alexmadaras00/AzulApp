@@ -1,40 +1,22 @@
-// package view;
+package view;
 
-// import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-// import org.junit.jupiter.api.BeforeAll;
-// import org.junit.jupiter.api.Test;
-// import org.testfx.framework.junit5.ApplicationTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIf;
 
-// import javafx.scene.Scene;
-// import javafx.stage.Stage;
-// import model.TileColor;
-// import static org.testfx.api.FxToolkit.registerPrimaryStage;
+import model.TileColor;
 
-// public class DisplayTileTest {
-//     private DisplayTile displayTile;
-//     static {
+@DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
+public class DisplayTileTest extends JavaFXApplicationTest{
+    private DisplayTile displayTile;
 
-//         System.setProperty("java.awt.headless", "false");
-//     }
-//     @BeforeAll
-//     public static void setupSpec() throws Exception {
-//         if (Boolean.getBoolean("headless")) {
-//             System.setProperty("testfx.robot", "glass");
-//             System.setProperty("testfx.headless", "true");
-//             System.setProperty("prism.order", "sw");
-//             System.setProperty("prism.text", "t2k");
-//             System.setProperty("java.awt.headless", "true");
-//         }
-//         registerPrimaryStage();
-//     }
+    @Test
+    public void testConstructor() {
 
-//     @Test
-//     public void testConstructor() {
+        assertDoesNotThrow(() -> {
+            displayTile = new DisplayTile(TileColor.RED);
+        });
+    }
 
-//         assertDoesNotThrow(() -> {
-//             displayTile = new DisplayTile(TileColor.RED);
-//         });
-//     }
-
-// }
+}

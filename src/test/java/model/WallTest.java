@@ -36,7 +36,6 @@ public class WallTest {
                 template[row][col] = colors[(col - row + size) % size];
             }
         }
-        System.out.println(template);
         return;
     }
 
