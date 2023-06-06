@@ -33,15 +33,32 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
                 return null;
         }
     }
+    
+    private TileColour translateTwinTileColour(TileColor color) {
+        switch (color) {
+            case RED:
+                return TileColour.RED;
+            case CYAN:
+                return TileColour.GREEN;
+            case YELLOW:
+                return TileColour.YELLOW;
+            case BLUE:
+                return TileColour.BLUE;
+            case BLACK:
+                return TileColour.WHITE;
+            default:
+                return null;
+        }
+    }
 
     @Override
     public List<Tile> getAllTiles() {
-        Collection<model.factory.twinteam.Tile> tiles = factory.getTiles();
+        Collection<model.factory.twinteam.Tile> twinTiles = factory.getTiles();
         List<Tile> ourTiles = new ArrayList<>();
-        for (model.factory.twinteam.Tile tile : tiles) {
-            Tile t = translateTileColor(tile.getColour());
-            if (t != null) {
-                ourTiles.add(t);
+        for (model.factory.twinteam.Tile twinTile : twinTiles) {
+            Tile ourTile = translateTileColor(twinTile.getColour());
+            if (ourTile != null) {
+                ourTiles.add(ourTile);
             }
         }
         return ourTiles;
@@ -49,20 +66,27 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
 
     @Override
     public List<Tile> popAllTiles() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'popAllTiles'");
+        List<Tile> tiles = this.getAllTiles();
+        factory.empty();
+        return tiles;
     }
 
     @Override
     public List<Tile> popTiles(TileColor tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'popTiles'");
+        Collection<model.factory.twinteam.Tile> twinTiles = factory.grab(translateTwinTileColour(tile));
+        List<Tile> ourTiles = new ArrayList<>();
+        for (model.factory.twinteam.Tile twinTile : twinTiles) {
+            Tile ourTile = translateTileColor(twinTile.getColour());
+            if (ourTile != null) {
+                ourTiles.add(ourTile);
+            }
+        }
+        return ourTiles;
     }
 
     @Override
-    public void addTiles(List<Tile> t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTiles'");
+    public void addTiles(List<Tile> ourTiles) {
+
     }
 
     @Override
