@@ -10,8 +10,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FactoryTest {
-    private static Factory factory;
-    private static List<Tile> tiles;
+    private Factory factory;
+    private List<TileColor> tiles;
 
     @BeforeEach
     public void setUp() {
@@ -23,6 +23,7 @@ public class FactoryTest {
     @Test
     public void correctSize() {
         assertTrue(factory.getAllTiles().size() <= 4);
+        assertTrue(tiles.size() == 4);
     }
 
     @Test
@@ -34,7 +35,7 @@ public class FactoryTest {
     @Test
     public void testPopTiles() {
         factory.addTiles(tiles);
-        List<Tile> blueTiles = factory.popTiles(TileColor.BLUE);
+        List<TileColor> blueTiles = factory.popTiles(TileColor.BLUE);
         assertEquals(2, blueTiles.size());
         assertEquals(TileColor.BLUE, blueTiles.get(0));
         assertEquals(TileColor.BLUE, blueTiles.get(1));

@@ -8,32 +8,32 @@ import model.Tile;
 import model.TileColor;
 
 public class Factory implements FactoryInterface {
-    private List<Tile> tiles = new ArrayList<>();
+    private List<TileColor> tiles = new ArrayList<>();
 
-    public List<Tile> getAllTiles() {
+    public List<TileColor> getAllTiles() {
         return tiles;
     }
 
-    private List<Tile> getTiles(TileColor type) {
+    private List<TileColor> getTiles(TileColor type) {
         return tiles.stream()
                 .filter(tile -> tile == type)
                 .collect(Collectors.toList());
     }
 
-    public List<Tile> popAllTiles() {
-        List<Tile> copyTiles = List.copyOf(tiles);
+    public List<TileColor> popAllTiles() {
+        List<TileColor> copyTiles = List.copyOf(tiles);
         tiles.removeIf((t) -> (true));
         return copyTiles;
     }
 
-    public List<Tile> popTiles(TileColor tile) {
-        List<Tile> removeTiles = this.getTiles(tile);
+    public List<TileColor> popTiles(TileColor tile) {
+        List<TileColor> removeTiles = this.getTiles(tile);
         tiles.removeAll(removeTiles);
         return removeTiles;
     }
 
-    public void addTiles(List<Tile> t) {
-        tiles.addAll(t);
+    public void addTiles(List<TileColor> tileList) {
+        tiles.addAll(tileList);
     }
 
     public boolean hasTiles(TileColor type) {

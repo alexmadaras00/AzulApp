@@ -2,18 +2,17 @@ package model.factory;
 
 import java.util.List;
 
-import model.Tile;
 import model.TileColor;
 
 public interface FactoryInterface {
 
-    public List<Tile> getAllTiles();
+    public List<TileColor> getAllTiles();
 
-    public List<Tile> popAllTiles();
+    public List<TileColor> popAllTiles();
 
-    public List<Tile> popTiles(TileColor tile);
+    public List<TileColor> popTiles(TileColor tile);
 
-    public void addTiles(List<Tile> t);
+    public void addTiles(List<TileColor> tiles);
 
     public boolean hasTiles(TileColor type);
 
