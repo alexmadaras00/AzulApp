@@ -2,6 +2,6 @@ package messaging.dataobjects;
 
 import java.io.Serializable;
 
-public interface DataObject extends Serializable{
-    
+public interface DataObject extends Serializable {
+
 }
