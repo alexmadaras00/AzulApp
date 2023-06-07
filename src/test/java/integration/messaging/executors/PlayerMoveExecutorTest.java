@@ -6,7 +6,7 @@ import model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import messaging.executors.PlayerMoveExecutor;
+import messaging.executors.controller.PlayerMoveExecutor;
 import messaging.messages.PlayerMove;
 
 public class PlayerMoveExecutorTest {
