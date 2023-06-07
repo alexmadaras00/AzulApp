@@ -1,6 +1,5 @@
 package messaging.executors;
 
-import messaging.dataobjects.DataObject;
 import messaging.executors.controller.JoinGameExecutor;
 import messaging.executors.controller.PlayerMoveExecutor;
 import messaging.executors.controller.StartGameExecutor;

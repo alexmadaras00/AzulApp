@@ -1,6 +1,5 @@
 package controller;
 
-import messaging.dataobjects.DataObject;
 import messaging.executors.Executor;
 import messaging.executors.ExecutorFactory;
 import messaging.messages.Message;
