@@ -2,7 +2,6 @@ package view;
 
 import java.util.List;
 
-import dataobjects.RequestGameState;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Tile;
@@ -10,22 +9,27 @@ import model.TileColor;
 
 public class GUI extends Stage implements UI {
     private DisplayGameState gameState;
+    private Scene scene;
     private Messager messager;
-
 
     public void start(Stage stage) {
         // this.messager.send(new RequestGameState());
         gameState = new DisplayGameState();
-        Scene scene = new Scene(gameState);
+        scene = new HubScene(gameState);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void startGame() {
+        // TODO
+        return;
     }
 
     @Override
     public void connectMessager(Messager messager) {
         this.messager = messager;
     }
-
 
     @Override
     public void setWallPattern(List<List<TileColor>> pattern) {
@@ -172,6 +176,5 @@ public class GUI extends Stage implements UI {
         gameState.addPlayer(playerID, name);
 
     }
-
 
 }

@@ -4,7 +4,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 import model.Tile;
 import model.TileColor;
 

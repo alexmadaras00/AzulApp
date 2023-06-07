@@ -9,6 +9,7 @@ import model.TileColor;
 public interface UI extends Executable {
 
     // GENERAL
+    void startGame();
 
     void connectMessager(Messager messager);
 
