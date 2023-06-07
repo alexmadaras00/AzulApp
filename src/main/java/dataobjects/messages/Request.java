@@ -1,5 +1,5 @@
 package dataobjects.messages;
 
-public class Request {
-    
+public abstract class Request extends Message {
+
 }
