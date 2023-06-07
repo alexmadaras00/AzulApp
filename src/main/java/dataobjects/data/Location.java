@@ -1,9 +1,5 @@
 package dataobjects.data;
 
-import model.TileColor;
-
-import java.util.Objects;
-
 import dataobjects.DataObject;
 
 public class Location implements DataObject {

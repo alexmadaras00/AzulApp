@@ -1,7 +1,5 @@
 package dataobjects.data;
 
-import model.TileColor;
-
 import java.util.List;
 
 import dataobjects.DataObject;
