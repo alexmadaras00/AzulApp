@@ -12,4 +12,10 @@ public class OkPlayerMoveExecutor implements Executor {
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
 
+    @Override
+    public void setMessage(Message message) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setMessage'");
+    }
+
 }

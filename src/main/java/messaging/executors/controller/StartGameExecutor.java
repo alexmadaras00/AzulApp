@@ -11,5 +11,11 @@ public class StartGameExecutor implements Executor {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
+
+    @Override
+    public void setMessage(Message message) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setMessage'");
+    }
     
 }
