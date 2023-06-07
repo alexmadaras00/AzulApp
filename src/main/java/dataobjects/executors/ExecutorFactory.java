@@ -1,6 +1,6 @@
-package dataobjects;
+package dataobjects.executors;
 
-import dataobjects.executors.Executor;
+import dataobjects.DataObject;
 
 public interface ExecutorFactory {
 

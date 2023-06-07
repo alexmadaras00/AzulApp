@@ -1,7 +1,7 @@
 package model;
 
-import dataobjects.PlayerBoardState;
-import dataobjects.ScoreChange;
+import dataobjects.data.PlayerBoardState;
+import dataobjects.data.ScoreChange;
 
 import java.util.ArrayList;
 import java.util.List;

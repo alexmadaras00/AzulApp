@@ -1,6 +1,12 @@
 package integration.model;
 
 import dataobjects.*;
+import dataobjects.data.Action;
+import dataobjects.data.GameState;
+import dataobjects.data.PlayerBoardState;
+import dataobjects.data.PlayerData;
+import dataobjects.data.RoundUpdate;
+import dataobjects.data.ScoreUpdate;
 import model.*;
 import model.factory.Factory;
 

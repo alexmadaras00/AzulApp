@@ -1,4 +1,4 @@
-package dataobjects;
+package dataobjects.data;
 
 public enum ScoreType {
     PLACED_TILE_IN_WALL,

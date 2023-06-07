@@ -1,8 +1,7 @@
 package integration.dataobjects;
 
-import dataobjects.PlayerMove;
 import dataobjects.executors.PlayerMoveExecutor;
-import dataobjects.executors.RoundUpdateExecutor;
+import dataobjects.messages.PlayerMove;
 import model.Game;
 import model.Model;
 import model.Player;

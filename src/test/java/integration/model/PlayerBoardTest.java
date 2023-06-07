@@ -1,7 +1,7 @@
 package integration.model;
 
-import dataobjects.PlayerBoardState;
-import dataobjects.ScoreChange;
+import dataobjects.data.PlayerBoardState;
+import dataobjects.data.ScoreChange;
 import model.PlayerBoard;
 import model.Tile;
 import model.TileColor;

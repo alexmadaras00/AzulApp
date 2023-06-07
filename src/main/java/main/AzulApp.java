@@ -2,8 +2,8 @@ package main;
 
 import controller.Controller;
 import controller.Mediator;
-import dataobjects.DataObjectExecutorFactory;
-import dataobjects.ExecutorFactory;
+import dataobjects.executors.DataObjectExecutorFactory;
+import dataobjects.executors.ExecutorFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;

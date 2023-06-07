@@ -2,7 +2,6 @@ package view;
 
 import java.util.List;
 
-import dataobjects.RequestGameState;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Tile;
@@ -14,7 +13,6 @@ public class GUI extends Stage implements UI {
 
 
     public void start(Stage stage) {
-        // this.messager.send(new RequestGameState());
         gameState = new DisplayGameState();
         Scene scene = new Scene(gameState);
         stage.setScene(scene);

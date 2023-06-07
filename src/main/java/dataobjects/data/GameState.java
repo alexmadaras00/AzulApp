@@ -1,8 +1,10 @@
-package dataobjects;
+package dataobjects.data;
 
 import model.*;
 
 import java.util.List;
+
+import dataobjects.DataObject;
 
 
 public class GameState implements DataObject {

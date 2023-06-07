@@ -1,6 +1,16 @@
 package model;
 
 import dataobjects.*;
+import dataobjects.data.Action;
+import dataobjects.data.ActionType;
+import dataobjects.data.GameState;
+import dataobjects.data.Location;
+import dataobjects.data.LocationType;
+import dataobjects.data.MoveUpdate;
+import dataobjects.data.PlayerBoardState;
+import dataobjects.data.PlayerData;
+import dataobjects.data.RoundUpdate;
+import dataobjects.data.ScoreUpdate;
 import model.factory.Factory;
 import utils.ExceptionGameStart;
 

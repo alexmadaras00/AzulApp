@@ -1,6 +1,8 @@
-package dataobjects;
+package dataobjects.data;
 
 import java.util.List;
+
+import dataobjects.DataObject;
 
 public class ScoreUpdate implements DataObject {
     private PlayerData player;

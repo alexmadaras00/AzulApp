@@ -1,5 +1,6 @@
-package dataobjects;
+package dataobjects.data;
 
+import dataobjects.DataObject;
 import model.TileColor;
 
 public class ScoreChange implements DataObject {

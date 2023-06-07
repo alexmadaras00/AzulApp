@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import dataobjects.ScoreChange;
-import dataobjects.ScoreType;
+import dataobjects.data.ScoreChange;
+import dataobjects.data.ScoreType;
 
 public class Wall {
     private Tile[][] wall;

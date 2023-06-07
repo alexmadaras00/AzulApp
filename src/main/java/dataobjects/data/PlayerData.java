@@ -1,4 +1,6 @@
-package dataobjects;
+package dataobjects.data;
+
+import dataobjects.DataObject;
 
 public class PlayerData implements DataObject {
     private String name;

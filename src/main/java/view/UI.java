@@ -2,7 +2,7 @@ package view;
 
 import java.util.List;
 
-import dataobjects.Executable;
+import dataobjects.executors.Executable;
 import model.Tile;
 import model.TileColor;
 

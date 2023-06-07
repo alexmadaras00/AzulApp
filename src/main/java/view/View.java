@@ -1,8 +1,8 @@
 package view;
 
 import dataobjects.DataObject;
-import dataobjects.ExecutorFactory;
 import dataobjects.executors.Executor;
+import dataobjects.executors.ExecutorFactory;
 import controller.Mediator;
 
 public class View implements Messager {

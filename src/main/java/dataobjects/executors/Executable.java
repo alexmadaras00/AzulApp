@@ -1,4 +1,4 @@
-package dataobjects;
+package dataobjects.executors;
 
 public interface Executable {
     

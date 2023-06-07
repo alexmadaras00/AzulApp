@@ -1,4 +1,8 @@
-package dataobjects;
+package dataobjects.messages;
+
+import dataobjects.DataObject;
+import dataobjects.data.Action;
+import dataobjects.data.PlayerData;
 
 public class PlayerMove implements DataObject {
     private PlayerData player;

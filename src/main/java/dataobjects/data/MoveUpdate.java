@@ -1,8 +1,10 @@
-package dataobjects;
+package dataobjects.data;
 
 import model.TileColor;
 
 import java.util.List;
+
+import dataobjects.DataObject;
 
 public class MoveUpdate implements DataObject {
     private PlayerData player;

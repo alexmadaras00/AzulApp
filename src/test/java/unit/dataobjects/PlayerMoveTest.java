@@ -1,7 +1,8 @@
 package unit.dataobjects;
 
-import dataobjects.PlayerMove;
 import org.junit.jupiter.api.Test;
+
+import dataobjects.messages.PlayerMove;
 
 import static com.google.code.beanmatchers.BeanMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;

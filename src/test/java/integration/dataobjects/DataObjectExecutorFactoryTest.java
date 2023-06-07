@@ -1,7 +1,14 @@
 package integration.dataobjects;
 
 import dataobjects.*;
+import dataobjects.data.GameState;
+import dataobjects.data.Move;
+import dataobjects.data.MoveUpdate;
+import dataobjects.data.PlayerData;
+import dataobjects.data.RoundUpdate;
+import dataobjects.executors.DataObjectExecutorFactory;
 import dataobjects.executors.Executor;
+import dataobjects.executors.ExecutorFactory;
 import model.Player;
 import model.TileColor;
 import model.Model;

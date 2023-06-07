@@ -13,8 +13,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import dataobjects.ScoreChange;
-import dataobjects.ScoreType;
+import dataobjects.data.ScoreChange;
+import dataobjects.data.ScoreType;
 import model.TileColor;
 import model.Wall;
 

@@ -1,7 +1,8 @@
-package dataobjects;
+package dataobjects.data;
 
 import java.util.List;
 
+import dataobjects.DataObject;
 import model.Tile;
 
 public class PlayerBoardState implements DataObject {

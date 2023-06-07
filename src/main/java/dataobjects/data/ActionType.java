@@ -1,4 +1,4 @@
-package dataobjects;
+package dataobjects.data;
 
 public enum ActionType {
     ADD,
