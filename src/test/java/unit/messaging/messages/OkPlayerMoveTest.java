@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import messaging.dataobjects.GameState;
 import messaging.dataobjects.MoveUpdate;
 import messaging.dataobjects.RoundUpdate;
 import messaging.messages.OkPlayerMove;
