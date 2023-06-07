@@ -9,16 +9,16 @@ import messaging.messages.BadRequest;
 
 public class BadRequestTest {
     private BadRequest response;
-    private String id = "1";
+    private String requestId = "1";
     private String reason = "Great Test";
     @BeforeEach
     public void setup() {
-        response = new BadRequest(id);
+        response = new BadRequest(requestId);
     }
 
     @Test
     public void testRequestId() {
-        assertEquals(id, response.getRequestId());
+        assertEquals(requestId, response.getRequestId());
     }
 
     @Test
