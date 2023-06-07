@@ -1,5 +1,5 @@
 package dataobjects.messages;
 
-public class StartGame {
-    
+public class StartGame extends Request {
+
 }

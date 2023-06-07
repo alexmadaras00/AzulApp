@@ -1,10 +1,9 @@
 package dataobjects.messages;
 
-import dataobjects.DataObject;
 import dataobjects.data.Action;
 import dataobjects.data.PlayerData;
 
-public class PlayerMove implements DataObject {
+public class PlayerMove extends Request {
     private PlayerData player;
     private Action action;
 
@@ -29,19 +28,15 @@ public class PlayerMove implements DataObject {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PlayerMove)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof PlayerMove))
+            return false;
 
         PlayerMove that = (PlayerMove) o;
 
-        if (getPlayer() != null ? !getPlayer().equals(that.getPlayer()) : that.getPlayer() != null) return false;
+        if (getPlayer() != null ? !getPlayer().equals(that.getPlayer()) : that.getPlayer() != null)
+            return false;
         return getAction() != null ? getAction().equals(that.getAction()) : that.getAction() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getPlayer() != null ? getPlayer().hashCode() : 0;
-        result = 31 * result + (getAction() != null ? getAction().hashCode() : 0);
-        return result;
     }
 }

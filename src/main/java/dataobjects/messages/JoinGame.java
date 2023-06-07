@@ -1,5 +1,5 @@
 package dataobjects.messages;
 
-public class JoinGame {
-    
+public class JoinGame extends Request {
+
 }
