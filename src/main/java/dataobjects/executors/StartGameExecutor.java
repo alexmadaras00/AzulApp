@@ -1,5 +1,5 @@
 package dataobjects.executors;
 
-public class PlayerMoveExecutor {
+public class StartGameExecutor {
     
 }
