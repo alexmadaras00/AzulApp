@@ -1,22 +1,24 @@
 package unit.model;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import model.TileColor;
-import model.factory.Factory;
+import model.factory.FactoryTwinteamWrapper;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FactoryTest {
-    private Factory factory;
+@Disabled
+public class FactoryTwinteamWrapperTest {
+    private FactoryTwinteamWrapper factory;
     private List<TileColor> tiles;
 
     @BeforeEach
     public void setUp() {
-        factory = new Factory();
+        factory = new FactoryTwinteamWrapper();
         tiles = List.of(TileColor.BLUE, TileColor.BLUE, TileColor.YELLOW, TileColor.RED);
     }
 

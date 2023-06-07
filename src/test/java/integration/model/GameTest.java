@@ -2,6 +2,8 @@ package integration.model;
 
 import dataobjects.*;
 import model.*;
+import model.factory.Factory;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +19,7 @@ public class GameTest {
     static List<Player> players;
     static Player player1;
     static Player player2;
-    List<List<Tile>> factoryTiles;
+    List<List<TileColor>> factoryTiles;
     Game game;
 
     @BeforeEach
@@ -250,7 +252,7 @@ public class GameTest {
         game.startGame();
         incrementRound();
         assertTrue(game.getRound() >= 5);
-        List<List<Tile>> factoryTiles = new ArrayList<>();
+        List<List<TileColor>> factoryTiles = new ArrayList<>();
 
         player1.getBoard().getWall().addTile(0, TileColor.BLUE);
         player1.getBoard().getWall().addTile(1, TileColor.BLUE);

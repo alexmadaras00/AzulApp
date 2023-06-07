@@ -1,4 +1,4 @@
-package view;
+package integration.view;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,6 +16,9 @@ import dataobjects.executors.Executor;
 import model.Model;
 import model.Tile;
 import model.TileColor;
+import view.Messager;
+import view.UI;
+import view.View;
 
 public class ViewTest {
     private static enum MockDataObject implements DataObject {

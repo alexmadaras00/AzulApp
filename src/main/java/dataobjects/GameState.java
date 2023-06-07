@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GameState implements DataObject {
     private List<PlayerBoardState> playerBoards;
-    private List<List<Tile>> factories;
+    private List<List<TileColor>> factories;
     private List<Tile> middle;
     private PlayerData currentPlayer;
     private PlayerData winnerPlayer;
@@ -23,11 +23,11 @@ public class GameState implements DataObject {
         this.playerBoards = playerBoards;
     }
 
-    public List<List<Tile>> getFactories() {
+    public List<List<TileColor>> getFactories() {
         return factories;
     }
 
-    public void setFactories(List<List<Tile>> factories) {
+    public void setFactories(List<List<TileColor>> factories) {
         this.factories = factories;
     }
 

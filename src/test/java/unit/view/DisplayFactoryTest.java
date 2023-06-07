@@ -1,4 +1,4 @@
-package view;
+package unit.view;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,7 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIf;
 
+import javafxHelpers.JavaFXApplicationTest;
 import model.TileColor;
+import view.DisplayFactory;
 
 @DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
 public class DisplayFactoryTest extends JavaFXApplicationTest {
