@@ -4,7 +4,7 @@ import controller.Controller;
 import controller.Mediator;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import messaging.executors.DataObjectExecutorFactory;
+import messaging.executors.ConcreteExecutorFactory;
 import messaging.executors.ExecutorFactory;
 import model.*;
 import view.DisplayWall;
@@ -25,7 +25,7 @@ public class AzulApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Model model = new Game();
-        ExecutorFactory executorFactory = new DataObjectExecutorFactory();
+        ExecutorFactory executorFactory = new ConcreteExecutorFactory();
         Mediator mediator = new Controller(executorFactory);
         Messager messager = new View(executorFactory);
         GUI gui = new GUI();

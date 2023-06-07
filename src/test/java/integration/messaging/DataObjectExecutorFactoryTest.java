@@ -13,7 +13,7 @@ import messaging.dataobjects.GameState;
 import messaging.dataobjects.MoveUpdate;
 import messaging.dataobjects.PlayerData;
 import messaging.dataobjects.RoundUpdate;
-import messaging.executors.DataObjectExecutorFactory;
+import messaging.executors.ConcreteExecutorFactory;
 import messaging.executors.Executor;
 import messaging.executors.ExecutorFactory;
 import messaging.messages.Message;
@@ -130,7 +130,7 @@ public class DataObjectExecutorFactoryTest {
     @BeforeEach
     public static void setUp() {
         model = new MockModel();
-        factory = new DataObjectExecutorFactory();
+        factory = new ConcreteExecutorFactory();
     }
 
     @Disabled
