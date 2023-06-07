@@ -2,8 +2,12 @@ package view;
 
 import java.util.List;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.AzulApp;
 import model.Tile;
 import model.TileColor;
 
@@ -12,10 +16,11 @@ public class GUI extends Stage implements UI {
     private Scene scene;
     private Messager messager;
 
-    public void start(Stage stage) {
-        // this.messager.send(new RequestGameState());
+    public void start(Stage stage) throws Exception {
         gameState = new DisplayGameState();
-        scene = new HubScene(gameState);
+        FXMLLoader loader = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
+        VBox hubPage = (VBox) loader.load();
+        scene = new Scene(hubPage);
         stage.setScene(scene);
         stage.show();
     }
