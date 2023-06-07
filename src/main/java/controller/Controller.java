@@ -3,6 +3,7 @@ package controller;
 import messaging.dataobjects.DataObject;
 import messaging.executors.Executor;
 import messaging.executors.ExecutorFactory;
+import messaging.messages.Message;
 import model.Model;
 import view.Messager;
 
@@ -26,9 +27,9 @@ public class Controller implements Mediator {
     }
 
     @Override
-    public void notify(DataObject message) {
+    public void notify(Message message) {
         Executor executor = executorFactory.createExecutor(message);
-        DataObject newMessage = executor.execute(model);
+        Message newMessage = executor.execute(model);
         if (newMessage != null) {
             messager.notify(newMessage);
         }

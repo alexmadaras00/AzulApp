@@ -30,7 +30,7 @@ public class PlayerMoveExecutorTest {
     @Test
     public void testExecute() {
 
-        PlayerMove playerMove = playerMoveExecutor.execute(model);
+        PlayerMove playerMove = (PlayerMove) playerMoveExecutor.execute(model);
 
     }
 

@@ -1,10 +1,13 @@
 package integration.view;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import messaging.messages.Message;
+import messaging.messages.StartGame;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +24,6 @@ import view.UI;
 import view.View;
 
 public class ViewTest {
-    private static enum MockDataObject implements DataObject {
-        MOVE,
-        UPDATE;
-    }
 
     private static class MockUI implements UI {
         public int didSomethingCounter;
@@ -179,9 +178,9 @@ public class ViewTest {
         private Messager messager;
 
         @Override
-        public void notify(DataObject message) {
+        public void notify(Message message) {
             notifications.add(message);
-            messager.notify(MockDataObject.UPDATE);
+            messager.notify(new StartGame());
         }
 
         @Override
@@ -197,14 +196,18 @@ public class ViewTest {
 
     private static class MockExecutor implements Executor {
 
-        public MockExecutor(DataObject message) {
+        public MockExecutor(Message message) {
         }
 
         @Override
-        public DataObject execute(Executable ui) {
+        public Message execute(Executable ui) {
             MockUI newUserInterface = (ViewTest.MockUI) ui;
             newUserInterface.doSomething();
             return null;
+        }
+
+        @Override
+        public void setMessage(Message message) {
         }
 
     }
@@ -212,7 +215,7 @@ public class ViewTest {
     private static class MockExecutorFactory implements ExecutorFactory {
 
         @Override
-        public Executor createExecutor(DataObject message) {
+        public Executor createExecutor(Message message) {
             return new MockExecutor(message);
         }
     }
@@ -233,9 +236,9 @@ public class ViewTest {
 
     @Test
     void testConnectionViewToController() {
-        view.send(MockDataObject.MOVE);
+        view.send(new StartGame());
         assertEquals(1, controller.notifications.size());
-        assertEquals(MockDataObject.MOVE, controller.notifications.get(0));
+        assertInstanceOf(StartGame.class, controller.notifications.get(0));
         assertEquals(1, ui.didSomethingCounter);
     }
 }

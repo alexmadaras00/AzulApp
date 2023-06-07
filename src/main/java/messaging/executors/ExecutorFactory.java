@@ -1,8 +1,7 @@
 package messaging.executors;
 
-import messaging.dataobjects.DataObject;
+import messaging.messages.Message;
 
 public interface ExecutorFactory {
-
-    Executor createExecutor(DataObject message);
+    Executor createExecutor(Message message);
 }

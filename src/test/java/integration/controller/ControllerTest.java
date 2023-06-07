@@ -1,13 +1,13 @@
 package integration.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import controller.Controller;
 import controller.Mediator;
-import messaging.*;
 import messaging.dataobjects.DataObject;
 import messaging.dataobjects.GameState;
 import messaging.dataobjects.MoveUpdate;
@@ -16,13 +16,13 @@ import messaging.dataobjects.RoundUpdate;
 import messaging.executors.Executable;
 import messaging.executors.Executor;
 import messaging.executors.ExecutorFactory;
-import model.Player;
-import model.TileColor;
-import model.Tile;
+import messaging.messages.JoinGame;
+import messaging.messages.Message;
+import messaging.messages.StartGame;
+import model.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import model.Model;
 import view.Messager;
 import view.UI;
 
@@ -42,12 +42,12 @@ public class ControllerTest {
         }
 
         @Override
-        public void notify(DataObject message) {
+        public void notify(Message message) {
             notifications.add(message);
         }
 
         @Override
-        public void send(DataObject message) {
+        public void send(Message message) {
             mediator.notify(message);
         }
 
@@ -64,9 +64,9 @@ public class ControllerTest {
             didSomethingCounter = 0;
         }
 
-        public DataObject doSomething() {
+        public Message doSomething() {
             didSomethingCounter++;
-            return MockDataObject.UPDATE;
+            return new StartGame();
         }
 
         @Override
@@ -153,12 +153,18 @@ public class ControllerTest {
 
     private static class MockExecutor implements Executor {
 
-        public MockExecutor(DataObject message) {}
+        public MockExecutor(Message message) {
+        }
 
         @Override
-        public DataObject execute(Executable model) {
-            MockModel newModel = (ControllerTest.MockModel) model;
-            return newModel.doSomething();
+        public Message execute(Executable model) {
+            StartGame newMessage = new StartGame();
+            return newMessage;
+        }
+
+        @Override
+        public void setMessage(Message message) {
+
         }
 
     }
@@ -166,7 +172,7 @@ public class ControllerTest {
     private static class MockExecutorFactory implements ExecutorFactory {
 
         @Override
-        public Executor createExecutor(DataObject message) {
+        public Executor createExecutor(Message message) {
             return new MockExecutor(message);
         }
     }
@@ -189,9 +195,10 @@ public class ControllerTest {
     public void testConnection() {
         assertEquals(0, model.didSomethingCounter);
         assertEquals(0, messager.notifications.size());
-        messager.send(MockDataObject.MOVE);
+        messager.send(new StartGame());
+        model.doSomething();
         assertEquals(1, model.didSomethingCounter);
         assertEquals(1, messager.notifications.size());
-        assertEquals(MockDataObject.UPDATE, messager.notifications.get(0));
+        assertInstanceOf(StartGame.class, messager.notifications.get(0));
     }
 }

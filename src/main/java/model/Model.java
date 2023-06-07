@@ -1,15 +1,13 @@
 package model;
 
-import utils.ExceptionGameStart;
-
-import java.util.List;
-
-import messaging.*;
 import messaging.dataobjects.DataObject;
 import messaging.dataobjects.GameState;
 import messaging.dataobjects.PlayerData;
 import messaging.dataobjects.RoundUpdate;
 import messaging.executors.Executable;
+import utils.ExceptionGameStart;
+
+import java.util.List;
 
 public interface Model extends Executable {
     GameState startGame() throws ExceptionGameStart;
