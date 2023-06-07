@@ -22,7 +22,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DataObjectExecutorFactoryTest {
+public class ConcreteExecutorFactoryTest {
     private static enum MockDataObject implements DataObject {
         MOVE, UPDATE;
     }
