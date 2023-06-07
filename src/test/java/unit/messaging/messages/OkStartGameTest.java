@@ -2,7 +2,6 @@ package unit.messaging.messages;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +11,8 @@ import messaging.messages.OkStartGame;
 public class OkStartGameTest {
     private OkStartGame response;
     private String requestId = "1";
-    private static GameState gameState;
+    private GameState gameState = new GameState();
 
-    @BeforeAll
-    public static void base() {
-        gameState = new GameState();
-    }
 
     @BeforeEach
     public void setup() {
