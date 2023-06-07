@@ -8,23 +8,23 @@ import org.junit.jupiter.api.Test;
 import messaging.messages.BadRequest;
 
 public class BadRequestTest {
-    private BadRequest request;
+    private BadRequest response;
     private String id = "1";
     private String reason = "Great Test";
     @BeforeEach
     public void setup() {
-        request = new BadRequest(id);
+        response = new BadRequest(id);
     }
 
     @Test
     public void testRequestId() {
-        assertEquals(id, request.getRequestId());
+        assertEquals(id, response.getRequestId());
     }
 
     @Test
     public void testReason() {
-        request.setReason(reason);
-        assertEquals(reason, request.getReason());
+        response.setReason(reason);
+        assertEquals(reason, response.getReason());
     }
     
 }
