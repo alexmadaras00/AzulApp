@@ -1,12 +1,13 @@
 package integration.dataobjects;
 
-import dataobjects.executors.PlayerMoveExecutor;
-import dataobjects.messages.PlayerMove;
 import model.Game;
 import model.Model;
 import model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import messaging.executors.PlayerMoveExecutor;
+import messaging.messages.PlayerMove;
 
 public class PlayerMoveExecutorTest {
     Model model;

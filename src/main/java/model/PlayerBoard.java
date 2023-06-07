@@ -1,10 +1,10 @@
 package model;
 
-import dataobjects.data.PlayerBoardState;
-import dataobjects.data.ScoreChange;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import messaging.dataobjects.PlayerBoardState;
+import messaging.dataobjects.ScoreChange;
 
 public class PlayerBoard {
     private List<ScoreChange> scoreChanges;

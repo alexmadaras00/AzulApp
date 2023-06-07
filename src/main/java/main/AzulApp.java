@@ -2,10 +2,10 @@ package main;
 
 import controller.Controller;
 import controller.Mediator;
-import dataobjects.executors.DataObjectExecutorFactory;
-import dataobjects.executors.ExecutorFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import messaging.executors.DataObjectExecutorFactory;
+import messaging.executors.ExecutorFactory;
 import model.*;
 import view.DisplayWall;
 import view.GUI;

@@ -1,7 +1,7 @@
 package view;
 
 import controller.Mediator;
-import dataobjects.DataObject;
+import messaging.dataobjects.DataObject;
 
 public interface Messager {
     void connectMediator(Mediator mediator);

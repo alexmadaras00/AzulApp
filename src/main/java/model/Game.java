@@ -1,22 +1,24 @@
 package model;
 
-import dataobjects.*;
-import dataobjects.data.Action;
-import dataobjects.data.ActionType;
-import dataobjects.data.GameState;
-import dataobjects.data.Location;
-import dataobjects.data.LocationType;
-import dataobjects.data.MoveUpdate;
-import dataobjects.data.PlayerBoardState;
-import dataobjects.data.PlayerData;
-import dataobjects.data.RoundUpdate;
-import dataobjects.data.ScoreUpdate;
 import model.factory.Factory;
 import utils.ExceptionGameStart;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+
+import messaging.*;
+import messaging.dataobjects.Action;
+import messaging.dataobjects.ActionType;
+import messaging.dataobjects.DataObject;
+import messaging.dataobjects.GameState;
+import messaging.dataobjects.Location;
+import messaging.dataobjects.LocationType;
+import messaging.dataobjects.MoveUpdate;
+import messaging.dataobjects.PlayerBoardState;
+import messaging.dataobjects.PlayerData;
+import messaging.dataobjects.RoundUpdate;
+import messaging.dataobjects.ScoreUpdate;
 
 public class Game implements Model {
     private List<Player> players;

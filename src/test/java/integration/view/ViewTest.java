@@ -9,10 +9,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import controller.Mediator;
-import dataobjects.DataObject;
-import dataobjects.executors.Executable;
-import dataobjects.executors.Executor;
-import dataobjects.executors.ExecutorFactory;
+import messaging.dataobjects.DataObject;
+import messaging.executors.Executable;
+import messaging.executors.Executor;
+import messaging.executors.ExecutorFactory;
 import model.Model;
 import model.Tile;
 import model.TileColor;

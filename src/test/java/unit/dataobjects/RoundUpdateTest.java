@@ -2,7 +2,7 @@ package unit.dataobjects;
 
 import org.junit.jupiter.api.Test;
 
-import dataobjects.data.RoundUpdate;
+import messaging.dataobjects.RoundUpdate;
 
 import static com.google.code.beanmatchers.BeanMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;

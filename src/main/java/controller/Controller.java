@@ -1,8 +1,8 @@
 package controller;
 
-import dataobjects.DataObject;
-import dataobjects.executors.Executor;
-import dataobjects.executors.ExecutorFactory;
+import messaging.dataobjects.DataObject;
+import messaging.executors.Executor;
+import messaging.executors.ExecutorFactory;
 import model.Model;
 import view.Messager;
 

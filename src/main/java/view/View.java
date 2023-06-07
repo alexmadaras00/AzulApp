@@ -1,9 +1,9 @@
 package view;
 
-import dataobjects.DataObject;
-import dataobjects.executors.Executor;
-import dataobjects.executors.ExecutorFactory;
 import controller.Mediator;
+import messaging.dataobjects.DataObject;
+import messaging.executors.Executor;
+import messaging.executors.ExecutorFactory;
 
 public class View implements Messager {
     private Mediator mediator;

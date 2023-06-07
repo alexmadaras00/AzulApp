@@ -1,20 +1,22 @@
 package integration.dataobjects;
 
-import dataobjects.*;
-import dataobjects.data.GameState;
-import dataobjects.data.Move;
-import dataobjects.data.MoveUpdate;
-import dataobjects.data.PlayerData;
-import dataobjects.data.RoundUpdate;
-import dataobjects.executors.DataObjectExecutorFactory;
-import dataobjects.executors.Executor;
-import dataobjects.executors.ExecutorFactory;
 import model.Player;
 import model.TileColor;
 import model.Model;
 import model.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
+
+import messaging.*;
+import messaging.dataobjects.DataObject;
+import messaging.dataobjects.GameState;
+import messaging.dataobjects.Move;
+import messaging.dataobjects.MoveUpdate;
+import messaging.dataobjects.PlayerData;
+import messaging.dataobjects.RoundUpdate;
+import messaging.executors.DataObjectExecutorFactory;
+import messaging.executors.Executor;
+import messaging.executors.ExecutorFactory;
 
 import java.util.List;
 

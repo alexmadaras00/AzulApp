@@ -1,12 +1,13 @@
 package integration.model;
 
-import dataobjects.data.PlayerBoardState;
-import dataobjects.data.ScoreChange;
 import model.PlayerBoard;
 import model.Tile;
 import model.TileColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import messaging.dataobjects.PlayerBoardState;
+import messaging.dataobjects.ScoreChange;
 
 import java.util.ArrayList;
 import java.util.Arrays;

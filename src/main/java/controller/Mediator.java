@@ -1,6 +1,6 @@
 package controller;
 
-import dataobjects.DataObject;
+import messaging.dataobjects.DataObject;
 import model.Model;
 import view.Messager;
 

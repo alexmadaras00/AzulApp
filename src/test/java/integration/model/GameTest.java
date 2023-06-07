@@ -1,18 +1,19 @@
 package integration.model;
 
-import dataobjects.*;
-import dataobjects.data.Action;
-import dataobjects.data.GameState;
-import dataobjects.data.PlayerBoardState;
-import dataobjects.data.PlayerData;
-import dataobjects.data.RoundUpdate;
-import dataobjects.data.ScoreUpdate;
 import model.*;
 import model.factory.Factory;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import messaging.*;
+import messaging.dataobjects.Action;
+import messaging.dataobjects.GameState;
+import messaging.dataobjects.PlayerBoardState;
+import messaging.dataobjects.PlayerData;
+import messaging.dataobjects.RoundUpdate;
+import messaging.dataobjects.ScoreUpdate;
 import utils.ExceptionGameStart;
 
 import java.util.ArrayList;
