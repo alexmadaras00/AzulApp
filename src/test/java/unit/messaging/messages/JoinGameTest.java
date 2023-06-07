@@ -1,9 +1,9 @@
-package integration.messaging.messages;
+package unit.messaging.messages;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class StartGameTest {
+public class JoinGameTest {
     @BeforeEach
     public void setup() {
 

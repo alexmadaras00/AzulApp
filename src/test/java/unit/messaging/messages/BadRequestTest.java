@@ -1,4 +1,4 @@
-package integration.messaging.messages;
+package unit.messaging.messages;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
