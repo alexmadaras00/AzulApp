@@ -1,4 +1,4 @@
-package integration.dataobjects;
+package integration.messaging.executors;
 
 import model.Game;
 import model.Model;

@@ -1,4 +1,4 @@
-package integration.dataobjects;
+package integration.messaging;
 
 import model.Player;
 import model.TileColor;
@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Disabled;
 import messaging.*;
 import messaging.dataobjects.DataObject;
 import messaging.dataobjects.GameState;
-import messaging.dataobjects.Move;
 import messaging.dataobjects.MoveUpdate;
 import messaging.dataobjects.PlayerData;
 import messaging.dataobjects.RoundUpdate;
 import messaging.executors.DataObjectExecutorFactory;
 import messaging.executors.Executor;
 import messaging.executors.ExecutorFactory;
+import messaging.messages.Message;
 
 import java.util.List;
 
@@ -136,7 +136,7 @@ public class DataObjectExecutorFactoryTest {
     @Disabled
     public void testMoveMessage() {
         // TODO EXAMPLE test per datatype
-        Executor executor = factory.createExecutor(new Move());
+        Executor executor = factory.createExecutor(new Message());
         DataObject dataobject = executor.execute(model);
         assertEquals(MockDataObject.UPDATE, dataobject);
         assertEquals(1, model.didSomethingCounter);
