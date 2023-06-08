@@ -3,6 +3,7 @@ package integration.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import messaging.messages.JoinGame;
 import messaging.messages.Message;
 import messaging.messages.StartGame;
 import model.*;
+import model.factory.Factory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -147,6 +149,51 @@ public class ControllerTest {
         @Override
         public boolean isValidMoveMiddleFloorLine(List<Tile> tiles) {
             return false;
+        }
+
+        @Override
+        public List<Tile> getBox() {
+            return new ArrayList<>();
+        }
+
+        @Override
+        public List<Player> getTurnOrder() {
+            return null;
+        }
+
+        @Override
+        public List<Player> getPlayers() {
+            return null;
+        }
+
+        @Override
+        public Middle getMiddle() {
+            return null;
+        }
+
+        @Override
+        public GamePhase getGamePhase() {
+            return null;
+        }
+
+        @Override
+        public List<Factory> getFactories() {
+            return null;
+        }
+
+        @Override
+        public Bag getBag() {
+            return null;
+        }
+
+        @Override
+        public int getRound() {
+            return 0;
+        }
+
+        @Override
+        public Boolean isPlaying() {
+            return null;
         }
 
     }

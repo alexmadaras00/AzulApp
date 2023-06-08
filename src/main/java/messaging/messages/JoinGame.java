@@ -11,4 +11,5 @@ public class JoinGame extends Request {
     public String getPlayerName() {
         return playerName;
     }
+
 }
