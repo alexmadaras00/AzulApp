@@ -3,9 +3,8 @@ package view;
 import java.util.List;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.AzulApp;
 import model.Tile;
@@ -19,7 +18,7 @@ public class GUI extends Stage implements UI {
     public void start(Stage stage) throws Exception {
         gameState = new DisplayGameState();
         FXMLLoader loader = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
-        VBox hubPage = (VBox) loader.load();
+        Parent hubPage = loader.load();
         scene = new Scene(hubPage);
         stage.setScene(scene);
         stage.show();
