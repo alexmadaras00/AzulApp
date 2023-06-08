@@ -1,5 +1,6 @@
 package view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -112,4 +113,20 @@ public class GamePage {
     private VBox playerboard2;
     private VBox playerboard3;
     private VBox playerboard4;
+
+    @FXML
+    void selectTile(ActionEvent event) {
+        // TODO - check which location it comes from by doing .getParent() is
+        // TODO factory1,2,3,4,5 or middle
+        // TODO - select or deselect it,
+        // TODO - create partial data object to send (from location, tile, amount, etc)
+    }
+
+    @FXML
+    void selectToLocation(ActionEvent event) {
+        // TODO - check which location it comes from by doing .getParent()
+        // TODO - can we select destination (is some tile selected?)
+        // TODO - fill in data object to send
+        // TODO - send Message
+    }
 }
