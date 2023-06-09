@@ -7,6 +7,7 @@ import utils.ExceptionGameStart;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Function;
 
 public class Game implements Model {
     private List<Player> players;
@@ -18,6 +19,7 @@ public class Game implements Model {
     private List<Player> turnOrder;
     private Bag bag;
     private Middle middle;
+    private int maxScore;
 
     public Game() {
         this.players = new ArrayList<>();
@@ -67,19 +69,16 @@ public class Game implements Model {
     @Override
     public GameState startGame() {
         if (isValidStartGame()) {
-            PlayerTile startingPlayerTile = PlayerTile.getInstance();
-            GameState gameState = new GameState();
-            Collections.shuffle(turnOrder);
-            middle.getAllTiles().add(startingPlayerTile);
+            // Collections.shuffle(turnOrder);
+            middle.addTiles(List.of(PlayerTile.getInstance()));
             fillBag();
             initFactories();
-            initGameState(gameState);
             isPlaying = true;
             gamePhase = GamePhase.PREPARING_ROUND;
-            return gameState;
+            startRound();
+            return createGameState();
         } else
             throw new ExceptionGameStart("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.");
-
     }
 
     private void fillBag() {
@@ -108,56 +107,35 @@ public class Game implements Model {
     }
 
 
-    private void initGameState(GameState gameState) {
+    public GameState createGameState() {
+        GameState gameState = new GameState();
         List<List<TileColor>> factoryTiles = new ArrayList<>();
-        List<PlayerBoardState> playerBoardStates = new ArrayList<>();
         factories.forEach(factory -> {
-            factoryTiles.add(factory.getAllTiles());
+            factoryTiles.add(Collections.unmodifiableList(factory.getAllTiles()));
         });
-        PlayerData player1Data = new PlayerData();
-        player1Data.setName(turnOrder.get(0).getName());
-        player1Data.setIdentifier(turnOrder.get(0).getIdentifier());
-        initPlayerBoardStates(playerBoardStates);
         gameState.setFactories(factoryTiles);
-        gameState.setMiddle(middle.getAllTiles());
-        gameState.setPlayerBoards(playerBoardStates);
-        gameState.setCurrentPlayer(player1Data);
-    }
-
-    private void initPlayerBoardStates(List<PlayerBoardState> playerBoardStates) {
+        gameState.setMiddle(Collections.unmodifiableList(middle.getAllTiles()));
+        PlayerData currentPlayerData = new PlayerData();
+        currentPlayerData.setName(turnOrder.get(0).getName());
+        currentPlayerData.setIdentifier(turnOrder.get(0).getIdentifier());
+        gameState.setCurrentPlayer(currentPlayerData);
+        List<PlayerBoardState> playerBoardStates = new ArrayList<>();
         players.forEach(player -> {
-            PlayerBoardState playerBoardState = new PlayerBoardState();
+            PlayerBoardState playerBoardState = player.getBoard().toObject();
             PlayerData playerData = new PlayerData();
             playerData.setName(player.getName());
             playerData.setIdentifier(player.getIdentifier());
             playerBoardState.setPlayer(playerData);
-            playerBoardState.setScore(player.getBoard().getScore());
-            playerBoardState.setPatternLine(player.getBoard().getPatternLine().getCopyTable());
-            playerBoardState.setWall(player.getBoard().getWall().getCopyTable());
-            playerBoardState.setFloorLine(player.getBoard().getFloorLine().getCopyTiles());
             playerBoardStates.add(playerBoardState);
         });
+        gameState.setPlayerBoards(playerBoardStates);
+        return gameState;
     }
 
-    @Override
-    public RoundUpdate startRound() {
+    private RoundUpdate startRound() {
         gamePhase = GamePhase.PREPARING_ROUND;
         RoundUpdate roundUpdate = new RoundUpdate();
-        MoveUpdate moveUpdate = new MoveUpdate();
-        PlayerData playerData = new PlayerData();
-        List<Action> updates = new ArrayList<>();
-
-        fillFactories(updates);
-        playerData.setIdentifier(turnOrder.get(0).getIdentifier());
-        playerData.setName(turnOrder.get(0).getName());
-        PlayerData nextPlayerData = new PlayerData();
-        nextPlayerData.setIdentifier(turnOrder.get(1).getIdentifier());
-        nextPlayerData.setName(turnOrder.get(1).getName());
-
-        moveUpdate.setPlayer(playerData);
-        moveUpdate.setNextPlayer(nextPlayerData);
-
-        roundUpdate.setMove(moveUpdate);
+        List<Action> updates = fillFactories();
         roundUpdate.setUpdates(updates);
 
         gamePhase = GamePhase.FACTORY_OFFER;
@@ -166,98 +144,96 @@ public class Game implements Model {
         return roundUpdate;
     }
 
-    private void fillFactories(List<Action> gameUpdates) {
-        for (Factory factory : factories) {
-            for (int i = 0; i < 4; i++) {
-                if (factory.getAllTiles().size() >= 4) {
-                    break;
-                }
-                List<TileColor> bagTiles = bag.popTiles(1);
-                factory.addTiles(bagTiles);
-            }
-            Action actionFillFactories = new Action();
-            Location factoryLocation = new Location();
-            factoryLocation.setType(LocationType.FACTORY);
-            actionFillFactories.setTo(factoryLocation);
-            actionFillFactories.setAmount(4);
-            gameUpdates.add(actionFillFactories);
-        }
-
-    }
-
-    @Override
-    public RoundUpdate endRound() {
-        RoundUpdate roundUpdate = new RoundUpdate();
-        List<ScoreUpdate> scoreUpdates = new ArrayList<>();
+    private List<Action> fillFactories() {
         List<Action> updates = new ArrayList<>();
-        List<Action> steps = new ArrayList<>();
-        MoveUpdate moveUpdate = new MoveUpdate();
-        PlayerData currentPlayerData = new PlayerData();
-        PlayerData nextPlayerData = new PlayerData();
-
-        updateScore(scoreUpdates);
-        currentPlayerData.setName(turnOrder.get(turnOrder.size() - 1).getName());
-        currentPlayerData.setIdentifier(turnOrder.get(turnOrder.size() - 1).getIdentifier());
-        moveUpdate.setPlayer(currentPlayerData);
-        assignNextStartingPlayer(nextPlayerData);
-        moveUpdate.setNextPlayer(nextPlayerData);
-        wallTilling(updates);
-        moveUpdate.setSteps(steps);
-
-        gamePhase = GamePhase.WALL_TILLING;
-        middle.getAllTiles().clear();
-        box.clear();
-        middle.getAllTiles().clear();
-
-        roundUpdate.setScoreUpdates(scoreUpdates);
-        roundUpdate.setMove(moveUpdate);
-        roundUpdate.setUpdates(updates);
-
-        for (Player p : players) {
-            if (p.getBoard().hasFulfilledEndCondition()) {
-                endGame();
-                break;
+        for (int i = 0; i < factories.size(); i++) {
+            if (bag.getTiles().size() < 4) {
+                bag.addTiles((List<TileColor>) (Object) box);
+                box = new ArrayList<>();
             }
+
+            List<TileColor> tiles = bag.popTiles(4);
+
+            for (TileColor tileColor: TileColor.values()) {
+                int count = Collections.frequency(tiles, tileColor);
+                if (count > 0) {
+                    updates.add(new Action(ActionType.ADD, tileColor, count, null, new Location(LocationType.FACTORY, i)));
+                }
+            }
+            factories.get(i).addTiles(tiles);
         }
-        return roundUpdate;
+        return updates;
     }
 
-    private void wallTilling(List<Action> updates) {
+    private DataObject endRound() {
+        RoundUpdate roundUpdate = new RoundUpdate();
+        gamePhase = GamePhase.WALL_TILLING;
+        List<Action> updates = wallTilling();
+
+        List<ScoreUpdate> scoreUpdates = getScoreUpdates();
+        roundUpdate.setScoreUpdates(scoreUpdates);
+
+        if (isEndOfGame()) {
+            EndGameUpdate endGameUpdate = endGame();
+            roundUpdate.setUpdates(updates);
+            return endGameUpdate;
+        } else {
+            updates.addAll(startRound().getUpdates());
+            roundUpdate.setUpdates(updates);
+            return roundUpdate;
+        }
+    }
+
+    private List<Action> wallTilling() {
+        List<Action> updates = new ArrayList<>();
         this.players.forEach(player -> {
-            List<Tile> remainingTiles = player.getBoard().wallTilling();
-            box.addAll(remainingTiles);
-            Action actionFloorLine = new Action();
-            Location floorLineLocation = new Location();
-            floorLineLocation.setIndex(0);
-            floorLineLocation.setType(LocationType.FLOOR_LINE);
-            actionFloorLine.setType(ActionType.REMOVE);
-            actionFloorLine.setFrom(floorLineLocation);
-            actionFloorLine.setAmount(remainingTiles.size());
-            updates.add(actionFloorLine);
+            HashMap<Location, List<Tile>> remainingTiles = player.getBoard().wallTilling();
+            
+            List<Tile> floorTiles = remainingTiles.get(new Location(LocationType.FLOOR_LINE, 0));
+            if (floorTiles.contains(PlayerTile.getInstance())) {
+                setStartingPlayer(player);
+                floorTiles.remove(PlayerTile.getInstance());
+            }
+
+            for (Location key : remainingTiles.keySet()) {
+                List<Tile> tiles = remainingTiles.get(key);                
+                for (TileColor tileColor: TileColor.values()) {
+                    int count = Collections.frequency(tiles, tileColor);
+                    if (count > 0) {
+                        updates.add(new Action(ActionType.REMOVE, tileColor, count, key, null));
+                    }
+                }
+                box.addAll(tiles);
+            }
         });
+        return updates;
     }
 
-    private void updateScore(List<ScoreUpdate> scoreUpdates) {
+    private List<ScoreUpdate> getScoreUpdates() {
+        List<ScoreUpdate> scoreUpdates = new ArrayList<>();
         players.forEach(player -> {
-            player.getBoard().addFinalScores();
+            if (isEndOfGame()) {
+                player.getBoard().addFinalScores();
+            }
+            List<ScoreChange> scoreChanges = player.getBoard().popAllScoreChanges();
             ScoreUpdate scoreUpdate = new ScoreUpdate();
             PlayerData playerData = new PlayerData();
-            scoreUpdate.setScoreChanges(player.getBoard().getScoreChanges());
+            scoreUpdate.setScoreChanges(scoreChanges);
             playerData.setName(player.getName());
             playerData.setIdentifier(player.getIdentifier());
             scoreUpdate.setPlayer(playerData);
             scoreUpdate.setNewScore(player.getBoard().getScore());
             scoreUpdates.add(scoreUpdate);
         });
+        return scoreUpdates;
     }
 
-    private void assignNextStartingPlayer(PlayerData nextPlayerData) {
-        for (int i = 0; i < players.size(); i++) {
-            List<Tile> floorLineTiles = players.get(i).getBoard().getFloorLine().getCopyTiles();
-            if (floorLineTiles.contains(PlayerTile.getInstance())) {
-                nextPlayerData.setIdentifier(players.get(i).getIdentifier());
-                nextPlayerData.setName(players.get(i).getName());
-                swap(turnOrder, 0, i);
+    private void setStartingPlayer(Player player) {
+        for (int i = 0; i < turnOrder.size(); i++) {
+            if (turnOrder.get(0).equals(player)) {
+                return;
+            } else {
+                turnOrder.add(turnOrder.remove(0));
             }
         }
     }
@@ -278,69 +254,49 @@ public class Game implements Model {
         return gameState;
     }
 
-    @Override
-    public GameState endGame() {
-        GameState gameState = new GameState();
-        List<List<TileColor>> factoryTiles = new ArrayList<>();
-
-        gameState.setMiddle(middle.getAllTiles());
-
-        factories.forEach(factory -> factoryTiles.add(factory.getAllTiles()));
-        gameState.setFactories(factoryTiles);
-        updateFinalScores(gameState);
-        determineWinner(gameState);
-
+    private EndGameUpdate endGame() {
+        EndGameUpdate endGameUpdate = new EndGameUpdate();
+        List<PlayerData> winners = determineWinners();
+        endGameUpdate.setWinners(winners);
         gamePhase = GamePhase.FINISHED;
         isPlaying = false;
-        return gameState;
+        return endGameUpdate;
     }
-    private void determineWinner(GameState gameState) {
-        Map<Player,Integer> scores = new HashMap<>();
-        AtomicInteger maxScore = new AtomicInteger();
-        AtomicReference<Player> maxScorePlayer = new AtomicReference<>();
-        PlayerData winnerData = new PlayerData();
-        players.forEach(player -> {
-            scores.put(player,player.getBoard().getScore());
-        });
-        scores.forEach((player, integer) -> {
-                if(integer > maxScore.get()){
-                    maxScore.set(integer);
-                    maxScorePlayer.set(player);
-                }
-        });
-        winnerData.setName(maxScorePlayer.get().getName());
-        winnerData.setIdentifier(maxScorePlayer.get().getIdentifier());
-        gameState.setWinnerPlayer(winnerData);
-    }
-
-    private void updateFinalScores(GameState gameState) {
-        PlayerData playerDataCompleteRow = new PlayerData();
-        List<PlayerBoardState> playerBoards = new ArrayList<>();
-        players.forEach(player -> {
-            PlayerBoardState playerBoardState = player.getBoard().toObject();
-            if (player.getBoard().getWall().hasCompleteRow()) {
-                playerDataCompleteRow.setIdentifier(player.getIdentifier());
-                playerDataCompleteRow.setName(player.getName());
-                playerBoardState.setPlayer(playerDataCompleteRow);
-            } else {
-                PlayerData playerDataOtherPlayers = new PlayerData();
-                playerDataOtherPlayers.setIdentifier(player.getIdentifier());
-                playerDataOtherPlayers.setName(player.getName());
-                playerBoardState.setPlayer(playerDataOtherPlayers);
+    private List<PlayerData> determineWinners() {
+        List<PlayerData> winners = new ArrayList<>();
+        List<Player> possibleWinners = new ArrayList<>();
+        
+        int maxScore = 0;
+        for (Player p : players) {
+            int playerScore = p.getBoard().getScore();
+            if (playerScore > maxScore) {
+                maxScore = playerScore;
+                winners = new ArrayList<>();
+                possibleWinners.add(p);
+            } else if (playerScore == maxScore) {
+                possibleWinners.add(p);
             }
-            playerBoards.add(playerBoardState);
-        });
-        gameState.setCurrentPlayer(playerDataCompleteRow);
-        gameState.setPlayerBoards(playerBoards);
+        }
+        int maxCompletedRows = 0;
+        for (Player p : possibleWinners) {
+            int completedRowCount = p.getBoard().getCompletedRowCount();
+            PlayerData playerData = new PlayerData();
+            playerData.setName(p.getName());
+            playerData.setIdentifier(p.getIdentifier());
+            if (completedRowCount > maxCompletedRows) {
+                maxScore = completedRowCount;
+                winners = new ArrayList<>();
+                winners.add(playerData);
+            } else if (completedRowCount == maxCompletedRows) {
+                winners.add(playerData);
+            }
+        }
+        return winners;
     }
 
     @Override
     public boolean isCurrentPlayer(PlayerData player) {
-        for (Player p : players) {
-            if (p.getIdentifier() == player.getIdentifier())
-                return true;
-        }
-        return false;
+        return turnOrder.get(0).getIdentifier() == player.getIdentifier();
     }
 
     @Override
@@ -352,7 +308,6 @@ public class Game implements Model {
         playerData.setName(player.getName());
         return playerData;
     }
-
     @Override
     public boolean isValidStartGame() {
         return players.size() >= 2 && players.size() <= 4 && !isPlaying && round == 0
@@ -360,47 +315,161 @@ public class Game implements Model {
                 && box.size() == 0 && bag.getTiles().size() == 0
                 && factories.stream().allMatch(factory -> factory.getAllTiles().size() == 0);
     }
+    
+    private MoveUpdate initialMoveUpdate() {
+        MoveUpdate moveUpdate = new MoveUpdate();
+        PlayerData player = new PlayerData();
+        player.setIdentifier(turnOrder.get(0).getIdentifier());
+        player.setName(turnOrder.get(0).getName());
+        moveUpdate.setPlayer(player);
 
-    @Override
-    public DataObject performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor
-            tileColor) {
-        return new MoveUpdate();
+        // push the player that made the move to the back of the queue
+        turnOrder.add(turnOrder.remove(0));
+
+        PlayerData currentPlayer = new PlayerData();
+        currentPlayer.setIdentifier(turnOrder.get(0).getIdentifier());
+        currentPlayer.setName(turnOrder.get(0).getName());
+        moveUpdate.setNextPlayer(currentPlayer);
+        return moveUpdate;
+    }
+
+    private Map<TileColor, Integer> getDistributionColors(List<Tile> tiles) {
+        Map<TileColor, Integer> distribution = new HashMap<>();
+        TileColor tileColor;
+        for (Tile tile: tiles) {
+            tileColor = (TileColor) tile;
+            if (distribution.containsKey(tileColor)) {
+                distribution.replace(tileColor, distribution.get(tileColor)+1);
+            } else {
+                distribution.put(tileColor, 1);
+            }
+        }
+        return distribution;
+    }
+
+    private boolean isEndOfRound() {
+        for (Factory factory : factories) {
+            if (factory.getAllTiles().size() > 0) {
+                return false;
+            }
+        }
+        if (middle.getAllTiles().size() > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private DataObject performMove(Function<TileColor, List<Tile>> popTiles, Function<TileColor, List<Tile>> popAllTiles,  
+        Function<List<Tile>,List<Tile>> putTiles, Function<List<Tile>,List<Tile>> dumpExcessTiles, TileColor tileColor, Location from, Location to) {
+    
+        MoveUpdate moveUpdate = initialMoveUpdate();
+        List<Action> steps = new ArrayList<>();
+
+        List<Tile> tiles = popTiles.apply(tileColor); // factory or middle
+        int amount = tiles.size();
+        List<Tile> overflowTiles = putTiles.apply(tiles);  // either pattern line row or floor line
+        int overflowAmount = overflowTiles.size();
+        List<Tile> returnedTilesFloorLine = dumpExcessTiles.apply(overflowTiles); // floorline
+        int returnedAmount = returnedTilesFloorLine.size();
+
+        if (amount - overflowAmount > 0) // tiles that were put into the specified location
+            steps.add(new Action(ActionType.MOVE, tileColor, amount-overflowAmount, from, to));
+
+        if (overflowAmount - returnedAmount > 0) // excess tiles that were put into the floor line 
+            steps.add(new Action(ActionType.MOVE, tileColor, overflowAmount-returnedAmount, from, new Location(LocationType.FLOOR_LINE, 0)));
+
+        if (returnedAmount > 0) // excess tiles that are put into the box
+            steps.add(new Action(ActionType.REMOVE, tileColor, returnedAmount, from, null));
+        
+        box.addAll(returnedTilesFloorLine);
+
+        if (from.getType() != LocationType.MIDDLE) {
+            List<Tile> otherTiles = popAllTiles.apply(tileColor);
+            Map<TileColor, Integer> distributionOtherTiles = getDistributionColors(otherTiles);
+            for (TileColor key : distributionOtherTiles.keySet()) {
+                steps.add(new Action(ActionType.MOVE, key, distributionOtherTiles.get(key), from, new Location(LocationType.MIDDLE, 0)));
+            }
+            middle.addTiles(otherTiles);
+        }
+
+        moveUpdate.setSteps(steps);
+
+        if (isEndOfRound()) {
+            if (isEndOfGame()) {
+                EndGameUpdate gameUpdate = (EndGameUpdate) endRound();
+                gameUpdate.getRoundUpdate().setMove(moveUpdate);
+                return gameUpdate;
+            } else {
+                RoundUpdate roundUpdate = (RoundUpdate) endRound();
+                roundUpdate.setMove(moveUpdate);
+                return roundUpdate;
+            }
+        }
+        return moveUpdate;
     }
 
     @Override
-    public DataObject performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
-        return new MoveUpdate();
+    public DataObject performMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
+        Function<TileColor,List<Tile>> popTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popTiles(color);
+        Function<TileColor,List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popAllTiles();
+        Function<List<Tile>,List<Tile>> putTiles = (tiles) -> turnOrder.get(0).getBoard().performMovePatternLine(patternLineRow, tiles);
+        Function<List<Tile>,List<Tile>> dumpExcessTiles = (tiles) -> turnOrder.get(0).getBoard().performMoveFloorLine(tiles);
+        Location from = new Location(LocationType.FACTORY, factoryIndex);
+        Location to = new Location(LocationType.PATTERN_LINE, patternLineRow);
+        return performMove(popTiles, popAllTiles, putTiles, dumpExcessTiles, tileColor, from, to);
     }
 
     @Override
-    public DataObject performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-        return new MoveUpdate();
+    public DataObject performMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
+        Function<TileColor,List<Tile>> popTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popTiles(color);
+        Function<TileColor,List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popAllTiles();
+        Function<List<Tile>,List<Tile>> putTiles = (tiles) -> turnOrder.get(0).getBoard().performMoveFloorLine(tiles);
+        Location from = new Location(LocationType.FACTORY, factoryIndex);
+        Location to = new Location(LocationType.FLOOR_LINE, 0);
+        return performMove(popTiles, popAllTiles, putTiles, putTiles, tileColor, from, to);
     }
 
     @Override
-    public DataObject performMoveMiddleFloorLine(List<Tile> tiles) {
-        return new MoveUpdate();
+    public DataObject performMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
+        Function<TileColor,List<Tile>> popTiles = (color) -> (List<Tile>) (Object) middle.popTiles(color);
+        Function<TileColor,List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) middle.popAllTiles();
+        Function<List<Tile>,List<Tile>> putTiles = (tiles) -> turnOrder.get(0).getBoard().performMovePatternLine(patternLineRow, tiles);
+        Function<List<Tile>,List<Tile>> dumpExcessTiles = (tiles) -> turnOrder.get(0).getBoard().performMoveFloorLine(tiles);
+        Location from = new Location(LocationType.MIDDLE, 0);
+        Location to = new Location(LocationType.PATTERN_LINE, patternLineRow);
+        return performMove(popTiles, popAllTiles, putTiles, dumpExcessTiles, tileColor, from, to);    
     }
 
     @Override
-    public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor
-            tileColor) {
-        return false;
+    public DataObject performMoveMiddleFloorLine(TileColor tileColor) {
+        Function<TileColor,List<Tile>> popTiles = (color) -> (List<Tile>) (Object) middle.popTiles(color);
+        Function<TileColor,List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) middle.popAllTiles();
+        Function<List<Tile>,List<Tile>> putTiles = (tiles) -> turnOrder.get(0).getBoard().performMoveFloorLine(tiles);
+        Location from = new Location(LocationType.MIDDLE, 0);
+        Location to = new Location(LocationType.FLOOR_LINE, 0);
+        return performMove(popTiles, popAllTiles, putTiles, putTiles, tileColor, from, to);    
     }
 
     @Override
-    public boolean isValidMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
-        return false;
+    public boolean isValidMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
+        return factories.get(factoryIndex).hasTiles(tileColor) && 
+        players.get(0).getBoard().canAddTypePatternLine(patternLineRow, tileColor);
     }
 
     @Override
-    public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-        return false;
+    public boolean isValidMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
+        return factories.get(factoryIndex).hasTiles(tileColor);
     }
 
     @Override
-    public boolean isValidMoveMiddleFloorLine(List<Tile> tiles) {
-        return false;
+    public boolean isValidMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
+        return middle.hasTiles(tileColor) &&
+        players.get(0).getBoard().canAddTypePatternLine(patternLineRow, tileColor);
+    }
+
+    @Override
+    public boolean isValidMoveMiddleFloorLine(TileColor tileColor) {
+        return middle.hasTiles(tileColor);
     }
 
 
@@ -409,5 +478,13 @@ public class Game implements Model {
         list.set(index1, list.get(index2));
         list.set(index2, temp);
     }
-
+    
+    private boolean isEndOfGame() {
+        for(Player p: players){
+            if (p.getBoard().hasFulfilledEndCondition())
+                return true;
+        }
+        return false;
+    }
 }
+

@@ -1,9 +1,13 @@
 package model;
 
+import dataobjects.Location;
+import dataobjects.LocationType;
 import dataobjects.PlayerBoardState;
 import dataobjects.ScoreChange;
+import dataobjects.ScoreType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PlayerBoard {
@@ -51,39 +55,51 @@ public class PlayerBoard {
         return floorLine.addTiles(tiles);
     }
 
-    public List<Tile> wallTilling() {
+    public HashMap<Location, List<Tile>> wallTilling() {
         List<Integer> completedRows = this.patternLine.completedRows();
-        List<Tile> remainderList = new ArrayList<>();
+        HashMap<Location, List<Tile>> remainderTable = new HashMap<Location, List<Tile>>();
         completedRows.forEach(completedRow -> {
                     List<Tile> tilesCompleted = patternLine.getCopyTable().get(completedRow);
                     Tile wallTile = tilesCompleted.get(0);
-                    remainderList.addAll(tilesCompleted.subList(1, tilesCompleted.size()));
+                    remainderTable.put(new Location(LocationType.PATTERN_LINE, completedRow), tilesCompleted.subList(1, tilesCompleted.size()));
+                    
+                    int wallTileScoreDifference = wall.addTile(completedRow, wallTile);
+                    score += wallTileScoreDifference;
+                    
                     ScoreChange wallTileScoreChange = new ScoreChange();
+                    wallTileScoreChange.setType(ScoreType.PLACED_TILE_IN_WALL);
                     wallTileScoreChange.setIndex(completedRow);
                     wallTileScoreChange.setColor((TileColor) wallTile);
-                    wallTileScoreChange.setScoreDifference(wall.addTile(completedRow, wallTile));
+                    wallTileScoreChange.setScoreDifference(wallTileScoreDifference);
+                    scoreChanges.add(wallTileScoreChange);
                 }
         );
-        remainderList.addAll(floorLine.getCopyTiles());
-        floorLine.clearTiles();
+        remainderTable.put(new Location(LocationType.FLOOR_LINE, 0), floorLine.getCopyTiles());
+
+        int floorLineScoreDifference = floorLine.getScore();
+        floorLineScoreDifference = Math.max(floorLineScoreDifference, -score);
+        score += floorLineScoreDifference;
+
         ScoreChange floorLineScoreChange = new ScoreChange();
+        floorLineScoreChange.setType(ScoreType.CLEARED_FLOOR_LINE);
+        floorLineScoreChange.setScoreDifference(floorLineScoreDifference);
+        scoreChanges.add(floorLineScoreChange);
 
-        floorLineScoreChange.setScoreDifference(floorLine.getScore());
         completedRows.forEach(completedRow -> patternLine.clearTiles(completedRow));
+        floorLine.clearTiles();
 
-        return remainderList;
+        return remainderTable;
     }
+
     public boolean hasFulfilledEndCondition(){
-        return wall.hasCompleteRow();
+        return wall.getCompletedRowCount()>0;
     }
 
     public void addFinalScores() {
         List<ScoreChange> scoreChangesWallList = wall.getCompletionScores();
-        int scoreFloorLine = floorLine.getScore();
+        scoreChanges.addAll(scoreChangesWallList);
         scoreChangesWallList.forEach(scoreChange ->
                 this.score += scoreChange.getScoreDifference());
-        this.score -= scoreFloorLine;
-        this.scoreChanges = scoreChangesWallList;
     }
 
     public PlayerBoardState toObject() {
@@ -94,5 +110,15 @@ public class PlayerBoard {
         playerBoardState.setScore(score);
 
         return playerBoardState;
+    }
+
+    public List<ScoreChange> popAllScoreChanges() {
+        List<ScoreChange> poppedScoreChanges = scoreChanges;
+        scoreChanges = new ArrayList<>();
+        return poppedScoreChanges;
+    }
+
+    public int getCompletedRowCount() {
+        return wall.getCompletedRowCount();
     }
 }
