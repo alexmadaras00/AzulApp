@@ -3,6 +3,8 @@ package unit.model;
 import model.TileColor;
 import model.Middle;
 import model.Tile;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,11 +12,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class MiddleTest {
     static Middle middle;
-    static List<Tile> tiles = List.of(TileColor.BLUE, TileColor.YELLOW, TileColor.YELLOW);
+    static List<Tile> tiles;
+
+    @BeforeEach
+    public void setUp() {
+        middle = new Middle();
+        tiles = List.of(TileColor.BLUE, TileColor.YELLOW, TileColor.YELLOW);
+    }
 
     @Test
     public void testGetAllTiles(){
@@ -33,15 +42,38 @@ public class MiddleTest {
     }
     @Test
     public void testAddTiles(){
-
         middle = new Middle();
         middle.addTiles(tiles);
-        assertTrue(middle.getAllTiles().size()<=4);
-        List<Tile> newTiles = new ArrayList<>();
-        newTiles.add(TileColor.RED);
+        assertEquals(3, middle.getAllTiles().size());
+        List<Tile> newTiles = List.of(TileColor.RED);
         middle.addTiles(newTiles);
         assertEquals(4,middle.getAllTiles().size());
         assertEquals(TileColor.RED,middle.getAllTiles().get(3));
-        assertTrue(middle.getAllTiles().size()<=4);
     }
+
+    @Test
+    public void testPopTiles() {
+        middle.addTiles(tiles);
+        List<Tile> blueTiles = middle.popTiles(TileColor.YELLOW);
+        assertEquals(2, blueTiles.size());
+        assertEquals(TileColor.YELLOW, blueTiles.get(0));
+        assertEquals(TileColor.YELLOW, blueTiles.get(1));
+    }
+
+    @Test
+    public void testpopAllTiles() {
+        middle.addTiles(tiles);
+        assertEquals(3, middle.getAllTiles().size());
+        List<Tile> poppedTiles = middle.popAllTiles();
+        assertEquals(3, poppedTiles.size());
+        assertEquals(0, middle.getAllTiles().size());
+    }
+    
+    @Test
+    public void testHasTiles() {
+        middle.addTiles(tiles);
+        assertTrue(middle.hasTiles(TileColor.BLUE));
+        assertFalse(middle.hasTiles(TileColor.BLACK));
+    }
+
 }
