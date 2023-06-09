@@ -27,13 +27,11 @@ public class MiddleTest {
 
     @Test
     public void testGetAllTiles(){
-        middle = new Middle();
         middle.addTiles(tiles);
         assertEquals(tiles,middle.getAllTiles());
     }
     @Test
     public void testGetTiles() {
-        middle = new Middle();
         middle.addTiles(tiles);
         List<Tile> yellowTiles = middle.getTiles(TileColor.YELLOW);
         assertEquals(2,yellowTiles.size());
@@ -42,7 +40,6 @@ public class MiddleTest {
     }
     @Test
     public void testAddTiles(){
-        middle = new Middle();
         middle.addTiles(tiles);
         assertEquals(3, middle.getAllTiles().size());
         List<Tile> newTiles = List.of(TileColor.RED);
