@@ -12,6 +12,14 @@ public class Action implements DataObject {
 
     public Action() {
     }
+    
+    public Action(ActionType type, TileColor color, int amount, Location from, Location to) {
+        this.type = type;
+        this.color = color;
+        this.amount = amount;
+        this.from = from;
+        this.to = to;
+    }
 
     public ActionType getType() {
         return type;
