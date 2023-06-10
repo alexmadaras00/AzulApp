@@ -41,11 +41,13 @@ public class PlayerBoard {
     }
 
     public boolean canAddTypePatternLine(int rowIndex, TileColor type) {
-
-        return wall.canAddTile(rowIndex, type) && patternLine.canAddTile(rowIndex, type);
-    }
+        System.out.println("Here:"+ (wall.canAddTile(rowIndex, type)));
+        System.out.println("WALL"+ wall.getCopyTable().get(0));
+        System.out.println("Here2:"+ (patternLine.canAddTile(rowIndex, type)));
+        return wall.canAddTile(rowIndex, type) && patternLine.canAddTile(rowIndex, type);}
     public List<Tile> performMovePatternLine(int rowIndex, List<Tile> tiles) {
         tiles.forEach(tile -> {
+            System.out.println(tile);
             if (!canAddTypePatternLine(rowIndex, (TileColor) tile))
                 throw new RuntimeException("This tile cannot be added on the current pattern line.");
         });
