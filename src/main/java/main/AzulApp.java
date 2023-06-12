@@ -27,7 +27,8 @@ public class AzulApp extends Application {
         Model model = new Game();
         ExecutorFactory executorFactory = new DataObjectExecutorFactory();
         Mediator mediator = new Controller(executorFactory);
-        Messager messager = new View(executorFactory);
+        View.setExecutorFactory(executorFactory);
+        Messager messager = View.getInstance();
         GUI gui = new GUI();
         mediator.connectModel(model);
         mediator.connectMessager(messager);

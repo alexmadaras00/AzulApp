@@ -172,6 +172,11 @@ public class ViewTest {
             return;
         }
 
+        @Override
+        public void startGame() {
+            return;
+        }
+
     }
 
     private static class MockController implements Mediator {
@@ -224,7 +229,8 @@ public class ViewTest {
     @BeforeAll
     static void setUp() {
         ui = new MockUI();
-        view = new View(new MockExecutorFactory());
+        View.setExecutorFactory(new MockExecutorFactory());
+        view = View.getInstance();
         controller = new MockController();
         controller.connectMessager(view);
         view.connectMediator(controller);
