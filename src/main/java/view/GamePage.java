@@ -19,6 +19,11 @@ public class GamePage {
     public List<PlayerGUI> players;
     public List<FactoryGUI> factories;
 
+    public GamePage() {
+        players = new ArrayList<>();
+        factories = new ArrayList<>();
+    }
+
     VBox getMiddle() {
         return middle;
     }
@@ -94,46 +99,62 @@ public class GamePage {
                     buttonF1T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF1T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF1T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
                 case 2:
                     buttonF2T1.setBackground(Background.fill(translateColor(tiles.get(0))));
                     buttonF2T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF2T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF2T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
+
                 case 3:
                     buttonF3T1.setBackground(Background.fill(translateColor(tiles.get(0))));
                     buttonF3T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF3T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF3T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
+
                 case 4:
                     buttonF4T1.setBackground(Background.fill(translateColor(tiles.get(0))));
                     buttonF4T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF4T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF4T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
+
                 case 5:
                     buttonF5T1.setBackground(Background.fill(translateColor(tiles.get(0))));
                     buttonF5T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF5T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF5T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
+
                 case 6:
                     buttonF6T1.setBackground(Background.fill(translateColor(tiles.get(0))));
                     buttonF6T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF6T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF6T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
+
                 case 7:
                     buttonF7T1.setBackground(Background.fill(translateColor(tiles.get(0))));
                     buttonF7T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF7T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF7T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
+
                 case 8:
                     buttonF8T1.setBackground(Background.fill(translateColor(tiles.get(0))));
                     buttonF8T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF8T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF8T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
+
                 case 9:
                     buttonF9T1.setBackground(Background.fill(translateColor(tiles.get(0))));
                     buttonF9T2.setBackground(Background.fill(translateColor(tiles.get(1))));
                     buttonF9T3.setBackground(Background.fill(translateColor(tiles.get(2))));
                     buttonF9T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                    break;
 
             }
         }
@@ -149,46 +170,63 @@ public class GamePage {
                     buttonF1T2.setBackground(Background.EMPTY);
                     buttonF1T3.setBackground(Background.EMPTY);
                     buttonF1T4.setBackground(Background.EMPTY);
+                    break;
+
                 case 2:
                     buttonF2T1.setBackground(Background.EMPTY);
                     buttonF2T2.setBackground(Background.EMPTY);
                     buttonF2T3.setBackground(Background.EMPTY);
                     buttonF2T4.setBackground(Background.EMPTY);
+                    break;
+
                 case 3:
                     buttonF3T1.setBackground(Background.EMPTY);
                     buttonF3T2.setBackground(Background.EMPTY);
                     buttonF3T3.setBackground(Background.EMPTY);
                     buttonF3T4.setBackground(Background.EMPTY);
+                    break;
+
                 case 4:
                     buttonF4T1.setBackground(Background.EMPTY);
                     buttonF4T2.setBackground(Background.EMPTY);
                     buttonF4T3.setBackground(Background.EMPTY);
                     buttonF4T4.setBackground(Background.EMPTY);
+                    break;
+
                 case 5:
                     buttonF5T1.setBackground(Background.EMPTY);
                     buttonF5T2.setBackground(Background.EMPTY);
                     buttonF5T3.setBackground(Background.EMPTY);
                     buttonF5T4.setBackground(Background.EMPTY);
+                    break;
+
                 case 6:
                     buttonF6T1.setBackground(Background.EMPTY);
                     buttonF6T2.setBackground(Background.EMPTY);
                     buttonF6T3.setBackground(Background.EMPTY);
                     buttonF6T4.setBackground(Background.EMPTY);
+                    break;
+
                 case 7:
                     buttonF7T1.setBackground(Background.EMPTY);
                     buttonF7T2.setBackground(Background.EMPTY);
                     buttonF7T3.setBackground(Background.EMPTY);
                     buttonF7T4.setBackground(Background.EMPTY);
+                    break;
+
                 case 8:
                     buttonF8T1.setBackground(Background.EMPTY);
                     buttonF8T2.setBackground(Background.EMPTY);
                     buttonF8T3.setBackground(Background.EMPTY);
                     buttonF8T4.setBackground(Background.EMPTY);
+                    break;
+
                 case 9:
                     buttonF9T1.setBackground(Background.EMPTY);
                     buttonF9T2.setBackground(Background.EMPTY);
                     buttonF9T3.setBackground(Background.EMPTY);
                     buttonF9T4.setBackground(Background.EMPTY);
+                    break;
 
             }
         }
@@ -196,106 +234,207 @@ public class GamePage {
 
     @FXML
     private Button buttonF1T1;
+    @FXML
     private Button buttonF1T2;
+    @FXML
     private Button buttonF1T3;
+    @FXML
     private Button buttonF1T4;
+    @FXML
     private Button buttonF2T1;
+    @FXML
     private Button buttonF2T2;
+    @FXML
     private Button buttonF2T3;
+    @FXML
     private Button buttonF2T4;
+    @FXML
     private Button buttonF3T1;
+    @FXML
     private Button buttonF3T2;
+    @FXML
     private Button buttonF3T3;
+    @FXML
     private Button buttonF3T4;
+    @FXML
     private Button buttonF4T1;
+    @FXML
     private Button buttonF4T2;
+    @FXML
     private Button buttonF4T3;
+    @FXML
     private Button buttonF4T4;
+    @FXML
     private Button buttonF5T1;
+    @FXML
     private Button buttonF5T2;
+    @FXML
     private Button buttonF5T3;
+    @FXML
     private Button buttonF5T4;
+    @FXML
     private Button buttonF6T1;
+    @FXML
     private Button buttonF6T2;
+    @FXML
     private Button buttonF6T3;
+    @FXML
     private Button buttonF6T4;
+    @FXML
     private Button buttonF7T1;
+    @FXML
     private Button buttonF7T2;
+    @FXML
     private Button buttonF7T3;
+    @FXML
     private Button buttonF7T4;
+    @FXML
     private Button buttonF8T1;
+    @FXML
     private Button buttonF8T2;
+    @FXML
     private Button buttonF8T3;
+    @FXML
     private Button buttonF8T4;
+    @FXML
     private Button buttonF9T1;
+    @FXML
     private Button buttonF9T2;
+    @FXML
     private Button buttonF9T3;
+    @FXML
     private Button buttonF9T4;
+    @FXML
     private GridPane factory1;
+    @FXML
     private GridPane factory2;
+    @FXML
     private GridPane factory3;
+    @FXML
     private GridPane factory4;
+    @FXML
     private GridPane factory5;
+    @FXML
     private GridPane factory6;
+    @FXML
     private GridPane factory7;
+    @FXML
     private GridPane factory8;
+    @FXML
     private GridPane factory9;
+    @FXML
     private VBox middle;
+    @FXML
     private HBox player1Floor;
+    @FXML
     private Label player1Name;
+    @FXML
     private GridPane player1PL1;
+    @FXML
     private GridPane player1PL2;
+    @FXML
     private GridPane player1PL3;
+    @FXML
     private GridPane player1PL4;
+    @FXML
     private GridPane player1PL5;
+    @FXML
     private Label player1Score;
+    @FXML
     private GridPane player1W1;
+    @FXML
     private GridPane player1W2;
+    @FXML
     private GridPane player1W3;
+    @FXML
     private GridPane player1W4;
+    @FXML
     private GridPane player1W5;
+    @FXML
     private HBox player2Floor;
+    @FXML
     private Label player2Name;
+    @FXML
     private GridPane player2PL1;
+    @FXML
     private GridPane player2PL2;
+    @FXML
     private GridPane player2PL3;
+    @FXML
     private GridPane player2PL4;
+    @FXML
     private GridPane player2PL5;
+    @FXML
     private Label player2Score;
+    @FXML
     private GridPane player2W1;
+    @FXML
     private GridPane player2W2;
+    @FXML
     private GridPane player2W3;
+    @FXML
     private GridPane player2W4;
+    @FXML
     private GridPane player2W5;
+    @FXML
     private HBox player3Floor;
+    @FXML
     private Label player3Name;
+    @FXML
     private GridPane player3PL1;
+    @FXML
     private GridPane player3PL2;
+    @FXML
     private GridPane player3PL3;
+    @FXML
     private GridPane player3PL4;
+    @FXML
     private GridPane player3PL5;
+    @FXML
     private Label player3Score;
+    @FXML
     private GridPane player3W1;
+    @FXML
     private GridPane player3W2;
+    @FXML
     private GridPane player3W3;
+    @FXML
     private GridPane player3W4;
+    @FXML
     private GridPane player3W5;
+    @FXML
     private HBox player4Floor;
+    @FXML
     private Label player4Name;
+    @FXML
     private GridPane player4PL1;
+    @FXML
     private GridPane player4PL2;
+    @FXML
     private GridPane player4PL3;
+    @FXML
     private GridPane player4PL4;
+    @FXML
     private GridPane player4PL5;
+    @FXML
     private Label player4Score;
+    @FXML
     private GridPane player4W1;
+    @FXML
     private GridPane player4W2;
+    @FXML
     private GridPane player4W3;
+    @FXML
     private GridPane player4W4;
+    @FXML
     private GridPane player4W5;
+    @FXML
     private VBox playerboard1;
+    @FXML
     private VBox playerboard2;
+    @FXML
     private VBox playerboard3;
+    @FXML
     private VBox playerboard4;
 
     class PlayerGUI {
@@ -523,10 +662,10 @@ public class GamePage {
 
     public void disableRestFactories() {
         switch (factories.size()) {
-            case 4:
+            case 5:
                 factory7.setVisible(false);
                 factory6.setVisible(false);
-            case 6:
+            case 7:
                 factory9.setVisible(false);
                 factory8.setVisible(false);
             default:
