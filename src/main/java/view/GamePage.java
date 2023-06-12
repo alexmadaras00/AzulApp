@@ -143,7 +143,54 @@ public class GamePage {
         }
 
         public void clear() {
-            return;
+            switch (place) {
+                case 1:
+                    buttonF1T1.setBackground(Background.EMPTY);
+                    buttonF1T2.setBackground(Background.EMPTY);
+                    buttonF1T3.setBackground(Background.EMPTY);
+                    buttonF1T4.setBackground(Background.EMPTY);
+                case 2:
+                    buttonF2T1.setBackground(Background.EMPTY);
+                    buttonF2T2.setBackground(Background.EMPTY);
+                    buttonF2T3.setBackground(Background.EMPTY);
+                    buttonF2T4.setBackground(Background.EMPTY);
+                case 3:
+                    buttonF3T1.setBackground(Background.EMPTY);
+                    buttonF3T2.setBackground(Background.EMPTY);
+                    buttonF3T3.setBackground(Background.EMPTY);
+                    buttonF3T4.setBackground(Background.EMPTY);
+                case 4:
+                    buttonF4T1.setBackground(Background.EMPTY);
+                    buttonF4T2.setBackground(Background.EMPTY);
+                    buttonF4T3.setBackground(Background.EMPTY);
+                    buttonF4T4.setBackground(Background.EMPTY);
+                case 5:
+                    buttonF5T1.setBackground(Background.EMPTY);
+                    buttonF5T2.setBackground(Background.EMPTY);
+                    buttonF5T3.setBackground(Background.EMPTY);
+                    buttonF5T4.setBackground(Background.EMPTY);
+                case 6:
+                    buttonF6T1.setBackground(Background.EMPTY);
+                    buttonF6T2.setBackground(Background.EMPTY);
+                    buttonF6T3.setBackground(Background.EMPTY);
+                    buttonF6T4.setBackground(Background.EMPTY);
+                case 7:
+                    buttonF7T1.setBackground(Background.EMPTY);
+                    buttonF7T2.setBackground(Background.EMPTY);
+                    buttonF7T3.setBackground(Background.EMPTY);
+                    buttonF7T4.setBackground(Background.EMPTY);
+                case 8:
+                    buttonF8T1.setBackground(Background.EMPTY);
+                    buttonF8T2.setBackground(Background.EMPTY);
+                    buttonF8T3.setBackground(Background.EMPTY);
+                    buttonF8T4.setBackground(Background.EMPTY);
+                case 9:
+                    buttonF9T1.setBackground(Background.EMPTY);
+                    buttonF9T2.setBackground(Background.EMPTY);
+                    buttonF9T3.setBackground(Background.EMPTY);
+                    buttonF9T4.setBackground(Background.EMPTY);
+
+            }
         }
     }
 

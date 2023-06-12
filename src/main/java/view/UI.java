@@ -28,8 +28,6 @@ public interface UI extends Executable {
 
     void setTilesFactory(int factoryID, List<TileColor> tiles);
 
-    void removeTilesFactory(int factoryID, TileColor tile);
-
     void clearFactory(int factoryID);
 
     // Middle

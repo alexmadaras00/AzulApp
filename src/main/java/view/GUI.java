@@ -76,16 +76,10 @@ public class GUI extends Stage implements UI {
         gamePageController.getFactory(factoryID).setTiles(tiles);
     }
 
-    @Override
-    public void removeTilesFactory(int factoryID, TileColor tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeTilesFactory'");
-    }
 
     @Override
     public void clearFactory(int factoryID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clearFactory'");
+        gamePageController.getFactory(factoryID).clear();
     }
 
     @Override
