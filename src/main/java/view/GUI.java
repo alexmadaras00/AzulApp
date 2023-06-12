@@ -45,9 +45,9 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void addPlayer(int playerID, String name) {
+        // add to gamepage
         gamePageController.addPlayer(playerID, name);
-        // todo add to gamepage
-        // todo confirm on hubpage
+        // confirm on hubpage
         showToast(name + " added");
     }
 
@@ -63,8 +63,8 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void factorySetup(List<Integer> factoryIDs) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'factorySetup'");
+        gamePageController.factoryIDs = factoryIDs;
+        gamePageController.disableRestFactories();
     }
 
     @Override

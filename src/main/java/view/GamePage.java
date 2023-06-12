@@ -390,4 +390,17 @@ public class GamePage {
         // TODO - fill in data object to send
         // TODO - send Message
     }
+
+    public void disableRestFactories() {
+        switch (factoryIDs.size()) {
+            case 4:
+                factory7.setVisible(false);
+                factory6.setVisible(false);
+            case 6:
+                factory9.setVisible(false);
+                factory8.setVisible(false);
+            default:
+                return;
+        }
+    }
 }
