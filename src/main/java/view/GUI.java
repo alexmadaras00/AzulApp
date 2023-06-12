@@ -7,32 +7,44 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.AzulApp;
+import model.Game;
 import model.Tile;
 import model.TileColor;
 
 public class GUI extends Stage implements UI {
     private DisplayGameState gameState;
     private Scene scene;
-    private Messager messager;
+    private GamePage gamePageController;
+    private Parent hubPage;
+    private Parent gamePage;
+    private HubPage hubPageController;
+    private Stage stage;
 
     public void start(Stage stage) throws Exception {
+        this.stage = stage;
         gameState = new DisplayGameState();
-        FXMLLoader loader = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
-        Parent hubPage = loader.load();
+        FXMLLoader loaderHub = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
+        FXMLLoader loaderGame = new FXMLLoader(AzulApp.class.getResource("/view/GamePage.fxml"));
+
+        hubPage = loaderHub.load();
+        gamePage = loaderGame.load();
+        hubPageController = loaderHub.getController();
+        gamePageController = loaderGame.getController();
         scene = new Scene(hubPage);
+        this.stage.setScene(scene);
+        this.stage.show();
+    }
+
+    @Override
+    public void startGame() {
+        scene = new Scene(gamePage);
         stage.setScene(scene);
         stage.show();
     }
 
     @Override
-    public void startGame() {
-        // TODO
-        return;
-    }
-
-    @Override
     public void connectMessager(Messager messager) {
-        this.messager = messager;
+        return;
     }
 
     @Override
@@ -177,8 +189,7 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void addPlayer(int playerID, String name) {
-        gameState.addPlayer(playerID, name);
-
+        gamePage.addPlayer(playerID, name);
     }
 
 }
