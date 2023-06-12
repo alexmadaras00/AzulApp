@@ -1,8 +1,8 @@
 package integration.messaging.executors;
 
 import messaging.executors.controller.StartGameExecutor;
-import messaging.messages.BadRequest;
 import messaging.messages.Message;
+import messaging.messages.NotOkStartGame;
 import messaging.messages.OkStartGame;
 import messaging.messages.StartGame;
 import model.Game;
@@ -47,11 +47,13 @@ public class StartGameExecutorTest {
     public void testExecuteCannotStartGame() {
         model.addPlayer(player1);
         startGameExecutor.setMessage(message);
-        BadRequest badRequestTooFewPlayers = (BadRequest) startGameExecutor.execute(model);
-        assertInstanceOf(BadRequest.class, badRequestTooFewPlayers);
-        assertEquals("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.",
+        NotOkStartGame badRequestTooFewPlayers = (NotOkStartGame) startGameExecutor.execute(model);
+        assertInstanceOf(NotOkStartGame.class, badRequestTooFewPlayers);
+        assertEquals(
+                "Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.",
                 badRequestTooFewPlayers.getReason());
     }
+
     @Test
     public void testSetMessage() {
         assertDoesNotThrow(() -> {

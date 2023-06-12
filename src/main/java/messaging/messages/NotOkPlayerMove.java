@@ -1,12 +1,8 @@
 package messaging.messages;
 
-public class BadRequest extends Response {
+public class NotOkPlayerMove extends Response{
     private String reason;
-
-    public BadRequest(String requestId) {
-        super(requestId);
-    }
-
+    
     public String getReason() {
         return reason;
     }
@@ -15,4 +11,8 @@ public class BadRequest extends Response {
         this.reason = reason;
     }
 
+    public NotOkPlayerMove(String requestId) {
+        super(requestId);
+    }
+    
 }

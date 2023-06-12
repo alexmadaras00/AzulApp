@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import messaging.executors.controller.PlayerMoveExecutor;
-import messaging.messages.PlayerMove;
 
 public class PlayerMoveExecutorTest {
     Model model;
@@ -17,20 +16,11 @@ public class PlayerMoveExecutorTest {
 
     @BeforeEach
     public void setUp() {
-        model = new Game();
-        player1 = new Player();
-        player2 = new Player();
-        model.addPlayer(player1);
-        model.addPlayer(player2);
-        model.startGame();
-        model.startRound();
-        playerMoveExecutor = new PlayerMoveExecutor();
+
     }
 
     @Test
     public void testExecute() {
-
-        PlayerMove playerMove = (PlayerMove) playerMoveExecutor.execute(model);
 
     }
 

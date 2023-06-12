@@ -3,9 +3,9 @@ package messaging.executors.controller;
 import messaging.dataobjects.PlayerData;
 import messaging.executors.Executable;
 import messaging.executors.Executor;
-import messaging.messages.BadRequest;
 import messaging.messages.JoinGame;
 import messaging.messages.Message;
+import messaging.messages.NotOkJoinGame;
 import messaging.messages.OkJoinGame;
 import model.Model;
 import model.Player;
@@ -26,17 +26,20 @@ public class JoinGameExecutor implements Executor {
         model = (Model) executable;
 
         if (model.isPlaying()) {
-            BadRequest response = new BadRequest(message.getId());
+            NotOkJoinGame response = new NotOkJoinGame(message.getId());
+            response.setPlayerName(message.getPlayerName());
             response.setReason(reasonGameAlreadyStated);
             return response;
         }
         if (model.getPlayers().size() >= 4) {
-            BadRequest response = new BadRequest(message.getId());
+            NotOkJoinGame response = new NotOkJoinGame(message.getId());
+            response.setPlayerName(message.getPlayerName());
             response.setReason(reasonMaxPlayers);
             return response;
         }
         if (message.getPlayerName() == null || message.getPlayerName() == "") {
-            BadRequest response = new BadRequest(message.getId());
+            NotOkJoinGame response = new NotOkJoinGame(message.getId());
+            response.setPlayerName(message.getPlayerName());
             response.setReason(reasonNoName);
             return response;
         }

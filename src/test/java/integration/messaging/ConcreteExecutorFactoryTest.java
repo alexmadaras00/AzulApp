@@ -50,9 +50,21 @@ public class ConcreteExecutorFactoryTest {
     }
 
     @Test
-    public void testSpawnBadRequestExecutor() {
-        Executor executor = factory.createExecutor(new BadRequest("1"));
-        assertTrue(executor instanceof BadRequestExecutor);
+    public void testSpawnNotOkPlayerMoveExecutor() {
+        Executor executor = factory.createExecutor(new NotOkPlayerMove("1"));
+        assertTrue(executor instanceof NotOkPlayerMoveExecutor);
     }
+    @Test
+    public void testSpawnNotOkJoinGameExecutor() {
+        Executor executor = factory.createExecutor(new NotOkJoinGame("1"));
+        assertTrue(executor instanceof NotOkJoinGameExecutor);
+    }
+    @Test
+    public void testSpawnNotOkStartGameExecutor() {
+        Executor executor = factory.createExecutor(new NotOkStartGame("1"));
+        assertTrue(executor instanceof NotOkStartGameExecutor);
+    }
+
+
 
 }

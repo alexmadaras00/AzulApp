@@ -3,9 +3,10 @@ package messaging.executors.view;
 import messaging.executors.Executable;
 import messaging.executors.Executor;
 import messaging.messages.Message;
+import messaging.messages.OkPlayerMove;
 
 public class OkPlayerMoveExecutor implements Executor {
-
+    private OkPlayerMove message;
     @Override
     public Message execute(Executable executable) {
         // TODO Auto-generated method stub
@@ -14,8 +15,9 @@ public class OkPlayerMoveExecutor implements Executor {
 
     @Override
     public void setMessage(Message message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setMessage'");
+        if (message instanceof OkPlayerMove) {
+            this.message = (OkPlayerMove) message;
+        }
     }
 
 }
