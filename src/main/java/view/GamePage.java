@@ -5,6 +5,7 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
@@ -12,6 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import model.Tile;
 import model.TileColor;
 
 public class GamePage {
@@ -19,60 +22,10 @@ public class GamePage {
     public List<PlayerGUI> players;
     public List<FactoryGUI> factories;
 
-    public GamePage() {
-        players = new ArrayList<>();
-        factories = new ArrayList<>();
-    }
-
-    VBox getMiddle() {
-        return middle;
-    }
-
-    void addPlayer(int playerID, String name) {
-        players.add(new PlayerGUI(players.size() + 1, playerID));
-        this.getPlayer(playerID).getName().setText(name);
-    }
-
-    PlayerGUI getPlayer(int playerID) {
-        for (PlayerGUI player : players) {
-            if (player.getId() == playerID) {
-                return player;
-            }
-        }
-        return null;
-    }
-
-    void addFactory(int factoryID) {
-        factories.add(new FactoryGUI(factories.size() + 1, factoryID));
-    }
-
-    FactoryGUI getFactory(int factoryID) {
-        for (FactoryGUI factory : factories) {
-            if (factory.getId() == factoryID) {
-                return factory;
-            }
-        }
-        return null;
-    }
-
-    public static Color translateColor(TileColor color) {
-        switch (color) {
-            case RED:
-                return Color.RED;
-            case BLACK:
-                return Color.BLACK;
-
-            case BLUE:
-                return Color.BLUE;
-
-            case YELLOW:
-                return Color.YELLOW;
-
-            case CYAN:
-                return Color.CYAN;
-
-            default:
-                return null;
+    class TileButton extends Button {
+        public TileButton(Tile tile) {
+            this.setBackground(
+                    Background.fill(tile instanceof TileColor ? translateColor((TileColor) tile) : Color.ANTIQUEWHITE));
         }
     }
 
@@ -230,6 +183,102 @@ public class GamePage {
 
             }
         }
+    }
+
+    public GamePage() {
+        players = new ArrayList<>();
+        factories = new ArrayList<>();
+    }
+
+    VBox getMiddle() {
+        return middle;
+    }
+
+    void addPlayer(int playerID, String name) {
+        players.add(new PlayerGUI(players.size() + 1, playerID));
+        this.getPlayer(playerID).getName().setText(name);
+    }
+
+    PlayerGUI getPlayer(int playerID) {
+        for (PlayerGUI player : players) {
+            if (player.getId() == playerID) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    void addFactory(int factoryID) {
+        factories.add(new FactoryGUI(factories.size() + 1, factoryID));
+    }
+
+    FactoryGUI getFactory(int factoryID) {
+        for (FactoryGUI factory : factories) {
+            if (factory.getId() == factoryID) {
+                return factory;
+            }
+        }
+        return null;
+    }
+
+    void addToMiddle(Tile tile) {
+        middle.getChildren().add(new TileButton(tile));
+    }
+
+    void removeTilesMiddle(Tile tile) {
+        middle.getChildren().removeIf((Node n) -> {
+            Paint color = ((Button) n).getBackground().getFills().get(0).getFill();
+            TileColor tileColor = translateColorBack((Color) color);
+            if (tileColor == null && translateColor(tile) == null) {
+                return true;
+            } else if (tileColor != null && tile == tileColor) {
+                return true;
+            }
+            return false;
+        });
+    }
+
+    public static Color translateColor(Tile tile) {
+        if (!(tile instanceof TileColor)) {
+            return null;
+        }
+        switch ((TileColor) tile) {
+            case RED:
+                return Color.RED;
+            case BLACK:
+                return Color.BLACK;
+
+            case BLUE:
+                return Color.BLUE;
+
+            case YELLOW:
+                return Color.YELLOW;
+
+            case CYAN:
+                return Color.CYAN;
+
+            default:
+                return null;
+        }
+    }
+
+    public static TileColor translateColorBack(Color color) {
+        if (color == Color.RED) {
+            return TileColor.RED;
+        } else if (color == Color.BLACK) {
+            return TileColor.BLACK;
+
+        } else if (color == Color.BLUE) {
+            return TileColor.BLUE;
+
+        } else if (color == Color.YELLOW) {
+            return TileColor.YELLOW;
+
+        } else if (color == Color.CYAN) {
+            return TileColor.CYAN;
+        }
+        return null;
+
     }
 
     @FXML

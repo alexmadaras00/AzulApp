@@ -12,6 +12,7 @@ import messaging.executors.ConcreteExecutorFactory;
 import messaging.executors.ExecutorFactory;
 import model.Game;
 import model.Model;
+import model.PlayerTile;
 import model.TileColor;
 import view.GUI;
 import view.Messager;
@@ -45,6 +46,12 @@ public class AzulApp extends Application {
         gui.setTilesFactory(4, List.of(TileColor.BLUE, TileColor.CYAN, TileColor.RED, TileColor.BLACK));
         gui.startGame();
         gui.clearFactory(2);
+        gui.addTileMiddle(TileColor.RED);
+        gui.addTileMiddle(TileColor.YELLOW);
+        gui.addTileMiddle(TileColor.YELLOW);
+        gui.addTileMiddle(TileColor.RED);
+        // gui.removeTilesMiddle(TileColor.YELLOW);
+
     }
 
 }

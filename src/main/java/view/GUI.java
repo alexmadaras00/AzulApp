@@ -84,14 +84,12 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void addTileMiddle(Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTileMiddle'");
+        gamePageController.addToMiddle(tile);
     }
 
     @Override
     public void removeTilesMiddle(Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeTilesMiddle'");
+        gamePageController.removeTilesMiddle(tile);
     }
 
     @Override
