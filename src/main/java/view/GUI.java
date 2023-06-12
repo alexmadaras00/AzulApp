@@ -7,9 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.AzulApp;
-import model.Game;
 import model.Tile;
-import model.TileColor;
 
 public class GUI extends Stage implements UI {
     private Scene scene;
@@ -53,14 +51,12 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void showToast(String message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showToast'");
+        stage.setTitle(message);
     }
 
     @Override
     public void notAddPlayer(String playerName) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'notAddPlayer'");
+        hubPageController.undoLastDisable();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,7 +10,7 @@ import messaging.messages.JoinGame;
 import messaging.messages.StartGame;
 
 public class HubPage {
-
+    private List<Integer> disables;
     @FXML
     private Button joinButton1;
 
@@ -76,23 +78,51 @@ public class HubPage {
             case 1:
                 joinButton1.setDisable(true);
                 playerName1.setEditable(false);
-                return;
+                break;
             case 2:
                 joinButton2.setDisable(true);
                 playerName2.setEditable(false);
-                return;
+                break;
             case 3:
                 joinButton3.setDisable(true);
                 playerName3.setEditable(false);
-                return;
+                break;
             case 4:
                 joinButton4.setDisable(true);
                 playerName4.setEditable(false);
-                return;
-
+                break;
             default:
                 return;
+        }
+        disables.add(place);
+    }
 
+    public void undoLastDisable() {
+        try {
+            int lastDisable = disables.get(disables.size() - 1);
+            switch (lastDisable) {
+                case 1:
+                    joinButton1.setDisable(false);
+                    playerName1.setEditable(true);
+                    break;
+                case 2:
+                    joinButton2.setDisable(false);
+                    playerName2.setEditable(true);
+                    break;
+                case 3:
+                    joinButton3.setDisable(false);
+                    playerName3.setEditable(true);
+                    break;
+                case 4:
+                    joinButton4.setDisable(false);
+                    playerName4.setEditable(true);
+                    break;
+                default:
+                    return;
+            }
+            disables.remove(disables.size() - 1);
+        } catch (Exception e) {
+            return;
         }
 
     }
