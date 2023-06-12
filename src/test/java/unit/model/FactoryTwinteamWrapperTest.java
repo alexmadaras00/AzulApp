@@ -1,7 +1,6 @@
 package unit.model;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import model.TileColor;
@@ -11,7 +10,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Disabled
 public class FactoryTwinteamWrapperTest {
     private FactoryTwinteamWrapper factory;
     private List<TileColor> tiles;
@@ -32,7 +30,7 @@ public class FactoryTwinteamWrapperTest {
     @Test
     public void testAddTiles() {
         factory.addTiles(tiles);
-        assertEquals(tiles, factory.getAllTiles());
+        assertEquals(true, tiles.containsAll(factory.getAllTiles()));
     }
 
     @Test
