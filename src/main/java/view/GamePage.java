@@ -13,6 +13,51 @@ import javafx.scene.layout.VBox;
 public class GamePage {
 
     public List<PlayerGUI> players;
+    public List<Integer> factoryIDs;
+
+    GridPane getFactory(int factoryID) {
+        for (int i = 0; i < factoryIDs.size(); i++) {
+            if (factoryIDs.get(i) == factoryID) {
+                switch (i) {
+                    case 0:
+                        return factory1;
+                    case 1:
+                        return factory2;
+                    case 2:
+                        return factory3;
+                    case 3:
+                        return factory4;
+                    case 4:
+                        return factory5;
+                    case 5:
+                        return factory6;
+                    case 6:
+                        return factory7;
+                    case 7:
+                        return factory8;
+                    case 8:
+                        return factory9;
+                    default:
+                        return null;
+
+                }
+            }
+        }
+        return null;
+    }
+
+    VBox getMiddle() {
+        return middle;
+    }
+
+    PlayerGUI getPlayer(int playerID) {
+        for (PlayerGUI player : players) {
+            if (player.getId() == playerID) {
+                return player;
+            }
+        }
+        return null;
+    }
 
     @FXML
     private Button buttonF1T1;
@@ -130,7 +175,7 @@ public class GamePage {
         int getId() {
             return this.id;
         }
-        
+
         GridPane getWall(int row) {
             switch (place) {
                 case 1:
@@ -327,7 +372,7 @@ public class GamePage {
 
     void addPlayer(int id, String name) {
         PlayerGUI player = new PlayerGUI(this.players.size() + 1, id);
-        
+
     }
 
     @FXML
