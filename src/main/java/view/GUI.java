@@ -33,6 +33,7 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void startGame() {
+        gamePageController.disableRestPlayers();
         scene = new Scene(gamePage);
         stage.setScene(scene);
         stage.show();

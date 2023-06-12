@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -401,6 +402,27 @@ public class GamePage {
                 factory8.setVisible(false);
             default:
                 return;
+        }
+    }
+
+    public void disableRestPlayers() {
+        List<Integer> places = new ArrayList<Integer>();
+        for (PlayerGUI player : players) {
+            places.add(player.place);
+        }
+        for (int i = 1; i < 5; i++) {
+            if (!places.contains(i)) {
+                switch (i) {
+                    case 1:
+                        playerboard1.setVisible(false);
+                    case 2:
+                        playerboard2.setVisible(false);
+                    case 3:
+                        playerboard3.setVisible(false);
+                    case 4:
+                        playerboard4.setVisible(false);
+                }
+            }
         }
     }
 }
