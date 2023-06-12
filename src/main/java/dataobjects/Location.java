@@ -1,14 +1,15 @@
 package dataobjects;
 
-import model.TileColor;
-
-import java.util.Objects;
-
 public class Location implements DataObject {
     private LocationType type;
     private int index;
 
     public Location() {
+    }
+
+    public Location(LocationType type, int index) {
+        this.type = type;
+        this.index = index;
     }
 
     public LocationType getType() {

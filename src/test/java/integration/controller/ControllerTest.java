@@ -68,22 +68,7 @@ public class ControllerTest {
         }
 
         @Override
-        public RoundUpdate startRound() {
-            return null;
-        }
-
-        @Override
-        public RoundUpdate endRound() {
-            return null;
-        }
-
-        @Override
         public GameState terminateGame() {
-            return null;
-        }
-
-        @Override
-        public GameState endGame() {
             return null;
         }
 
@@ -103,44 +88,54 @@ public class ControllerTest {
         }
 
         @Override
-        public DataObject performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
-            return null;
-        }
-
-        @Override
-        public MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-            return null;
-        }
-
-        @Override
-        public MoveUpdate performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
-            return null;
-        }
-
-        @Override
-        public MoveUpdate performMoveMiddleFloorLine(List<Tile> tiles) {
-            return null;
-        }
-
-        @Override
-        public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
+        public boolean isValidMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
+            // TODO Auto-generated method stub
             return false;
         }
 
         @Override
-        public boolean isValidMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
+        public boolean isValidMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
+            // TODO Auto-generated method stub
             return false;
         }
 
         @Override
-        public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
+        public boolean isValidMoveMiddleFloorLine(TileColor tileColor) {
+            // TODO Auto-generated method stub
             return false;
         }
 
         @Override
-        public boolean isValidMoveMiddleFloorLine(List<Tile> tiles) {
+        public boolean isValidMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
+            // TODO Auto-generated method stub
             return false;
         }
+
+        @Override
+        public DataObject performMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public DataObject performMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public DataObject performMoveMiddleFloorLine(TileColor tileColor) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public DataObject performMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        
 
     }
 

@@ -34,4 +34,12 @@ public class Middle {
     public boolean hasTiles(TileColor type){
         return tiles.contains(type);
     }
+
+    public boolean hasPlayerTile() {
+        return tiles.contains(PlayerTile.getInstance());
+    }
+
+    public Tile popPlayerTile() {
+        return tiles.remove(PlayerTile.getInstance()) ? PlayerTile.getInstance() : null;
+    }
 }
