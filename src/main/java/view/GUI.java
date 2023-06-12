@@ -45,8 +45,10 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void addPlayer(int playerID, String name) {
-        //todo add to gamepage
-        //todo confirm on hubpage
+        gamePageController.addPlayer(playerID, name);
+        // todo add to gamepage
+        // todo confirm on hubpage
+        showToast(name + " added");
     }
 
     @Override

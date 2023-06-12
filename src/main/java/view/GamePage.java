@@ -59,6 +59,11 @@ public class GamePage {
         return null;
     }
 
+    void addPlayer(int playerID, String name) {
+        players.add(new PlayerGUI(players.size() + 1, playerID));
+        this.getPlayer(playerID).getName().setText(name);
+    }
+
     @FXML
     private Button buttonF1T1;
     private Button buttonF1T2;
@@ -367,11 +372,6 @@ public class GamePage {
     }
 
     void Gamepage() {
-
-    }
-
-    void addPlayer(int id, String name) {
-        PlayerGUI player = new PlayerGUI(this.players.size() + 1, id);
 
     }
 
