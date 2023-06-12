@@ -136,7 +136,7 @@ public class PlayerBoardTest {
         Tile clearedTile = TileColor.RED;
         Tile floorLineTile = TileColor.BLUE;
         List<Tile> addedTiles = List.of(clearedTile, clearedTile);
-        List<Tile> clearedTiles = new ArrayList<>(List.of(clearedTile));
+        List<Tile> clearedTiles = new ArrayList<>(List.of(clearedTile, clearedTile));
         List<Tile> floorLineTiles = List.of(floorLineTile, floorLineTile);
         ScoreChange wallTileScoreChange = new ScoreChange();
         ScoreChange floorLineScoreChange = new ScoreChange();

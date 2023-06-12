@@ -499,7 +499,6 @@ public class Game implements Model {
         return middle.hasTiles(tileColor);
     }
 
-
     private boolean isEndOfGame() {
         for (Player p : players) {
             if (p.getBoard().hasFulfilledEndCondition())
