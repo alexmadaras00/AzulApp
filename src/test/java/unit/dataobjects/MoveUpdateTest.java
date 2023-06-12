@@ -1,7 +1,9 @@
 package unit.dataobjects;
 
-import dataobjects.MoveUpdate;
 import org.junit.jupiter.api.Test;
+
+import messaging.dataobjects.MoveUpdate;
+
 import static com.google.code.beanmatchers.BeanMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 

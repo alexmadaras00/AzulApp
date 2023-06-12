@@ -1,9 +1,9 @@
 package view;
 
-import dataobjects.DataObject;
-import dataobjects.ExecutorFactory;
-import dataobjects.executors.Executor;
 import controller.Mediator;
+import messaging.executors.Executor;
+import messaging.executors.ExecutorFactory;
+import messaging.messages.Message;
 
 public class View implements Messager {
     private static View instance = null;
@@ -39,13 +39,13 @@ public class View implements Messager {
     }
 
     @Override
-    public void notify(DataObject message) {
+    public void notify(Message message) {
         Executor executor = executorFactory.createExecutor(message);
         executor.execute(userInterface);
     }
 
     @Override
-    public void send(DataObject message) {
+    public void send(Message message) {
         mediator.notify(message);
     }
 

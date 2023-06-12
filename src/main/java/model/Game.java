@@ -1,6 +1,6 @@
 package model;
 
-import dataobjects.*;
+import messaging.dataobjects.*;
 import model.factory.Factory;
 import utils.ExceptionGameStart;
 
@@ -79,7 +79,6 @@ public class Game implements Model {
             return gameState;
         } else
             throw new ExceptionGameStart("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.");
-
     }
 
     private void fillBag() {
@@ -106,7 +105,6 @@ public class Game implements Model {
                 factories.add(new Factory());
         }
     }
-
 
     private void initGameState(GameState gameState) {
         List<List<TileColor>> factoryTiles = new ArrayList<>();
