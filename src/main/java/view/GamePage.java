@@ -7,48 +7,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import model.TileColor;
 
 public class GamePage {
 
     public List<PlayerGUI> players;
-    public List<Integer> factoryIDs;
-
-    GridPane getFactory(int factoryID) {
-        for (int i = 0; i < factoryIDs.size(); i++) {
-            if (factoryIDs.get(i) == factoryID) {
-                switch (i) {
-                    case 0:
-                        return factory1;
-                    case 1:
-                        return factory2;
-                    case 2:
-                        return factory3;
-                    case 3:
-                        return factory4;
-                    case 4:
-                        return factory5;
-                    case 5:
-                        return factory6;
-                    case 6:
-                        return factory7;
-                    case 7:
-                        return factory8;
-                    case 8:
-                        return factory9;
-                    default:
-                        return null;
-
-                }
-            }
-        }
-        return null;
-    }
+    public List<FactoryGUI> factories;
 
     VBox getMiddle() {
         return middle;
+    }
+
+    void addPlayer(int playerID, String name) {
+        players.add(new PlayerGUI(players.size() + 1, playerID));
+        this.getPlayer(playerID).getName().setText(name);
     }
 
     PlayerGUI getPlayer(int playerID) {
@@ -60,9 +37,114 @@ public class GamePage {
         return null;
     }
 
-    void addPlayer(int playerID, String name) {
-        players.add(new PlayerGUI(players.size() + 1, playerID));
-        this.getPlayer(playerID).getName().setText(name);
+    void addFactory(int factoryID) {
+        factories.add(new FactoryGUI(factories.size() + 1, factoryID));
+    }
+
+    FactoryGUI getFactory(int factoryID) {
+        for (FactoryGUI factory : factories) {
+            if (factory.getId() == factoryID) {
+                return factory;
+            }
+        }
+        return null;
+    }
+
+    public static Color translateColor(TileColor color) {
+        switch (color) {
+            case RED:
+                return Color.RED;
+            case BLACK:
+                return Color.BLACK;
+
+            case BLUE:
+                return Color.BLUE;
+
+            case YELLOW:
+                return Color.YELLOW;
+
+            case CYAN:
+                return Color.CYAN;
+
+            default:
+                return null;
+        }
+    }
+
+    class FactoryGUI {
+        private int factoryID;
+        private int place;
+
+        public FactoryGUI(int place, int factoryID) {
+            this.place = place;
+            this.factoryID = factoryID;
+        }
+
+        public int getId() {
+            return factoryID;
+        }
+
+        public void setTiles(List<TileColor> tiles) {
+            if (tiles.size() != 4) {
+                return;
+            }
+            switch (place) {
+                case 1:
+                    buttonF1T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF1T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF1T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF1T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                case 2:
+                    buttonF2T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF2T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF2T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF2T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                case 3:
+                    buttonF3T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF3T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF3T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF3T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                case 4:
+                    buttonF4T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF4T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF4T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF4T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                case 5:
+                    buttonF5T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF5T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF5T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF5T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                case 6:
+                    buttonF6T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF6T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF6T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF6T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                case 7:
+                    buttonF7T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF7T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF7T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF7T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                case 8:
+                    buttonF8T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF8T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF8T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF8T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                case 9:
+                    buttonF9T1.setBackground(Background.fill(translateColor(tiles.get(0))));
+                    buttonF9T2.setBackground(Background.fill(translateColor(tiles.get(1))));
+                    buttonF9T3.setBackground(Background.fill(translateColor(tiles.get(2))));
+                    buttonF9T4.setBackground(Background.fill(translateColor(tiles.get(3))));
+
+            }
+        }
+
+        public void removeTiles() {
+            return;
+        }
+
+        public void clear() {
+            return;
+        }
     }
 
     @FXML
@@ -393,7 +475,7 @@ public class GamePage {
     }
 
     public void disableRestFactories() {
-        switch (factoryIDs.size()) {
+        switch (factories.size()) {
             case 4:
                 factory7.setVisible(false);
                 factory6.setVisible(false);

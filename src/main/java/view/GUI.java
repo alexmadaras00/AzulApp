@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.AzulApp;
 import model.Tile;
+import model.TileColor;
 
 public class GUI extends Stage implements UI {
     private Scene scene;
@@ -64,18 +65,19 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void factorySetup(List<Integer> factoryIDs) {
-        gamePageController.factoryIDs = factoryIDs;
+        for (int id : factoryIDs) {
+            gamePageController.addFactory(id);
+        }
         gamePageController.disableRestFactories();
     }
 
     @Override
-    public void addTileFactory(int factoryID, Tile tile) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTileFactory'");
+    public void setTilesFactory(int factoryID, List<TileColor> tiles) {
+        gamePageController.getFactory(factoryID).setTiles(tiles);
     }
 
     @Override
-    public void removeTilesFactory(int factoryID, Tile tile) {
+    public void removeTilesFactory(int factoryID, TileColor tile) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeTilesFactory'");
     }

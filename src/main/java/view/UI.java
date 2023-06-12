@@ -4,6 +4,7 @@ import java.util.List;
 
 import messaging.executors.Executable;
 import model.Tile;
+import model.TileColor;
 
 public interface UI extends Executable {
 
@@ -25,9 +26,9 @@ public interface UI extends Executable {
 
     // Factory
 
-    void addTileFactory(int factoryID, Tile tile);
+    void setTilesFactory(int factoryID, List<TileColor> tiles);
 
-    void removeTilesFactory(int factoryID, Tile tile);
+    void removeTilesFactory(int factoryID, TileColor tile);
 
     void clearFactory(int factoryID);
 
