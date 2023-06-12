@@ -16,7 +16,17 @@ public class FloorLine {
      */
     public List<Tile> addTiles(List<Tile> t){
         List<Tile> excessTiles = new ArrayList<>();
+        
+        if (t.contains(PlayerTile.getInstance())) {
+            // t.remove(PlayerTile.getInstance()); apparently this is not possible
+            if (tiles.size() == 7) {
+                excessTiles.add(tiles.remove(0));
+            }
+            tiles.add(0, PlayerTile.getInstance());
+        }
+
         for(int i=0; i<t.size(); i++) {
+            if (t.get(i) == PlayerTile.getInstance()) continue;
             if (tiles.size() < 7) {
                 tiles.add(t.get(i));
             } else {

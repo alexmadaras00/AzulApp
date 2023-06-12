@@ -41,13 +41,9 @@ public class PlayerBoard {
     }
 
     public boolean canAddTypePatternLine(int rowIndex, TileColor type) {
-        System.out.println("Here:"+ (wall.canAddTile(rowIndex, type)));
-        System.out.println("WALL"+ wall.getCopyTable().get(0));
-        System.out.println("Here2:"+ (patternLine.canAddTile(rowIndex, type)));
         return wall.canAddTile(rowIndex, type) && patternLine.canAddTile(rowIndex, type);}
     public List<Tile> performMovePatternLine(int rowIndex, List<Tile> tiles) {
         tiles.forEach(tile -> {
-            System.out.println(tile);
             if (!canAddTypePatternLine(rowIndex, (TileColor) tile))
                 throw new RuntimeException("This tile cannot be added on the current pattern line.");
         });
@@ -63,11 +59,10 @@ public class PlayerBoard {
         completedRows.forEach(completedRow -> {
                     List<Tile> tilesCompleted = patternLine.getCopyTable().get(completedRow);
                     Tile wallTile = tilesCompleted.get(0);
-                    remainderTable.put(new Location(LocationType.PATTERN_LINE, completedRow), tilesCompleted.subList(1, tilesCompleted.size()));
-                    
+                    // remainderTable.put(new Location(LocationType.PATTERN_LINE, completedRow), tilesCompleted.subList(1, tilesCompleted.size()));
+                    remainderTable.put(new Location(LocationType.PATTERN_LINE, completedRow), tilesCompleted);
                     int wallTileScoreDifference = wall.addTile(completedRow, wallTile);
                     score += wallTileScoreDifference;
-                    
                     ScoreChange wallTileScoreChange = new ScoreChange();
                     wallTileScoreChange.setType(ScoreType.PLACED_TILE_IN_WALL);
                     wallTileScoreChange.setIndex(completedRow);
@@ -103,6 +98,7 @@ public class PlayerBoard {
         scoreChangesWallList.forEach(scoreChange ->
                 this.score += scoreChange.getScoreDifference());
     }
+
 
     public PlayerBoardState toObject() {
         PlayerBoardState playerBoardState = new PlayerBoardState();

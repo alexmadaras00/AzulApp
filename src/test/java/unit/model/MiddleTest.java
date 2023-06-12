@@ -2,6 +2,7 @@ package unit.model;
 
 import model.TileColor;
 import model.Middle;
+import model.PlayerTile;
 import model.Tile;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -71,6 +72,20 @@ public class MiddleTest {
         middle.addTiles(tiles);
         assertTrue(middle.hasTiles(TileColor.BLUE));
         assertFalse(middle.hasTiles(TileColor.BLACK));
+    }
+
+    @Test
+    public void testPopPlayerTile() {
+        middle.addTiles(List.of(PlayerTile.getInstance()));
+        assertEquals(PlayerTile.getInstance(), middle.popPlayerTile());
+        assertEquals(null, middle.popPlayerTile());
+    }
+
+    @Test
+    public void testHasPlayerTile() {
+        assertFalse(middle.hasPlayerTile());
+        middle.addTiles(List.of(PlayerTile.getInstance()));
+        assertTrue(middle.hasPlayerTile());
     }
 
 }

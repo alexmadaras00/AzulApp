@@ -175,6 +175,7 @@ public class Game implements Model {
         if (isEndOfGame()) {
             EndGameUpdate endGameUpdate = endGame();
             roundUpdate.setUpdates(updates);
+            endGameUpdate.setRoundUpdate(roundUpdate);
             return endGameUpdate;
         } else {
             updates.addAll(startRound().getUpdates());
@@ -192,16 +193,32 @@ public class Game implements Model {
             if (floorTiles.contains(PlayerTile.getInstance())) {
                 setStartingPlayer(player);
                 floorTiles.remove(PlayerTile.getInstance());
+                Action removePlayerTile = new Action(ActionType.REMOVE, null, 1, new Location(LocationType.FLOOR_LINE, 0), null);
+                removePlayerTile.setIsPlayerTile(true);
+                updates.add(removePlayerTile);
             }
             for (Location key : remainingTiles.keySet()) {
                 List<Tile> tiles = remainingTiles.get(key);
                 for (TileColor tileColor : TileColor.values()) {
                     int count = Collections.frequency(tiles, tileColor);
-                    if (count > 0) {
-                        updates.add(new Action(ActionType.REMOVE, tileColor, count, key, null));
+                    // move 1 tile from pattern line to wall
+                    if (count > 0 && key.getType() == LocationType.PATTERN_LINE) {
+                        updates.add(new Action(ActionType.MOVE, tileColor, 1, key, new Location(LocationType.WALL, key.getIndex())));
+                    } 
+                    // remove left over tiles in pattern line
+                    if (count > 1 && key.getType() == LocationType.PATTERN_LINE) {
+                        updates.add(new Action(ActionType.REMOVE, tileColor, count-1, key, null));
                     }
+                    // remove all tiles from floor line
+                    if (count > 0 && key.getType() == LocationType.FLOOR_LINE) {
+                        updates.add(new Action(ActionType.REMOVE, tileColor, count, key, null));
+                    } 
                 }
-                box.addAll(tiles);
+                if (key.getType() == LocationType.FLOOR_LINE) {
+                    box.addAll(tiles);
+                } else {
+                    box.addAll(tiles.subList(1, tiles.size()));
+                }
             }
         });
         return updates;
@@ -264,13 +281,12 @@ public class Game implements Model {
     private List<PlayerData> determineWinners() {
         List<PlayerData> winners = new ArrayList<>();
         List<Player> possibleWinners = new ArrayList<>();
-
         int maxScore = 0;
         for (Player p : players) {
             int playerScore = p.getBoard().getScore();
             if (playerScore > maxScore) {
                 maxScore = playerScore;
-                winners = new ArrayList<>();
+                possibleWinners = new ArrayList<>();
                 possibleWinners.add(p);
             } else if (playerScore == maxScore) {
                 possibleWinners.add(p);
@@ -357,7 +373,7 @@ public class Game implements Model {
     }
 
     private DataObject performMove(Function<TileColor, List<Tile>> popTiles, Function<TileColor, List<Tile>> popAllTiles,
-                                   Function<List<Tile>, List<Tile>> putTiles, Function<List<Tile>, List<Tile>> dumpExcessTiles, TileColor tileColor, Location from, Location to) {
+                                   Function<List<Tile>, List<Tile>> putTiles, Function<List<Tile>, List<Tile>> dumpFloorLine, TileColor tileColor, Location from, Location to) {
 
         MoveUpdate moveUpdate = initialMoveUpdate();
         List<Action> steps = new ArrayList<>();
@@ -366,7 +382,7 @@ public class Game implements Model {
         int amount = tiles.size();
         List<Tile> overflowTiles = putTiles.apply(tiles);  // either pattern line row or floor line
         int overflowAmount = overflowTiles.size();
-        List<Tile> returnedTilesFloorLine = dumpExcessTiles.apply(overflowTiles); // floorline
+        List<Tile> returnedTilesFloorLine = dumpFloorLine.apply(overflowTiles); // floorline
         int returnedAmount = returnedTilesFloorLine.size();
 
         if (amount - overflowAmount > 0) // tiles that were put into the specified location
@@ -387,19 +403,29 @@ public class Game implements Model {
                 steps.add(new Action(ActionType.MOVE, key, distributionOtherTiles.get(key), from, new Location(LocationType.MIDDLE, 0)));
             }
             middle.addTiles(otherTiles);
+        } else if (middle.hasPlayerTile()) {
+                List<Tile> swappedTile = dumpFloorLine.apply(List.of(middle.popPlayerTile()));
+                Action movePlayerTile = new Action(ActionType.MOVE, null, 1, from, new Location(LocationType.FLOOR_LINE, 0));
+                movePlayerTile.setIsPlayerTile(true); 
+                steps.add(movePlayerTile);
+                if (swappedTile.size() == 1) {
+                    box.addAll(swappedTile);
+                    steps.add(new Action(ActionType.REMOVE, (TileColor) swappedTile.get(0), 1, new Location(LocationType.FLOOR_LINE, 0), null));
+                }
         }
 
         moveUpdate.setSteps(steps);
 
         if (isEndOfRound()) {
+            DataObject roundUpdate = endRound();
             if (isEndOfGame()) {
-                EndGameUpdate gameUpdate = (EndGameUpdate) endRound();
-                gameUpdate.getRoundUpdate().setMove(moveUpdate);
-                return gameUpdate;
+                EndGameUpdate result = (EndGameUpdate) roundUpdate;
+                result.getRoundUpdate().setMove(moveUpdate);
+                return result;
             } else {
-                RoundUpdate roundUpdate = (RoundUpdate) endRound();
-                roundUpdate.setMove(moveUpdate);
-                return roundUpdate;
+                RoundUpdate result = (RoundUpdate) roundUpdate;  
+                result.setMove(moveUpdate);  
+                return result;
             }
         }
         return moveUpdate;
@@ -407,21 +433,22 @@ public class Game implements Model {
 
     @Override
     public DataObject performMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
+        Player player = turnOrder.get(0);
         Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popTiles(color);
         Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> turnOrder.get(0).getBoard().performMovePatternLine(patternLineRow, tiles);
-
-        Function<List<Tile>, List<Tile>> dumpExcessTiles = (tiles) -> turnOrder.get(0).getBoard().performMoveFloorLine(tiles);
+        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMovePatternLine(patternLineRow, tiles);
+        Function<List<Tile>, List<Tile>> dumpFloorLine = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
         Location from = new Location(LocationType.FACTORY, factoryIndex);
         Location to = new Location(LocationType.PATTERN_LINE, patternLineRow);
-        return performMove(popTiles, popAllTiles, putTiles, dumpExcessTiles, tileColor, from, to);
+        return performMove(popTiles, popAllTiles, putTiles, dumpFloorLine, tileColor, from, to);
     }
 
     @Override
     public DataObject performMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
+        Player player = turnOrder.get(0);
         Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popTiles(color);
         Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> turnOrder.get(0).getBoard().performMoveFloorLine(tiles);
+        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
         Location from = new Location(LocationType.FACTORY, factoryIndex);
         Location to = new Location(LocationType.FLOOR_LINE, 0);
         return performMove(popTiles, popAllTiles, putTiles, putTiles, tileColor, from, to);
@@ -429,20 +456,22 @@ public class Game implements Model {
 
     @Override
     public DataObject performMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
+        Player player = turnOrder.get(0);
         Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) middle.popTiles(color);
         Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) middle.popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> turnOrder.get(0).getBoard().performMovePatternLine(patternLineRow, tiles);
-        Function<List<Tile>, List<Tile>> dumpExcessTiles = (tiles) -> turnOrder.get(0).getBoard().performMoveFloorLine(tiles);
+        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMovePatternLine(patternLineRow, tiles);
+        Function<List<Tile>, List<Tile>> dumpFloorLine = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
         Location from = new Location(LocationType.MIDDLE, 0);
         Location to = new Location(LocationType.PATTERN_LINE, patternLineRow);
-        return performMove(popTiles, popAllTiles, putTiles, dumpExcessTiles, tileColor, from, to);
+        return performMove(popTiles, popAllTiles, putTiles, dumpFloorLine, tileColor, from, to);
     }
 
     @Override
     public DataObject performMoveMiddleFloorLine(TileColor tileColor) {
+        Player player = turnOrder.get(0);
         Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) middle.popTiles(color);
         Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) middle.popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> turnOrder.get(0).getBoard().performMoveFloorLine(tiles);
+        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
         Location from = new Location(LocationType.MIDDLE, 0);
         Location to = new Location(LocationType.FLOOR_LINE, 0);
         return performMove(popTiles, popAllTiles, putTiles, putTiles, tileColor, from, to);
