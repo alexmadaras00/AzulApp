@@ -4,7 +4,6 @@ import java.util.List;
 
 import messaging.executors.Executable;
 import model.Tile;
-import model.TileColor;
 
 public interface UI extends Executable {
 
@@ -13,14 +12,18 @@ public interface UI extends Executable {
 
     void connectMessager(Messager messager);
 
-    void resetGameState();
+    void showToast(String message);
 
-    void clearAll();
+    // confirm in hub, add to gamepage, show toast
+    void addPlayer(int playerID, String name);
 
-    void commit();
+    // reenable join button hub, show toast
+    void notAddPlayer(String playerName);
+
+    // set factoies in GUI to id and disable the rest.
+    void factorySetup(List<Integer> factoryIDs);
 
     // Factory
-    void addFactory(int factoryID);
 
     void addTileFactory(int factoryID, Tile tile);
 
@@ -37,22 +40,14 @@ public interface UI extends Executable {
 
     // PLAYER SPECIFIC
 
-    void addPlayer(int playerID, String name);
-
     void setPlayerName(int playerID, String name);
 
     void setScore(int playerID, int score);
 
-    void setActivePlayerView(int playerID);
-
-    void clearPlayer(int playerID);
+    void setCurrentPlayer(int playerID);
 
     // wall
     void addTileWall(int PlayerID, int row, Tile tile);
-
-    void removeTilesWall(int playerID, int row, Tile tile);
-
-    void clearWall(int playerID);
 
     // paternline
     void addTilePattern(int playerID, int row, Tile tile);
@@ -61,14 +56,8 @@ public interface UI extends Executable {
 
     void clearPatternLine(int playerID, int row);
 
-    void clearPattern(int playerID);
-
-    // floor
     void addTileFloorLine(int playerID, Tile tile);
-
-    void removeTilesFloorLine(int playerID, Tile tile);
 
     void clearFloorLine(int playerID);
 
-    void setWallPattern(List<List<TileColor>> pttern);
 }

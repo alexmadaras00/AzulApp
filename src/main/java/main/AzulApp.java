@@ -6,14 +6,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import messaging.executors.ConcreteExecutorFactory;
 import messaging.executors.ExecutorFactory;
-import model.*;
-import view.DisplayWall;
+import model.Game;
+import model.Model;
 import view.GUI;
 import view.Messager;
+import view.UI;
 import view.View;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AzulApp extends Application {
 

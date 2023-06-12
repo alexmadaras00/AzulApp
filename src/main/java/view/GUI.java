@@ -12,7 +12,6 @@ import model.Tile;
 import model.TileColor;
 
 public class GUI extends Stage implements UI {
-    private DisplayGameState gameState;
     private Scene scene;
     private GamePage gamePageController;
     private Parent hubPage;
@@ -22,7 +21,6 @@ public class GUI extends Stage implements UI {
 
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-        gameState = new DisplayGameState();
         FXMLLoader loaderHub = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
         FXMLLoader loaderGame = new FXMLLoader(AzulApp.class.getResource("/view/GamePage.fxml"));
 
@@ -48,147 +46,117 @@ public class GUI extends Stage implements UI {
     }
 
     @Override
-    public void setWallPattern(List<List<TileColor>> pattern) {
-        gameState.setWallPattern(pattern);
+    public void addPlayer(int playerID, String name) {
+        //todo add to gamepage
+        //todo confirm on hubpage
     }
 
     @Override
-    public void addTileFactory(int factory, Tile tile) {
-        gameState.factories.get(factory).addTile(tile);
+    public void showToast(String message) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'showToast'");
     }
 
     @Override
-    public void removeTilesFactory(int factory, Tile tile) {
-        gameState.factories.get(factory).removeTiles(tile);
+    public void notAddPlayer(String playerName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'notAddPlayer'");
     }
 
     @Override
-    public void clearFactory(int factory) {
-        gameState.factories.get(factory).clear();
+    public void factorySetup(List<Integer> factoryIDs) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'factorySetup'");
+    }
+
+    @Override
+    public void addTileFactory(int factoryID, Tile tile) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addTileFactory'");
+    }
+
+    @Override
+    public void removeTilesFactory(int factoryID, Tile tile) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeTilesFactory'");
+    }
+
+    @Override
+    public void clearFactory(int factoryID) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clearFactory'");
     }
 
     @Override
     public void addTileMiddle(Tile tile) {
-        gameState.middle.addTile(tile);
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addTileMiddle'");
     }
 
     @Override
     public void removeTilesMiddle(Tile tile) {
-        gameState.middle.removeTiles(tile);
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeTilesMiddle'");
     }
 
     @Override
     public void clearMiddle() {
-        for (TileColor TileColor : TileColor.values()) {
-            gameState.middle.removeTiles(TileColor);
-        }
-    }
-
-    @Override
-    public void clearAll() {
-        this.clearMiddle();
-        gameState.factories.forEach((DisplayFactory factory) -> {
-            factory.clear();
-        });
-        gameState.players.forEach((DisplayPlayer player) -> {
-            clearPlayer(player.id);
-        });
-    }
-
-    @Override
-    public void commit() {
-        return;
-    }
-
-    @Override
-    public void addTileWall(int playerID, int row, Tile tile) {
-        gameState.getPlayer(playerID).wall.addTile(row, tile);
-    }
-
-    @Override
-    public void removeTilesWall(int playerID, int row, Tile tile) {
-        gameState.getPlayer(playerID).wall.removeTile(row, tile);
-    }
-
-    @Override
-    public void clearWall(int playerID) {
-        gameState.getPlayer(playerID).wall.clear();
-    }
-
-    @Override
-    public void addTilePattern(int playerID, int row, Tile tile) {
-        gameState.getPlayer(playerID).patternLine.addTile(row, tile);
-    }
-
-    @Override
-    public void removeTilePattern(int playerID, int row, Tile tile) {
-        gameState.getPlayer(playerID).patternLine.removeTile(row);
-
-    }
-
-    @Override
-    public void clearPatternLine(int playerID, int row) {
-        gameState.getPlayer(playerID).patternLine.clearRow(row);
-    }
-
-    @Override
-    public void clearPattern(int playerID) {
-        gameState.getPlayer(playerID).patternLine.clear();
-    }
-
-    @Override
-    public void addTileFloorLine(int playerID, Tile tile) {
-        gameState.getPlayer(playerID).floorLine.addTile(tile);
-    }
-
-    @Override
-    public void removeTilesFloorLine(int playerID, Tile tile) {
-        gameState.getPlayer(playerID).floorLine.removeTiles(tile);
-
-    }
-
-    @Override
-    public void clearFloorLine(int playerID) {
-        gameState.getPlayer(playerID).floorLine.clear();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clearMiddle'");
     }
 
     @Override
     public void setPlayerName(int playerID, String name) {
-        gameState.getPlayer(playerID).name = name;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setPlayerName'");
     }
 
     @Override
     public void setScore(int playerID, int score) {
-        gameState.getPlayer(playerID).score = score;
-
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setScore'");
     }
 
     @Override
-    public void clearPlayer(int playerID) {
-        DisplayPlayer player = gameState.getPlayer(playerID);
-        player.floorLine.clear();
-        player.wall.clear();
-        player.patternLine.clear();
-        player.score = 0;
+    public void setCurrentPlayer(int playerID) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCurrentPlayer'");
     }
 
     @Override
-    public void resetGameState() {
-        gameState = new DisplayGameState();
+    public void addTileWall(int PlayerID, int row, Tile tile) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addTileWall'");
     }
 
     @Override
-    public void setActivePlayerView(int playerID) {
-        gameState.setActivePlayer(playerID);
+    public void addTilePattern(int playerID, int row, Tile tile) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addTilePattern'");
     }
 
     @Override
-    public void addFactory(int factoryID) {
-        gameState.addFactory(factoryID);
+    public void removeTilePattern(int playerID, int row, Tile tile) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeTilePattern'");
     }
 
     @Override
-    public void addPlayer(int playerID, String name) {
+    public void clearPatternLine(int playerID, int row) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clearPatternLine'");
+    }
+
+    @Override
+    public void addTileFloorLine(int playerID, Tile tile) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addTileFloorLine'");
+    }
+
+    @Override
+    public void clearFloorLine(int playerID) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clearFloorLine'");
     }
 
 }
