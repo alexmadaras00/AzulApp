@@ -3,8 +3,10 @@ package messaging.executors.view;
 import messaging.executors.Executable;
 import messaging.executors.Executor;
 import messaging.messages.Message;
+import messaging.messages.OkStartGame;
 
 public class OkStartGameExecutor implements Executor {
+    private OkStartGame message;
 
     @Override
     public Message execute(Executable executable) {
@@ -14,8 +16,9 @@ public class OkStartGameExecutor implements Executor {
 
     @Override
     public void setMessage(Message message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setMessage'");
+        if (message instanceof OkStartGame) {
+            this.message = (OkStartGame) message;
+        }
     }
-    
+
 }

@@ -7,9 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import messaging.executors.controller.JoinGameExecutor;
-import messaging.messages.BadRequest;
 import messaging.messages.JoinGame;
 import messaging.messages.Message;
+import messaging.messages.NotOkJoinGame;
 import messaging.messages.OkJoinGame;
 import model.Game;
 import model.Model;
@@ -59,9 +59,11 @@ public class JoinGameExecutorTest {
         message = new JoinGame(null);
         executor.setMessage(message);
         Message response = executor.execute(model);
-        assertEquals(true, response instanceof BadRequest);
-        assertEquals(JoinGameExecutor.reasonNoName, ((BadRequest) response).getReason());
-        assertEquals(message.getId(), ((BadRequest) response).getRequestId());
+        assertEquals(true, response instanceof NotOkJoinGame);
+        assertEquals(JoinGameExecutor.reasonNoName, ((NotOkJoinGame) response).getReason());
+        assertEquals(null, ((NotOkJoinGame) response).getPlayerName());
+
+        assertEquals(message.getId(), ((NotOkJoinGame) response).getRequestId());
 
     }
 
@@ -73,9 +75,10 @@ public class JoinGameExecutorTest {
         model.addPlayer(new Player("d"));
         executor.setMessage(message);
         Message response = executor.execute(model);
-        assertEquals(true, response instanceof BadRequest);
-        assertEquals(JoinGameExecutor.reasonMaxPlayers, ((BadRequest) response).getReason());
-        assertEquals(message.getId(), ((BadRequest) response).getRequestId());
+        assertEquals(true, response instanceof NotOkJoinGame);
+        assertEquals(JoinGameExecutor.reasonMaxPlayers, ((NotOkJoinGame) response).getReason());
+        assertEquals("John", ((NotOkJoinGame) response).getPlayerName());
+        assertEquals(message.getId(), ((NotOkJoinGame) response).getRequestId());
     }
 
     @Test
@@ -85,8 +88,10 @@ public class JoinGameExecutorTest {
         model.startGame();
         executor.setMessage(message);
         Message response = executor.execute(model);
-        assertEquals(true, response instanceof BadRequest);
-        assertEquals(JoinGameExecutor.reasonGameAlreadyStated, ((BadRequest) response).getReason());
-        assertEquals(message.getId(), ((BadRequest) response).getRequestId());
+        assertEquals(true, response instanceof NotOkJoinGame);
+        assertEquals(JoinGameExecutor.reasonGameAlreadyStated, ((NotOkJoinGame) response).getReason());
+        assertEquals("John", ((NotOkJoinGame) response).getPlayerName());
+
+        assertEquals(message.getId(), ((NotOkJoinGame) response).getRequestId());
     }
 }
