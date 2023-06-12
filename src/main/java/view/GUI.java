@@ -189,7 +189,6 @@ public class GUI extends Stage implements UI {
 
     @Override
     public void addPlayer(int playerID, String name) {
-        gamePage.addPlayer(playerID, name);
     }
 
 }
