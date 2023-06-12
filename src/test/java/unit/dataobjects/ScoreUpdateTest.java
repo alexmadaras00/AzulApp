@@ -1,7 +1,8 @@
 package unit.dataobjects;
 
-import dataobjects.ScoreUpdate;
 import org.junit.jupiter.api.Test;
+
+import messaging.dataobjects.ScoreUpdate;
 
 import static com.google.code.beanmatchers.BeanMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;

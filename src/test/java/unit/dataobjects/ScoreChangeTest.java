@@ -2,11 +2,11 @@ package unit.dataobjects;
 
 import org.junit.jupiter.api.Test;
 
+import messaging.dataobjects.ScoreChange;
+
 import static com.google.code.beanmatchers.BeanMatchers.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import dataobjects.ScoreChange;
 
 public class ScoreChangeTest {
 

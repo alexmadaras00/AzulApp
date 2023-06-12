@@ -15,6 +15,19 @@ public class Middle {
                 .filter(tile -> tile == type)
                 .collect(Collectors.toList());
     }
+
+    public List<Tile> popAllTiles() {
+        List<Tile> copyTiles = List.copyOf(tiles);
+        tiles.removeIf((t) -> (true));
+        return copyTiles;
+    }
+
+    public List<Tile> popTiles(TileColor tile) {
+        List<Tile> removeTiles = this.getTiles(tile);
+        tiles.removeAll(removeTiles);
+        return removeTiles;
+    }
+
     public void addTiles(List<Tile> t){
         tiles.addAll(t);
     }

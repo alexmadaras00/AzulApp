@@ -5,12 +5,12 @@ import java.util.Collection;
 import java.util.List;
 
 import model.TileColor;
+import model.factory.twinteam.CollectionOverCapacityException;
 import model.factory.twinteam.FactoryDisplay;
-import model.factory.twinteam.FactoryDisplayInterface;
 import model.factory.twinteam.TileColour;
 
 public class FactoryTwinteamWrapper implements FactoryInterface {
-    private FactoryDisplayInterface factory;
+    private FactoryDisplay factory;
 
     public FactoryTwinteamWrapper() {
         this.factory = new FactoryDisplay();
@@ -88,6 +88,11 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
         Collection<model.factory.twinteam.Tile> twinTiles = new ArrayList<>();
         for (TileColor ourTile : ourTiles) {
             twinTiles.add(new model.factory.twinteam.Tile(translateTwinTileColour(ourTile)));
+        }
+        try {
+            factory.addTiles(twinTiles);
+        } catch (CollectionOverCapacityException e) {
+            e.printStackTrace();
         }
     }
 

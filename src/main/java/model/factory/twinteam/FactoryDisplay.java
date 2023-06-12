@@ -1,55 +1,51 @@
 package model.factory.twinteam;
 
 import java.util.Collection;
+import java.util.HashSet;
 
-public class FactoryDisplay implements FactoryDisplayInterface {
 
-    @Override
-    public boolean addToTiles(Collection<Tile> tiles) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addToTiles'");
+public class FactoryDisplay extends TileCollection implements Grabable, Emptiable {
+
+    public FactoryDisplay() {
+        super(4, new HashSet<>());
     }
 
     @Override
-    public void setTiles(Collection<Tile> tiles) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTiles'");
+    public boolean addTiles(Collection<Tile> newTiles) throws CollectionOverCapacityException {
+        if (this.getCapacity() < this.getSize() + newTiles.size()) {
+            throw new CollectionOverCapacityException(
+                    "FactoryDisplay can not be hold more than 4 tiles");
+        }
+
+        return this.tiles.addAll(newTiles);
     }
 
     @Override
-    public Collection<Tile> grab(TileColour colour) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'grab'");
+    public void setTiles(Collection<Tile> newTiles)  throws CollectionOverCapacityException {
+        if (this.getCapacity() < newTiles.size()) {
+            throw new CollectionOverCapacityException(
+                    "FactoryDisplay can not be hold more than 4 tiles");
+        }
+
+        tiles = newTiles;
     }
 
     @Override
     public void empty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'empty'");
+        tiles.clear();
     }
 
     @Override
-    public void emptyInto(TileCollection collection) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'emptyInto'");
+    public void emptyInto(TileCollection collection) throws CollectionOverCapacityException {
+        collection.addTiles(tiles);
+        tiles.clear();
     }
 
     @Override
-    public int getSize() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSize'");
+    public Collection<Tile> grab(TileColour colour) {
+        var grabbedTiles = new HashSet<Tile>();
+        this.tiles.stream().filter(tile -> tile.getColour() == colour).forEach(grabbedTiles::add);
+        grabbedTiles.forEach(tile -> tiles.remove(tile));
+        return grabbedTiles;
     }
-
-    @Override
-    public int getCapacity() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCapacity'");
-    }
-
-    @Override
-    public Collection<Tile> getTiles() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTiles'");
-    }
-
 }
