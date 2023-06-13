@@ -47,14 +47,7 @@ public class AzulApp extends Application {
         setModel(new Game());
         setController(new Controller());
         setView(new View());
-        view.setStage(stage);
-
-        FXMLLoader loaderHub = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
-        FXMLLoader loaderGame = new FXMLLoader(AzulApp.class.getResource("/view/GamePage.fxml"));
-        view.setHubPageController(loaderHub.getController());
-        view.setGamePageController(loaderGame.getController());
-        view.setHubPageView(loaderHub.load());
-        view.setGamePageView(loaderGame.load());
+        view.setup(stage);
         view.showHub();
     }
 

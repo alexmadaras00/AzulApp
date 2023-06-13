@@ -1,8 +1,10 @@
 package view;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.AzulApp;
 
 public class View {
 
@@ -12,8 +14,6 @@ public class View {
     private Parent hubPageView = null;
     private Parent gamePageView = null;
     private Object currentPage = null;
-
-
 
     public Stage getStage() {
         return stage;
@@ -87,5 +87,15 @@ public class View {
         } else {
             return;
         }
+    }
+
+    public void setup(Stage stage) throws Exception {
+        setStage(stage);
+        FXMLLoader loaderHub = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
+        FXMLLoader loaderGame = new FXMLLoader(AzulApp.class.getResource("/view/GamePage.fxml"));
+        setHubPageController(loaderHub.getController());
+        setGamePageController(loaderGame.getController());
+        setHubPageView(loaderHub.load());
+        setGamePageView(loaderGame.load());
     }
 }
