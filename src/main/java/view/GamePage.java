@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import model.Model;
 import model.Player;
+import model.PlayerTile;
 import model.Tile;
 import model.TileColor;
 import model.factory.Factory;
@@ -448,19 +449,11 @@ public class GamePage {
 
     @FXML
     void selectTile(ActionEvent event) {
-        // TODO - check which location it comes from by doing .getParent() is
-        // TODO factory1,2,3,4,5 or middle
-        // TODO - select or deselect it,
-        // TODO - create partial data object to send (from location, tile, amount, etc)
 
     }
 
     @FXML
     void selectToLocation(ActionEvent event) {
-        // TODO - check which location it comes from by doing .getParent()
-        // TODO - can we select destination (is some tile selected?)
-        // TODO - fill in data object to send
-        // TODO - send Message
 
     }
 
@@ -578,6 +571,12 @@ public class GamePage {
 
         TileButton(Tile tile) {
             this.setBackground(Background.fill(getColor(tile)));
+            if (tile instanceof PlayerTile) {
+                this.setText("1");
+            }
+            this.setPrefHeight(30.0);
+            this.setPrefWidth(30.0);
+
             // TODO more button configs to make it similar as other buttons;
         }
 
