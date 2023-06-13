@@ -44,16 +44,16 @@ public class HubPage {
     private Button startButton;
 
     void update() {
-        List<Player> players = model.getPlayers();
+        List<Integer> players = model.getPlayerList();
         enableAllPlayers();
-        for (Player player : players) {
-            if (playerName1.getText().equals(player.getName())) {
+        for (Integer identifier : players) {
+            if (playerName1.getText().equals(model.getName(identifier))) {
                 disablePlayer(1);
-            } else if (playerName2.getText().equals(player.getName())) {
+            } else if (playerName2.getText().equals(model.getName(identifier))) {
                 disablePlayer(2);
-            } else if (playerName3.getText().equals(player.getName())) {
+            } else if (playerName3.getText().equals(model.getName(identifier))) {
                 disablePlayer(3);
-            } else if (playerName4.getText().equals(player.getName())) {
+            } else if (playerName4.getText().equals(model.getName(identifier))) {
                 disablePlayer(4);
             }
         }

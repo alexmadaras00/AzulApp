@@ -75,8 +75,8 @@ public class Wall {
         return count;
     }
 
-    public List<ScoreChange> getCompletionScores() {
-        List<ScoreChange> scoreList = new LinkedList<ScoreChange>();
+    public List<Integer> getCompletionScores() {
+        List<Integer> scoreList = new LinkedList<Integer>();
 
         List<Tile> completedColors = getColorCompletions();
         scoreList.addAll(generateColorScoreChange(completedColors));
@@ -95,26 +95,18 @@ public class Wall {
         return Collections.unmodifiableList(listCopy);
     }
 
-    private List<ScoreChange> generateColorScoreChange(List<Tile> completedColor) {
-        List<ScoreChange> scoreChanges = new LinkedList<>();
+    private List<Integer> generateColorScoreChange(List<Tile> completedColor) {
+        List<Integer> scoreChanges = new LinkedList<>();
         for (Tile color : completedColor) {
-            ScoreChange scoreChange = new ScoreChange();
-            scoreChange.setType(ScoreType.COMPLETED_COLOR);
-            scoreChange.setColor((TileColor) color);
-            scoreChange.setScoreDifference(completedColorScore);
-            scoreChanges.add(scoreChange);
+            scoreChanges.add(completedColorScore);
         }
         return scoreChanges;
     }
 
-    private List<ScoreChange> generateLineScoreChange(List<Integer> completedLines, boolean isRow) {
-        List<ScoreChange> scoreChanges = new LinkedList<>();
+    private List<Integer> generateLineScoreChange(List<Integer> completedLines, boolean isRow) {
+        List<Integer> scoreChanges = new LinkedList<>();
         for (int line : completedLines) {
-            ScoreChange scoreChange = new ScoreChange();
-            scoreChange.setType(isRow ? ScoreType.COMPLETED_ROW : ScoreType.COMPLETED_COLUMN);
-            scoreChange.setIndex(line);
-            scoreChange.setScoreDifference(isRow ? completedRowScore : completedColumnScore);
-            scoreChanges.add(scoreChange);
+            scoreChanges.add(isRow ? completedRowScore : completedColumnScore);
         }
         return scoreChanges;
     }

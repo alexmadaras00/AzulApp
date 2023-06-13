@@ -8,40 +8,23 @@ import utils.ExceptionGameStart;
 
 import java.util.List;
 
-public interface Model {
-    GameState startGame() throws ExceptionGameStart;
-    GameState terminateGame();
-    boolean isCurrentPlayer(PlayerData player);
+public interface Model extends ModelProxy{
 
-    PlayerData addPlayer(Player player);
+    void startGame() throws ExceptionGameStart;
 
-    boolean isValidStartGame();
+    void terminateGame();
 
-    List<Tile> getBox();
+    void addPlayer(Player player);
 
-    List<Player> getTurnOrder();
+    boolean canStartGame();
 
-    List<Player> getPlayers();
+    void performMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor);
 
-    Middle getMiddle();
+    void performMoveFactoryFloorLine(int factoryIndex, TileColor tileColor);
 
-    GamePhase getGamePhase();
+    void performMoveMiddlePatternLine(int patternLineRow, TileColor tileColor);
 
-    List<Factory> getFactories();
-
-    Bag getBag();
-
-    int getRound();
-
-    Boolean isPlaying();
-
-    DataObject performMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor);
-
-    DataObject performMoveFactoryFloorLine(int factoryIndex, TileColor tileColor);
-
-    DataObject performMoveMiddlePatternLine(int patternLineRow, TileColor tileColor);
-
-    DataObject performMoveMiddleFloorLine(TileColor tileColor);
+    void performMoveMiddleFloorLine(TileColor tileColor);
 
     boolean isValidMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor);
 
