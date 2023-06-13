@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import model.Model;
+import model.Player;
 import model.Tile;
 import model.TileColor;
 import model.factory.Factory;
@@ -588,8 +589,103 @@ public class GamePage {
         }
     }
 
+    private void updatePlayers() {
+        List<Player> players = model.getPlayers();
+        switch (players.size()) {
+            case 3:
+                playerboard4.setVisible(false);
+            case 2:
+                playerboard3.setVisible(false);
+            default:
+                break;
+        }
+        switch (players.size()) {
+            case 4:
+                updatePlayer(players.get(3), 4);
+            case 3:
+                updatePlayer(players.get(3), 3);
+            case 2:
+                updatePlayer(players.get(1), 2);
+                updatePlayer(players.get(0), 1);
+            default:
+                break;
+        }
+    }
+
+    private void updatePlayer(Player player, int place) {
+        updateWall(player, place);
+        updatePatternLine(player, place);
+        updateFloorLine(player, place);
+        updateName(player, place);
+        updateScore(player, place);
+    }
+
+    private void updateScore(Player player, int place) {
+        switch (place) {
+            case 4:
+                player4Score.setText("" + player.getBoard().getScore());
+            case 3:
+                player3Score.setText("" + player.getBoard().getScore());
+            case 2:
+                player2Score.setText("" + player.getBoard().getScore());
+            case 1:
+                player1Score.setText("" + player.getBoard().getScore());
+            default:
+                return;
+        }
+    }
+
+    private void updateName(Player player, int place) {
+        switch (place) {
+            case 4:
+                player4Name.setText(player.getName());
+            case 3:
+                player3Name.setText(player.getName());
+            case 2:
+                player2Name.setText(player.getName());
+            case 1:
+                player1Name.setText(player.getName());
+            default:
+                return;
+        }
+    }
+
+    private void updateFloorLine(Player player, int place) {
+        switch (place) {
+            case 4:
+            case 3:
+            case 2:
+            case 1:
+            default:
+                return;
+        }
+    }
+
+    private void updatePatternLine(Player player, int place) {
+        switch (place) {
+            case 4:
+            case 3:
+            case 2:
+            case 1:
+            default:
+                return;
+        }
+    }
+
+    private void updateWall(Player player, int place) {
+        switch (place) {
+            case 4:
+            case 3:
+            case 2:
+            case 1:
+            default:
+                return;
+        }
+    }
+
     public void update() {
         updateFactories();
         updateMiddle();
+        updatePlayers();
     }
 }
