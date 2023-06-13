@@ -1,7 +1,6 @@
 package integration.model;
 
 
-import messaging.dataobjects.*;
 import model.PlayerBoard;
 import model.Tile;
 import model.TileColor;
@@ -10,11 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +29,6 @@ public class PlayerBoardTest {
         assertEquals(5, playerBoard.getWall().getCopyTable().size());
         assertNotNull(playerBoard.getFloorLine());
         assertEquals(0, playerBoard.getScore());
-        assertNotNull(playerBoard.getScoreChanges());
     }
 
     @Test
@@ -133,65 +127,26 @@ public class PlayerBoardTest {
         Tile clearedTile = TileColor.RED;
         Tile floorLineTile = TileColor.BLUE;
         List<Tile> addedTiles = List.of(clearedTile, clearedTile);
-        List<Tile> clearedTiles = new ArrayList<>(List.of(clearedTile, clearedTile));
         List<Tile> floorLineTiles = List.of(floorLineTile, floorLineTile);
-        ScoreChange wallTileScoreChange = new ScoreChange();
-        ScoreChange floorLineScoreChange = new ScoreChange();
         List<Integer> completedRows = List.of(completedRow);
-        List<ScoreChange> scoreChanges = new ArrayList<>();
 
-        playerBoard.getFloorLine().addTiles(floorLineTiles);
         playerBoard.getPatternLine().addTiles(completedRow, addedTiles);
         assertEquals(completedRows, playerBoard.getPatternLine().completedRows());
-        HashMap<Location,List<Tile>> remainingTiles = new HashMap<Location, List<Tile>>();
-        remainingTiles.put(new Location(LocationType.PATTERN_LINE, 1), clearedTiles);
-        remainingTiles.put(new Location(LocationType.FLOOR_LINE, 0), floorLineTiles);
-        //Checking if the wallTilling method returns a remaining list of floorLine tiles
-        // and exceeded tiles (size=length(completedRow)-1) from patternLine
-        assertTrue(playerBoard.getWall().canAddTile(completedRow, clearedTile));
-        wallTileScoreChange.setType(ScoreType.PLACED_TILE_IN_WALL);
-        wallTileScoreChange.setIndex(completedRow);
-        wallTileScoreChange.setColor((TileColor) clearedTile);
-        wallTileScoreChange.setScoreDifference(1);
-        floorLineScoreChange.setType(ScoreType.CLEARED_FLOOR_LINE);
-        floorLineScoreChange.setScoreDifference(-1); // capped out at -1
-        scoreChanges.add(wallTileScoreChange);
-        scoreChanges.add(floorLineScoreChange);
-        
-        HashMap<Location,List<Tile>> tilesWallTiling = playerBoard.wallTilling();
-        List<Location> wallKeySet = new ArrayList<>(tilesWallTiling.keySet());
-        if (wallKeySet.get(0).getType() != LocationType.PATTERN_LINE) {
-            wallKeySet.add(wallKeySet.remove(0));
-        }
-        List<Location> remainingKeySet = new ArrayList<>(remainingTiles.keySet());
-        if (remainingKeySet.get(0).getType() != LocationType.PATTERN_LINE) {
-            remainingKeySet.add(remainingKeySet.remove(0));
-        }
-        assertEquals(remainingKeySet.size(),tilesWallTiling.keySet().size());
-        for(int i = 0; i< remainingKeySet.size();i++){
-            assertEquals(remainingKeySet.get(i).getType(),wallKeySet.get(i).getType());
-            assertEquals(remainingTiles.get(remainingKeySet.get(i)), tilesWallTiling.get(wallKeySet.get(i)));
-            if (remainingKeySet.get(i).getType().equals(LocationType.PATTERN_LINE))
-                assertEquals(remainingKeySet.get(i).getIndex(), 1);
-            
-        }        
+
+        assertEquals(List.of(clearedTile), playerBoard.wallTilling());
+        assertEquals(1, playerBoard.getScore());
+        playerBoard.getFloorLine().addTiles(floorLineTiles);
+        assertEquals(floorLineTiles, playerBoard.wallTilling());
+        // difference is -2, but capped out at -1
+        assertEquals(0, playerBoard.getScore());
+
+        assertFalse(playerBoard.getWall().canAddTile(completedRow, clearedTile));
 
         //Testing the adding operation of the tile to the wall
         assertTrue(playerBoard.getWall().getCopyTable().get(completedRow).contains(clearedTile));
         assertFalse(playerBoard.getWall().canAddTile(completedRow, clearedTile));
-        //Checking if the new ScoreChange Object has been created
-        
         assertEquals(0, playerBoard.getFloorLine().getCopyTiles().size());
         assertEquals(0, playerBoard.getPatternLine().getCopyTable().get(completedRow).size());
-        List<ScoreChange> boardScoreChanges = playerBoard.getScoreChanges();
-        for (int i = 0; i < scoreChanges.size(); i++) {
-            assertEquals(scoreChanges.get(i).getType(), boardScoreChanges.get(i).getType());
-            assertEquals(scoreChanges.get(i).getColor(), boardScoreChanges.get(i).getColor());
-            assertEquals(scoreChanges.get(i).getIndex(), boardScoreChanges.get(i).getIndex());
-            assertEquals(scoreChanges.get(i).getScoreDifference(), boardScoreChanges.get(i).getScoreDifference());
-            // assertTrue(scoreChanges.get(i).equals(boardScoreChanges.get(i)));
-        }
-       
     }
 
     @Test
@@ -202,7 +157,7 @@ public class PlayerBoardTest {
     @Test
     public void testAddFinalScores() {
         //Init
-        int scoreDifference = 0, initialScore = playerBoard.getScore();
+        int initialScore = playerBoard.getScore();
         playerBoard.getWall().addTile(0, TileColor.RED);
         playerBoard.getWall().addTile(0, TileColor.YELLOW);
         playerBoard.getWall().addTile(0, TileColor.CYAN);
@@ -225,17 +180,34 @@ public class PlayerBoardTest {
     }
 
     @Test
-    public void testToObject() {
-        PlayerBoardState playerBoardState = new PlayerBoardState();
-        playerBoardState.setWall(playerBoard.getWall().getCopyTable());
-        playerBoardState.setFloorLine(playerBoard.getFloorLine().getCopyTiles());
-        playerBoardState.setPatternLine(playerBoard.getPatternLine().getCopyTable());
-        playerBoardState.setScore(playerBoard.getScore());
-        assertNotNull(playerBoardState);
-        assertEquals(playerBoardState, playerBoard.toObject());
-    }
-    @Test
     public void getCompletedRowCount(){
         assertEquals(playerBoard.getCompletedRowCount(), playerBoard.getWall().getCompletedRowCount());
+    }
+
+    @Test
+    public void getWallTiles() {
+        List<Tile> wallLineTiles = List.of(TileColor.RED, TileColor.BLUE);
+        for (Tile tile : wallLineTiles) {
+            playerBoard.getWall().addTile(0, tile);
+        }
+        assertTrue(playerBoard.getWallTiles().get(0).contains(TileColor.RED));
+        assertTrue(playerBoard.getWallTiles().get(0).contains(TileColor.BLUE));
+        assertFalse(playerBoard.getWallTiles().get(0).contains(TileColor.BLACK));
+        assertFalse(playerBoard.getWallTiles().get(1).contains(TileColor.BLUE));
+    }
+
+    @Test
+    public void getPatternLineTiles() {
+        List<Tile> patternLineTiles = List.of(TileColor.RED, TileColor.RED, TileColor.RED);
+        playerBoard.performMovePatternLine(2, patternLineTiles);
+        assertEquals(List.of(), playerBoard.getPatternLineTiles().get(1));
+        assertEquals(patternLineTiles, playerBoard.getPatternLineTiles().get(2));
+    }
+
+    @Test
+    public void getFloorLineTiles() {
+        List<Tile> floorLineTiles = List.of(TileColor.BLUE, TileColor.BLUE);
+        playerBoard.performMoveFloorLine(floorLineTiles);
+        assertEquals(floorLineTiles, playerBoard.getFloorLineTiles());
     }
 }

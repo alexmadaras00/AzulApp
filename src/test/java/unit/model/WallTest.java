@@ -137,15 +137,10 @@ public class WallTest {
             for (int row = 0; row < colors.length; row++) {
                 wall.addTile(row, wall.getTemplateColor(row, col));
             }
-            List<ScoreChange> scoreChange = wall.getCompletionScores();
+            List<Integer> scoreChange = wall.getCompletionScores();
             assertEquals(col, scoreChange.size());
-            for (ScoreChange sc : scoreChange) {
-                assertEquals(ScoreType.COMPLETED_COLUMN, sc.getType());
-                assertEquals(null, sc.getColor());
-                assertInstanceOf(Integer.class, sc.getIndex());
-                assertEquals(true, sc.getIndex() < colors.length);
-                assertEquals(true, sc.getIndex() >= 0);
-                assertEquals(7, sc.getScoreDifference());
+            for (Integer sc : scoreChange) {
+                assertEquals(7, sc);
             }
         }
         return;
@@ -158,15 +153,10 @@ public class WallTest {
             for (Tile c : colors) {
                 wall.addTile(r, c);
             }
-            List<ScoreChange> scoreChange = wall.getCompletionScores();
+            List<Integer> scoreChange = wall.getCompletionScores();
             assertEquals(r, scoreChange.size());
-            for (ScoreChange sc : scoreChange) {
-                assertEquals(ScoreType.COMPLETED_ROW, sc.getType());
-                assertEquals(null, sc.getColor());
-                assertInstanceOf(Integer.class, sc.getIndex());
-                assertEquals(true, sc.getIndex() < colors.length);
-                assertEquals(true, sc.getIndex() >= 0);
-                assertEquals(2, sc.getScoreDifference());
+            for (Integer sc : scoreChange) {
+                assertEquals(2, sc);
             }
         }
         return;
@@ -179,14 +169,10 @@ public class WallTest {
             for (int r = 0; r < colors.length; r++) {
                 wall.addTile(r, colors[c]);
             }
-            List<ScoreChange> scoreChange = wall.getCompletionScores();
+            List<Integer> scoreChange = wall.getCompletionScores();
             assertEquals(c, scoreChange.size());
-            for (ScoreChange sc : scoreChange) {
-                assertEquals(ScoreType.COMPLETED_COLOR, sc.getType());
-                assertEquals(0, sc.getIndex());
-                assertInstanceOf(TileColor.class, sc.getColor());
-                assertEquals(true, Arrays.asList(colors).contains(sc.getColor()));
-                assertEquals(10, sc.getScoreDifference());
+            for (Integer sc : scoreChange) {
+                assertEquals(10, sc);
             }
         }
         return;

@@ -47,7 +47,6 @@ public class PlayerTest {
     public void testConstructorWithName() {
         assertEquals(name, player.getName());
         assertTrue(player.getBoard().canAddTypePatternLine(3, TileColor.RED));
-        assertInstanceOf(PlayerBoardState.class, player.getBoard().toObject());
         assertEquals(counter, player.getIdentifier());
     }
 
