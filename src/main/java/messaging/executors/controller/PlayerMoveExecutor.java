@@ -62,10 +62,10 @@ public class PlayerMoveExecutor implements Executor {
         switch (from.getType()) {
             case FACTORY:
                 switch (to.getType()) {
-                    case FACTORY:
-                        // TODO
+                    case PATTERN_LINE:
+                        model.isValidMoveFactoryFloorLine(null, 0);
                         break;
-                    case MIDDLE:
+                    case FLOOR_LINE:
                         // TODO
 
                         break;
@@ -80,6 +80,7 @@ public class PlayerMoveExecutor implements Executor {
 
                         break;
                     case FLOOR_LINE:
+                    
                         // TODO
 
                         break;
