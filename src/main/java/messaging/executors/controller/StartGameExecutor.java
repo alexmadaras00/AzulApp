@@ -26,7 +26,7 @@ public class StartGameExecutor implements Executor {
             okStartGame.setRoundUpdate(roundStart);
             return okStartGame;
         } catch (ExceptionGameStart e) {
-            BadRequest badRequest = new BadRequest(message.getId());
+            NotOkStartGame badRequest = new NotOkStartGame(message.getId());
             badRequest.setReason(e.getMessage());
             return badRequest;
         }
