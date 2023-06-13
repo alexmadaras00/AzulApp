@@ -1,16 +1,18 @@
 package unit.model;
 
 import model.Bag;
+import model.Tile;
 import model.TileColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 
 public class BagTest {
     static Bag bag;
@@ -24,45 +26,54 @@ public class BagTest {
         tiles.add(TileColor.BLUE);
         tiles.add(TileColor.YELLOW);
         tiles.add(TileColor.RED);
+        Collections.sort(tiles);
     }
 
     @Test
     public void testGetTiles() {
         bag.addTiles(tiles);
-        assertEquals(tiles, bag.getTiles());
+        List<TileColor> bagTiles = bag.getTiles();
+        Collections.sort(bagTiles);
+        assertEquals(tiles, bagTiles);
         assertTrue(bag.getTiles().size() <= 100);
     }
 
     @Test
     public void testAddTiles() {
-        List<TileColor> newTiles = new ArrayList<>();
-        newTiles.add(TileColor.CYAN);
-        newTiles.add(TileColor.RED);
+        tiles.add(TileColor.CYAN);
+        tiles.add(TileColor.RED);
         bag.addTiles(tiles);
-        bag.addTiles(newTiles);
         assertEquals(6, bag.getTiles().size());
-        assertEquals(TileColor.CYAN, bag.getTiles().get(4));
-        assertEquals(TileColor.RED, bag.getTiles().get(5));
+
+        List<TileColor> bagTiles = bag.getTiles();
+        Collections.sort(bagTiles);
+        Collections.sort(tiles);
+
+        assertEquals(tiles, bagTiles);
     }
+
     @Test
     public void testPopTiles() {
         bag.addTiles(tiles);
-        int count = 3;
-        List<TileColor> tilesBag = bag.getTiles();
-        //Before popping the tiles
-        assertTrue(bag.getTiles().size() <= 100);
-        assertTrue(tiles.size() >= count);
-        //When popping the tiles (poppedList)
-        List<TileColor> poppedTiles = bag.popTiles(count);
-        assertEquals(1, tilesBag.size());
-        assertEquals(TileColor.BLUE, tilesBag.get(tilesBag.size() - 1));
-        //After popping the tiles
-        assertEquals(3, poppedTiles.size());
-        assertEquals(TileColor.RED, poppedTiles.get(0));
-        assertEquals(TileColor.YELLOW, poppedTiles.get(1));
-        assertEquals(TileColor.BLUE, poppedTiles.get(2));
+        TileColor popedTile = bag.popTiles(1).get(0);
+        assertEquals(3, bag.getTiles().size());
+        List<TileColor> restTiles = bag.getTiles();
+        restTiles.add(popedTile);
+        Collections.sort(restTiles);
+        assertEquals(tiles, restTiles);
+
     }
 
+    @Test
+    public void testPopTilesMultiple() {
+        bag.addTiles(tiles);
+        List<TileColor> popedTiles = bag.popTiles(2);
+        assertEquals(2, bag.getTiles().size());
+        List<TileColor> restTiles = bag.getTiles();
+        restTiles.addAll(popedTiles);
+        Collections.sort(restTiles);
+        assertEquals(tiles, restTiles);
+
+    }
 
 }
-
