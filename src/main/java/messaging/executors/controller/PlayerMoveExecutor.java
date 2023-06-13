@@ -55,20 +55,19 @@ public class PlayerMoveExecutor implements Executor {
         if (!validFromLocations.contains(from.getType()) || !validToLocations.contains(to.getType())) {
             return false;
         }
-        if ()
         return true;
     }
 
     private boolean canPlayAction(Action action) {
         switch (from.getType()) {
             case FACTORY:
-                List<Tile> tiles = model.getFactories().get(from.getIndex());
                 switch (to.getType()) {
                     case FACTORY:
-
-                        model.isValidMoveFactoryFloorLine(tiles, 0);
+                        // TODO
                         break;
                     case MIDDLE:
+                        // TODO
+
                         break;
                     default:
                         return false;
@@ -77,8 +76,12 @@ public class PlayerMoveExecutor implements Executor {
             case MIDDLE:
                 switch (to.getType()) {
                     case PATTERN_LINE:
+                        // TODO
+
                         break;
                     case FLOOR_LINE:
+                        // TODO
+
                         break;
                     default:
                         return false;
