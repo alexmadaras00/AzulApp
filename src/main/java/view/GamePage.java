@@ -592,10 +592,10 @@ public class GamePage {
     private void updatePlayers() {
         List<Player> players = model.getPlayers();
         switch (players.size()) {
-            case 3:
-                playerboard4.setVisible(false);
             case 2:
                 playerboard3.setVisible(false);
+            case 3:
+                playerboard4.setVisible(false);
             default:
                 break;
         }
@@ -623,13 +623,17 @@ public class GamePage {
     private void updateScore(Player player, int place) {
         switch (place) {
             case 4:
-                player4Score.setText("" + player.getBoard().getScore());
+                player4Score.setText("Score: " + player.getBoard().getScore());
+                break;
             case 3:
-                player3Score.setText("" + player.getBoard().getScore());
+                player3Score.setText("Score: " + player.getBoard().getScore());
+                break;
             case 2:
-                player2Score.setText("" + player.getBoard().getScore());
+                player2Score.setText("Score: " + player.getBoard().getScore());
+                break;
             case 1:
-                player1Score.setText("" + player.getBoard().getScore());
+                player1Score.setText("Score: " + player.getBoard().getScore());
+                break;
             default:
                 return;
         }
@@ -639,23 +643,43 @@ public class GamePage {
         switch (place) {
             case 4:
                 player4Name.setText(player.getName());
+                break;
             case 3:
                 player3Name.setText(player.getName());
+                break;
             case 2:
                 player2Name.setText(player.getName());
+                break;
             case 1:
                 player1Name.setText(player.getName());
+                break;
             default:
                 return;
         }
     }
 
+    private void setFloorLine(HBox floorLine, List<Tile> tiles) {
+        floorLine.getChildren().clear();
+        for (Tile tile : tiles) {
+            floorLine.getChildren().add(new TileButton(tile));
+        }
+    }
+
     private void updateFloorLine(Player player, int place) {
+        List<Tile> floorTiles = player.getBoard().getFloorLine().getCopyTiles();
         switch (place) {
             case 4:
+                setFloorLine(player4Floor, floorTiles);
+                break;
             case 3:
+                setFloorLine(player3Floor, floorTiles);
+                break;
             case 2:
+                setFloorLine(player2Floor, floorTiles);
+                break;
             case 1:
+                setFloorLine(player1Floor, floorTiles);
+                break;
             default:
                 return;
         }
