@@ -452,6 +452,7 @@ public class GamePage {
         // TODO factory1,2,3,4,5 or middle
         // TODO - select or deselect it,
         // TODO - create partial data object to send (from location, tile, amount, etc)
+
     }
 
     @FXML
@@ -741,14 +742,44 @@ public class GamePage {
     }
 
     private void updateWall(Player player, int place) {
+        List<List<Tile>> wallTiles = player.getBoard().getWall().getCopyTable();
         switch (place) {
             case 4:
+                setWallLine(player4W1, wallTiles.get(0));
+                setWallLine(player4W2, wallTiles.get(1));
+                setWallLine(player4W3, wallTiles.get(2));
+                setWallLine(player4W4, wallTiles.get(3));
+                setWallLine(player4W5, wallTiles.get(4));
             case 3:
+                setWallLine(player3W1, wallTiles.get(0));
+                setWallLine(player3W2, wallTiles.get(1));
+                setWallLine(player3W3, wallTiles.get(2));
+                setWallLine(player3W4, wallTiles.get(3));
+                setWallLine(player3W5, wallTiles.get(4));
             case 2:
+                setWallLine(player2W1, wallTiles.get(0));
+                setWallLine(player2W2, wallTiles.get(1));
+                setWallLine(player2W3, wallTiles.get(2));
+                setWallLine(player2W4, wallTiles.get(3));
+                setWallLine(player2W5, wallTiles.get(4));
             case 1:
+                setWallLine(player1W1, wallTiles.get(0));
+                setWallLine(player1W2, wallTiles.get(1));
+                setWallLine(player1W3, wallTiles.get(2));
+                setWallLine(player1W4, wallTiles.get(3));
+                setWallLine(player1W5, wallTiles.get(4));
             default:
                 return;
         }
+    }
+
+    private void setWallLine(GridPane wallLine, List<Tile> tiles) {
+        wallLine.getChildren().clear();
+        wallLine.add(new TileButton(tiles.get(0)), 0, 0);
+        wallLine.add(new TileButton(tiles.get(1)), 1, 0);
+        wallLine.add(new TileButton(tiles.get(2)), 2, 0);
+        wallLine.add(new TileButton(tiles.get(3)), 3, 0);
+        wallLine.add(new TileButton(tiles.get(4)), 4, 0);
     }
 
     public void update() {
