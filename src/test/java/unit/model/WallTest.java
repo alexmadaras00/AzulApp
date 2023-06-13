@@ -96,35 +96,35 @@ public class WallTest {
     }
 
     @Test
-    public void testHasCompleteRowFull() {
-        assertEquals(false, wall.hasCompleteRow());
+    public void testGetCompletedRowCountFull() {
+        assertEquals(0, wall.getCompletedRowCount());
         for (Tile c : colors) {
             wall.addTile(2, c);
         }
-        assertEquals(true, wall.hasCompleteRow());
+        assertEquals(1, wall.getCompletedRowCount());
         return;
     }
 
     @Test
-    public void testHasCompleteRowPartial() {
-        assertEquals(false, wall.hasCompleteRow());
+    public void testGetCompletedRowCountPartial() {
+        assertEquals(0, wall.getCompletedRowCount());
         for (int r = 0; r < colors.length; r++) {
             wall.addTile(r, colors[0]);
         }
-        assertEquals(false, wall.hasCompleteRow());
+        assertEquals(0, wall.getCompletedRowCount());
         return;
     }
 
     @Test
-    public void testHasCompleteRowSome() {
-        assertEquals(false, wall.hasCompleteRow());
+    public void testGetCompletedRowCountCount() {
+        assertEquals(0, wall.getCompletedRowCount());
         for (Tile c : colors) {
             wall.addTile(0, c);
         }
         for (int r = 1; r < colors.length; r++) {
             wall.addTile(r, colors[0]);
         }
-        assertEquals(true, wall.hasCompleteRow());
+        assertEquals(1, wall.getCompletedRowCount());
         return;
     }
 
