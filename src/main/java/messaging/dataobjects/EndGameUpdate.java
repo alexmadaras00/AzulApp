@@ -1,4 +1,4 @@
-package dataobjects;
+package messaging.dataobjects;
 
 import java.util.List;
 
@@ -37,6 +37,6 @@ public class EndGameUpdate implements DataObject {
 
         if (getRoundUpdate() != null ? !getRoundUpdate().equals(that.getRoundUpdate()) : that.getRoundUpdate() != null) 
             return false;
-        return getWinners() != null ? !getWinners().equals(that.getWinners()) : that.getWinners() == null;
+        return getWinners() != null ? getWinners().equals(that.getWinners()) : that.getWinners() == null;
     }
 }

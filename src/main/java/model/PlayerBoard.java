@@ -1,17 +1,11 @@
 package model;
 
-import dataobjects.Location;
-import dataobjects.LocationType;
-import dataobjects.PlayerBoardState;
-import dataobjects.ScoreChange;
-import dataobjects.ScoreType;
+
+import messaging.dataobjects.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import messaging.dataobjects.PlayerBoardState;
-import messaging.dataobjects.ScoreChange;
 
 public class PlayerBoard {
     private List<ScoreChange> scoreChanges;
@@ -58,7 +52,7 @@ public class PlayerBoard {
 
     public HashMap<Location, List<Tile>> wallTilling() {
         List<Integer> completedRows = this.patternLine.completedRows();
-        HashMap<Location, List<Tile>> remainderTable = new HashMap<Location, List<Tile>>();
+        HashMap<Location, List<Tile>> remainderTable = new HashMap<>();
         completedRows.forEach(completedRow -> {
                     List<Tile> tilesCompleted = patternLine.getCopyTable().get(completedRow);
                     Tile wallTile = tilesCompleted.get(0);

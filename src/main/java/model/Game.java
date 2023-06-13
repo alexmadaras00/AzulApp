@@ -1,12 +1,11 @@
 package model;
 
-import dataobjects.*;
+
+import messaging.dataobjects.*;
 import model.factory.Factory;
 import utils.ExceptionGameStart;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
 public class Game implements Model {

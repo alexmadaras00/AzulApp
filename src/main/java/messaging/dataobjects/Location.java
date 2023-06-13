@@ -1,4 +1,4 @@
-package dataobjects;
+package messaging.dataobjects;
 
 public class Location implements DataObject {
     private LocationType type;
