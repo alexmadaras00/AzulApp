@@ -70,29 +70,13 @@ public class ControllerTest {
             didSomethingCounter++;
             return new StartGame();
         }
-
         @Override
         public GameState startGame() {
             return null;
         }
 
         @Override
-        public RoundUpdate startRound() {
-            return null;
-        }
-
-        @Override
-        public RoundUpdate endRound() {
-            return null;
-        }
-
-        @Override
         public GameState terminateGame() {
-            return null;
-        }
-
-        @Override
-        public GameState endGame() {
             return null;
         }
 
@@ -112,48 +96,8 @@ public class ControllerTest {
         }
 
         @Override
-        public DataObject performMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
-            return null;
-        }
-
-        @Override
-        public MoveUpdate performMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-            return null;
-        }
-
-        @Override
-        public MoveUpdate performMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
-            return null;
-        }
-
-        @Override
-        public MoveUpdate performMoveMiddleFloorLine(List<Tile> tiles) {
-            return null;
-        }
-
-        @Override
-        public boolean isValidMoveFactoryPatternLine(List<Tile> tiles, int factoryIndex, int patternLineRow, TileColor tileColor) {
-            return false;
-        }
-
-        @Override
-        public boolean isValidMoveFactoryFloorLine(List<Tile> tiles, int factoryIndex) {
-            return false;
-        }
-
-        @Override
-        public boolean isValidMoveMiddlePatternLine(List<Tile> tiles, int patternLineRow, TileColor tileColor) {
-            return false;
-        }
-
-        @Override
-        public boolean isValidMoveMiddleFloorLine(List<Tile> tiles) {
-            return false;
-        }
-
-        @Override
         public List<Tile> getBox() {
-            return new ArrayList<>();
+            return null;
         }
 
         @Override
@@ -194,6 +138,46 @@ public class ControllerTest {
         @Override
         public Boolean isPlaying() {
             return null;
+        }
+
+        @Override
+        public DataObject performMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
+            return null;
+        }
+
+        @Override
+        public DataObject performMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
+            return null;
+        }
+
+        @Override
+        public DataObject performMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
+            return null;
+        }
+
+        @Override
+        public DataObject performMoveMiddleFloorLine(TileColor tileColor) {
+            return null;
+        }
+
+        @Override
+        public boolean isValidMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
+            return false;
+        }
+
+        @Override
+        public boolean isValidMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
+            return false;
+        }
+
+        @Override
+        public boolean isValidMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
+            return false;
+        }
+
+        @Override
+        public boolean isValidMoveMiddleFloorLine(TileColor tileColor) {
+            return false;
         }
 
     }

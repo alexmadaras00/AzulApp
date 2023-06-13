@@ -56,13 +56,23 @@ public class Wall {
         return wall[row][index] == null;
     }
 
-    public boolean hasCompleteRow() {
+    // public boolean hasCompleteRow() {
+    //     for (int row = 0; row < colors.length; row++) {
+    //         if (isCompleteRow(row)) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    public int getCompletedRowCount() {
+        int count = 0;
         for (int row = 0; row < colors.length; row++) {
             if (isCompleteRow(row)) {
-                return true;
+                count++;
             }
         }
-        return false;
+        return count;
     }
 
     public List<ScoreChange> getCompletionScores() {

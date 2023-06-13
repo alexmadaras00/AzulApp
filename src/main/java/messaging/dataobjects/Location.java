@@ -7,6 +7,11 @@ public class Location implements DataObject {
     public Location() {
     }
 
+    public Location(LocationType type, int index) {
+        this.type = type;
+        this.index = index;
+    }
+
     public LocationType getType() {
         return type;
     }

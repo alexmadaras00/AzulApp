@@ -19,11 +19,9 @@ public class StartGameExecutor implements Executor {
         }
         model = (Model) executable;
         try {
-            GameState gameState = model.startGame();
-            RoundUpdate roundStart = model.startRound();
+            GameState gameState =  model.startGame();
             OkStartGame okStartGame = new OkStartGame(message.getId());
             okStartGame.setGameState(gameState);
-            okStartGame.setRoundUpdate(roundStart);
             return okStartGame;
         } catch (ExceptionGameStart e) {
             NotOkStartGame badRequest = new NotOkStartGame(message.getId());
