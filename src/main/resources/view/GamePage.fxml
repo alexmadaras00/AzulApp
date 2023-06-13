@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GamePage">
+   <children>
+      <GridPane prefHeight="720.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane alignment="CENTER" hgap="5.0" prefHeight="378.0" prefWidth="152.0" vgap="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <GridPane fx:id="factory1" hgap="3.0" vgap="3.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF1T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF1T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF1T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF1T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="factory2" hgap="3.0" vgap="3.0" GridPane.columnIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF2T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF2T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF2T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF2T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="factory3" hgap="3.0" vgap="3.0" GridPane.rowIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF3T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF3T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF3T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF3T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="factory4" hgap="3.0" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF4T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF4T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF4T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF4T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="factory5" hgap="3.0" vgap="3.0" GridPane.rowIndex="2">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF5T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF5T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF5T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF5T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="factory6" hgap="3.0" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF6T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF6T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF6T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF6T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="factory7" hgap="3.0" vgap="3.0" GridPane.rowIndex="3">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF7T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF7T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF7T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF7T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="factory8" hgap="3.0" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF8T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF8T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF8T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF8T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+                  <GridPane fx:id="factory9" hgap="3.0" vgap="3.0" GridPane.rowIndex="4">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="buttonF9T1" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF9T2" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="buttonF9T3" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="buttonF9T4" mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </GridPane>
+               </children>
+            </GridPane>
+            <VBox fx:id="middle" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="59.0" spacing="5.0" GridPane.columnIndex="1">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" />
+                  <Button mnemonicParsing="false" onAction="#selectTile" prefHeight="30.0" prefWidth="30.0" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <GridPane GridPane.columnIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox fx:id="playerboard1" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <AnchorPane>
+                           <children>
+                              <Label fx:id="player1Name" maxWidth="1.7976931348623157E308" text="Alex" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0" />
+                              <Label fx:id="player1Score" maxWidth="1.7976931348623157E308" text="Score: 12" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <HBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" spacing="30.0">
+                           <children>
+                              <VBox alignment="CENTER" HBox.hgrow="NEVER">
+                                 <children>
+                                    <GridPane fx:id="player1PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player1PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player1PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player1PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player1PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <GridPane fx:id="player1W1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player1W2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player1W3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player1W4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player1W5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox fx:id="player1Floor" onMouseClicked="#selectToLocation" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox fx:id="playerboard3" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
+                     <children>
+                        <AnchorPane>
+                           <children>
+                              <Label fx:id="player3Name" maxWidth="1.7976931348623157E308" text="Alex" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0" />
+                              <Label fx:id="player3Score" maxWidth="1.7976931348623157E308" text="Score: 12" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <HBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" spacing="30.0">
+                           <children>
+                              <VBox alignment="CENTER" HBox.hgrow="NEVER">
+                                 <children>
+                                    <GridPane fx:id="player3PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player3PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player3PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player3PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player3PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <GridPane fx:id="player3W1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player3W2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player3W3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player3W4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player3W5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox fx:id="player3Floor" onMouseClicked="#selectToLocation" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="playerboard2" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1">
+                     <children>
+                        <AnchorPane>
+                           <children>
+                              <Label fx:id="player2Name" maxWidth="1.7976931348623157E308" text="Alex" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0" />
+                              <Label fx:id="player2Score" maxWidth="1.7976931348623157E308" text="Score: 12" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <HBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" spacing="30.0">
+                           <children>
+                              <VBox alignment="CENTER" HBox.hgrow="NEVER">
+                                 <children>
+                                    <GridPane fx:id="player2PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player2PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player2PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player2PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player2PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <GridPane fx:id="player2W1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player2W2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player2W3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player2W4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player2W5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox fx:id="player2Floor" onMouseClicked="#selectToLocation" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="playerboard4" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <AnchorPane>
+                           <children>
+                              <Label fx:id="player4Name" maxWidth="1.7976931348623157E308" text="Alex" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0" />
+                              <Label fx:id="player4Score" maxWidth="1.7976931348623157E308" text="Score: 12" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <HBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" spacing="30.0">
+                           <children>
+                              <VBox alignment="CENTER" HBox.hgrow="NEVER">
+                                 <children>
+                                    <GridPane fx:id="player4PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player4PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player4PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player4PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player4PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <GridPane fx:id="player4W1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player4W2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player4W3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player4W4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="player4W5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                          <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox fx:id="player4Floor" onMouseClicked="#selectToLocation" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

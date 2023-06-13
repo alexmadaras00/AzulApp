@@ -1,10 +1,7 @@
 package integration.model;
 
-import dataobjects.Location;
-import dataobjects.LocationType;
-import dataobjects.PlayerBoardState;
-import dataobjects.ScoreChange;
-import dataobjects.ScoreType;
+
+import messaging.dataobjects.*;
 import model.PlayerBoard;
 import model.Tile;
 import model.TileColor;

@@ -33,8 +33,6 @@
                 <version>0.8.10</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/Display*</exclude>
-                        <exclude>**/GUI.class</exclude>
                         <exclude>**/AzulApp.class</exclude>
                     </excludes>
                 </configuration>
@@ -79,6 +77,11 @@
             <version>20</version>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>20</version>
+        </dependency>
+        <dependency>
             <groupId>org.testfx</groupId>
             <artifactId>testfx-core</artifactId>
             <version>4.0.16-alpha</version>
@@ -101,6 +104,5 @@
             <version>0.14</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 </project>

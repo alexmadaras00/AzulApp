@@ -1,37 +1,33 @@
 package controller;
 
-import dataobjects.DataObject;
-import dataobjects.ExecutorFactory;
-import dataobjects.executors.Executor;
 import model.Model;
-import view.Messager;
+import model.Player;
+import view.View;
 
-public class Controller implements Mediator {
-    private Messager messager;
+public class Controller {
     private Model model;
-    private ExecutorFactory executorFactory;
+    private View view;
 
-    public Controller(ExecutorFactory executorFactory) {
-        this.executorFactory = executorFactory;
+    public void joinPlayer(String name) {
+        if (model.isPlaying()) {
+            view.toast("alreadypalying");
+            return;
+        }
+        if (model.getPlayers().size() >= 4) {
+            view.toast("to many players");
+            return;
+        }
+
+        model.addPlayer(new Player(name));
+        view.toast(name + " added");
+        view.update();
     }
 
-    @Override
-    public void connectMessager(Messager messager) {
-        this.messager = messager;
-    }
-
-    @Override
-    public void connectModel(Model model) {
+    public void setModel(Model model) {
         this.model = model;
     }
 
-    @Override
-    public void notify(DataObject message) {
-        Executor executor = executorFactory.createExecutor(message);
-        DataObject newMessage = executor.execute(model);
-        if (newMessage != null) {
-            messager.notify(newMessage);
-        }
+    public void setView(View view) {
+        this.view = view;
     }
-
 }

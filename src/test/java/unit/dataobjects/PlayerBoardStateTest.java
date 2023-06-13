@@ -2,10 +2,10 @@ package unit.dataobjects;
 
 import org.junit.jupiter.api.Test;
 
+import messaging.dataobjects.PlayerBoardState;
+
 import static com.google.code.beanmatchers.BeanMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import dataobjects.PlayerBoardState;
 
 
 public class PlayerBoardStateTest {
