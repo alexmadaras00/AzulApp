@@ -1,12 +1,10 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
@@ -244,208 +242,208 @@ public class GamePage {
     @FXML
     private VBox playerboard4;
 
-    // class PlayerGUI {
-    // private int place;
-    // private int id;
+    class PlayerGUI {
+        private int place;
+        private int id;
 
-    // public PlayerGUI(int place, int id) {
-    // this.place = place;
-    // this.id = id;
-    // }
+        public PlayerGUI(int place, int id) {
+            this.place = place;
+            this.id = id;
+        }
 
-    // int getId() {
-    // return this.id;
-    // }
+        int getId() {
+            return this.id;
+        }
 
-    // GridPane getWall(int row) {
-    // switch (place) {
-    // case 1:
-    // switch (row) {
-    // case 0:
-    // return player1W1;
-    // case 1:
-    // return player1W2;
-    // case 2:
-    // return player1W3;
-    // case 3:
-    // return player1W4;
-    // case 4:
-    // return player1W5;
-    // default:
-    // return null;
-    // }
-    // case 2:
-    // switch (row) {
-    // case 0:
-    // return player2W1;
-    // case 1:
-    // return player2W2;
-    // case 2:
-    // return player2W3;
-    // case 3:
-    // return player2W4;
-    // case 4:
-    // return player2W5;
-    // default:
-    // return null;
-    // }
-    // case 3:
-    // switch (row) {
-    // case 0:
-    // return player3W1;
-    // case 1:
-    // return player3W2;
-    // case 2:
-    // return player3W3;
-    // case 3:
-    // return player3W4;
-    // case 4:
-    // return player3W5;
-    // default:
-    // return null;
-    // }
-    // case 4:
-    // switch (row) {
-    // case 0:
-    // return player4W1;
-    // case 1:
-    // return player4W2;
-    // case 2:
-    // return player4W3;
-    // case 3:
-    // return player4W4;
-    // case 4:
-    // return player4W5;
-    // default:
-    // return null;
-    // }
-    // default:
-    // return null;
-    // }
-    // }
+        GridPane getWall(int row) {
+            switch (place) {
+                case 1:
+                    switch (row) {
+                        case 0:
+                            return player1W1;
+                        case 1:
+                            return player1W2;
+                        case 2:
+                            return player1W3;
+                        case 3:
+                            return player1W4;
+                        case 4:
+                            return player1W5;
+                        default:
+                            return null;
+                    }
+                case 2:
+                    switch (row) {
+                        case 0:
+                            return player2W1;
+                        case 1:
+                            return player2W2;
+                        case 2:
+                            return player2W3;
+                        case 3:
+                            return player2W4;
+                        case 4:
+                            return player2W5;
+                        default:
+                            return null;
+                    }
+                case 3:
+                    switch (row) {
+                        case 0:
+                            return player3W1;
+                        case 1:
+                            return player3W2;
+                        case 2:
+                            return player3W3;
+                        case 3:
+                            return player3W4;
+                        case 4:
+                            return player3W5;
+                        default:
+                            return null;
+                    }
+                case 4:
+                    switch (row) {
+                        case 0:
+                            return player4W1;
+                        case 1:
+                            return player4W2;
+                        case 2:
+                            return player4W3;
+                        case 3:
+                            return player4W4;
+                        case 4:
+                            return player4W5;
+                        default:
+                            return null;
+                    }
+                default:
+                    return null;
+            }
+        }
 
-    // GridPane getPatternline(int row) {
-    // switch (place) {
-    // case 1:
-    // switch (row) {
-    // case 0:
-    // return player1PL1;
-    // case 1:
-    // return player1PL2;
-    // case 2:
-    // return player1PL3;
-    // case 3:
-    // return player1PL4;
-    // case 4:
-    // return player1PL5;
-    // default:
-    // return null;
-    // }
-    // case 2:
-    // switch (row) {
-    // case 0:
-    // return player2PL1;
-    // case 1:
-    // return player2PL2;
-    // case 2:
-    // return player2PL3;
-    // case 3:
-    // return player2PL4;
-    // case 4:
-    // return player2PL5;
-    // default:
-    // return null;
-    // }
-    // case 3:
-    // switch (row) {
-    // case 0:
-    // return player3PL1;
-    // case 1:
-    // return player3PL2;
-    // case 2:
-    // return player3PL3;
-    // case 3:
-    // return player3PL4;
-    // case 4:
-    // return player3PL5;
-    // default:
-    // return null;
-    // }
-    // case 4:
-    // switch (row) {
-    // case 0:
-    // return player4PL1;
-    // case 1:
-    // return player4PL2;
-    // case 2:
-    // return player4PL3;
-    // case 3:
-    // return player4PL4;
-    // case 4:
-    // return player4PL5;
-    // default:
-    // return null;
-    // }
-    // default:
-    // return null;
-    // }
-    // }
+        GridPane getPatternline(int row) {
+            switch (place) {
+                case 1:
+                    switch (row) {
+                        case 0:
+                            return player1PL1;
+                        case 1:
+                            return player1PL2;
+                        case 2:
+                            return player1PL3;
+                        case 3:
+                            return player1PL4;
+                        case 4:
+                            return player1PL5;
+                        default:
+                            return null;
+                    }
+                case 2:
+                    switch (row) {
+                        case 0:
+                            return player2PL1;
+                        case 1:
+                            return player2PL2;
+                        case 2:
+                            return player2PL3;
+                        case 3:
+                            return player2PL4;
+                        case 4:
+                            return player2PL5;
+                        default:
+                            return null;
+                    }
+                case 3:
+                    switch (row) {
+                        case 0:
+                            return player3PL1;
+                        case 1:
+                            return player3PL2;
+                        case 2:
+                            return player3PL3;
+                        case 3:
+                            return player3PL4;
+                        case 4:
+                            return player3PL5;
+                        default:
+                            return null;
+                    }
+                case 4:
+                    switch (row) {
+                        case 0:
+                            return player4PL1;
+                        case 1:
+                            return player4PL2;
+                        case 2:
+                            return player4PL3;
+                        case 3:
+                            return player4PL4;
+                        case 4:
+                            return player4PL5;
+                        default:
+                            return null;
+                    }
+                default:
+                    return null;
+            }
+        }
 
-    // HBox getFloorline() {
-    // switch (place) {
-    // case 1:
-    // return player1Floor;
-    // case 2:
-    // return player2Floor;
+        HBox getFloorline() {
+            switch (place) {
+                case 1:
+                    return player1Floor;
+                case 2:
+                    return player2Floor;
 
-    // case 3:
-    // return player3Floor;
+                case 3:
+                    return player3Floor;
 
-    // case 4:
-    // return player4Floor;
+                case 4:
+                    return player4Floor;
 
-    // default:
-    // return null;
-    // }
-    // }
+                default:
+                    return null;
+            }
+        }
 
-    // Label getScore() {
-    // switch (place) {
-    // case 1:
-    // return player1Score;
-    // case 2:
-    // return player2Score;
+        Label getScore() {
+            switch (place) {
+                case 1:
+                    return player1Score;
+                case 2:
+                    return player2Score;
 
-    // case 3:
-    // return player3Score;
+                case 3:
+                    return player3Score;
 
-    // case 4:
-    // return player4Score;
+                case 4:
+                    return player4Score;
 
-    // default:
-    // return null;
-    // }
-    // }
+                default:
+                    return null;
+            }
+        }
 
-    // Label getName() {
-    // switch (place) {
-    // case 1:
-    // return player1Name;
-    // case 2:
-    // return player2Name;
+        Label getName() {
+            switch (place) {
+                case 1:
+                    return player1Name;
+                case 2:
+                    return player2Name;
 
-    // case 3:
-    // return player3Name;
+                case 3:
+                    return player3Name;
 
-    // case 4:
-    // return player4Name;
+                case 4:
+                    return player4Name;
 
-    // default:
-    // return null;
-    // }
-    // }
+                default:
+                    return null;
+            }
+        }
 
-    // }
+    }
 
     @FXML
     void selectTile(ActionEvent event) {
@@ -461,29 +459,6 @@ public class GamePage {
         // TODO - can we select destination (is some tile selected?)
         // TODO - fill in data object to send
         // TODO - send Message
-    }
-
-    public static Color translateColor(Tile tile) {
-
-    }
-
-    public static TileColor translateColorBack(Color color) {
-        if (color == Color.RED) {
-            return TileColor.RED;
-        } else if (color == Color.BLACK) {
-            return TileColor.BLACK;
-
-        } else if (color == Color.BLUE) {
-            return TileColor.BLUE;
-
-        } else if (color == Color.YELLOW) {
-            return TileColor.YELLOW;
-
-        } else if (color == Color.CYAN) {
-            return TileColor.CYAN;
-        }
-        return null;
-
     }
 
     public void toast(String msg) {
@@ -521,7 +496,7 @@ public class GamePage {
         }
     }
 
-    private void setupFactories() {
+    private void updateFactories() {
         List<Factory> factories = model.getFactories();
         if (factories.size() <= 7) {
             if (factories.size() <= 5) {
@@ -540,6 +515,7 @@ public class GamePage {
                 setTileColor(buttonF9T2, factoryTiles.get(1));
                 setTileColor(buttonF9T3, factoryTiles.get(2));
                 setTileColor(buttonF9T4, factoryTiles.get(3));
+
                 factoryTiles = factories.get(7).getAllTiles();
                 setTileColor(buttonF8T1, factoryTiles.get(0));
                 setTileColor(buttonF8T2, factoryTiles.get(1));
@@ -595,7 +571,25 @@ public class GamePage {
         }
     }
 
+    private class TileButton extends Button {
+
+        TileButton(Tile tile) {
+            this.setBackground(Background.fill(getColor(tile)));
+            // TODO more button configs to make it similar as other buttons;
+        }
+
+    }
+
+    private void updateMiddle() {
+        middle.getChildren().clear();
+        List<Tile> tiles = model.getMiddle().getAllTiles();
+        for (Tile tile : tiles) {
+            middle.getChildren().add(new TileButton(tile));
+        }
+    }
+
     public void update() {
-        setupFactories();
+        updateFactories();
+        updateMiddle();
     }
 }
