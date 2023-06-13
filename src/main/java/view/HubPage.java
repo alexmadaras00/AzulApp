@@ -2,15 +2,21 @@ package view;
 
 import java.util.List;
 
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import messaging.messages.JoinGame;
-import messaging.messages.StartGame;
+import main.AzulApp;
+import model.Model;
+import model.Player;
+import utils.ExceptionGameStart;
 
 public class HubPage {
-    private List<Integer> disables;
+    private Model model = AzulApp.getModel();
+    private Controller controller = AzulApp.getController();
+    private View view = AzulApp.getView();
+
     @FXML
     private Button joinButton1;
 
@@ -38,42 +44,28 @@ public class HubPage {
     @FXML
     private Button startButton;
 
-    @FXML
-    void joinPlayer1(ActionEvent event) {
-        disablePlayer(1);
-        JoinGame message = new JoinGame(playerName1.getText());
-        View.getInstance().send(message);
+    void update() {
+        List<Player> players = model.getPlayers();
+        enableAllPlayers();
+        for (Player player : players) {
+            if (playerName1.getText() == player.getName()) {
+                disablePlayer(1);
+            } else if (playerName2.getText() == player.getName()) {
+                disablePlayer(2);
+            } else if (playerName3.getText() == player.getName()) {
+                disablePlayer(3);
+            } else if (playerName4.getText() == player.getName()) {
+                disablePlayer(4);
+            }
+        }
+
     }
 
-    @FXML
-    void joinPlayer2(ActionEvent event) {
-        disablePlayer(2);
-        JoinGame message = new JoinGame(playerName2.getText());
-        View.getInstance().send(message);
+    void toast(String text) {
+        System.out.println(text);
     }
 
-    @FXML
-    void joinPlayer3(ActionEvent event) {
-        disablePlayer(3);
-        JoinGame message = new JoinGame(playerName3.getText());
-        View.getInstance().send(message);
-    }
-
-    @FXML
-    void joinPlayer4(ActionEvent event) {
-        disablePlayer(4);
-        JoinGame message = new JoinGame(playerName4.getText());
-        View.getInstance().send(message);
-    }
-
-    @FXML
-    void startGame(ActionEvent event) {
-        startButton.setDisable(true);
-        StartGame message = new StartGame();
-        View.getInstance().send(message);
-    }
-
-    void disablePlayer(int place) {
+    private void disablePlayer(int place) {
         switch (place) {
             case 1:
                 joinButton1.setDisable(true);
@@ -94,37 +86,65 @@ public class HubPage {
             default:
                 return;
         }
-        disables.add(place);
     }
 
-    public void undoLastDisable() {
-        try {
-            int lastDisable = disables.get(disables.size() - 1);
-            switch (lastDisable) {
-                case 1:
-                    joinButton1.setDisable(false);
-                    playerName1.setEditable(true);
-                    break;
-                case 2:
-                    joinButton2.setDisable(false);
-                    playerName2.setEditable(true);
-                    break;
-                case 3:
-                    joinButton3.setDisable(false);
-                    playerName3.setEditable(true);
-                    break;
-                case 4:
-                    joinButton4.setDisable(false);
-                    playerName4.setEditable(true);
-                    break;
-                default:
-                    return;
-            }
-            disables.remove(disables.size() - 1);
-        } catch (Exception e) {
+    private void enableAllPlayers() {
+        joinButton1.setDisable(false);
+        playerName1.setEditable(true);
+        joinButton2.setDisable(false);
+        playerName2.setEditable(true);
+        joinButton3.setDisable(false);
+        playerName3.setEditable(true);
+        joinButton4.setDisable(false);
+        playerName4.setEditable(true);
+    }
+
+    @FXML
+    void joinPlayer1(ActionEvent event) {
+        if (playerName1.getText() == null || playerName1.getText() == "") {
+            toast("no name provided");
             return;
         }
+        controller.joinPlayer(playerName1.getText());
 
+    }
+
+    @FXML
+    void joinPlayer2(ActionEvent event) {
+        if (playerName2.getText() == null || playerName2.getText() == "") {
+            toast("no name provided");
+            return;
+        }
+        controller.joinPlayer(playerName2.getText());
+    }
+
+    @FXML
+    void joinPlayer3(ActionEvent event) {
+        if (playerName3.getText() == null || playerName3.getText() == "") {
+            toast("no name provided");
+            return;
+        }
+        controller.joinPlayer(playerName3.getText());
+    }
+
+    @FXML
+    void joinPlayer4(ActionEvent event) {
+        if (playerName4.getText() == null || playerName4.getText() == "") {
+            toast("no name provided");
+            return;
+        }
+        controller.joinPlayer(playerName4.getText());
+    }
+
+    @FXML
+    void startGame(ActionEvent event) {
+        try {
+            model.startGame();
+            view.showGame();
+        } catch (ExceptionGameStart e) {
+            toast("not correct");
+            return;
+        }
     }
 
 }

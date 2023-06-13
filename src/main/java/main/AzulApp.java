@@ -1,57 +1,61 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import controller.Controller;
-import controller.Mediator;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import messaging.executors.ConcreteExecutorFactory;
-import messaging.executors.ExecutorFactory;
+
 import model.Game;
 import model.Model;
-import model.PlayerTile;
-import model.TileColor;
-import view.GUI;
-import view.Messager;
-import view.UI;
 import view.View;
 
 public class AzulApp extends Application {
+    private static Model model = null;
+    private static Controller controller = null;
+    private static View view = null;
+
+    public static View getView() {
+        return view;
+    }
+
+    public static void setView(View view) {
+        AzulApp.view = view;
+    }
+
+    public static Model getModel() {
+        return model;
+    }
+
+    public static void setModel(Model model) {
+        AzulApp.model = model;
+    }
+
+    public static Controller getController() {
+        return controller;
+    }
+
+    public static void setController(Controller controller) {
+        AzulApp.controller = controller;
+    }
 
     public static void main(String[] args) {
         launch();
-
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Model model = new Game();
-        ExecutorFactory executorFactory = new ConcreteExecutorFactory();
-        Mediator mediator = new Controller(executorFactory);
-        View.setExecutorFactory(executorFactory);
-        Messager messager = View.getInstance();
-        GUI gui = new GUI();
-        mediator.connectModel(model);
-        mediator.connectMessager(messager);
-        messager.connectMediator(mediator);
-        messager.connectUI(gui);
-        gui.start(stage);
-        gui.factorySetup(List.of(1, 2, 3, 4, 5));
-        gui.addPlayer(15, "Henk de ST");
-        gui.addPlayer(14, "Bob the buoder");
-        gui.setTilesFactory(2, List.of(TileColor.BLUE, TileColor.BLUE, TileColor.RED, TileColor.YELLOW));
-        gui.setTilesFactory(4, List.of(TileColor.BLUE, TileColor.CYAN, TileColor.RED, TileColor.BLACK));
-        gui.startGame();
-        gui.clearFactory(2);
-        gui.addTileMiddle(TileColor.RED);
-        gui.addTileMiddle(TileColor.YELLOW);
-        gui.addTileMiddle(TileColor.YELLOW);
-        gui.addTileMiddle(TileColor.RED);
-        // gui.removeTilesMiddle(TileColor.YELLOW);
+        setModel(new Game());
+        setController(new Controller());
+        setView(new View());
+        view.setStage(stage);
 
+        FXMLLoader loaderHub = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
+        FXMLLoader loaderGame = new FXMLLoader(AzulApp.class.getResource("/view/GamePage.fxml"));
+        view.setHubPageController(loaderHub.getController());
+        view.setGamePageController(loaderGame.getController());
+        view.setHubPageView(loaderHub.load());
+        view.setGamePageView(loaderGame.load());
+        view.showHub();
     }
 
 }

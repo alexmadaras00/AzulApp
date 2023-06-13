@@ -3,14 +3,12 @@ package model;
 import messaging.dataobjects.DataObject;
 import messaging.dataobjects.GameState;
 import messaging.dataobjects.PlayerData;
-import messaging.dataobjects.RoundUpdate;
-import messaging.executors.Executable;
 import model.factory.Factory;
 import utils.ExceptionGameStart;
 
 import java.util.List;
 
-public interface Model extends Executable {
+public interface Model {
     GameState startGame() throws ExceptionGameStart;
     GameState terminateGame();
     boolean isCurrentPlayer(PlayerData player);

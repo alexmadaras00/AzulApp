@@ -1,52 +1,91 @@
 package view;
 
-import controller.Mediator;
-import messaging.executors.Executor;
-import messaging.executors.ExecutorFactory;
-import messaging.messages.Message;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class View implements Messager {
-    private static View instance = null;
-    private static ExecutorFactory instanceExecutorFactory = null;
-    private Mediator mediator;
-    private UI userInterface;
-    private ExecutorFactory executorFactory;
+public class View {
 
-    public static void setExecutorFactory(ExecutorFactory executorFactory) {
-        instanceExecutorFactory = executorFactory;
+    private Stage stage = null;
+    private GamePage gamePageController = null;
+    private HubPage hubPageController = null;
+    private Parent hubPageView = null;
+    private Parent gamePageView = null;
+    private Object currentPage = null;
+
+
+
+    public Stage getStage() {
+        return stage;
     }
 
-    public static View getInstance() {
-        if (instance == null) {
-            instance = new View(instanceExecutorFactory);
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public GamePage getGamePageController() {
+        return gamePageController;
+    }
+
+    public void setGamePageController(GamePage gamePage) {
+        this.gamePageController = gamePage;
+    }
+
+    public HubPage getHubPageController() {
+        return hubPageController;
+    }
+
+    public void setHubPageController(HubPage hubPage) {
+        this.hubPageController = hubPage;
+    }
+
+    public Parent getGamePageView() {
+        return gamePageView;
+    }
+
+    public void setGamePageView(Parent gamePageView) {
+        this.gamePageView = gamePageView;
+    }
+
+    public Parent getHubPageView() {
+        return hubPageView;
+    }
+
+    public void setHubPageView(Parent hubPageView) {
+        this.hubPageView = hubPageView;
+    }
+
+    public void showHub() {
+        Scene scene = new Scene(this.getHubPageView());
+        this.getStage().setScene(scene);
+        this.getStage().show();
+        this.currentPage = this.hubPageController;
+    }
+
+    public void showGame() {
+        Scene scene = new Scene(this.getGamePageView());
+        this.getStage().setScene(scene);
+        this.getStage().show();
+        this.currentPage = this.gamePageController;
+    }
+
+    public void toast(String msg) {
+        if (this.currentPage instanceof GamePage) {
+            gamePageController.toast(msg);
+        } else if (this.currentPage instanceof HubPage) {
+            hubPageController.toast(msg);
+        } else {
+            return;
         }
-        return instance;
     }
 
-    private View(ExecutorFactory executorFactory) {
-        this.executorFactory = executorFactory;
+    public void update() {
+        if (this.currentPage instanceof GamePage) {
+            this.gamePageController.update();
+        } else if (this.currentPage instanceof HubPage) {
+            this.hubPageController.update();
+        } else {
+            return;
+        }
     }
-
-    @Override
-    public void connectMediator(Mediator mediator) {
-        this.mediator = mediator;
-    }
-
-    @Override
-    public void connectUI(UI userInterface) {
-        this.userInterface = userInterface;
-        this.userInterface.connectMessager(this);
-    }
-
-    @Override
-    public void notify(Message message) {
-        Executor executor = executorFactory.createExecutor(message);
-        executor.execute(userInterface);
-    }
-
-    @Override
-    public void send(Message message) {
-        mediator.notify(message);
-    }
-
 }

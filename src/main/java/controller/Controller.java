@@ -1,37 +1,26 @@
 package controller;
 
-import messaging.executors.Executor;
-import messaging.executors.ExecutorFactory;
-import messaging.messages.Message;
+import main.AzulApp;
 import model.Model;
-import view.Messager;
+import model.Player;
+import view.View;
 
-public class Controller implements Mediator {
-    private Messager messager;
-    private Model model;
-    private ExecutorFactory executorFactory;
+public class Controller {
+    private Model model = AzulApp.getModel();
+    private View view = AzulApp.getView();
 
-    public Controller(ExecutorFactory executorFactory) {
-        this.executorFactory = executorFactory;
-    }
-
-    @Override
-    public void connectMessager(Messager messager) {
-        this.messager = messager;
-    }
-
-    @Override
-    public void connectModel(Model model) {
-        this.model = model;
-    }
-
-    @Override
-    public void notify(Message message) {
-        Executor executor = executorFactory.createExecutor(message);
-        Message newMessage = executor.execute(model);
-        if (newMessage != null) {
-            messager.notify(newMessage);
+    public void joinPlayer(String name) {
+        if (model.isPlaying()) {
+            view.toast("alreadypalying");
+            return;
         }
-    }
+        if (model.getPlayers().size() >= 4) {
+            view.toast("to many players");
+            return;
+        }
 
+        model.addPlayer(new Player(name));
+        view.toast(name + " added");
+        view.update();
+    }
 }

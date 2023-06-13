@@ -742,4 +742,11 @@ public class GamePage {
             }
         }
     }
+
+    public void toast(String msg) {
+        System.out.println(msg);
+    }
+
+    public void update() {
+    }
 }
