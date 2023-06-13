@@ -33,8 +33,6 @@
                 <version>0.8.10</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/Display*</exclude>
-                        <exclude>**/GUI.class</exclude>
                         <exclude>**/AzulApp.class</exclude>
                     </excludes>
                 </configuration>

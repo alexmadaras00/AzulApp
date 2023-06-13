@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,10 +15,28 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import model.Model;
 import model.Tile;
 import model.TileColor;
 
 public class GamePage {
+    private Model model;
+
+    private Controller controller;
+
+    private View view;
+
+    public void setView(View view) {
+        this.view = view;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 
     public List<PlayerGUI> players;
     public List<FactoryGUI> factories;
@@ -749,4 +768,5 @@ public class GamePage {
 
     public void update() {
     }
+
 }

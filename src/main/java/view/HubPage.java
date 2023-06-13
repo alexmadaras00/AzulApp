@@ -7,15 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import main.AzulApp;
 import model.Model;
 import model.Player;
 import utils.ExceptionGameStart;
 
 public class HubPage {
-    private Model model = AzulApp.getModel();
-    private Controller controller = AzulApp.getController();
-    private View view = AzulApp.getView();
+    private Model model;
+    private Controller controller;
+    private View view;
 
     @FXML
     private Button joinButton1;
@@ -48,13 +47,13 @@ public class HubPage {
         List<Player> players = model.getPlayers();
         enableAllPlayers();
         for (Player player : players) {
-            if (playerName1.getText() == player.getName()) {
+            if (playerName1.getText().equals(player.getName())) {
                 disablePlayer(1);
-            } else if (playerName2.getText() == player.getName()) {
+            } else if (playerName2.getText().equals(player.getName())) {
                 disablePlayer(2);
-            } else if (playerName3.getText() == player.getName()) {
+            } else if (playerName3.getText().equals(player.getName())) {
                 disablePlayer(3);
-            } else if (playerName4.getText() == player.getName()) {
+            } else if (playerName4.getText().equals(player.getName())) {
                 disablePlayer(4);
             }
         }
@@ -147,4 +146,15 @@ public class HubPage {
         }
     }
 
+    public void setView(View view) {
+        this.view = view;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 }

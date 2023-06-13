@@ -1,13 +1,12 @@
 package controller;
 
-import main.AzulApp;
 import model.Model;
 import model.Player;
 import view.View;
 
 public class Controller {
-    private Model model = AzulApp.getModel();
-    private View view = AzulApp.getView();
+    private Model model;
+    private View view;
 
     public void joinPlayer(String name) {
         if (model.isPlaying()) {
@@ -22,5 +21,13 @@ public class Controller {
         model.addPlayer(new Player(name));
         view.toast(name + " added");
         view.update();
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public void setView(View view) {
+        this.view = view;
     }
 }

@@ -1,71 +1,46 @@
 package view;
 
+import controller.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.AzulApp;
+import model.Model;
 
 public class View {
+    private Model model;
 
-    private Stage stage = null;
-    private GamePage gamePageController = null;
-    private HubPage hubPageController = null;
-    private Parent hubPageView = null;
-    private Parent gamePageView = null;
-    private Object currentPage = null;
+    private Controller controller;
 
-    public Stage getStage() {
-        return stage;
+    private Stage stage;
+    private GamePage gamePageController;
+    private HubPage hubPageController;
+    private Parent hubPageView;
+    private Parent gamePageView;
+    private Object currentPage;
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    public GamePage getGamePageController() {
-        return gamePageController;
-    }
-
-    public void setGamePageController(GamePage gamePage) {
-        this.gamePageController = gamePage;
-    }
-
-    public HubPage getHubPageController() {
-        return hubPageController;
-    }
-
-    public void setHubPageController(HubPage hubPage) {
-        this.hubPageController = hubPage;
-    }
-
-    public Parent getGamePageView() {
-        return gamePageView;
-    }
-
-    public void setGamePageView(Parent gamePageView) {
-        this.gamePageView = gamePageView;
-    }
-
-    public Parent getHubPageView() {
-        return hubPageView;
-    }
-
-    public void setHubPageView(Parent hubPageView) {
-        this.hubPageView = hubPageView;
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     public void showHub() {
-        Scene scene = new Scene(this.getHubPageView());
-        this.getStage().setScene(scene);
-        this.getStage().show();
+        Scene scene = new Scene(hubPageView);
+        stage.setScene(scene);
+        stage.show();
+        hubPageController.update();
         this.currentPage = this.hubPageController;
     }
 
     public void showGame() {
-        Scene scene = new Scene(this.getGamePageView());
-        this.getStage().setScene(scene);
-        this.getStage().show();
+        Scene scene = new Scene(gamePageView);
+        stage.setScene(scene);
+        stage.show();
+        gamePageController.update();
         this.currentPage = this.gamePageController;
     }
 
@@ -90,12 +65,18 @@ public class View {
     }
 
     public void setup(Stage stage) throws Exception {
-        setStage(stage);
+        this.stage = stage;
         FXMLLoader loaderHub = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
         FXMLLoader loaderGame = new FXMLLoader(AzulApp.class.getResource("/view/GamePage.fxml"));
-        setHubPageController(loaderHub.getController());
-        setGamePageController(loaderGame.getController());
-        setHubPageView(loaderHub.load());
-        setGamePageView(loaderGame.load());
+        hubPageView = loaderHub.load();
+        gamePageView = loaderGame.load();
+        hubPageController = loaderHub.getController();
+        gamePageController = loaderGame.getController();
+        hubPageController.setView(this);
+        hubPageController.setController(controller);
+        hubPageController.setModel(model);
+        gamePageController.setView(this);
+        gamePageController.setController(controller);
+        gamePageController.setModel(model);
     }
 }
