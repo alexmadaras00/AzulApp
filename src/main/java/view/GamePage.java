@@ -603,7 +603,7 @@ public class GamePage {
             case 4:
                 updatePlayer(players.get(3), 4);
             case 3:
-                updatePlayer(players.get(3), 3);
+                updatePlayer(players.get(2), 3);
             case 2:
                 updatePlayer(players.get(1), 2);
                 updatePlayer(players.get(0), 1);
