@@ -460,6 +460,7 @@ public class GamePage {
         // TODO - can we select destination (is some tile selected?)
         // TODO - fill in data object to send
         // TODO - send Message
+
     }
 
     public void toast(String msg) {
@@ -686,11 +687,54 @@ public class GamePage {
     }
 
     private void updatePatternLine(Player player, int place) {
+        List<List<Tile>> floorTiles = player.getBoard().getPatternLine().getCopyTable();
         switch (place) {
-            case 4:
-            case 3:
-            case 2:
             case 1:
+                setPatternLine(player1PL1, floorTiles.get(0));
+                setPatternLine(player1PL2, floorTiles.get(1));
+                setPatternLine(player1PL3, floorTiles.get(2));
+                setPatternLine(player1PL4, floorTiles.get(3));
+                setPatternLine(player1PL5, floorTiles.get(4));
+                break;
+            case 2:
+                setPatternLine(player2PL1, floorTiles.get(0));
+                setPatternLine(player2PL2, floorTiles.get(1));
+                setPatternLine(player2PL3, floorTiles.get(2));
+                setPatternLine(player2PL4, floorTiles.get(3));
+                setPatternLine(player2PL5, floorTiles.get(4));
+                break;
+            case 3:
+                setPatternLine(player3PL1, floorTiles.get(0));
+                setPatternLine(player3PL2, floorTiles.get(1));
+                setPatternLine(player3PL3, floorTiles.get(2));
+                setPatternLine(player3PL4, floorTiles.get(3));
+                setPatternLine(player3PL5, floorTiles.get(4));
+                break;
+            case 4:
+                setPatternLine(player4PL1, floorTiles.get(0));
+                setPatternLine(player4PL2, floorTiles.get(1));
+                setPatternLine(player4PL3, floorTiles.get(2));
+                setPatternLine(player4PL4, floorTiles.get(3));
+                setPatternLine(player4PL5, floorTiles.get(4));
+                break;
+            default:
+                return;
+        }
+    }
+
+    private void setPatternLine(GridPane patternLine, List<Tile> tiles) {
+        patternLine.getChildren().clear();
+        switch (tiles.size()) {
+            case 5:
+                patternLine.add(new TileButton(tiles.get(4)), 0, 0);
+            case 4:
+                patternLine.add(new TileButton(tiles.get(3)), 1, 0);
+            case 3:
+                patternLine.add(new TileButton(tiles.get(2)), 2, 0);
+            case 2:
+                patternLine.add(new TileButton(tiles.get(1)), 3, 0);
+            case 1:
+                patternLine.add(new TileButton(tiles.get(0)), 4, 0);
             default:
                 return;
         }
