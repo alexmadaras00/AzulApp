@@ -2,18 +2,17 @@ package view;
 
 import java.util.List;
 
-import controller.Controller;
+import controller.ControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Model;
-import model.Player;
 import utils.ExceptionGameStart;
 
 public class HubPage {
     private Model model;
-    private Controller controller;
+    private ControllerImpl controllerImpl;
     private View view;
 
     @FXML
@@ -104,7 +103,7 @@ public class HubPage {
             toast("no name provided");
             return;
         }
-        controller.joinPlayer(playerName1.getText());
+        controllerImpl.joinPlayer(playerName1.getText());
 
     }
 
@@ -114,7 +113,7 @@ public class HubPage {
             toast("no name provided");
             return;
         }
-        controller.joinPlayer(playerName2.getText());
+        controllerImpl.joinPlayer(playerName2.getText());
     }
 
     @FXML
@@ -123,7 +122,7 @@ public class HubPage {
             toast("no name provided");
             return;
         }
-        controller.joinPlayer(playerName3.getText());
+        controllerImpl.joinPlayer(playerName3.getText());
     }
 
     @FXML
@@ -132,7 +131,7 @@ public class HubPage {
             toast("no name provided");
             return;
         }
-        controller.joinPlayer(playerName4.getText());
+        controllerImpl.joinPlayer(playerName4.getText());
     }
 
     @FXML
@@ -154,7 +153,7 @@ public class HubPage {
         this.model = model;
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
+    public void setController(ControllerImpl controllerImpl) {
+        this.controllerImpl = controllerImpl;
     }
 }

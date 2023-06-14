@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Controller;
+import controller.ControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -23,7 +23,7 @@ import model.TileColor;
 public class GamePage {
     private Model model;
 
-    private Controller controller;
+    private ControllerImpl controllerImpl;
 
     private View view;
 
@@ -35,8 +35,8 @@ public class GamePage {
         this.model = model;
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
+    public void setController(ControllerImpl controllerImpl) {
+        this.controllerImpl = controllerImpl;
     }
 
     public List<PlayerGUI> players;
