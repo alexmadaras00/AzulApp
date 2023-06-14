@@ -13,14 +13,14 @@
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GamePage">
    <children>
       <GridPane prefHeight="720.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <GridPane alignment="CENTER" hgap="5.0" prefHeight="378.0" prefWidth="152.0" vgap="5.0">
                <columnConstraints>
@@ -239,22 +239,25 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: beige;" HBox.hgrow="NEVER">
                                  <children>
-                                    <GridPane fx:id="player1PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
-                                      <columnConstraints>
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <GridPane fx:id="player1PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
+                                       <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
                                        <children>
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player1PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player1PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -269,8 +272,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player1PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player1PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -286,8 +292,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player1PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player1PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -304,8 +313,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player1PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player1PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -323,6 +335,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -346,6 +361,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player1W2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -365,6 +383,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player1W3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -384,6 +405,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player1W4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -403,6 +427,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player1W5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -422,6 +449,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -460,7 +490,7 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: beige;" HBox.hgrow="NEVER">
                                  <children>
-                                    <GridPane fx:id="player3PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                    <GridPane fx:id="player3PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -474,8 +504,11 @@
                                        <children>
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player3PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player3PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -490,8 +523,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player3PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player3PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -507,8 +543,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player3PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player3PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -525,8 +564,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player3PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player3PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -544,6 +586,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -567,6 +612,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player3W2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -586,6 +634,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player3W3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -605,6 +656,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player3W4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -624,6 +678,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player3W5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -643,6 +700,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -681,7 +741,7 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: beige;" HBox.hgrow="NEVER">
                                  <children>
-                                    <GridPane fx:id="player2PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                    <GridPane fx:id="player2PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -695,8 +755,11 @@
                                        <children>
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player2PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player2PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -711,8 +774,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player2PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player2PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -728,8 +794,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player2PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player2PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -746,8 +815,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player2PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player2PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -765,6 +837,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -788,6 +863,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player2W2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -807,6 +885,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player2W3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -826,6 +907,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player2W4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -845,6 +929,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player2W5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -864,6 +951,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -902,7 +992,7 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: beige;" HBox.hgrow="NEVER">
                                  <children>
-                                    <GridPane fx:id="player4PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                    <GridPane fx:id="player4PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -916,8 +1006,11 @@
                                        <children>
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player4PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player4PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -932,8 +1025,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player4PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player4PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -949,8 +1045,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player4PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player4PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -967,8 +1066,11 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="4" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player4PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0">
+                                    <GridPane fx:id="player4PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -986,6 +1088,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                  </children>
                               </VBox>
@@ -1009,6 +1114,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player4W2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -1028,6 +1136,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player4W3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -1047,6 +1158,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player4W4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -1066,6 +1180,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                     <GridPane fx:id="player4W5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
                                        <columnConstraints>
@@ -1085,6 +1202,9 @@
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="3" />
                                           <Button alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" GridPane.columnIndex="1" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </VBox.margin>
                                     </GridPane>
                                  </children>
                               </VBox>

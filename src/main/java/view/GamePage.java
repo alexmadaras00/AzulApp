@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -265,7 +266,7 @@ public class GamePage {
     }
 
     @FXML
-    void selectToLocation(ActionEvent event) {
+    void selectToLocation(MouseEvent event) {
         if (selectedId != null) {
             String clickedId = ((Node) event.getSource()).getId();
             playerId = Integer.parseInt(clickedId.substring(6, 7)) - 1;
