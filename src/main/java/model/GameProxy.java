@@ -21,7 +21,7 @@ public class GameProxy implements ModelProxy {
     }
 
     @Override
-    public List<Integer> getPlayerList() {
+    public List<Player> getPlayerList() {
         return game.getPlayerList();
     }
 

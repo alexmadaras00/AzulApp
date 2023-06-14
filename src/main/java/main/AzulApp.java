@@ -28,8 +28,8 @@ public class AzulApp extends Application {
         controllerImpl.setView(view);
         view.setController(controllerImpl);
         view.setModel(model);
-
-        view.setup(stage);
+        view.setup(stage, AzulApp.class.getResource("/view/HubPage.fxml"),
+                AzulApp.class.getResource("/view/GamePage.fxml"));
         view.showHub();
 
     }
