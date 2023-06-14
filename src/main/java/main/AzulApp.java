@@ -2,6 +2,7 @@ package main;
 
 import controller.ControllerImpl;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
 import model.Game;
@@ -28,8 +29,8 @@ public class AzulApp extends Application {
         controllerImpl.setView(view);
         view.setController(controllerImpl);
         view.setModel(model);
-
-        view.setup(stage);
+        view.setup(stage, AzulApp.class.getResource("/view/HubPage.fxml"),
+                AzulApp.class.getResource("/view/GamePage.fxml"));
         view.showHub();
 
     }

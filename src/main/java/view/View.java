@@ -1,11 +1,12 @@
 package view;
 
+import java.net.URL;
+
 import controller.ControllerImpl;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.AzulApp;
 import model.Model;
 
 public class View {
@@ -64,10 +65,10 @@ public class View {
         }
     }
 
-    public void setup(Stage stage) throws Exception {
+    public void setup(Stage stage, URL fxmlUrlHub, URL fxmlUrlGame) throws Exception {
         this.stage = stage;
-        FXMLLoader loaderHub = new FXMLLoader(AzulApp.class.getResource("/view/HubPage.fxml"));
-        FXMLLoader loaderGame = new FXMLLoader(AzulApp.class.getResource("/view/GamePage.fxml"));
+        FXMLLoader loaderHub = new FXMLLoader(fxmlUrlHub);
+        FXMLLoader loaderGame = new FXMLLoader(fxmlUrlHub);
         hubPageView = loaderHub.load();
         gamePageView = loaderGame.load();
         hubPageController = loaderHub.getController();
