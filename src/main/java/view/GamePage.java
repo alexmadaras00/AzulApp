@@ -1,8 +1,6 @@
 package view;
 
-import java.util.Arrays;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 
 import controller.ControllerImpl;
@@ -16,14 +14,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import messaging.dataobjects.Location;
 import model.Model;
 import model.ModelProxy;
 import model.Player;
 import model.PlayerTile;
 import model.Tile;
 import model.TileColor;
-import model.factory.Factory;
 
 public class GamePage {
     private ModelProxy model;
