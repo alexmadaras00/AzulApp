@@ -1,5 +1,6 @@
 package view;
 
+import java.util.Arrays;
 import java.util.List;
 
 import controller.Controller;
@@ -13,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import messaging.dataobjects.Location;
 import model.Model;
 import model.Player;
 import model.PlayerTile;
@@ -449,7 +451,7 @@ public class GamePage {
 
     @FXML
     void selectTile(ActionEvent event) {
-
+        Button source = (Button) event.getSource();
     }
 
     @FXML
@@ -493,9 +495,9 @@ public class GamePage {
     }
 
     private void updateFactories() {
-        List<Factory> factories = model.getFactories();
-        if (factories.size() <= 7) {
-            if (factories.size() <= 5) {
+
+        if (model.getFactoryCount() <= 7) {
+            if (model.getFactoryCount() <= 5) {
                 factory7.setVisible(false);
                 factory6.setVisible(false);
             }
@@ -504,58 +506,58 @@ public class GamePage {
         }
         List<TileColor> factoryTiles = null;
 
-        switch (factories.size()) {
+        switch (model.getFactoryCount()) {
             case 9:
-                factoryTiles = factories.get(8).getAllTiles();
+                Arrays.stream((TileColor[]) model.getFactory(8)).toList();
                 setTileColor(buttonF9T1, factoryTiles.get(0));
                 setTileColor(buttonF9T2, factoryTiles.get(1));
                 setTileColor(buttonF9T3, factoryTiles.get(2));
                 setTileColor(buttonF9T4, factoryTiles.get(3));
 
-                factoryTiles = factories.get(7).getAllTiles();
+                Arrays.stream((TileColor[]) model.getFactory(7)).toList();
                 setTileColor(buttonF8T1, factoryTiles.get(0));
                 setTileColor(buttonF8T2, factoryTiles.get(1));
                 setTileColor(buttonF8T3, factoryTiles.get(2));
                 setTileColor(buttonF8T4, factoryTiles.get(3));
 
             case 7:
-                factoryTiles = factories.get(6).getAllTiles();
+                Arrays.stream((TileColor[]) model.getFactory(6)).toList();
                 setTileColor(buttonF7T1, factoryTiles.get(0));
                 setTileColor(buttonF7T2, factoryTiles.get(1));
                 setTileColor(buttonF7T3, factoryTiles.get(2));
                 setTileColor(buttonF7T4, factoryTiles.get(3));
 
-                factoryTiles = factories.get(5).getAllTiles();
+                Arrays.stream((TileColor[]) model.getFactory(5)).toList();
                 setTileColor(buttonF6T1, factoryTiles.get(0));
                 setTileColor(buttonF6T2, factoryTiles.get(1));
                 setTileColor(buttonF6T3, factoryTiles.get(2));
                 setTileColor(buttonF6T4, factoryTiles.get(3));
 
             case 5:
-                factoryTiles = factories.get(4).getAllTiles();
+                Arrays.stream((TileColor[]) model.getFactory(4)).toList();
                 setTileColor(buttonF5T1, factoryTiles.get(0));
                 setTileColor(buttonF5T2, factoryTiles.get(1));
                 setTileColor(buttonF5T3, factoryTiles.get(2));
                 setTileColor(buttonF5T4, factoryTiles.get(3));
 
-                factoryTiles = factories.get(3).getAllTiles();
+                Arrays.stream((TileColor[]) model.getFactory(3)).toList();
                 setTileColor(buttonF4T1, factoryTiles.get(0));
                 setTileColor(buttonF4T2, factoryTiles.get(1));
                 setTileColor(buttonF4T3, factoryTiles.get(2));
                 setTileColor(buttonF4T4, factoryTiles.get(3));
 
-                factoryTiles = factories.get(2).getAllTiles();
+                Arrays.stream((TileColor[]) model.getFactory(2)).toList();
                 setTileColor(buttonF3T1, factoryTiles.get(0));
                 setTileColor(buttonF3T2, factoryTiles.get(1));
                 setTileColor(buttonF3T3, factoryTiles.get(2));
                 setTileColor(buttonF3T4, factoryTiles.get(3));
 
-                factoryTiles = factories.get(1).getAllTiles();
+                factoryTiles =  Arrays.stream((TileColor[]) model.getFactory(1)).toList();;
                 setTileColor(buttonF2T1, factoryTiles.get(0));
                 setTileColor(buttonF2T2, factoryTiles.get(1));
                 setTileColor(buttonF2T3, factoryTiles.get(2));
                 setTileColor(buttonF2T4, factoryTiles.get(3));
-                factoryTiles = factories.get(0).getAllTiles();
+                factoryTiles = Arrays.stream((TileColor[]) model.getFactory(0)).toList();
 
                 setTileColor(buttonF1T1, factoryTiles.get(0));
                 setTileColor(buttonF1T2, factoryTiles.get(1));
@@ -584,14 +586,14 @@ public class GamePage {
 
     private void updateMiddle() {
         middle.getChildren().clear();
-        List<Tile> tiles = model.getMiddle().getAllTiles();
+        List<Tile> tiles = model.getMiddle();
         for (Tile tile : tiles) {
             middle.getChildren().add(new TileButton(tile));
         }
     }
 
     private void updatePlayers() {
-        List<Player> players = model.getPlayers();
+        List<Player> players = model.getPlayerList();
         switch (players.size()) {
             case 2:
                 playerboard3.setVisible(false);

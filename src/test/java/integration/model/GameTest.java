@@ -343,7 +343,7 @@ public class GameTest {
 
     @Test
     public void testGetPlayerList() {
-        assertEquals(List.of(player1.getIdentifier(), player2.getIdentifier()), game.getPlayerList());
+        assertEquals(List.of(player1, player2), game.getPlayerList());
     }
 
     @Test

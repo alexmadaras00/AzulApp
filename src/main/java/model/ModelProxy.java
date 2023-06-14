@@ -10,7 +10,7 @@ public interface ModelProxy {
 
     List<Tile> getMiddle();
 
-    List<Integer> getPlayerList();
+    List<Player> getPlayerList();
 
     String getName(int identifier);
 
