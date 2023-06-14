@@ -117,6 +117,8 @@ public class GameTest {
         assertEquals(List.of(PlayerTile.getInstance()), game.getCenter().getAllTiles());
         assertEquals(1, game.getRound());
         assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
+        assertEquals("Boris", game.getName(game.getPlayers().get(0).getIdentifier()));
+        assertEquals("Giani", game.getName(player2.getIdentifier()));
     }
 
     @Test
@@ -195,7 +197,7 @@ public class GameTest {
         assertEquals(GamePhase.FINISHED, game.getGamePhase());
         
         assertEquals(10, player2.getBoard().getScore());
-        assertEquals(6, player1.getBoard().getScore());
+        assertEquals(6, game.getScore(1));
         assertEquals(List.of(player2.getIdentifier()), game.getWinners());
         assertFalse(game.isPlaying());
     }
