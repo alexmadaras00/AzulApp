@@ -2,7 +2,9 @@ package controller;
 
 import model.Model;
 import model.TileColor;
+import view.Location;
 import view.View;
+
 
 public class ControllerImpl implements Controller {
     private Model model;
@@ -33,7 +35,26 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void performMoveMiddleFloorLine(TileColor tileColor) {
+    public void performMove(Location from, Location to, int fromIndex, int toIndex, int playerID, TileColor color) {
+        if (playerID == model.getCurrentPlayer()) {
+            if (from == Location.FACTORY && to == Location.PATTERN_LINE) {
+                performMoveFactoryPatternLine(fromIndex, toIndex, color);
+            }
+            if (from == Location.MIDDLE && to == Location.PATTERN_LINE) {
+                performMoveMiddlePatternLine(toIndex, color);
+            }
+            if (from == Location.FACTORY && to == Location.FLOOR_LINE) {
+                performMoveFactoryFloorLine(fromIndex, color);
+            }
+            if (from == Location.MIDDLE && to == Location.FLOOR_LINE) {
+                performMoveMiddleFloorLine(color);
+            }
+        } else {
+            pushMessage("Invalid move. Wait for your turn!");
+        }
+    }
+
+    private void performMoveMiddleFloorLine(TileColor tileColor) {
         if (model.isValidMoveMiddleFloorLine(tileColor)) {
             model.performMoveMiddleFloorLine(tileColor);
             pushMessage("Performing move... (tile: " + tileColor + " from the Middle to the Floor Line)");
@@ -41,37 +62,35 @@ public class ControllerImpl implements Controller {
         }
     }
 
-    @Override
-    public void performMoveMiddlePatternLine(int row, TileColor tileColor) {
+    private void performMoveMiddlePatternLine(int row, TileColor tileColor) {
         if (model.isValidMoveMiddlePatternLine(row, tileColor)) {
             model.performMoveMiddlePatternLine(row, tileColor);
             pushMessage("Performing move... (tile: " + tileColor + " from the Middle to the row " + row + " in the" +
                     " Pattern Line)");
             pushUpdate();
-        } 
+        }
 
     }
 
-    @Override
-    public void performMoveFactoryFloorLine(int index, TileColor tileColor) {
+    private void performMoveFactoryFloorLine(int index, TileColor tileColor) {
         if (model.isValidMoveFactoryFloorLine(index, tileColor)) {
             model.performMoveFactoryFloorLine(index, tileColor);
             pushMessage("Performing move... (tile: " + tileColor + " from the Factory " + index + " to the " +
                     "Floor Line)");
             pushUpdate();
-        } 
-        
+        }
+
     }
 
-    @Override
-    public void performMoveFactoryPatternLine(int index, int row, TileColor tileColor) {
+
+    private void performMoveFactoryPatternLine(int index, int row, TileColor tileColor) {
         if (model.isValidMoveFactoryPatternLine(index, row, tileColor)) {
             model.performMoveFactoryPatternLine(index, row, tileColor);
             pushMessage("Performing move... (tile: " + tileColor + " from the Factory " + index + " to the row " + row + " in the" +
                     " Pattern Line)");
             pushUpdate();
-        } 
-        
+        }
+
     }
 
     @Override
