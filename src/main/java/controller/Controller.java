@@ -13,7 +13,7 @@ public class Controller {
             view.toast("alreadypalying");
             return;
         }
-        if (model.getPlayers().size() >= 4) {
+        if (model.getPlayerList().size() > 4) {
             view.toast("to many players");
             return;
         }
