@@ -1,12 +1,6 @@
 package model;
 
-import messaging.dataobjects.DataObject;
-import messaging.dataobjects.GameState;
-import messaging.dataobjects.PlayerData;
-import model.factory.Factory;
 import utils.ExceptionGameStart;
-
-import java.util.List;
 
 public interface Model extends ModelProxy{
 

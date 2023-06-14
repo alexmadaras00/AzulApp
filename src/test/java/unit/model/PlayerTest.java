@@ -7,8 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import messaging.dataobjects.PlayerBoardState;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
