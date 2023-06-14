@@ -66,69 +66,11 @@ public class GamePage {
             if (tiles.size() != 4) {
                 return;
             }
-            switch (place) {
-                case 1:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-                case 2:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 3:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 4:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 5:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 6:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 7:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 8:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 9:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
+            if (place > 0 && place < 10) {
+                getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
             }
         }
 
@@ -137,71 +79,12 @@ public class GamePage {
         }
 
         public void clear() {
-            switch (place) {
-                case 1:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-                case 2:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-                case 3:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-                case 4:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-                case 5:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-                case 6:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-                case 7:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-                case 8:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-                case 9:
-                    getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
-                    getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
-                    break;
-
-            }
+            if (place > 0 && place < 10) {
+                getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
+            }  
         }
     }
 
@@ -522,182 +405,35 @@ public class GamePage {
             if (place < 1 || place > 4 || row < 0 || row  > 4) { 
                 return null;
             }
-            switch (place) {
-                case 1:
-                    switch (row) {
-                        case 0:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 1:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 2:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 3:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 4:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                    }
-                case 2:
-                    switch (row) {
-                        case 0:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 1:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 2:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 3:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 4:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                    }
-                case 3:
-                    switch (row) {
-                        case 0:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 1:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 2:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 3:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 4:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                    }
-                case 4:
-                    switch (row) {
-                        case 0:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 1:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 2:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 3:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                        case 4:
-                            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
-                    }
-            }
-
-            // should never be triggered, but to make compiler happy
-            return null;
+            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
         }
 
         GridPane getPatternline(int row) {
             if (place < 1 || place > 4 || row < 0 || row  > 4) { 
                 return null;
             }
-            switch (place) {
-                case 1:
-                    switch (row) {
-                        case 0:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 1:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 2:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 3:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 4:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                    }
-                case 2:
-                    switch (row) {
-                        case 0:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 1:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 2:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 3:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 4:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                    }
-                case 3:
-                    switch (row) {
-                        case 0:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 1:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 2:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 3:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 4:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                    }
-                case 4:
-                    switch (row) {
-                        case 0:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 1:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 2:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 3:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                        case 4:
-                            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
-                    }
-            }
-            // should never be triggered, but to make compiler happy
-            return null;
+            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
         }
 
         HBox getFloorline() {
             if (place < 0 || place > 4) {
                 return null;
             }
-            switch (place) {
-                case 1:
-                    return getElementByName("player" + place + "Floor", HBox.class);
-                case 2:
-                    return getElementByName("player" + place + "Floor", HBox.class);
-
-                case 3:
-                    return getElementByName("player" + place + "Floor", HBox.class);
-
-                case 4:
-                    return getElementByName("player" + place + "Floor", HBox.class);
-            }
-            // should never be triggered, but to make compiler happy
-            return null;
+            return getElementByName("player" + place + "Floor", HBox.class);
         }
 
         Label getScore() {
             if (place < 0 || place > 4) {
                 return null;
             }
-            switch (place) {
-                case 1:
-                    return getElementByName("player" + place + "Score", Label.class);
-                case 2:
-                    return getElementByName("player" + place + "Score", Label.class);
-
-                case 3:
-                    return getElementByName("player" + place + "Score", Label.class);
-                case 4:
-                    return getElementByName("player" + place + "Score", Label.class);
-            }
-            // should never be triggered, but to make compiler happy
-            return null;
+            return getElementByName("player" + place + "Score", Label.class);
         }
 
         Label getName() {
             if (place < 0 || place > 4) {
                 return null;
             }
-            switch (place) {
-                case 1:
-                    return getElementByName("player" + place + "Name", Label.class);
-                case 2:
-                    return getElementByName("player" + place + "Name", Label.class);
-                case 3:
-                    return getElementByName("player" + place + "Name", Label.class);
-                case 4:
-                    return getElementByName("player" + place + "Name", Label.class);
-            }
-            // should never be triggered, but to make compiler happy
-            return null;
+            return getElementByName("player" + place + "Name", Label.class);
         }
 
     }
@@ -742,17 +478,7 @@ public class GamePage {
         }
         for (int i = 1; i < 5; i++) {
             if (!places.contains(i)) {
-                switch (i) {
-                    case 1:
-                        getElementByName("playerboard" + i, VBox.class).setVisible(false);
-                    case 2:
-                        getElementByName("playerboard" + i, VBox.class).setVisible(false);
-                    case 3:
-                        getElementByName("playerboard" + i, VBox.class).setVisible(false);
-                    case 4:
-                        getElementByName("playerboard" + i, VBox.class).setVisible(false);
-                        
-                }
+                getElementByName("playerboard" + i, VBox.class).setVisible(false);
             }
         }
     }
