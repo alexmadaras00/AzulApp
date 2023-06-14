@@ -68,7 +68,7 @@ public class View {
     public void setup(Stage stage, URL fxmlUrlHub, URL fxmlUrlGame) throws Exception {
         this.stage = stage;
         FXMLLoader loaderHub = new FXMLLoader(fxmlUrlHub);
-        FXMLLoader loaderGame = new FXMLLoader(fxmlUrlHub);
+        FXMLLoader loaderGame = new FXMLLoader(fxmlUrlGame);
         hubPageView = loaderHub.load();
         gamePageView = loaderGame.load();
         hubPageController = loaderHub.getController();
