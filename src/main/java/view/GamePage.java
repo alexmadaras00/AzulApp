@@ -13,6 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -248,22 +252,50 @@ public class GamePage {
     @FXML
     private VBox playerboard4;
 
-    private Location from;
+    private Location fromLocation;
     private int fromIndex;
     private int toIndex;
-    private Location to;
+    private Location toLocation;
     private int playerId;
     private TileColor color;
     private String selectedId;
 
     private void clearSelection() {
-        from = null;
+        fromLocation = null;
         fromIndex = 0;
         toIndex = 0;
-        to = null;
+        toLocation = null;
         playerId = 0;
         color = null;
         selectedId = null;
+
+        selectTiles(fromLocation, color, fromIndex);
+    }
+
+    private Border selectionBorder = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID,
+            null,
+            new BorderWidths(2)));
+
+    private void selectTiles(Location from, TileColor color, int index) {
+        for (int i = 1; i < 10; i++) {
+            for (int j = 1; j < 5; j++) {
+                Button button = getElementByName("buttonF" + i + "T" + j, Button.class);
+                Border border = Border.EMPTY;
+                if (from == Location.FACTORY && index == i - 1 && getBackwardsColor(button) == color) {
+                    border = selectionBorder;
+                }
+                button.setBorder(border);
+            }
+        }
+        for (Node node : middle.getChildren()) {
+            Button button = (Button) node;
+            Border border = Border.EMPTY;
+            if (from == Location.MIDDLE && getBackwardsColor(button) == color) {
+                border = selectionBorder;
+            }
+            button.setBorder(border);
+        }
+
     }
 
     @FXML
@@ -271,15 +303,16 @@ public class GamePage {
         if (selectedId != null) {
             String clickedId = ((Node) event.getSource()).getId();
             playerId = model.getPlayerList().get(Integer.parseInt(clickedId.substring(6, 7)) - 1).getIdentifier();
-            to = Location.FLOOR_LINE;
+            toLocation = Location.FLOOR_LINE;
             if (clickedId.contains("PL")) {
-                to = Location.PATTERN_LINE;
+                toLocation = Location.PATTERN_LINE;
                 toIndex = Integer.parseInt(clickedId.substring(9, 10)) - 1;
             }
-            toast("perform move " + color + " from " + from + " " + fromIndex + " to " + to + " " + fromIndex
+            toast("perform move " + color + " from " + fromLocation + " " + fromIndex + " to " + toLocation + " "
+                    + fromIndex
                     + " of player " + playerId);
 
-            controllerImpl.performMove(from, to, fromIndex, toIndex, playerId, color);
+            controllerImpl.performMove(fromLocation, toLocation, fromIndex, toIndex, playerId, color);
             clearSelection();
         }
     }
@@ -300,12 +333,13 @@ public class GamePage {
 
         if (selectedId == null || selectedId != buttonId) {
             selectedId = buttonId;
-            from = buttonLocation;
+            fromLocation = buttonLocation;
             fromIndex = buttonLocationIndex;
             color = buttonColor;
-            toast("selected " + color + " from " + from + " " + fromIndex);
+            toast("selected " + color + " from " + fromLocation + " " + fromIndex);
+            selectTiles(fromLocation, color, fromIndex);
         } else {
-            toast("unselected " + color + " from " + from + " " + fromIndex);
+            toast("unselected " + color + " from " + fromLocation + " " + fromIndex);
             clearSelection();
         }
     }
@@ -430,7 +464,7 @@ public class GamePage {
         for (int i = 0; i < players.size(); i++) {
             Border border = Border.EMPTY;
             if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
-                border = Border.stroke(Color.AQUAMARINE);
+                border = selectionBorder;
             }
             getElementByName("playerboard" + (i + 1), VBox.class).setBorder(border);
             updatePlayer(players.get(i), i + 1);
