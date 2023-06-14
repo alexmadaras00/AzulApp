@@ -1,14 +1,15 @@
 package controller;
 
 import model.TileColor;
+import view.Location;
+
 
 public interface Controller {
     void joinPlayer(String name);
     void startGame();
-    void performMoveMiddleFloorLine(TileColor tileColor);
-    void performMoveMiddlePatternLine(int row, TileColor tileColor);
-    void performMoveFactoryFloorLine(int index, TileColor tileColor);
-    void performMoveFactoryPatternLine(int index, int row, TileColor tileColor);
+
+    void performMove(Location from, Location to, int fromIndex, int toIndex, int playerID, TileColor color);
+
     void terminateGame();
 
 }
