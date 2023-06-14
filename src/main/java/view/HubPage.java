@@ -7,12 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import model.Model;
+import model.ModelProxy;
 import model.Player;
-import utils.ExceptionGameStart;
 
 public class HubPage {
-    private Model model;
+    private ModelProxy model;
     private ControllerImpl controllerImpl;
     private View view;
 
@@ -137,12 +136,9 @@ public class HubPage {
 
     @FXML
     void startGame(ActionEvent event) {
-        try {
-            model.startGame();
+        controllerImpl.startGame();
+        if (model.isPlaying()) {
             view.showGame();
-        } catch (ExceptionGameStart e) {
-            toast("not correct");
-            return;
         }
     }
 
@@ -150,7 +146,7 @@ public class HubPage {
         this.view = view;
     }
 
-    public void setModel(Model model) {
+    public void setModel(ModelProxy model) {
         this.model = model;
     }
 

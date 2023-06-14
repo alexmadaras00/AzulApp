@@ -8,9 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Model;
+import model.ModelProxy;
 
 public class View {
-    private Model model;
+    private ModelProxy model;
 
     private ControllerImpl controllerImpl;
 
@@ -21,7 +22,7 @@ public class View {
     private Parent gamePageView;
     private Object currentPage;
 
-    public void setModel(Model model) {
+    public void setModel(ModelProxy model) {
         this.model = model;
     }
 
