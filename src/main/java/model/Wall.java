@@ -8,9 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import messaging.dataobjects.ScoreChange;
-import messaging.dataobjects.ScoreType;
-
 public class Wall {
     private Tile[][] wall;
     private Tile[] colors;

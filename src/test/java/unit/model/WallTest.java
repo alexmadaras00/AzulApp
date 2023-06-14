@@ -1,7 +1,6 @@
 package unit.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
@@ -13,8 +12,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import messaging.dataobjects.ScoreChange;
-import messaging.dataobjects.ScoreType;
 import model.TileColor;
 import model.Wall;
 
