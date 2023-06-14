@@ -5,7 +5,9 @@ import java.util.List;
 
 import controller.ControllerImpl;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
@@ -244,51 +246,82 @@ public class GamePage {
     @FXML
     private VBox playerboard4;
 
-    Location from;
-    int fromIndex;
-    int ToIndex;
-    Location to;
-    int playerId;
-    TileColor color;
+    private Location from;
+    private int fromIndex;
+    private int toIndex;
+    private Location to;
+    private int playerId;
+    private TileColor color;
+    private String selectedId;
 
+    private void clearSelection() {
+        from = null;
+        fromIndex = 0;
+        toIndex = 0;
+        to = null;
+        playerId = 0;
+        color = null;
+        selectedId = null;
+    }
 
+    @FXML
+    void selectToLocation(ActionEvent event) {
+        if (selectedId != null) {
+            String clickedId = ((Node) event.getSource()).getId();
+            playerId = Integer.parseInt(clickedId.substring(6, 7)) - 1;
+
+            to = Location.FLOOR_LINE;
+            if (clickedId.contains("PL")) {
+                to = Location.PATTERN_LINE;
+                toIndex = Integer.parseInt(clickedId.substring(9, 10)) - 1;
+            }
+            toast("perform move " + color + " from " + from + " " + fromIndex + " to " + to + " " + fromIndex
+                    + " of player " + playerId);
+
+            controllerImpl.performMove(from, to, fromIndex, toIndex, playerId, color);
+            clearSelection();
+        }
+    }
 
     @FXML
     void selectTile(ActionEvent event) {
         Button button = (Button) event.getSource();
         Location buttonLocation = Location.MIDDLE;
         int buttonLocationIndex = 0;
-        String buttonLocationId = button.getParent().getId();
-        if (buttonLocationId.contains("factory")) {
-            buttonLocation = Factory.MIDDLE;
-            buttonLocationIndex = Integer.parseInt(buttonLocationId.substring(6,7));
+        TileColor buttonColor = getBackwardsColor(button);
+
+        String buttonId = button.getId();
+        buttonId = buttonId == null ? "buttonMiddle" : buttonId;
+        if (buttonId.contains("buttonF")) {
+            buttonLocation = Location.FACTORY;
+            buttonLocationIndex = Integer.parseInt(buttonId.substring(9, 10)) - 1;
         }
-        
-        if (from == null || (from == buttonLocation && fromIndex == buttonLocationIndex)) {
+
+        if (selectedId == null || selectedId != buttonId) {
+            selectedId = buttonId;
             from = buttonLocation;
             fromIndex = buttonLocationIndex;
-            color = getBackwardsColor(button);
+            color = buttonColor;
+            toast("selected " + color + " from " + from + " " + fromIndex);
         } else {
-            from = null;
-            fromIndex = 0;
-            color = null;
+            toast("unselected " + color + " from " + from + " " + fromIndex);
+            clearSelection();
         }
     }
 
     private TileColor getBackwardsColor(Button button) {
         Paint background = button.getBackground().getFills().get(0).getFill();
-        if (background == Color.RED) return TileColor.RED;
-        if (background == Color.BLACK) return TileColor.BLACK;
-        if (background == Color.BLUE) return TileColor.BLUE;
-        if (background == Color.YELLOW) return TileColor.YELLOW;
-        if (background == Color.CYAN) return TileColor.CYAN;
+        if (background == Color.RED)
+            return TileColor.RED;
+        if (background == Color.BLACK)
+            return TileColor.BLACK;
+        if (background == Color.BLUE)
+            return TileColor.BLUE;
+        if (background == Color.YELLOW)
+            return TileColor.YELLOW;
+        if (background == Color.CYAN)
+            return TileColor.CYAN;
         return null;
-    }
-
-    @FXML
-    void selectToLocation(ActionEvent event) {
-        toast("TO SELECT");
-
     }
 
     public void toast(String msg) {
@@ -361,11 +394,25 @@ public class GamePage {
 
     }
 
+    private class MiddleButton extends TileButton {
+
+        MiddleButton(Tile tile) {
+            super(tile);
+            this.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    selectTile(event);
+                }
+            });
+        }
+
+    }
+
     private void updateMiddle() {
         middle.getChildren().clear();
         List<Tile> tiles = model.getMiddle();
         for (Tile tile : tiles) {
-            middle.getChildren().add(new TileButton(tile));
+            middle.getChildren().add(new MiddleButton(tile));
         }
     }
 
