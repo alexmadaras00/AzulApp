@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import model.Game;
+import model.GameProxy;
 import model.Model;
 import view.View;
 
@@ -27,7 +28,9 @@ public class AzulApp extends Application {
         controllerImpl.setModel(model);
         controllerImpl.setView(view);
         view.setController(controllerImpl);
-        view.setModel(model);
+        GameProxy proxy = new GameProxy();
+        proxy.setProxy(model);
+        view.setModel(proxy);
         view.setup(stage, AzulApp.class.getResource("/view/HubPage.fxml"),
                 AzulApp.class.getResource("/view/GamePage.fxml"));
         view.showHub();

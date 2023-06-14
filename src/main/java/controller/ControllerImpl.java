@@ -1,8 +1,6 @@
 package controller;
 
-import model.GameProxy;
 import model.Model;
-import model.ModelProxy;
 import model.TileColor;
 import view.View;
 
