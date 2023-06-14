@@ -1,5 +1,6 @@
 package view;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,69 +66,11 @@ public class GamePage {
             if (tiles.size() != 4) {
                 return;
             }
-            switch (place) {
-                case 1:
-                    buttonF1T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF1T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF1T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF1T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-                case 2:
-                    buttonF2T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF2T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF2T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF2T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 3:
-                    buttonF3T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF3T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF3T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF3T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 4:
-                    buttonF4T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF4T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF4T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF4T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 5:
-                    buttonF5T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF5T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF5T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF5T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 6:
-                    buttonF6T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF6T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF6T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF6T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 7:
-                    buttonF7T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF7T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF7T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF7T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 8:
-                    buttonF8T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF8T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF8T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF8T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
-                case 9:
-                    buttonF9T1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                    buttonF9T2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                    buttonF9T3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                    buttonF9T4.setBackground(Background.fill(translateColor(tiles.get(3))));
-                    break;
-
+            if (place > 0 && place < 10) {
+                getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
             }
         }
 
@@ -136,71 +79,12 @@ public class GamePage {
         }
 
         public void clear() {
-            switch (place) {
-                case 1:
-                    buttonF1T1.setBackground(Background.EMPTY);
-                    buttonF1T2.setBackground(Background.EMPTY);
-                    buttonF1T3.setBackground(Background.EMPTY);
-                    buttonF1T4.setBackground(Background.EMPTY);
-                    break;
-
-                case 2:
-                    buttonF2T1.setBackground(Background.EMPTY);
-                    buttonF2T2.setBackground(Background.EMPTY);
-                    buttonF2T3.setBackground(Background.EMPTY);
-                    buttonF2T4.setBackground(Background.EMPTY);
-                    break;
-
-                case 3:
-                    buttonF3T1.setBackground(Background.EMPTY);
-                    buttonF3T2.setBackground(Background.EMPTY);
-                    buttonF3T3.setBackground(Background.EMPTY);
-                    buttonF3T4.setBackground(Background.EMPTY);
-                    break;
-
-                case 4:
-                    buttonF4T1.setBackground(Background.EMPTY);
-                    buttonF4T2.setBackground(Background.EMPTY);
-                    buttonF4T3.setBackground(Background.EMPTY);
-                    buttonF4T4.setBackground(Background.EMPTY);
-                    break;
-
-                case 5:
-                    buttonF5T1.setBackground(Background.EMPTY);
-                    buttonF5T2.setBackground(Background.EMPTY);
-                    buttonF5T3.setBackground(Background.EMPTY);
-                    buttonF5T4.setBackground(Background.EMPTY);
-                    break;
-
-                case 6:
-                    buttonF6T1.setBackground(Background.EMPTY);
-                    buttonF6T2.setBackground(Background.EMPTY);
-                    buttonF6T3.setBackground(Background.EMPTY);
-                    buttonF6T4.setBackground(Background.EMPTY);
-                    break;
-
-                case 7:
-                    buttonF7T1.setBackground(Background.EMPTY);
-                    buttonF7T2.setBackground(Background.EMPTY);
-                    buttonF7T3.setBackground(Background.EMPTY);
-                    buttonF7T4.setBackground(Background.EMPTY);
-                    break;
-
-                case 8:
-                    buttonF8T1.setBackground(Background.EMPTY);
-                    buttonF8T2.setBackground(Background.EMPTY);
-                    buttonF8T3.setBackground(Background.EMPTY);
-                    buttonF8T4.setBackground(Background.EMPTY);
-                    break;
-
-                case 9:
-                    buttonF9T1.setBackground(Background.EMPTY);
-                    buttonF9T2.setBackground(Background.EMPTY);
-                    buttonF9T3.setBackground(Background.EMPTY);
-                    buttonF9T4.setBackground(Background.EMPTY);
-                    break;
-
-            }
+            if (place > 0 && place < 10) {
+                getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
+            }  
         }
     }
 
@@ -275,10 +159,9 @@ public class GamePage {
 
             case CYAN:
                 return Color.CYAN;
-
-            default:
-                return null;
         }
+        // should never run
+        return null;
     }
 
     public static TileColor translateColorBack(Color color) {
@@ -519,191 +402,38 @@ public class GamePage {
         }
 
         GridPane getWall(int row) {
-            switch (place) {
-                case 1:
-                    switch (row) {
-                        case 0:
-                            return player1W1;
-                        case 1:
-                            return player1W2;
-                        case 2:
-                            return player1W3;
-                        case 3:
-                            return player1W4;
-                        case 4:
-                            return player1W5;
-                        default:
-                            return null;
-                    }
-                case 2:
-                    switch (row) {
-                        case 0:
-                            return player2W1;
-                        case 1:
-                            return player2W2;
-                        case 2:
-                            return player2W3;
-                        case 3:
-                            return player2W4;
-                        case 4:
-                            return player2W5;
-                        default:
-                            return null;
-                    }
-                case 3:
-                    switch (row) {
-                        case 0:
-                            return player3W1;
-                        case 1:
-                            return player3W2;
-                        case 2:
-                            return player3W3;
-                        case 3:
-                            return player3W4;
-                        case 4:
-                            return player3W5;
-                        default:
-                            return null;
-                    }
-                case 4:
-                    switch (row) {
-                        case 0:
-                            return player4W1;
-                        case 1:
-                            return player4W2;
-                        case 2:
-                            return player4W3;
-                        case 3:
-                            return player4W4;
-                        case 4:
-                            return player4W5;
-                        default:
-                            return null;
-                    }
-                default:
-                    return null;
+            if (place < 1 || place > 4 || row < 0 || row  > 4) { 
+                return null;
             }
+            return getElementByName("player" + place + "W" + (row+1), GridPane.class);
         }
 
         GridPane getPatternline(int row) {
-            switch (place) {
-                case 1:
-                    switch (row) {
-                        case 0:
-                            return player1PL1;
-                        case 1:
-                            return player1PL2;
-                        case 2:
-                            return player1PL3;
-                        case 3:
-                            return player1PL4;
-                        case 4:
-                            return player1PL5;
-                        default:
-                            return null;
-                    }
-                case 2:
-                    switch (row) {
-                        case 0:
-                            return player2PL1;
-                        case 1:
-                            return player2PL2;
-                        case 2:
-                            return player2PL3;
-                        case 3:
-                            return player2PL4;
-                        case 4:
-                            return player2PL5;
-                        default:
-                            return null;
-                    }
-                case 3:
-                    switch (row) {
-                        case 0:
-                            return player3PL1;
-                        case 1:
-                            return player3PL2;
-                        case 2:
-                            return player3PL3;
-                        case 3:
-                            return player3PL4;
-                        case 4:
-                            return player3PL5;
-                        default:
-                            return null;
-                    }
-                case 4:
-                    switch (row) {
-                        case 0:
-                            return player4PL1;
-                        case 1:
-                            return player4PL2;
-                        case 2:
-                            return player4PL3;
-                        case 3:
-                            return player4PL4;
-                        case 4:
-                            return player4PL5;
-                        default:
-                            return null;
-                    }
-                default:
-                    return null;
+            if (place < 1 || place > 4 || row < 0 || row  > 4) { 
+                return null;
             }
+            return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
         }
 
         HBox getFloorline() {
-            switch (place) {
-                case 1:
-                    return player1Floor;
-                case 2:
-                    return player2Floor;
-
-                case 3:
-                    return player3Floor;
-
-                case 4:
-                    return player4Floor;
-
-                default:
-                    return null;
+            if (place < 0 || place > 4) {
+                return null;
             }
+            return getElementByName("player" + place + "Floor", HBox.class);
         }
 
         Label getScore() {
-            switch (place) {
-                case 1:
-                    return player1Score;
-                case 2:
-                    return player2Score;
-
-                case 3:
-                    return player3Score;
-
-                case 4:
-                    return player4Score;
-
-                default:
-                    return null;
+            if (place < 0 || place > 4) {
+                return null;
             }
+            return getElementByName("player" + place + "Score", Label.class);
         }
 
         Label getName() {
-            switch (place) {
-                case 1:
-                    return player1Name;
-                case 2:
-                    return player2Name;
-
-                case 3:
-                    return player3Name;
-
-                case 4:
-                    return player4Name;
-
-                default:
-                    return null;
+            if (place < 0 || place > 4) {
+                return null;
             }
+            return getElementByName("player" + place + "Name", Label.class);
         }
 
     }
@@ -748,16 +478,7 @@ public class GamePage {
         }
         for (int i = 1; i < 5; i++) {
             if (!places.contains(i)) {
-                switch (i) {
-                    case 1:
-                        playerboard1.setVisible(false);
-                    case 2:
-                        playerboard2.setVisible(false);
-                    case 3:
-                        playerboard3.setVisible(false);
-                    case 4:
-                        playerboard4.setVisible(false);
-                }
+                getElementByName("playerboard" + i, VBox.class).setVisible(false);
             }
         }
     }
@@ -767,6 +488,30 @@ public class GamePage {
     }
 
     public void update() {
+    }
+
+    private <T> T getElementByName(String name, Class<T> clazz) {
+        Field field;
+        try {
+            field = this.getClass().getDeclaredField(name);
+        } catch (NoSuchFieldException e) {
+            // bad input
+            return null;
+        } catch (SecurityException e) {
+            // should only look at elements in this class, so should not be triggered
+            e.printStackTrace();
+            return null;
+        }
+        try {
+            return clazz.cast(field.get(this));
+        } catch (IllegalArgumentException e) {
+            // this should not happen, as we are giving this
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // this should not happen, as we are accessing fields inside the class
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
