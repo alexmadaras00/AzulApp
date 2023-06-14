@@ -197,7 +197,8 @@ public class GameTest {
         assertEquals(GamePhase.FINISHED, game.getGamePhase());
         
         assertEquals(10, player2.getBoard().getScore());
-        assertEquals(6, game.getScore(1));
+        assertEquals(6, player1.getBoard().getScore());
+        assertEquals(player1.getBoard().getScore(), game.getScore(player1.getIdentifier()));
         assertEquals(List.of(player2.getIdentifier()), game.getWinners());
         assertFalse(game.isPlaying());
     }
