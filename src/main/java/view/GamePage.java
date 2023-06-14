@@ -525,8 +525,21 @@ public class GamePage {
 
     private void setWallLine(GridPane wallLine, List<Tile> tiles) {
         wallLine.getChildren().clear();
+        List<Color> pattern = List.of(Color.YELLOW, Color.RED, Color.BLACK, Color.CYAN, Color.BLUE);
         for (int i = 0; i < 5; i++) {
-            wallLine.add(new TileButton(tiles.get(i)), i, 0);
+            TileButton button = new TileButton(tiles.get(i));
+            if (tiles.get(i) == null) {
+                Button holderButton = new Button();
+
+                int row = Integer.parseInt(wallLine.getId().substring(8));
+                Color color = pattern.get((i - row + 5) % 5);
+                holderButton.setBackground(Background.fill(Color.rgb((int) (color.getRed()*255), (int) (color.getGreen()*255), (int) (color.getBlue()*255), 0.25)));
+                holderButton.setPrefHeight(30.0);
+                holderButton.setPrefWidth(30.0);
+                wallLine.add(holderButton, i, 0);
+            } else {
+                wallLine.add(button, i, 0);
+            }
         }
     }
 
