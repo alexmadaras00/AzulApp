@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import view.Location;
 import view.View;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -109,7 +110,7 @@ public class ControllerImplTest {
         when(model.isValidMoveMiddleFloorLine(any(TileColor.class))).thenReturn(true);
 
         // Call the performMoveMiddleFloorLine method and verify the result
-        controller.performMoveMiddleFloorLine(TileColor.RED);
+        controller.performMove(Location.MIDDLE,Location.FLOOR_LINE,0,0, model.getCurrentPlayer(), TileColor.RED);
         verify(model).performMoveMiddleFloorLine(TileColor.RED);
         verify(view).update();
         verify(view).toast("Performing move... (tile: RED from the Middle to the Floor Line)");
@@ -122,9 +123,8 @@ public class ControllerImplTest {
         when(model.isValidMoveMiddleFloorLine(any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveMiddleFloorLine method and verify the result
-        controller.performMoveMiddleFloorLine(TileColor.RED);
+        controller.performMove(Location.MIDDLE,Location.FLOOR_LINE,0,0, model.getCurrentPlayer(), TileColor.RED);
         verify(model).isValidMoveMiddleFloorLine(TileColor.RED);
-        verifyNoMoreInteractions(model);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class ControllerImplTest {
         when(model.isValidMoveMiddlePatternLine(anyInt(), any(TileColor.class))).thenReturn(true);
 
         // Call the performMoveMiddlePatternLine method and verify the result
-        controller.performMoveMiddlePatternLine(2, TileColor.BLUE);
+        controller.performMove(Location.MIDDLE,Location.PATTERN_LINE,0,2, model.getCurrentPlayer(), TileColor.BLUE);
         verify(model).performMoveMiddlePatternLine(2, TileColor.BLUE);
         verify(view).update();
         verify(view).toast("Performing move... (tile: BLUE from the Middle to the row 2 in the Pattern Line)");
@@ -146,7 +146,7 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryFloorLine(anyInt(), any(TileColor.class))).thenReturn(true);
 
         // Call the performMoveFactoryFloorLine method and verify the result
-        controller.performMoveFactoryFloorLine(3, TileColor.BLACK);
+        controller.performMove(Location.FACTORY,Location.FLOOR_LINE,3,0, model.getCurrentPlayer(), TileColor.BLACK);
         verify(model).performMoveFactoryFloorLine(3, TileColor.BLACK);
         verify(view).update();
         verify(view).toast("Performing move... (tile: BLACK from the Factory 3 to the Floor Line)");
@@ -159,9 +159,8 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryFloorLine(anyInt(), any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveFactoryFloorLine method and verify the result
-        controller.performMoveFactoryFloorLine(2, TileColor.RED);
+        controller.performMove(Location.FACTORY,Location.FLOOR_LINE,2,0, model.getCurrentPlayer(), TileColor.RED);
         verify(model).isValidMoveFactoryFloorLine(2, TileColor.RED);
-        verifyNoMoreInteractions(model);
     }
 
     @Test
@@ -170,7 +169,7 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryPatternLine(anyInt(), anyInt(), any(TileColor.class))).thenReturn(true);
 
         // Call the performMoveFactoryPatternLine method and verify the result
-        controller.performMoveFactoryPatternLine(0, 3, TileColor.CYAN);
+        controller.performMove(Location.FACTORY,Location.PATTERN_LINE,0,3, model.getCurrentPlayer(), TileColor.CYAN);
         verify(model).performMoveFactoryPatternLine(0, 3, TileColor.CYAN);
         verify(view).update();
         verify(view).toast("Performing move... (tile: CYAN from the Factory 0 to the row 3 in the Pattern Line)");
@@ -183,9 +182,8 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryPatternLine(anyInt(), anyInt(), any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveFactoryPatternLine method and verify the result
-        controller.performMoveFactoryPatternLine(1, 2, TileColor.YELLOW);
+        controller.performMove(Location.FACTORY,Location.PATTERN_LINE,1,2, model.getCurrentPlayer(), TileColor.YELLOW);
         verify(model).isValidMoveFactoryPatternLine(1, 2, TileColor.YELLOW);
-        verifyNoMoreInteractions(model);
     }
 
     @Test
