@@ -270,8 +270,7 @@ public class GamePage {
     void selectToLocation(MouseEvent event) {
         if (selectedId != null) {
             String clickedId = ((Node) event.getSource()).getId();
-            playerId = Integer.parseInt(clickedId.substring(6, 7)) - 1;
-
+            playerId = model.getPlayerList().get(Integer.parseInt(clickedId.substring(6, 7)) - 1).getIdentifier();
             to = Location.FLOOR_LINE;
             if (clickedId.contains("PL")) {
                 to = Location.PATTERN_LINE;
