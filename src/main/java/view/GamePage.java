@@ -325,13 +325,13 @@ public class GamePage {
         TileColor buttonColor = getBackwardsColor(button);
 
         String buttonId = button.getId();
-        buttonId = buttonId == null ? "buttonMiddle" : buttonId;
+        buttonId = buttonId == null ? "buttonMiddle" + buttonColor : buttonId;
         if (buttonId.contains("buttonF")) {
             buttonLocation = Location.FACTORY;
             buttonLocationIndex = Integer.parseInt(buttonId.substring(7, 8)) - 1;
         }
 
-        if (selectedId == null || selectedId != buttonId) {
+        if (selectedId == null || (selectedId != buttonId)) {
             selectedId = buttonId;
             fromLocation = buttonLocation;
             fromIndex = buttonLocationIndex;
@@ -533,7 +533,8 @@ public class GamePage {
 
                 int row = Integer.parseInt(wallLine.getId().substring(8));
                 Color color = pattern.get((i - row + 5) % 5);
-                holderButton.setBackground(Background.fill(Color.rgb((int) (color.getRed()*255), (int) (color.getGreen()*255), (int) (color.getBlue()*255), 0.25)));
+                holderButton.setBackground(Background.fill(Color.rgb((int) (color.getRed() * 255),
+                        (int) (color.getGreen() * 255), (int) (color.getBlue() * 255), 0.25)));
                 holderButton.setPrefHeight(30.0);
                 holderButton.setPrefWidth(30.0);
                 wallLine.add(holderButton, i, 0);
