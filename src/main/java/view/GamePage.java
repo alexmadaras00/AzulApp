@@ -245,14 +245,51 @@ public class GamePage {
     @FXML
     private VBox playerboard4;
 
+    Location from;
+    int fromIndex;
+    int ToIndex;
+    Location to;
+    int playerId;
+    TileColor color;
+
+
+
     @FXML
     void selectTile(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        Location buttonLocation = Location.MIDDLE;
+        int buttonLocationIndex = 0;
+        String buttonLocationId = button.getParent().getId();
+        if (buttonLocationId.contains("factory")) {
+            buttonLocation = Factory.MIDDLE;
+            buttonLocationIndex = Integer.parseInt(buttonLocationId.substring(6,7));
+        }
+        
+        if (from == null || (from == buttonLocation && fromIndex == buttonLocationIndex)) {
+            from = buttonLocation;
+            fromIndex = buttonLocationIndex;
+            color = getBackwardsColor(button);
+        } else {
+            from = null;
+            fromIndex = 0;
+            color = null;
+        }
+    }
 
+    private TileColor getBackwardsColor(Button button) {
+        Paint background = button.getBackground().getFills().get(0).getFill();
+        if (background == Color.RED) return TileColor.RED;
+        if (background == Color.BLACK) return TileColor.BLACK;
+        if (background == Color.BLUE) return TileColor.BLUE;
+        if (background == Color.YELLOW) return TileColor.YELLOW;
+        if (background == Color.CYAN) return TileColor.CYAN;
+        return null;
     }
 
     @FXML
     void selectToLocation(ActionEvent event) {
-        
+        toast("TO SELECT");
+
     }
 
     public void toast(String msg) {
