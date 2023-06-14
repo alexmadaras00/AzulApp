@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -428,6 +429,11 @@ public class GamePage {
                 break;
         }
         for (int i = 0; i < players.size(); i++) {
+            Border border = Border.EMPTY;
+            if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
+                border = Border.stroke(Color.AQUAMARINE);
+            }
+            getElementByName("playerboard" + (i + 1), VBox.class).setBorder(border);
             updatePlayer(players.get(i), i + 1);
         }
     }
@@ -438,6 +444,7 @@ public class GamePage {
         updateFloorLine(player, place);
         updateName(player, place);
         updateScore(player, place);
+
     }
 
     private void updateScore(Player player, int place) {
