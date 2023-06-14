@@ -1,9 +1,9 @@
 package controller;
 
+import model.GameProxy;
 import model.Model;
-import model.Player;
+import model.ModelProxy;
 import model.TileColor;
-import utils.ExceptionGameStart;
 import view.View;
 
 public class ControllerImpl implements Controller {
@@ -13,13 +13,13 @@ public class ControllerImpl implements Controller {
     @Override
     public void joinPlayer(String name) {
         if (model.isPlaying()) {
-            view.toast("Game already playing. Wait until the game is finished.");
+            pushMessage("Game already playing. Wait until the game is finished.");
         } else if (model.getPlayerList().size() >= 4) {
-            view.toast("Too many players");
+            pushMessage("Too many players");
         } else {
-            model.addPlayer(new Player(name));
-            view.toast(name + " added");
-            view.update();
+            model.addPlayer(name);
+            pushMessage(name + " added");
+            pushUpdate();
         }
     }
 
@@ -27,14 +27,10 @@ public class ControllerImpl implements Controller {
     public void startGame() {
         if (model.canStartGame()) {
             model.startGame();
-            view.update();
-            view.toast("Game started");
+            pushMessage("Game started");
+            pushUpdate();
         } else {
-            try {
-                model.startGame();
-            } catch (ExceptionGameStart e) {
-                view.toast(e.getMessage());
-            }
+            pushMessage("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.");
         }
     }
 
@@ -42,10 +38,8 @@ public class ControllerImpl implements Controller {
     public void performMoveMiddleFloorLine(TileColor tileColor) {
         if (model.isValidMoveMiddleFloorLine(tileColor)) {
             model.performMoveMiddleFloorLine(tileColor);
-            view.update();
-            view.toast("Performing move... (tile: " + tileColor + " from the Middle to the Floor Line)");
-        } else {
-            throw new RuntimeException("Invalid move.");
+            pushMessage("Performing move... (tile: " + tileColor + " from the Middle to the Floor Line)");
+            pushUpdate();
         }
     }
 
@@ -53,39 +47,42 @@ public class ControllerImpl implements Controller {
     public void performMoveMiddlePatternLine(int row, TileColor tileColor) {
         if (model.isValidMoveMiddlePatternLine(row, tileColor)) {
             model.performMoveMiddlePatternLine(row, tileColor);
-            view.update();
-            view.toast("Performing move... (tile: " + tileColor + " from the Middle to the row " + row + " in the" +
+            pushMessage("Performing move... (tile: " + tileColor + " from the Middle to the row " + row + " in the" +
                     " Pattern Line)");
-        } else throw new RuntimeException("Invalid move.");
+            pushUpdate();
+        } 
+
     }
 
     @Override
     public void performMoveFactoryFloorLine(int index, TileColor tileColor) {
         if (model.isValidMoveFactoryFloorLine(index, tileColor)) {
             model.performMoveFactoryFloorLine(index, tileColor);
-            view.update();
-            view.toast("Performing move... (tile: " + tileColor + " from the Factory " + index + " to the row  the " +
+            pushMessage("Performing move... (tile: " + tileColor + " from the Factory " + index + " to the " +
                     "Floor Line)");
-        } else throw new RuntimeException("Invalid move.");
+            pushUpdate();
+        } 
+        
     }
 
     @Override
     public void performMoveFactoryPatternLine(int index, int row, TileColor tileColor) {
         if (model.isValidMoveFactoryPatternLine(index, row, tileColor)) {
             model.performMoveFactoryPatternLine(index, row, tileColor);
-            view.update();
-            view.toast("Performing move... (tile: " + tileColor + " from the Factory " + index + " to the row " + row + " in the" +
+            pushMessage("Performing move... (tile: " + tileColor + " from the Factory " + index + " to the row " + row + " in the" +
                     " Pattern Line)");
-        } else throw new RuntimeException("Invalid move.");
+            pushUpdate();
+        } 
+        
     }
 
     @Override
     public void terminateGame() {
         if (model.isPlaying()) {
             model.terminateGame();
-            view.update();
-            view.toast("Terminating game...");
-        } else throw new RuntimeException("Invalid request.");
+            pushMessage("Terminating game...");
+        }
+        pushUpdate();
     }
 
     public void setModel(Model model) {
@@ -96,4 +93,11 @@ public class ControllerImpl implements Controller {
         this.view = view;
     }
 
+    private void pushMessage(String message) {
+        view.toast(message);
+    }
+
+    private void pushUpdate() {
+        view.update();
+    }
 }

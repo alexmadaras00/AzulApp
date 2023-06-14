@@ -3,7 +3,8 @@ import java.util.List;
 
 public class GameProxy implements ModelProxy {
 
-    private Game game;
+    private Model game;
+
 
     @Override
     public int getFactoryCount() {
@@ -69,5 +70,9 @@ public class GameProxy implements ModelProxy {
     @Override
     public boolean isPlaying() {
         return game.isPlaying();
+    }
+
+    public void setProxy(Model game) {
+        this.game = game;
     }
 }
