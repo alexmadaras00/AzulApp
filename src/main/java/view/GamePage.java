@@ -69,28 +69,20 @@ public class GamePage {
             switch (place) {
                 case 1:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
                     break;
                 case 2:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
@@ -98,14 +90,10 @@ public class GamePage {
 
                 case 3:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
@@ -113,14 +101,10 @@ public class GamePage {
 
                 case 4:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
@@ -128,14 +112,10 @@ public class GamePage {
 
                 case 5:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
@@ -143,14 +123,10 @@ public class GamePage {
 
                 case 6:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
@@ -158,14 +134,10 @@ public class GamePage {
 
                 case 7:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
@@ -173,14 +145,10 @@ public class GamePage {
 
                 case 8:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
@@ -188,14 +156,10 @@ public class GamePage {
 
                 case 9:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.fill(translateColor(tiles.get(0))));
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.fill(translateColor(tiles.get(1))));
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.fill(translateColor(tiles.get(2))));
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.fill(translateColor(tiles.get(3))));
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.fill(translateColor(tiles.get(0))));
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.fill(translateColor(tiles.get(1))));
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.fill(translateColor(tiles.get(2))));
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.fill(translateColor(tiles.get(3))));
                     } catch(Exception e) {
 
                     }
@@ -212,14 +176,10 @@ public class GamePage {
             switch (place) {
                 case 1:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -227,14 +187,10 @@ public class GamePage {
 
                 case 2:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -242,14 +198,10 @@ public class GamePage {
 
                 case 3:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -257,14 +209,10 @@ public class GamePage {
 
                 case 4:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -272,14 +220,10 @@ public class GamePage {
 
                 case 5:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -287,14 +231,10 @@ public class GamePage {
 
                 case 6:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -302,14 +242,10 @@ public class GamePage {
 
                 case 7:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -317,14 +253,10 @@ public class GamePage {
 
                 case 8:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -332,14 +264,10 @@ public class GamePage {
 
                 case 9:
                     try {
-                        Button button1 = (Button) getElementByName("buttonF" + place + "T1");
-                        button1.setBackground(Background.EMPTY);
-                        Button button2 = (Button) getElementByName("buttonF" + place + "T2");
-                        button2.setBackground(Background.EMPTY);
-                        Button button3 = (Button) getElementByName("buttonF" + place + "T3");
-                        button3.setBackground(Background.EMPTY);
-                        Button button4 = (Button) getElementByName("buttonF" + place + "T4");
-                        button4.setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T1", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T2", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T3", Button.class).setBackground(Background.EMPTY);
+                        getElementByName("buttonF" + place + "T4", Button.class).setBackground(Background.EMPTY);
                     } catch(Exception e) {
 
                     }
@@ -671,31 +599,31 @@ public class GamePage {
                     switch (row) {
                         case 0:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 1:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 2:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 3:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 4:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
@@ -704,31 +632,31 @@ public class GamePage {
                     switch (row) {
                         case 0:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 1:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 2:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 3:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 4:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
@@ -737,31 +665,31 @@ public class GamePage {
                     switch (row) {
                         case 0:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 1:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 2:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 3:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 4:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
@@ -770,31 +698,31 @@ public class GamePage {
                     switch (row) {
                         case 0:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 1:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 2:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 3:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 4:
                             try {
-                                return (GridPane) getElementByName("player" + place + "W" + (row+1));
+                                return getElementByName("player" + place + "W" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
@@ -814,31 +742,31 @@ public class GamePage {
                     switch (row) {
                         case 0:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 1:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 2:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 3:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 4:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
@@ -847,31 +775,31 @@ public class GamePage {
                     switch (row) {
                         case 0:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 1:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 2:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 3:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 4:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
@@ -880,31 +808,31 @@ public class GamePage {
                     switch (row) {
                         case 0:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 1:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 2:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 3:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 4:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
@@ -913,31 +841,31 @@ public class GamePage {
                     switch (row) {
                         case 0:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 1:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 2:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 3:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
                         case 4:
                             try {
-                                return (GridPane) getElementByName("player" + place + "PL" + (row+1));
+                                return getElementByName("player" + place + "PL" + (row+1), GridPane.class);
                             } catch(Exception e) {
 
                             }
@@ -954,27 +882,27 @@ public class GamePage {
             switch (place) {
                 case 1:
                     try {
-                        return (HBox) getElementByName("player" + place + "Floor");
+                        return getElementByName("player" + place + "Floor", HBox.class);
                     } catch(Exception e) {
 
                     }
                 case 2:
                     try {
-                        return (HBox) getElementByName("player" + place + "Floor");
+                        return getElementByName("player" + place + "Floor", HBox.class);
                     } catch(Exception e) {
 
                     }
 
                 case 3:
                     try {
-                        return (HBox) getElementByName("player" + place + "Floor");
+                        return getElementByName("player" + place + "Floor", HBox.class);
                     } catch(Exception e) {
 
                     }
 
                 case 4:
                     try {
-                        return (HBox) getElementByName("player" + place + "Floor");
+                        return getElementByName("player" + place + "Floor", HBox.class);
                     } catch(Exception e) {
 
                     }
@@ -990,26 +918,26 @@ public class GamePage {
             switch (place) {
                 case 1:
                     try {
-                        return (Label) getElementByName("player" + place + "Score");
+                        return getElementByName("player" + place + "Score", Label.class);
                     } catch(Exception e) {
 
                     }
                 case 2:
                     try {
-                        return (Label) getElementByName("player" + place + "Score");
+                        return getElementByName("player" + place + "Score", Label.class);
                     } catch(Exception e) {
 
                     }
 
                 case 3:
                     try {
-                        return (Label) getElementByName("player" + place + "Score");
+                        return getElementByName("player" + place + "Score", Label.class);
                     } catch(Exception e) {
 
                     }
                 case 4:
                     try {
-                        return (Label) getElementByName("player" + place + "Score");
+                        return getElementByName("player" + place + "Score", Label.class);
                     } catch(Exception e) {
 
                     }
@@ -1025,25 +953,25 @@ public class GamePage {
             switch (place) {
                 case 1:
                     try {
-                        return (Label) getElementByName("player" + place + "Name");
+                        return getElementByName("player" + place + "Name", Label.class);
                     } catch(Exception e) {
 
                     }
                 case 2:
                     try {
-                        return (Label) getElementByName("player" + place + "Name");
+                        return getElementByName("player" + place + "Name", Label.class);
                     } catch(Exception e) {
                         
                     }
                 case 3:
                     try {
-                        return (Label) getElementByName("player" + place + "Name");
+                        return getElementByName("player" + place + "Name", Label.class);
                     } catch(Exception e) {
                         
                     }
                 case 4:
                     try {
-                        return (Label) getElementByName("player" + place + "Name");
+                        return getElementByName("player" + place + "Name", Label.class);
                     } catch(Exception e) {
                         
                     }
@@ -1097,29 +1025,25 @@ public class GamePage {
                 switch (i) {
                     case 1:
                         try {
-                            VBox playerboard = (VBox) getElementByName("playerboard" + i);
-                            playerboard.setVisible(false);
+                            getElementByName("playerboard" + i, VBox.class).setVisible(false);
                         } catch(Exception e) {
 
                         }
                     case 2:
                         try {
-                            VBox playerboard = (VBox) getElementByName("playerboard" + i);
-                            playerboard.setVisible(false);
+                            getElementByName("playerboard" + i, VBox.class).setVisible(false);
                         } catch(Exception e) {
 
                         }
                     case 3:
                         try {
-                            VBox playerboard = (VBox) getElementByName("playerboard" + i);
-                            playerboard.setVisible(false);
+                            getElementByName("playerboard" + i, VBox.class).setVisible(false);
                         } catch(Exception e) {
 
                         }
                     case 4:
                         try {
-                            VBox playerboard = (VBox) getElementByName("playerboard" + i);
-                            playerboard.setVisible(false);
+                            getElementByName("playerboard" + i, VBox.class).setVisible(false);
                         } catch(Exception e) {
 
                         }
@@ -1135,9 +1059,9 @@ public class GamePage {
     public void update() {
     }
 
-    private Object getElementByName(String name) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+    private <T> T getElementByName(String name, Class<T> clazz) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         Field field = this.getClass().getDeclaredField(name);
-        return field.get(this);
+        return clazz.cast(field.get(this));
     }
 
 }
