@@ -1,14 +1,13 @@
 package model;
 
-import utils.ExceptionGameStart;
 
 public interface Model extends ModelProxy{
 
-    void startGame() throws ExceptionGameStart;
+    void startGame();
 
     void terminateGame();
 
-    void addPlayer(Player player);
+    void addPlayer(String name);
 
     boolean canStartGame();
 

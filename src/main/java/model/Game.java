@@ -1,8 +1,6 @@
 package model;
 
 import model.factory.Factory;
-import utils.ExceptionGameStart;
-
 import java.util.*;
 import java.util.function.Function;
 
@@ -153,32 +151,20 @@ public class Game implements Model {
             isPlaying = true;
             gamePhase = GamePhase.PREPARING_ROUND;
             startRound();
-        } else
-            throw new ExceptionGameStart("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.");
-    }
-
-    private void fillBag() {
-        for (int i = 0; i < 20; i++) {
-            List<TileColor> colorTiles = new ArrayList<>();
-            colorTiles.add(TileColor.RED);
-            colorTiles.add(TileColor.BLACK);
-            colorTiles.add(TileColor.BLUE);
-            colorTiles.add(TileColor.CYAN);
-            colorTiles.add(TileColor.YELLOW);
-            bag.addTiles(colorTiles);
         }
     }
 
+    private void fillBag() {
+        List<TileColor> colorTiles = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            colorTiles.addAll(List.of((TileColor[]) (Object) TileColor.values()));
+        }
+        bag.addTiles(colorTiles);
+    }
+
     private void initFactories() {
-        if (players.size() == 2) {
-            for (int i = 0; i < 5; i++)
-                factories.add(new Factory());
-        } else if (players.size() == 3) {
-            for (int i = 0; i < 7; i++)
-                factories.add(new Factory());
-        } else {
-            for (int i = 0; i < 9; i++)
-                factories.add(new Factory());
+        for (int i = 0; i < players.size()*2+1; i++) {
+            factories.add(new Factory());
         }
     }
 
@@ -283,7 +269,8 @@ public class Game implements Model {
     }
 
     @Override
-    public void addPlayer(Player player) {
+    public void addPlayer(String name) {
+        Player player = new Player(name);
         players.add(player);
         turnOrder.add(player);
     }

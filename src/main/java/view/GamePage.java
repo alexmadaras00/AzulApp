@@ -14,7 +14,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import model.Model;
 import model.ModelProxy;
 import model.Player;
 import model.PlayerTile;
@@ -32,7 +31,7 @@ public class GamePage {
         this.view = view;
     }
 
-    public void setModel(Model model) {
+    public void setModel(ModelProxy model) {
         this.model = model;
     }
 

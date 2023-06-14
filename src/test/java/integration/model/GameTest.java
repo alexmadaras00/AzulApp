@@ -5,8 +5,6 @@ import model.factory.Factory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.ExceptionGameStart;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,13 +23,13 @@ public class GameTest {
     public void init() {
         game = new Game();
         factories = new ArrayList<>();
-        player1 = new Player("Boris");
-        player2 = new Player("Giani");
         assertEquals(0, game.getPlayers().size());
         assertEquals(0, game.getTurnOrder().size());
         assertEquals(0, game.getBox().size());
-        game.addPlayer(player1);
-        game.addPlayer(player2);
+        game.addPlayer("Boris");
+        game.addPlayer("Giani");
+        player1 = game.getPlayers().get(0);
+        player2 = game.getPlayers().get(1);
         factoryTiles = new ArrayList<>();
     }
 
@@ -54,48 +52,27 @@ public class GameTest {
         assertPostConditionsStart();
         Game gameFailFewerPlayers = null;
         Game gameFailTooManyPlayers = null;
-        try {
-            Player p1 = new Player();
-            p1.setName("Nano");
-            gameFailFewerPlayers = new Game();
-            game.addPlayer(player1);
-            gameFailFewerPlayers.startGame();
-            assertTrue(gameFailFewerPlayers.getPlayers().size() < 2);
-            assertFalse(gameFailFewerPlayers.canStartGame());
-            fail("Expected exception not thrown");
-        } catch (ExceptionGameStart e) {
-            assertEquals("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.", e.getMessage());
-            assert gameFailFewerPlayers != null;
-            assertFalse(gameFailFewerPlayers.isPlaying());
-            assertEquals(GamePhase.INITIALIZED, gameFailFewerPlayers.getGamePhase());
-        }
-        try {
-            Player p1 = new Player();
-            p1.setName("Nano");
-            Player p2 = new Player();
-            p1.setName("Miguel");
-            Player p3 = new Player();
-            p1.setName("Santo");
-            Player p4 = new Player();
-            p1.setName("Matei");
-            Player p5 = new Player();
-            p1.setName("Rutter");
-            gameFailTooManyPlayers = new Game();
-            gameFailTooManyPlayers.addPlayer(p1);
-            gameFailTooManyPlayers.addPlayer(p2);
-            gameFailTooManyPlayers.addPlayer(p3);
-            gameFailTooManyPlayers.addPlayer(p4);
-            gameFailTooManyPlayers.addPlayer(p5);
-            gameFailTooManyPlayers.startGame();
-            assertTrue(gameFailTooManyPlayers.getPlayers().size() < 2);
-            assertFalse(gameFailTooManyPlayers.canStartGame());
-            fail("Expected exception not thrown");
-        } catch (ExceptionGameStart e) {
-            assertEquals("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.", e.getMessage());
-            assert gameFailTooManyPlayers != null;
-            assertFalse(gameFailTooManyPlayers.isPlaying());
-            assertEquals(GamePhase.INITIALIZED, gameFailTooManyPlayers.getGamePhase());
-        }
+        gameFailFewerPlayers = new Game();
+        game.addPlayer("Nano");
+        gameFailFewerPlayers.startGame();
+        assertTrue(gameFailFewerPlayers.getPlayers().size() < 2);
+        assertFalse(gameFailFewerPlayers.canStartGame());
+        assert gameFailFewerPlayers != null;
+        assertFalse(gameFailFewerPlayers.isPlaying());
+        assertEquals(GamePhase.INITIALIZED, gameFailFewerPlayers.getGamePhase());
+
+        gameFailTooManyPlayers = new Game();
+        gameFailTooManyPlayers.addPlayer("Nano");
+        gameFailTooManyPlayers.addPlayer("Miguel");
+        gameFailTooManyPlayers.addPlayer("Santo");
+        gameFailTooManyPlayers.addPlayer("Matei");
+        gameFailTooManyPlayers.addPlayer("Rutter");
+        gameFailTooManyPlayers.startGame();
+        assertTrue(gameFailTooManyPlayers.getPlayers().size() > 4);
+        assertFalse(gameFailTooManyPlayers.canStartGame());
+        assert gameFailTooManyPlayers != null;
+        assertFalse(gameFailTooManyPlayers.isPlaying());
+        assertEquals(GamePhase.INITIALIZED, gameFailTooManyPlayers.getGamePhase());
     }
 
     private void assertPostConditionsStart() {
@@ -223,8 +200,8 @@ public class GameTest {
 
     @Test
     public void testAddPlayer() {
-        Player player = new Player("Marcelo");
-        game.addPlayer(player);
+        game.addPlayer("Marcelo");
+        Player player = game.getPlayers().get(2);
         assertTrue(game.getPlayers().contains(player));
         assertTrue(game.getTurnOrder().contains(player));
     }
@@ -233,7 +210,7 @@ public class GameTest {
     public void testCanStartGame() {
         assertTrue(game.canStartGame());
         Game gameInvalidPlayers = new Game();
-        gameInvalidPlayers.addPlayer(new Player("Bogdan"));
+        gameInvalidPlayers.addPlayer("Bogdan");
         assertFalse(gameInvalidPlayers.canStartGame());
     }
 

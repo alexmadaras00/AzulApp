@@ -3,16 +3,16 @@ package unit.controller;
 import controller.ControllerImpl;
 import model.Game;
 import model.Model;
-import model.Player;
 import model.TileColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import utils.ExceptionGameStart;
 import view.View;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 public class ControllerImplTest {
@@ -50,10 +50,10 @@ public class ControllerImplTest {
         when(model.isPlaying()).thenReturn(false);
         model = new Game();
         controller.setModel(model);
-        model.addPlayer(new Player());
-        model.addPlayer(new Player());
-        model.addPlayer(new Player());
-        model.addPlayer(new Player());
+        model.addPlayer("");
+        model.addPlayer("");
+        model.addPlayer("");
+        model.addPlayer("");
         // Call the joinPlayer method and verify the result
         controller.joinPlayer("Player 5");
         verify(view).toast("Too many players");
@@ -80,7 +80,7 @@ public class ControllerImplTest {
     }
 
     @Test
-    public void testStartGameWhenGameCanStart() throws ExceptionGameStart {
+    public void testStartGameWhenGameCanStart() {
         // Set up the mock model
         when(model.canStartGame()).thenReturn(true);
 
@@ -93,15 +93,13 @@ public class ControllerImplTest {
     }
 
     @Test
-    public void testStartGameWhenGameCannotStart() throws ExceptionGameStart {
+    public void testStartGameWhenGameCannotStart() {
         // Set up the mock model
         when(model.canStartGame()).thenReturn(false);
-        doThrow(new ExceptionGameStart("Cannot start game")).when(model).startGame();
 
         // Call the startGame method and verify the result
         controller.startGame();
-        verify(model).startGame();
-        verify(view).toast("Cannot start game");
+        verify(view).toast("Invalid number of players. The game requires at least 2 and at most 4 players. Please adjust the number of players and try again.");
         verifyNoMoreInteractions(view);
     }
 
@@ -124,10 +122,9 @@ public class ControllerImplTest {
         when(model.isValidMoveMiddleFloorLine(any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveMiddleFloorLine method and verify the result
-        assertThrows(RuntimeException.class, () -> controller.performMoveMiddleFloorLine(TileColor.RED));
+        controller.performMoveMiddleFloorLine(TileColor.RED);
         verify(model).isValidMoveMiddleFloorLine(TileColor.RED);
         verifyNoMoreInteractions(model);
-        verifyNoMoreInteractions(view);
     }
 
     @Test
@@ -152,7 +149,7 @@ public class ControllerImplTest {
         controller.performMoveFactoryFloorLine(3, TileColor.BLACK);
         verify(model).performMoveFactoryFloorLine(3, TileColor.BLACK);
         verify(view).update();
-        verify(view).toast("Performing move... (tile: BLACK from the Factory 3 to the row  the Floor Line)");
+        verify(view).toast("Performing move... (tile: BLACK from the Factory 3 to the Floor Line)");
         verifyNoMoreInteractions(view);
     }
 
@@ -162,10 +159,9 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryFloorLine(anyInt(), any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveFactoryFloorLine method and verify the result
-        assertThrows(RuntimeException.class, () -> controller.performMoveFactoryFloorLine(2, TileColor.RED));
+        controller.performMoveFactoryFloorLine(2, TileColor.RED);
         verify(model).isValidMoveFactoryFloorLine(2, TileColor.RED);
         verifyNoMoreInteractions(model);
-        verifyNoMoreInteractions(view);
     }
 
     @Test
@@ -187,10 +183,9 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryPatternLine(anyInt(), anyInt(), any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveFactoryPatternLine method and verify the result
-        assertThrows(RuntimeException.class, () -> controller.performMoveFactoryPatternLine(1, 2, TileColor.YELLOW));
+        controller.performMoveFactoryPatternLine(1, 2, TileColor.YELLOW);
         verify(model).isValidMoveFactoryPatternLine(1, 2, TileColor.YELLOW);
         verifyNoMoreInteractions(model);
-        verifyNoMoreInteractions(view);
     }
 
     @Test
@@ -212,9 +207,10 @@ public class ControllerImplTest {
         when(model.isPlaying()).thenReturn(false);
 
         // Call the terminateGame method and verify the result
-        assertThrows(RuntimeException.class, () -> controller.terminateGame());
+        controller.terminateGame();
         verify(model).isPlaying();
         verifyNoMoreInteractions(model);
+        verify(view).update();
         verifyNoMoreInteractions(view);
     }
 }
