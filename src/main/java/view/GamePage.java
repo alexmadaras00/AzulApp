@@ -300,15 +300,12 @@ public class GamePage {
             factory9.setVisible(false);
             factory8.setVisible(false);
         }
-        Tile[] factoryTiles = null;
 
         for (int i = 0; i < model.getFactoryCount(); i++) {
-            factoryTiles = model.getFactory(i);
+            Tile[] factoryTiles = model.getFactory(i);
             for (int j = 0; j < 4; j++) {
                 setTileColor(getElementByName("buttonF" + (i + 1) + "T" + (j + 1), Button.class), factoryTiles[j]);
-
             }
-
         }
     }
 
@@ -346,16 +343,8 @@ public class GamePage {
             default:
                 break;
         }
-        switch (players.size()) {
-            case 4:
-                updatePlayer(players.get(3), 4);
-            case 3:
-                updatePlayer(players.get(2), 3);
-            case 2:
-                updatePlayer(players.get(1), 2);
-                updatePlayer(players.get(0), 1);
-            default:
-                break;
+        for (int i = 0; i < players.size(); i++) {
+            updatePlayer(players.get(i), i + 1);
         }
     }
 
@@ -368,41 +357,11 @@ public class GamePage {
     }
 
     private void updateScore(Player player, int place) {
-        switch (place) {
-            case 4:
-                player4Score.setText("Score: " + player.getBoard().getScore());
-                break;
-            case 3:
-                player3Score.setText("Score: " + player.getBoard().getScore());
-                break;
-            case 2:
-                player2Score.setText("Score: " + player.getBoard().getScore());
-                break;
-            case 1:
-                player1Score.setText("Score: " + player.getBoard().getScore());
-                break;
-            default:
-                return;
-        }
+        getElementByName("player" + place + "Score", Label.class).setText("Score: " + player.getBoard().getScore());
     }
 
     private void updateName(Player player, int place) {
-        switch (place) {
-            case 4:
-                player4Name.setText(player.getName());
-                break;
-            case 3:
-                player3Name.setText(player.getName());
-                break;
-            case 2:
-                player2Name.setText(player.getName());
-                break;
-            case 1:
-                player1Name.setText(player.getName());
-                break;
-            default:
-                return;
-        }
+        getElementByName("player" + place + "Name", Label.class).setText(player.getName());
     }
 
     private void setFloorLine(HBox floorLine, List<Tile> tiles) {
@@ -414,117 +373,37 @@ public class GamePage {
 
     private void updateFloorLine(Player player, int place) {
         List<Tile> floorTiles = player.getBoard().getFloorLine().getCopyTiles();
-        switch (place) {
-            case 4:
-                setFloorLine(player4Floor, floorTiles);
-                break;
-            case 3:
-                setFloorLine(player3Floor, floorTiles);
-                break;
-            case 2:
-                setFloorLine(player2Floor, floorTiles);
-                break;
-            case 1:
-                setFloorLine(player1Floor, floorTiles);
-                break;
-            default:
-                return;
-        }
+        setFloorLine(getElementByName("player" + place + "Floor", HBox.class), floorTiles);
     }
 
     private void updatePatternLine(Player player, int place) {
         List<List<Tile>> floorTiles = player.getBoard().getPatternLine().getCopyTable();
-        switch (place) {
-            case 1:
-                setPatternLine(player1PL1, floorTiles.get(0));
-                setPatternLine(player1PL2, floorTiles.get(1));
-                setPatternLine(player1PL3, floorTiles.get(2));
-                setPatternLine(player1PL4, floorTiles.get(3));
-                setPatternLine(player1PL5, floorTiles.get(4));
-                break;
-            case 2:
-                setPatternLine(player2PL1, floorTiles.get(0));
-                setPatternLine(player2PL2, floorTiles.get(1));
-                setPatternLine(player2PL3, floorTiles.get(2));
-                setPatternLine(player2PL4, floorTiles.get(3));
-                setPatternLine(player2PL5, floorTiles.get(4));
-                break;
-            case 3:
-                setPatternLine(player3PL1, floorTiles.get(0));
-                setPatternLine(player3PL2, floorTiles.get(1));
-                setPatternLine(player3PL3, floorTiles.get(2));
-                setPatternLine(player3PL4, floorTiles.get(3));
-                setPatternLine(player3PL5, floorTiles.get(4));
-                break;
-            case 4:
-                setPatternLine(player4PL1, floorTiles.get(0));
-                setPatternLine(player4PL2, floorTiles.get(1));
-                setPatternLine(player4PL3, floorTiles.get(2));
-                setPatternLine(player4PL4, floorTiles.get(3));
-                setPatternLine(player4PL5, floorTiles.get(4));
-                break;
-            default:
-                return;
+        for (int line = 1; line <= 5; line++) {
+            setPatternLine(getElementByName("player" + place + "PL" + line, GridPane.class), floorTiles.get(line - 1));
         }
+
     }
 
     private void setPatternLine(GridPane patternLine, List<Tile> tiles) {
         patternLine.getChildren().clear();
-        switch (tiles.size()) {
-            case 5:
-                patternLine.add(new TileButton(tiles.get(4)), 0, 0);
-            case 4:
-                patternLine.add(new TileButton(tiles.get(3)), 1, 0);
-            case 3:
-                patternLine.add(new TileButton(tiles.get(2)), 2, 0);
-            case 2:
-                patternLine.add(new TileButton(tiles.get(1)), 3, 0);
-            case 1:
-                patternLine.add(new TileButton(tiles.get(0)), 4, 0);
-            default:
-                return;
+        for (int i = 0; i < tiles.size(); i++) {
+            patternLine.add(new TileButton(tiles.get(i)), 4 - i, 0);
         }
+
     }
 
     private void updateWall(Player player, int place) {
         List<List<Tile>> wallTiles = player.getBoard().getWall().getCopyTable();
-        switch (place) {
-            case 4:
-                setWallLine(player4W1, wallTiles.get(0));
-                setWallLine(player4W2, wallTiles.get(1));
-                setWallLine(player4W3, wallTiles.get(2));
-                setWallLine(player4W4, wallTiles.get(3));
-                setWallLine(player4W5, wallTiles.get(4));
-            case 3:
-                setWallLine(player3W1, wallTiles.get(0));
-                setWallLine(player3W2, wallTiles.get(1));
-                setWallLine(player3W3, wallTiles.get(2));
-                setWallLine(player3W4, wallTiles.get(3));
-                setWallLine(player3W5, wallTiles.get(4));
-            case 2:
-                setWallLine(player2W1, wallTiles.get(0));
-                setWallLine(player2W2, wallTiles.get(1));
-                setWallLine(player2W3, wallTiles.get(2));
-                setWallLine(player2W4, wallTiles.get(3));
-                setWallLine(player2W5, wallTiles.get(4));
-            case 1:
-                setWallLine(player1W1, wallTiles.get(0));
-                setWallLine(player1W2, wallTiles.get(1));
-                setWallLine(player1W3, wallTiles.get(2));
-                setWallLine(player1W4, wallTiles.get(3));
-                setWallLine(player1W5, wallTiles.get(4));
-            default:
-                return;
+        for (int line = 1; line <= 5; line++) {
+            setWallLine(getElementByName("player" + place + "W" + line, GridPane.class), wallTiles.get(line - 1));
         }
     }
 
     private void setWallLine(GridPane wallLine, List<Tile> tiles) {
         wallLine.getChildren().clear();
-        wallLine.add(new TileButton(tiles.get(0)), 0, 0);
-        wallLine.add(new TileButton(tiles.get(1)), 1, 0);
-        wallLine.add(new TileButton(tiles.get(2)), 2, 0);
-        wallLine.add(new TileButton(tiles.get(3)), 3, 0);
-        wallLine.add(new TileButton(tiles.get(4)), 4, 0);
+        for (int i = 0; i < 5; i++) {
+            wallLine.add(new TileButton(tiles.get(i)), i, 0);
+        }
     }
 
     public void update() {
