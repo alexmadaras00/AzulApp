@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import utils.ExceptionGameStart;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
