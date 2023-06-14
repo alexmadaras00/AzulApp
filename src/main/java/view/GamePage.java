@@ -275,10 +275,9 @@ public class GamePage {
 
             case CYAN:
                 return Color.CYAN;
-
-            default:
-                return null;
         }
+        // should never run
+        return null;
     }
 
     public static TileColor translateColorBack(Color color) {
@@ -519,6 +518,9 @@ public class GamePage {
         }
 
         GridPane getWall(int row) {
+            if (place < 1 || place > 4 || row < 0 || row  > 4) { 
+                return null;
+            }
             switch (place) {
                 case 1:
                     switch (row) {
@@ -532,8 +534,6 @@ public class GamePage {
                             return player1W4;
                         case 4:
                             return player1W5;
-                        default:
-                            return null;
                     }
                 case 2:
                     switch (row) {
@@ -547,8 +547,6 @@ public class GamePage {
                             return player2W4;
                         case 4:
                             return player2W5;
-                        default:
-                            return null;
                     }
                 case 3:
                     switch (row) {
@@ -562,8 +560,6 @@ public class GamePage {
                             return player3W4;
                         case 4:
                             return player3W5;
-                        default:
-                            return null;
                     }
                 case 4:
                     switch (row) {
@@ -577,15 +573,17 @@ public class GamePage {
                             return player4W4;
                         case 4:
                             return player4W5;
-                        default:
-                            return null;
                     }
-                default:
-                    return null;
             }
+
+            // should never be triggered, but to make compiler happy
+            return null;
         }
 
         GridPane getPatternline(int row) {
+            if (place < 1 || place > 4 || row < 0 || row  > 4) { 
+                return null;
+            }
             switch (place) {
                 case 1:
                     switch (row) {
@@ -599,8 +597,6 @@ public class GamePage {
                             return player1PL4;
                         case 4:
                             return player1PL5;
-                        default:
-                            return null;
                     }
                 case 2:
                     switch (row) {
@@ -614,8 +610,6 @@ public class GamePage {
                             return player2PL4;
                         case 4:
                             return player2PL5;
-                        default:
-                            return null;
                     }
                 case 3:
                     switch (row) {
@@ -629,8 +623,6 @@ public class GamePage {
                             return player3PL4;
                         case 4:
                             return player3PL5;
-                        default:
-                            return null;
                     }
                 case 4:
                     switch (row) {
@@ -644,15 +636,16 @@ public class GamePage {
                             return player4PL4;
                         case 4:
                             return player4PL5;
-                        default:
-                            return null;
                     }
-                default:
-                    return null;
             }
+            // should never be triggered, but to make compiler happy
+            return null;
         }
 
         HBox getFloorline() {
+            if (place < 0 || place > 4) {
+                return null;
+            }
             switch (place) {
                 case 1:
                     return player1Floor;
@@ -664,13 +657,15 @@ public class GamePage {
 
                 case 4:
                     return player4Floor;
-
-                default:
-                    return null;
             }
+            // should never be triggered, but to make compiler happy
+            return null;
         }
 
         Label getScore() {
+            if (place < 0 || place > 4) {
+                return null;
+            }
             switch (place) {
                 case 1:
                     return player1Score;
@@ -682,28 +677,27 @@ public class GamePage {
 
                 case 4:
                     return player4Score;
-
-                default:
-                    return null;
             }
+            // should never be triggered, but to make compiler happy
+            return null;
         }
 
         Label getName() {
+            if (place < 0 || place > 4) {
+                return null;
+            }
             switch (place) {
                 case 1:
                     return player1Name;
                 case 2:
                     return player2Name;
-
                 case 3:
                     return player3Name;
-
                 case 4:
                     return player4Name;
-
-                default:
-                    return null;
             }
+            // should never be triggered, but to make compiler happy
+            return null;
         }
 
     }
