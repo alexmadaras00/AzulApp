@@ -124,10 +124,8 @@ public class Game implements Model {
     }
 
     @Override
-    public List<Integer> getPlayerList() {
-        List<Integer> result = new ArrayList<>();
-        players.forEach(player -> result.add(player.getIdentifier()));
-        return result;
+    public List<Player> getPlayerList() {
+        return new ArrayList<>(players);
     }
 
     @Override

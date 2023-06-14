@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.ModelProxy;
+import model.Player;
 
 public class HubPage {
     private ModelProxy model;
@@ -42,16 +43,16 @@ public class HubPage {
     private Button startButton;
 
     void update() {
-        List<Integer> players = model.getPlayerList();
+        List<Player> players = model.getPlayerList();
         enableAllPlayers();
-        for (Integer identifier : players) {
-            if (playerName1.getText().equals(model.getName(identifier))) {
+        for (Player player : players) {
+            if (playerName1.getText().equals(player.getName())) {
                 disablePlayer(1);
-            } else if (playerName2.getText().equals(model.getName(identifier))) {
+            } else if (playerName2.getText().equals(player.getName())) {
                 disablePlayer(2);
-            } else if (playerName3.getText().equals(model.getName(identifier))) {
+            } else if (playerName3.getText().equals(player.getName())) {
                 disablePlayer(3);
-            } else if (playerName4.getText().equals(model.getName(identifier))) {
+            } else if (playerName4.getText().equals(player.getName())) {
                 disablePlayer(4);
             }
         }
