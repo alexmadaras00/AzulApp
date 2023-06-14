@@ -534,7 +534,6 @@ public class GamePage {
     }
 
     private <T> T getElementByName(String name, Class<T> clazz) {
-        System.out.println(name);
         Field field;
         try {
             field = this.getClass().getDeclaredField(name);
