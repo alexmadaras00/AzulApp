@@ -1,6 +1,6 @@
 package view;
 
-import controller.Controller;
+import controller.ControllerImpl;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +11,7 @@ import model.Model;
 public class View {
     private Model model;
 
-    private Controller controller;
+    private ControllerImpl controllerImpl;
 
     private Stage stage;
     private GamePage gamePageController;
@@ -24,8 +24,8 @@ public class View {
         this.model = model;
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
+    public void setController(ControllerImpl controllerImpl) {
+        this.controllerImpl = controllerImpl;
     }
 
     public void showHub() {
@@ -73,10 +73,10 @@ public class View {
         hubPageController = loaderHub.getController();
         gamePageController = loaderGame.getController();
         hubPageController.setView(this);
-        hubPageController.setController(controller);
+        hubPageController.setController(controllerImpl);
         hubPageController.setModel(model);
         gamePageController.setView(this);
-        gamePageController.setController(controller);
+        gamePageController.setController(controllerImpl);
         gamePageController.setModel(model);
     }
 }
