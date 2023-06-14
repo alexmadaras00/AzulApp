@@ -295,7 +295,7 @@ public class GamePage {
         buttonId = buttonId == null ? "buttonMiddle" : buttonId;
         if (buttonId.contains("buttonF")) {
             buttonLocation = Location.FACTORY;
-            buttonLocationIndex = Integer.parseInt(buttonId.substring(9, 10)) - 1;
+            buttonLocationIndex = Integer.parseInt(buttonId.substring(7, 8)) - 1;
         }
 
         if (selectedId == null || selectedId != buttonId) {
