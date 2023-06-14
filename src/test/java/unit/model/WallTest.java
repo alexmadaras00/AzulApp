@@ -53,6 +53,15 @@ public class WallTest {
     }
 
     @Test
+    public void testTemplateWall() {
+        for (int row = 0; row < template.length; row++) {
+            for (int col = 0; col < template[row].length; col++) {
+                assertEquals(template[row][col], Wall.wallPattern().get(row).get(col));
+            }
+        }
+    }
+
+    @Test
     public void testGetCopyTableEmpty() {
         Tile[][] testWall = new Tile[colors.length][colors.length];
         assertEqualWall(testWall, wall.getCopyTable());
