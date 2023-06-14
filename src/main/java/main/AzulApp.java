@@ -2,7 +2,6 @@ package main;
 
 import controller.ControllerImpl;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
 import model.Game;

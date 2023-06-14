@@ -247,12 +247,12 @@ public class GamePage {
 
     @FXML
     void selectTile(ActionEvent event) {
-        Button source = (Button) event.getSource();
+
     }
 
     @FXML
     void selectToLocation(ActionEvent event) {
-
+        
     }
 
     public void toast(String msg) {
