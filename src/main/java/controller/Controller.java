@@ -1,33 +1,14 @@
 package controller;
 
-import model.Model;
-import model.Player;
-import view.View;
+import model.TileColor;
 
-public class Controller {
-    private Model model;
-    private View view;
+public interface Controller {
+    void joinPlayer(String name);
+    void startGame();
+    void performMoveMiddleFloorLine(TileColor tileColor);
+    void performMoveMiddlePatternLine(int row, TileColor tileColor);
+    void performMoveFactoryFloorLine(int index, TileColor tileColor);
+    void performMoveFactoryPatternLine(int index, int row, TileColor tileColor);
+    void terminateGame();
 
-    public void joinPlayer(String name) {
-        if (model.isPlaying()) {
-            view.toast("alreadypalying");
-            return;
-        }
-        if (model.getPlayerList().size() > 4) {
-            view.toast("to many players");
-            return;
-        }
-
-        model.addPlayer(new Player(name));
-        view.toast(name + " added");
-        view.update();
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
-    }
-
-    public void setView(View view) {
-        this.view = view;
-    }
 }

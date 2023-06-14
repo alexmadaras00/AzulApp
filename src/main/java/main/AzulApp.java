@@ -1,6 +1,6 @@
 package main;
 
-import controller.Controller;
+import controller.ControllerImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,7 +10,7 @@ import view.View;
 
 public class AzulApp extends Application {
     private Model model;
-    private Controller controller;
+    private ControllerImpl controllerImpl;
     private View view;
 
     public static void main(String[] args) {
@@ -21,12 +21,12 @@ public class AzulApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.model = new Game();
-        this.controller = new Controller();
+        this.controllerImpl = new ControllerImpl();
         this.view = new View();
 
-        controller.setModel(model);
-        controller.setView(view);
-        view.setController(controller);
+        controllerImpl.setModel(model);
+        controllerImpl.setView(view);
+        view.setController(controllerImpl);
         view.setModel(model);
 
         view.setup(stage);

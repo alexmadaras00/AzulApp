@@ -1,9 +1,11 @@
 package view;
 
 import java.util.Arrays;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
-import controller.Controller;
+import controller.ControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import messaging.dataobjects.Location;
 import model.Model;
+import model.ModelProxy;
 import model.Player;
 import model.PlayerTile;
 import model.Tile;
@@ -23,9 +26,9 @@ import model.TileColor;
 import model.factory.Factory;
 
 public class GamePage {
-    private Model model;
+    private ModelProxy model;
 
-    private Controller controller;
+    private ControllerImpl controllerImpl;
 
     private View view;
 
@@ -37,8 +40,8 @@ public class GamePage {
         this.model = model;
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
+    public void setController(ControllerImpl controllerImpl) {
+        this.controllerImpl = controllerImpl;
     }
 
     @FXML
@@ -246,209 +249,6 @@ public class GamePage {
     @FXML
     private VBox playerboard4;
 
-    class PlayerGUI {
-        private int place;
-        private int id;
-
-        public PlayerGUI(int place, int id) {
-            this.place = place;
-            this.id = id;
-        }
-
-        int getId() {
-            return this.id;
-        }
-
-        GridPane getWall(int row) {
-            switch (place) {
-                case 1:
-                    switch (row) {
-                        case 0:
-                            return player1W1;
-                        case 1:
-                            return player1W2;
-                        case 2:
-                            return player1W3;
-                        case 3:
-                            return player1W4;
-                        case 4:
-                            return player1W5;
-                        default:
-                            return null;
-                    }
-                case 2:
-                    switch (row) {
-                        case 0:
-                            return player2W1;
-                        case 1:
-                            return player2W2;
-                        case 2:
-                            return player2W3;
-                        case 3:
-                            return player2W4;
-                        case 4:
-                            return player2W5;
-                        default:
-                            return null;
-                    }
-                case 3:
-                    switch (row) {
-                        case 0:
-                            return player3W1;
-                        case 1:
-                            return player3W2;
-                        case 2:
-                            return player3W3;
-                        case 3:
-                            return player3W4;
-                        case 4:
-                            return player3W5;
-                        default:
-                            return null;
-                    }
-                case 4:
-                    switch (row) {
-                        case 0:
-                            return player4W1;
-                        case 1:
-                            return player4W2;
-                        case 2:
-                            return player4W3;
-                        case 3:
-                            return player4W4;
-                        case 4:
-                            return player4W5;
-                        default:
-                            return null;
-                    }
-                default:
-                    return null;
-            }
-        }
-
-        GridPane getPatternline(int row) {
-            switch (place) {
-                case 1:
-                    switch (row) {
-                        case 0:
-                            return player1PL1;
-                        case 1:
-                            return player1PL2;
-                        case 2:
-                            return player1PL3;
-                        case 3:
-                            return player1PL4;
-                        case 4:
-                            return player1PL5;
-                        default:
-                            return null;
-                    }
-                case 2:
-                    switch (row) {
-                        case 0:
-                            return player2PL1;
-                        case 1:
-                            return player2PL2;
-                        case 2:
-                            return player2PL3;
-                        case 3:
-                            return player2PL4;
-                        case 4:
-                            return player2PL5;
-                        default:
-                            return null;
-                    }
-                case 3:
-                    switch (row) {
-                        case 0:
-                            return player3PL1;
-                        case 1:
-                            return player3PL2;
-                        case 2:
-                            return player3PL3;
-                        case 3:
-                            return player3PL4;
-                        case 4:
-                            return player3PL5;
-                        default:
-                            return null;
-                    }
-                case 4:
-                    switch (row) {
-                        case 0:
-                            return player4PL1;
-                        case 1:
-                            return player4PL2;
-                        case 2:
-                            return player4PL3;
-                        case 3:
-                            return player4PL4;
-                        case 4:
-                            return player4PL5;
-                        default:
-                            return null;
-                    }
-                default:
-                    return null;
-            }
-        }
-
-        HBox getFloorline() {
-            switch (place) {
-                case 1:
-                    return player1Floor;
-                case 2:
-                    return player2Floor;
-
-                case 3:
-                    return player3Floor;
-
-                case 4:
-                    return player4Floor;
-
-                default:
-                    return null;
-            }
-        }
-
-        Label getScore() {
-            switch (place) {
-                case 1:
-                    return player1Score;
-                case 2:
-                    return player2Score;
-
-                case 3:
-                    return player3Score;
-
-                case 4:
-                    return player4Score;
-
-                default:
-                    return null;
-            }
-        }
-
-        Label getName() {
-            switch (place) {
-                case 1:
-                    return player1Name;
-                case 2:
-                    return player2Name;
-
-                case 3:
-                    return player3Name;
-
-                case 4:
-                    return player4Name;
-
-                default:
-                    return null;
-            }
-        }
-
-    }
-
     @FXML
     void selectTile(ActionEvent event) {
         Button source = (Button) event.getSource();
@@ -504,74 +304,22 @@ public class GamePage {
             factory9.setVisible(false);
             factory8.setVisible(false);
         }
-        List<TileColor> factoryTiles = null;
+        Tile[] factoryTiles = null;
 
-        switch (model.getFactoryCount()) {
-            case 9:
-                Arrays.stream((TileColor[]) model.getFactory(8)).toList();
-                setTileColor(buttonF9T1, factoryTiles.get(0));
-                setTileColor(buttonF9T2, factoryTiles.get(1));
-                setTileColor(buttonF9T3, factoryTiles.get(2));
-                setTileColor(buttonF9T4, factoryTiles.get(3));
+        for (int i = 0; i < model.getFactoryCount(); i++) {
+            factoryTiles = model.getFactory(i);
+            for (int j = 0; j < 4; j++) {
+                setTileColor(getElementByName("buttonF" + (i + 1) + "T" + (j + 1), Button.class), factoryTiles[j]);
 
-                Arrays.stream((TileColor[]) model.getFactory(7)).toList();
-                setTileColor(buttonF8T1, factoryTiles.get(0));
-                setTileColor(buttonF8T2, factoryTiles.get(1));
-                setTileColor(buttonF8T3, factoryTiles.get(2));
-                setTileColor(buttonF8T4, factoryTiles.get(3));
+            }
 
-            case 7:
-                Arrays.stream((TileColor[]) model.getFactory(6)).toList();
-                setTileColor(buttonF7T1, factoryTiles.get(0));
-                setTileColor(buttonF7T2, factoryTiles.get(1));
-                setTileColor(buttonF7T3, factoryTiles.get(2));
-                setTileColor(buttonF7T4, factoryTiles.get(3));
-
-                Arrays.stream((TileColor[]) model.getFactory(5)).toList();
-                setTileColor(buttonF6T1, factoryTiles.get(0));
-                setTileColor(buttonF6T2, factoryTiles.get(1));
-                setTileColor(buttonF6T3, factoryTiles.get(2));
-                setTileColor(buttonF6T4, factoryTiles.get(3));
-
-            case 5:
-                Arrays.stream((TileColor[]) model.getFactory(4)).toList();
-                setTileColor(buttonF5T1, factoryTiles.get(0));
-                setTileColor(buttonF5T2, factoryTiles.get(1));
-                setTileColor(buttonF5T3, factoryTiles.get(2));
-                setTileColor(buttonF5T4, factoryTiles.get(3));
-
-                Arrays.stream((TileColor[]) model.getFactory(3)).toList();
-                setTileColor(buttonF4T1, factoryTiles.get(0));
-                setTileColor(buttonF4T2, factoryTiles.get(1));
-                setTileColor(buttonF4T3, factoryTiles.get(2));
-                setTileColor(buttonF4T4, factoryTiles.get(3));
-
-                Arrays.stream((TileColor[]) model.getFactory(2)).toList();
-                setTileColor(buttonF3T1, factoryTiles.get(0));
-                setTileColor(buttonF3T2, factoryTiles.get(1));
-                setTileColor(buttonF3T3, factoryTiles.get(2));
-                setTileColor(buttonF3T4, factoryTiles.get(3));
-
-                factoryTiles =  Arrays.stream((TileColor[]) model.getFactory(1)).toList();;
-                setTileColor(buttonF2T1, factoryTiles.get(0));
-                setTileColor(buttonF2T2, factoryTiles.get(1));
-                setTileColor(buttonF2T3, factoryTiles.get(2));
-                setTileColor(buttonF2T4, factoryTiles.get(3));
-                factoryTiles = Arrays.stream((TileColor[]) model.getFactory(0)).toList();
-
-                setTileColor(buttonF1T1, factoryTiles.get(0));
-                setTileColor(buttonF1T2, factoryTiles.get(1));
-                setTileColor(buttonF1T3, factoryTiles.get(2));
-                setTileColor(buttonF1T4, factoryTiles.get(3));
-
-            default:
-                return;
         }
     }
 
     private class TileButton extends Button {
 
         TileButton(Tile tile) {
+            super();
             this.setBackground(Background.fill(getColor(tile)));
             if (tile instanceof PlayerTile) {
                 this.setText("1");
@@ -788,4 +536,30 @@ public class GamePage {
         updateMiddle();
         updatePlayers();
     }
+
+    private <T> T getElementByName(String name, Class<T> clazz) {
+        System.out.println(name);
+        Field field;
+        try {
+            field = this.getClass().getDeclaredField(name);
+        } catch (NoSuchFieldException e) {
+            // bad input
+            return null;
+        } catch (SecurityException e) {
+            // should only look at elements in this class, so should not be triggered
+            e.printStackTrace();
+            return null;
+        }
+        try {
+            return clazz.cast(field.get(this));
+        } catch (IllegalArgumentException e) {
+            // this should not happen, as we are giving this
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // this should not happen, as we are accessing fields inside the class
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
