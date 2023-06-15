@@ -1,5 +1,6 @@
 package unit.model;
 
+import model.PlayerTile;
 import model.TileColor;
 import model.FloorLine;
 import model.Tile;
@@ -45,7 +46,8 @@ public class FloorLineTest {
         excessTiles.add(TileColor.BLUE);
         excessTiles.add(TileColor.BLUE);
         excessTiles.add(TileColor.BLUE);
-        excessTiles.add(TileColor.BLUE);
+        floorLine.addTiles(excessTiles);
+        excessTiles.add(PlayerTile.getInstance());
         assertTrue(floorLine.addTiles(excessTiles).size()>0);
         assertTrue(floorLine.getCopyTiles().size() <= 7);
         assertTrue(floorLine.getScore()>= -14);

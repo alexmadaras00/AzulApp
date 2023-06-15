@@ -46,7 +46,6 @@ public class GameProxy implements ModelProxy {
         return game.getFloorLine(identifier);
     }
 
-    //TODO test
     @Override
     public int getScore(int identifier) {
         return game.getScore(identifier);
