@@ -23,9 +23,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
     static List<FactoryInterface> factories;
-    static List<Player> players;
-    static Player player1;
-    static Player player2;
+    static List<PlayerBoard> playerBoards;
+    static PlayerBoard playerBoard1;
+    static PlayerBoard playerBoard2;
     List<List<TileColor>> factoryTiles;
     Game game;
     GameProxy gameProxy;
@@ -41,8 +41,8 @@ public class GameTest {
         assertEquals(0, game.getBox().size());
         game.addPlayer("Boris");
         game.addPlayer("Giani");
-        player1 = game.getPlayers().get(0);
-        player2 = game.getPlayers().get(1);
+        playerBoard1 = game.getPlayerBoards().get(0);
+        playerBoard2 = game.getPlayerBoards().get(1);
         factoryTiles = new ArrayList<>();
     }
 
@@ -51,7 +51,7 @@ public class GameTest {
         assertEquals(0, game.getCenter().getAllTiles().size());
         assertEquals(0, game.getFactories().size());
         assertEquals(0, game.getRound());
-        assertEquals(game.getPlayers(), game.getTurnOrder());
+        assertEquals(game.getPlayerBoards(), game.getTurnOrder());
         assertEquals(0, game.getBag().getTiles().size());
         assertFalse(game.isPlaying());
         assertFalse(gameProxy.isPlaying());
@@ -60,7 +60,7 @@ public class GameTest {
 
     @Test
     public void testStartInitialRound() {
-        players = game.getPlayers();
+        playerBoards = game.getPlayerBoards();
         assertEquals(GamePhase.INITIALIZED, game.getGamePhase());
         game.startGame();
         assertPostConditionsStart();
@@ -111,7 +111,7 @@ public class GameTest {
         assertEquals(1, gameProxy.getRound());
         assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
         assertEquals("Boris", game.getName(game.getPlayers().get(0).getIdentifier()));
-        assertEquals("Giani", gameProxy.getName(player2.getIdentifier()));
+        assertEquals("Giani", gameProxy.getName(playerBoard2.getPlayerIdentifier()));
     }
 
     @Test
@@ -122,21 +122,21 @@ public class GameTest {
         int countFactoriesNotFull = (int) game.getFactories().stream().filter(factory -> factory.getAllTiles().size() < 4).count();
         assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
         game.getFactories().forEach(factory -> assertEquals(4, factory.getAllTiles().size()));
-        player1 = game.getPlayers().get(0);
-        player2 = game.getPlayers().get(1);
+        playerBoard1 = game.getPlayerBoards().get(0);
+        playerBoard2 = game.getPlayerBoards().get(1);
 
         assertEquals(0, countFactoriesNotFull);
         restartingRound();
         assertFactoryUpdates();
-        game.getPlayers().forEach(player -> {
-            List<Integer> completedRows = player.getBoard().getPatternLine().completedRows();
+        game.getPlayerBoards().forEach(playerBoard -> {
+            List<Integer> completedRows = playerBoard.getPatternLine().completedRows();
             assertEquals(new HashSet<Tile>(List.of(TileColor.BLACK, TileColor.RED)), new HashSet<Tile>(game.getBox()));
-            assertEquals(0, player.getBoard().getFloorLine().getCopyTiles().size());
-            completedRows.forEach(completedRow -> assertEquals(0, player.getBoard().getPatternLine().getCopyTable().get(completedRow).size()));
+            assertEquals(0, playerBoard.getFloorLine().getCopyTiles().size());
+            completedRows.forEach(completedRow -> assertEquals(0, playerBoard.getPatternLine().getCopyTable().get(completedRow).size()));
         });
         assertEquals(60, game.getBag().getTiles().size());
-        assertEquals(player2.getIdentifier(), game.getCurrentPlayer());
-        assertEquals(player2.getIdentifier(), gameProxy.getCurrentPlayer());
+        assertEquals(playerBoard2.getPlayerIdentifier(), game.getCurrentPlayer());
+        assertEquals(playerBoard2.getPlayerIdentifier(), gameProxy.getCurrentPlayer());
         assertEquals(2, game.getRound());
         assertEquals(GamePhase.FACTORY_OFFER, game.getGamePhase());
     }
@@ -149,19 +149,19 @@ public class GameTest {
         factories.get(1).addTiles(List.of(TileColor.RED, TileColor.RED, TileColor.BLUE, TileColor.BLACK));
 
         // player 1 completes patternline 0
-        assertEquals(player1.getIdentifier(), game.getCurrentPlayer());
-        assertEquals(game.getTurnOrder().get(0).getIdentifier(), game.getCurrentPlayer());
+        assertEquals(playerBoard1.getPlayerIdentifier(), game.getCurrentPlayer());
+        assertEquals(game.getTurnOrder().get(0).getPlayerIdentifier(), game.getCurrentPlayer());
         assertTrue(game.isValidMoveFactoryPatternLine(1, 0, TileColor.BLUE));
         game.performMoveFactoryPatternLine(1, 0, TileColor.BLUE);
         // player 2 adds 2 red tiles to patternline 2
-        assertEquals(player2.getIdentifier(), game.getCurrentPlayer());
+        assertEquals(playerBoard2.getPlayerIdentifier(), game.getCurrentPlayer());
         assertTrue(game.isValidMoveMiddlePatternLine(1, TileColor.RED));
         game.performMoveMiddlePatternLine(1, TileColor.RED);
         // check if player 2 got playertile
-        assertTrue(player2.getBoard().getFloorLine().getCopyTiles().contains(PlayerTile.getInstance()));
+        assertTrue(playerBoard2.getFloorLine().getCopyTiles().contains(PlayerTile.getInstance()));
 
-        assertEquals(player1.getIdentifier(), game.getCurrentPlayer());
-        assertEquals(game.getTurnOrder().get(0).getIdentifier(), game.getCurrentPlayer());
+        assertEquals(playerBoard1.getPlayerIdentifier(), game.getCurrentPlayer());
+        assertEquals(game.getTurnOrder().get(0).getPlayerIdentifier(), game.getCurrentPlayer());
         assertTrue(game.isValidMoveMiddleFloorLine(TileColor.BLACK));
 
         game.performMoveMiddleFloorLine(TileColor.BLACK);
@@ -216,8 +216,8 @@ public class GameTest {
     public void testTerminateGame() {
         game.startGame();
         assertTrue(game.isPlaying());
-        assertFalse(game.getPlayers().get(0).getBoard().hasFulfilledEndCondition());
-        game.getPlayers().forEach(p -> assertFalse(p.getBoard().hasFulfilledEndCondition()));
+        assertFalse(game.getPlayerBoards().get(0).hasFulfilledEndCondition());
+        game.getPlayerBoards().forEach(p -> assertFalse(p.hasFulfilledEndCondition()));
         game.terminateGame();
         assertFalse(game.isPlaying());
         assertEquals(GamePhase.TERMINATED, game.getGamePhase());
@@ -231,29 +231,29 @@ public class GameTest {
         endingGame();
         assertEquals(GamePhase.FINISHED, game.getGamePhase());
 
-        assertEquals(10, player2.getBoard().getScore());
-        assertEquals(6, player1.getBoard().getScore());
-        assertEquals(player1.getBoard().getScore(), gameProxy.getScore(player1.getIdentifier()));
-        assertEquals(List.of(player2.getIdentifier()), game.getWinners());
-        assertEquals(List.of(player2.getIdentifier()), gameProxy.getWinners());
+        assertEquals(10, playerBoard2.getScore());
+        assertEquals(6, playerBoard1.getScore());
+        assertEquals(playerBoard1.getScore(), gameProxy.getScore(playerBoard1.getPlayerIdentifier()));
+        assertEquals(List.of(playerBoard2.getPlayerIdentifier()), game.getWinners());
+        assertEquals(List.of(playerBoard2.getPlayerIdentifier()), gameProxy.getWinners());
         assertFalse(game.isPlaying());
     }
 
 
     private void endingGame() {
-        player1.getBoard().getWall().addTile(1, TileColor.BLUE);
-        player1.getBoard().getWall().addTile(0, TileColor.RED);
-        player1.getBoard().getWall().addTile(0, TileColor.CYAN);
-        player1.getBoard().getWall().addTile(0, TileColor.BLACK);
-        player1.getBoard().getWall().addTile(0, TileColor.YELLOW);
-        player1.getBoard().getWall().addTile(2, TileColor.BLACK);
-        player1.getBoard().getWall().addTile(3, TileColor.RED);
-        player1.getBoard().getWall().addTile(4, TileColor.YELLOW);
-        player2.getBoard().getWall().addTile(0, TileColor.BLUE);
-        player2.getBoard().getWall().addTile(1, TileColor.BLUE);
-        player2.getBoard().getWall().addTile(2, TileColor.BLUE);
-        player2.getBoard().getWall().addTile(3, TileColor.BLUE);
-        player2.getBoard().getWall().addTile(4, TileColor.BLUE);
+        playerBoard1.getWall().addTile(1, TileColor.BLUE);
+        playerBoard1.getWall().addTile(0, TileColor.RED);
+        playerBoard1.getWall().addTile(0, TileColor.CYAN);
+        playerBoard1.getWall().addTile(0, TileColor.BLACK);
+        playerBoard1.getWall().addTile(0, TileColor.YELLOW);
+        playerBoard1.getWall().addTile(2, TileColor.BLACK);
+        playerBoard1.getWall().addTile(3, TileColor.RED);
+        playerBoard1.getWall().addTile(4, TileColor.YELLOW);
+        playerBoard2.getWall().addTile(0, TileColor.BLUE);
+        playerBoard2.getWall().addTile(1, TileColor.BLUE);
+        playerBoard2.getWall().addTile(2, TileColor.BLUE);
+        playerBoard2.getWall().addTile(3, TileColor.BLUE);
+        playerBoard2.getWall().addTile(4, TileColor.BLUE);
 
         restartingRound();
     }
@@ -262,8 +262,9 @@ public class GameTest {
     public void testAddPlayer() {
         game.addPlayer("Marcelo");
         Player player = game.getPlayers().get(2);
+        PlayerBoard playerBoard = game.getPlayerBoards().get(2);
         assertTrue(game.getPlayers().contains(player));
-        assertTrue(game.getTurnOrder().contains(player));
+        assertTrue(game.getTurnOrder().contains(playerBoard));
     }
 
     @Test
@@ -287,7 +288,7 @@ public class GameTest {
     public void testPerformMoveFactoryPatternLine() {
         prepareSingleMove();
         game.performMoveFactoryPatternLine(1, 2, TileColor.RED);
-        assertEquals(List.of(TileColor.RED, TileColor.RED), player1.getBoard().getPatternLine().getCopyTable().get(2));
+        assertEquals(List.of(TileColor.RED, TileColor.RED), playerBoard1.getPatternLine().getCopyTable().get(2));
         assertEquals(List.of(TileColor.YELLOW, TileColor.YELLOW, TileColor.CYAN, TileColor.BLUE), game.getCenter().getAllTiles());
     }
 
@@ -295,7 +296,7 @@ public class GameTest {
     public void testPerformMoveFactoryFloorLine() {
         prepareSingleMove();
         game.performMoveFactoryFloorLine(1, TileColor.BLUE);
-        assertEquals(List.of(TileColor.BLUE), player1.getBoard().getFloorLine().getCopyTiles());
+        assertEquals(List.of(TileColor.BLUE), playerBoard1.getFloorLine().getCopyTiles());
         assertEquals(List.of(TileColor.YELLOW, TileColor.YELLOW, TileColor.CYAN, TileColor.RED, TileColor.RED), game.getCenter().getAllTiles());
 
     }
@@ -304,14 +305,14 @@ public class GameTest {
     public void testPerformMoveMiddlePatternLine() {
         prepareSingleMove();
         game.performMoveMiddlePatternLine(2, TileColor.YELLOW);
-        assertEquals(List.of(TileColor.YELLOW, TileColor.YELLOW), player1.getBoard().getPatternLine().getCopyTable().get(2));
+        assertEquals(List.of(TileColor.YELLOW, TileColor.YELLOW), playerBoard1.getPatternLine().getCopyTable().get(2));
     }
 
     @Test
     public void testPerformMoveMiddleFloorLine() {
         prepareSingleMove();
         game.performMoveMiddleFloorLine(TileColor.YELLOW);
-        assertEquals(List.of(TileColor.YELLOW, TileColor.YELLOW), player1.getBoard().getFloorLine().getCopyTiles());
+        assertEquals(List.of(TileColor.YELLOW, TileColor.YELLOW), playerBoard1.getFloorLine().getCopyTiles());
     }
 
     @Test
@@ -319,15 +320,15 @@ public class GameTest {
         prepareSingleMove();
         game.getCenter().addTiles(List.of(PlayerTile.getInstance()));
         game.performMoveMiddleFloorLine(TileColor.YELLOW);
-        assertEquals(List.of(PlayerTile.getInstance(), TileColor.YELLOW, TileColor.YELLOW), player1.getBoard().getFloorLine().getCopyTiles());
+        assertEquals(List.of(PlayerTile.getInstance(), TileColor.YELLOW, TileColor.YELLOW), playerBoard1.getFloorLine().getCopyTiles());
     }
 
     @Test
     public void testTurnQueue() {
-        assertEquals(player1.getIdentifier(), game.getCurrentPlayer());
+        assertEquals(playerBoard1.getPlayerIdentifier(), game.getCurrentPlayer());
         prepareSingleMove();
         game.performMoveMiddlePatternLine(2, TileColor.YELLOW);
-        assertEquals(player2.getIdentifier(), game.getCurrentPlayer());
+        assertEquals(playerBoard2.getPlayerIdentifier(), game.getCurrentPlayer());
     }
 
     @Test
@@ -382,40 +383,47 @@ public class GameTest {
 
     @Test
     public void testGetPlayerList() {
-        assertEquals(List.of(player1, player2), game.getPlayerList());
-        assertEquals(List.of(player1, player2), gameProxy.getPlayerList());
+        assertEquals(List.of(playerBoard1.getPlayer(), playerBoard2.getPlayer()), game.getPlayerList());
+        assertEquals(List.of(playerBoard1.getPlayer(), playerBoard2.getPlayer()), gameProxy.getPlayerList());
     }
+
+    @Test
+    public void testGetPlayerBoardList() {
+        assertEquals(List.of(playerBoard1, playerBoard2), game.getPlayerBoardList());
+        assertEquals(List.of(playerBoard1, playerBoard2), gameProxy.getPlayerBoardList());
+    }
+
 
     @Test
     public void testGetPlayerByIdentifier() {
         Player nonExistentPlayer = new Player("Adrian");
-        assertEquals(player1.getBoard().getScore(), game.getScore(player1.getIdentifier()));
-        assertEquals(player2.getBoard().getScore(), game.getScore(player2.getIdentifier()));
+        assertEquals(playerBoard1.getScore(), game.getScore(playerBoard1.getPlayerIdentifier()));
+        assertEquals(playerBoard2.getScore(), game.getScore(playerBoard2.getPlayerIdentifier()));
         assertThrows(NullPointerException.class, ()-> game.getName(nonExistentPlayer.getIdentifier()));
     }
 
     @Test
     public void testGetFloorLine() {
-        player1.getBoard().getFloorLine().addTiles(List.of(TileColor.YELLOW, TileColor.YELLOW));
-        assertEquals(TileColor.YELLOW, game.getFloorLine(player1.getIdentifier())[0]);
-        assertEquals(TileColor.YELLOW, game.getFloorLine(player1.getIdentifier())[1]);
-        assertEquals(TileColor.YELLOW, gameProxy.getFloorLine(player1.getIdentifier())[1]);
+        playerBoard1.getFloorLine().addTiles(List.of(TileColor.YELLOW, TileColor.YELLOW));
+        assertEquals(TileColor.YELLOW, game.getFloorLine(playerBoard1.getPlayerIdentifier())[0]);
+        assertEquals(TileColor.YELLOW, game.getFloorLine(playerBoard1.getPlayerIdentifier())[1]);
+        assertEquals(TileColor.YELLOW, gameProxy.getFloorLine(playerBoard1.getPlayerIdentifier())[1]);
     }
 
     @Test
     public void testGetWall() {
-        player1.getBoard().getWall().addTile(0, TileColor.BLUE);
-        assertEquals(TileColor.BLUE, game.getWall(player1.getIdentifier(), 0, 0));
-        assertEquals(TileColor.BLUE, gameProxy.getWall(player1.getIdentifier(), 0, 0));
-        assertEquals(null, game.getWall(player1.getIdentifier(), 1, 1));
+        playerBoard1.getWall().addTile(0, TileColor.BLUE);
+        assertEquals(TileColor.BLUE, game.getWall(playerBoard1.getPlayerIdentifier(), 0, 0));
+        assertEquals(TileColor.BLUE, gameProxy.getWall(playerBoard1.getPlayerIdentifier(), 0, 0));
+        assertEquals(null, game.getWall(playerBoard1.getPlayerIdentifier(), 1, 1));
     }
 
     @Test
     public void testGetPatternLine() {
-        player1.getBoard().getPatternLine().addTiles(1, List.of(TileColor.BLUE));
-        assertEquals(null, game.getPatternLine(player1.getIdentifier(), 1)[0]);
-        assertEquals(TileColor.BLUE, game.getPatternLine(player1.getIdentifier(), 1)[1]);
-        assertEquals(TileColor.BLUE, gameProxy.getPatternLine(player1.getIdentifier(), 1)[1]);
+        playerBoard1.getPatternLine().addTiles(1, List.of(TileColor.BLUE));
+        assertEquals(null, game.getPatternLine(playerBoard1.getPlayerIdentifier(), 1)[0]);
+        assertEquals(TileColor.BLUE, game.getPatternLine(playerBoard1.getPlayerIdentifier(), 1)[1]);
+        assertEquals(TileColor.BLUE, gameProxy.getPatternLine(playerBoard1.getPlayerIdentifier(), 1)[1]);
     }
 
     @Test

@@ -3,6 +3,7 @@ import java.util.List;
 
 import model.Model;
 import model.Player;
+import model.PlayerBoard;
 import shared.Tile;
 
 public class GameProxy implements ModelProxy {
@@ -28,6 +29,11 @@ public class GameProxy implements ModelProxy {
     @Override
     public List<Player> getPlayerList() {
         return game.getPlayerList();
+    }
+
+    @Override
+    public List<PlayerBoard> getPlayerBoardList(){
+        return game.getPlayerBoardList();
     }
 
     @Override

@@ -2,7 +2,6 @@ package model;
 
 public class Player {
     private String name;
-    private final PlayerBoard board = new PlayerBoard();
     private static int counter = 0;
     private final int identifier;
 
@@ -26,9 +25,5 @@ public class Player {
 
     public void setName(String name){
         this.name=name;
-    }
-
-    public PlayerBoard getBoard() {
-        return board;
     }
 }
