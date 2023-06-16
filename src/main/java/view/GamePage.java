@@ -5,10 +5,17 @@ import java.util.List;
 
 import controller.ControllerImpl;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -244,14 +251,111 @@ public class GamePage {
     @FXML
     private VBox playerboard4;
 
-    @FXML
-    void selectTile(ActionEvent event) {
+    private Location fromLocation;
+    private int fromIndex;
+    private int toIndex;
+    private Location toLocation;
+    private int playerId;
+    private TileColor color;
+    private String selectedId;
+
+    private void clearSelection() {
+        fromLocation = null;
+        fromIndex = 0;
+        toIndex = 0;
+        toLocation = null;
+        playerId = 0;
+        color = null;
+        selectedId = null;
+
+        selectTiles(fromLocation, color, fromIndex);
+    }
+
+    private Border selectionBorder = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID,
+            null,
+            new BorderWidths(2)));
+
+    private void selectTiles(Location from, TileColor color, int index) {
+        for (int i = 1; i < 10; i++) {
+            for (int j = 1; j < 5; j++) {
+                Button button = getElementByName("buttonF" + i + "T" + j, Button.class);
+                Border border = Border.EMPTY;
+                if (from == Location.FACTORY && index == i - 1 && getBackwardsColor(button) == color) {
+                    border = selectionBorder;
+                }
+                button.setBorder(border);
+            }
+        }
+        for (Node node : middle.getChildren()) {
+            Button button = (Button) node;
+            Border border = Border.EMPTY;
+            if (from == Location.MIDDLE && getBackwardsColor(button) == color) {
+                border = selectionBorder;
+            }
+            button.setBorder(border);
+        }
 
     }
 
     @FXML
-    void selectToLocation(ActionEvent event) {
-        
+    void selectToLocation(MouseEvent event) {
+        if (selectedId != null) {
+            String clickedId = ((Node) event.getSource()).getId();
+            playerId = model.getPlayerList().get(Integer.parseInt(clickedId.substring(6, 7)) - 1).getIdentifier();
+            toLocation = Location.FLOOR_LINE;
+            if (clickedId.contains("PL")) {
+                toLocation = Location.PATTERN_LINE;
+                toIndex = Integer.parseInt(clickedId.substring(9, 10)) - 1;
+            }
+            toast("perform move " + color + " from " + fromLocation + " " + fromIndex + " to " + toLocation + " "
+                    + fromIndex
+                    + " of player " + playerId);
+
+            controllerImpl.performMove(fromLocation, toLocation, fromIndex, toIndex, playerId, color);
+            clearSelection();
+        }
+    }
+
+    @FXML
+    void selectTile(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        Location buttonLocation = Location.MIDDLE;
+        int buttonLocationIndex = 0;
+        TileColor buttonColor = getBackwardsColor(button);
+
+        String buttonId = button.getId();
+        buttonId = buttonId == null ? "buttonMiddle" + buttonColor : buttonId;
+        if (buttonId.contains("buttonF")) {
+            buttonLocation = Location.FACTORY;
+            buttonLocationIndex = Integer.parseInt(buttonId.substring(7, 8)) - 1;
+        }
+
+        if (selectedId == null || (selectedId != buttonId)) {
+            selectedId = buttonId;
+            fromLocation = buttonLocation;
+            fromIndex = buttonLocationIndex;
+            color = buttonColor;
+            toast("selected " + color + " from " + fromLocation + " " + fromIndex);
+            selectTiles(fromLocation, color, fromIndex);
+        } else {
+            toast("unselected " + color + " from " + fromLocation + " " + fromIndex);
+            clearSelection();
+        }
+    }
+
+    private TileColor getBackwardsColor(Button button) {
+        Paint background = button.getBackground().getFills().get(0).getFill();
+        if (background == Color.RED)
+            return TileColor.RED;
+        if (background == Color.BLACK)
+            return TileColor.BLACK;
+        if (background == Color.BLUE)
+            return TileColor.BLUE;
+        if (background == Color.YELLOW)
+            return TileColor.YELLOW;
+        if (background == Color.CYAN)
+            return TileColor.CYAN;
+        return null;
     }
 
     public void toast(String msg) {
@@ -324,11 +428,25 @@ public class GamePage {
 
     }
 
+    private class MiddleButton extends TileButton {
+
+        MiddleButton(Tile tile) {
+            super(tile);
+            this.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    selectTile(event);
+                }
+            });
+        }
+
+    }
+
     private void updateMiddle() {
         middle.getChildren().clear();
         List<Tile> tiles = model.getMiddle();
         for (Tile tile : tiles) {
-            middle.getChildren().add(new TileButton(tile));
+            middle.getChildren().add(new MiddleButton(tile));
         }
     }
 
@@ -343,6 +461,11 @@ public class GamePage {
                 break;
         }
         for (int i = 0; i < players.size(); i++) {
+            Border border = Border.EMPTY;
+            if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
+                border = selectionBorder;
+            }
+            getElementByName("playerboard" + (i + 1), VBox.class).setBorder(border);
             updatePlayer(players.get(i), i + 1);
         }
     }
@@ -353,6 +476,7 @@ public class GamePage {
         updateFloorLine(player, place);
         updateName(player, place);
         updateScore(player, place);
+
     }
 
     private void updateScore(Player player, int place) {
@@ -400,8 +524,22 @@ public class GamePage {
 
     private void setWallLine(GridPane wallLine, List<Tile> tiles) {
         wallLine.getChildren().clear();
+        List<Color> pattern = List.of(Color.YELLOW, Color.RED, Color.BLACK, Color.CYAN, Color.BLUE);
         for (int i = 0; i < 5; i++) {
-            wallLine.add(new TileButton(tiles.get(i)), i, 0);
+            TileButton button = new TileButton(tiles.get(i));
+            if (tiles.get(i) == null) {
+                Button holderButton = new Button();
+
+                int row = Integer.parseInt(wallLine.getId().substring(8));
+                Color color = pattern.get((i - row + 5) % 5);
+                holderButton.setBackground(Background.fill(Color.rgb((int) (color.getRed() * 255),
+                        (int) (color.getGreen() * 255), (int) (color.getBlue() * 255), 0.25)));
+                holderButton.setPrefHeight(30.0);
+                holderButton.setPrefWidth(30.0);
+                wallLine.add(holderButton, i, 0);
+            } else {
+                wallLine.add(button, i, 0);
+            }
         }
     }
 
