@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import shared.Tile;
+import shared.TileColor;
+
 public class PatternLine {
     private List<List<Tile>> table = new ArrayList<>();
 

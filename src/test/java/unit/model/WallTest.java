@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import model.Tile;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.TileColor;
 import model.Wall;
+import shared.Tile;
+import shared.TileColor;
 
 public class WallTest {
     private static Tile[][] template;

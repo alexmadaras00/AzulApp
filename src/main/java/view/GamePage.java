@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import controller.Controller;
-import controller.Location;
+import controller.ModelProxy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,15 +22,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import model.*;
+import javafx.util.Pair;
+import model.Player;
+import model.PlayerBoard;
+import shared.Location;
+import shared.PlayerTile;
+import shared.Tile;
+import shared.TileColor;
 
 public class GamePage implements View {
     private ModelProxy model;
 
     private Controller controller;
 
-
-    @Override
     public void setModel(ModelProxy model) {
         this.model = model;
     }
@@ -245,36 +249,32 @@ public class GamePage implements View {
     @FXML
     private VBox playerboard4;
 
-    private Location fromLocation;
-    private int fromIndex;
-    private int toIndex;
-    private Location toLocation;
+    private Pair<Location, Integer> from;
+    private Pair<Location, Integer> to;
     private int playerId;
     private TileColor color;
     private String selectedId;
 
     private void clearSelection() {
-        fromLocation = null;
-        fromIndex = 0;
-        toIndex = 0;
-        toLocation = null;
+        from = new Pair<>(null, 0);
+        to = new Pair<>(null, 0);
         playerId = 0;
         color = null;
         selectedId = null;
 
-        selectTiles(fromLocation, color, fromIndex);
+        selectTiles(from, color);
     }
 
     private Border selectionBorder = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID,
             null,
             new BorderWidths(2)));
 
-    private void selectTiles(Location from, TileColor color, int index) {
+    private void selectTiles(Pair<Location, Integer> from, TileColor color) {
         for (int i = 1; i < 10; i++) {
             for (int j = 1; j < 5; j++) {
                 Button button = getElementByName("buttonF" + i + "T" + j, Button.class);
                 Border border = Border.EMPTY;
-                if (from == Location.FACTORY && index == i - 1 && getBackwardsColor(button) == color) {
+                if (from.getKey() == Location.FACTORY && from.getValue() == i - 1 && getBackwardsColor(button) == color) {
                     border = selectionBorder;
                 }
                 button.setBorder(border);
@@ -283,7 +283,7 @@ public class GamePage implements View {
         for (Node node : middle.getChildren()) {
             Button button = (Button) node;
             Border border = Border.EMPTY;
-            if (from == Location.MIDDLE && getBackwardsColor(button) == color) {
+            if (from.getKey() == Location.MIDDLE && getBackwardsColor(button) == color) {
                 border = selectionBorder;
             }
             button.setBorder(border);
@@ -296,16 +296,15 @@ public class GamePage implements View {
         if (selectedId != null) {
             String clickedId = ((Node) event.getSource()).getId();
             playerId = model.getPlayerList().get(Integer.parseInt(clickedId.substring(6, 7)) - 1).getIdentifier();
-            toLocation = Location.FLOOR_LINE;
+            to = new Pair<>(Location.FLOOR_LINE,0);
             if (clickedId.contains("PL")) {
-                toLocation = Location.PATTERN_LINE;
-                toIndex = Integer.parseInt(clickedId.substring(9, 10)) - 1;
+                to = new Pair<>(Location.PATTERN_LINE, Integer.parseInt(clickedId.substring(9, 10)) - 1);
             }
-            toast("perform move " + color + " from " + fromLocation + " " + fromIndex + " to " + toLocation + " "
-                    + fromIndex
+            toast("perform move " + color + " from " + from.getKey() + " " + from.getValue() + " to " + to.getKey() + " "
+                    + to.getValue()
                     + " of player " + playerId);
 
-            controller.performMove(fromLocation, toLocation, fromIndex, toIndex, playerId, color);
+            controller.performMove(from, to, playerId, color);
             clearSelection();
         }
     }
@@ -326,13 +325,12 @@ public class GamePage implements View {
 
         if (selectedId == null || (selectedId != buttonId)) {
             selectedId = buttonId;
-            fromLocation = buttonLocation;
-            fromIndex = buttonLocationIndex;
+            from = new Pair<>(buttonLocation, buttonLocationIndex);
             color = buttonColor;
-            toast("selected " + color + " from " + fromLocation + " " + fromIndex);
-            selectTiles(fromLocation, color, fromIndex);
+            toast("selected " + color + " from " + from.getKey() + " " + from.getValue());
+            selectTiles(from, color);
         } else {
-            toast("unselected " + color + " from " + fromLocation + " " + fromIndex);
+            toast("unselected " + color + " from " + from.getKey() + " " + from.getValue());
             clearSelection();
         }
     }
@@ -368,23 +366,13 @@ public class GamePage implements View {
             return Color.ANTIQUEWHITE;
         }
         switch ((TileColor) tile) {
-            case RED:
-                return Color.RED;
-            case BLACK:
-                return Color.BLACK;
-
-            case BLUE:
-                return Color.BLUE;
-
-            case YELLOW:
-                return Color.YELLOW;
-
-            case CYAN:
-                return Color.CYAN;
-
-            default:
-                return null;
+            case RED -> {return Color.RED;}
+            case BLACK -> {return Color.BLACK;}
+            case BLUE -> {return Color.BLUE;}
+            case YELLOW -> {return Color.YELLOW;}
+            case CYAN -> {return Color.CYAN;}
         }
+        return null;
     }
 
     private void updateFactories() {
@@ -470,7 +458,6 @@ public class GamePage implements View {
         updateFloorLine(player, place);
         updateName(player, place);
         updateScore(player, place);
-
     }
 
     private void updateScore(PlayerBoard player, int place) {

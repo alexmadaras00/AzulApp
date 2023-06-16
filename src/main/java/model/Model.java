@@ -1,5 +1,7 @@
 package model;
 
+import controller.ModelProxy;
+import shared.TileColor;
 
 public interface Model extends ModelProxy{
 

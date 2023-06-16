@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import shared.Tile;
+import shared.TileColor;
+
 public class PlayerBoard {
     private Wall wall;
     private int score;

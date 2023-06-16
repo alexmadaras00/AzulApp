@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import model.TileColor;
 import model.factory.twinteam.CollectionOverCapacityException;
 import model.factory.twinteam.FactoryDisplay;
 import model.factory.twinteam.TileColour;
+import shared.TileColor;
 
 public class FactoryTwinteamWrapper implements FactoryInterface {
     private FactoryDisplay factory;
@@ -18,49 +18,30 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
 
     private TileColor translateTileColor(TileColour colour) {
         switch (colour) {
-            case RED:
-                return TileColor.RED;
-            case GREEN:
-                return TileColor.CYAN;
-            case YELLOW:
-                return TileColor.YELLOW;
-            case BLUE:
-                return TileColor.BLUE;
-            case WHITE:
-                return TileColor.BLACK;
-            default:
-                return null;
+            case RED -> {return TileColor.RED;}
+            case GREEN -> {return TileColor.CYAN;}
+            case YELLOW -> {return TileColor.YELLOW;}
+            case BLUE -> {return TileColor.BLUE;}
+            case WHITE -> {return TileColor.BLACK;}
         }
+        return null;
     }
 
     private TileColour translateTwinTileColour(TileColor color) {
         switch (color) {
-            case RED:
-                return TileColour.RED;
-            case CYAN:
-                return TileColour.GREEN;
-            case YELLOW:
-                return TileColour.YELLOW;
-            case BLUE:
-                return TileColour.BLUE;
-            case BLACK:
-                return TileColour.WHITE;
-            default:
-                return null;
+            case RED -> {return TileColour.RED;}
+            case CYAN -> {return TileColour.GREEN;}
+            case YELLOW -> {return TileColour.YELLOW;}
+            case BLUE -> {return TileColour.BLUE;}
+            case BLACK -> {return TileColour.WHITE;}
         }
+        return null;
     }
 
     @Override
     public List<TileColor> getAllTiles() {
         Collection<model.factory.twinteam.Tile> twinTiles = factory.getTiles();
-        List<TileColor> ourTiles = new ArrayList<>();
-        for (model.factory.twinteam.Tile twinTile : twinTiles) {
-            TileColor ourTile = translateTileColor(twinTile.getColour());
-            if (ourTile != null) {
-                ourTiles.add(ourTile);
-            }
-        }
-        return ourTiles;
+        return convertToOwnTiles(twinTiles);
     }
 
     @Override
@@ -73,14 +54,7 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
     @Override
     public List<TileColor> popTiles(TileColor tile) {
         Collection<model.factory.twinteam.Tile> twinTiles = factory.grab(translateTwinTileColour(tile));
-        List<TileColor> ourTiles = new ArrayList<>();
-        for (model.factory.twinteam.Tile twinTile : twinTiles) {
-            TileColor ourTile = translateTileColor(twinTile.getColour());
-            if (ourTile != null) {
-                ourTiles.add(ourTile);
-            }
-        }
-        return ourTiles;
+        return convertToOwnTiles(twinTiles);
     }
 
     @Override
@@ -100,6 +74,17 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
     public boolean hasTiles(TileColor type) {
         List<TileColor> tilesInFactory = this.getAllTiles();
         return tilesInFactory.contains(type);
+    }
+
+    private List<TileColor> convertToOwnTiles(Collection<model.factory.twinteam.Tile> twinTiles) {
+        List<TileColor> ourTiles = new ArrayList<>();
+        for (model.factory.twinteam.Tile twinTile : twinTiles) {
+            TileColor ourTile = translateTileColor(twinTile.getColour());
+            if (ourTile != null) {
+                ourTiles.add(ourTile);
+            }
+        }
+        return ourTiles;
     }
 
 }
