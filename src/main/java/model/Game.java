@@ -308,21 +308,7 @@ public class Game implements Model {
         return false;
     }
 
-    private void performMove(Function<TileColor, List<Tile>> popTiles, Function<TileColor, List<Tile>> popAllTiles,
-                                   Function<List<Tile>, List<Tile>> putTiles, Function<List<Tile>, List<Tile>> dumpFloorLine, TileColor tileColor, boolean isMiddle) {
-        List<Tile> tiles = popTiles.apply(tileColor); // factory or middle
-        List<Tile> overflowTiles = putTiles.apply(tiles);  // either pattern line row or floor line
-        List<Tile> returnedTilesFloorLine = dumpFloorLine.apply(overflowTiles); // floorline
-
-        box.addAll(returnedTilesFloorLine);
-
-        if (!isMiddle) {
-            List<Tile> otherTiles = popAllTiles.apply(tileColor);
-            middle.addTiles(otherTiles);
-        } else if (middle.hasPlayerTile()) {
-            box.addAll(dumpFloorLine.apply(List.of(middle.popPlayerTile())));
-        }
-
+    private void handleMove() {
         turnOrder.add(turnOrder.remove(0));
 
         if (isEndOfRound()) {
@@ -330,42 +316,48 @@ public class Game implements Model {
         }
     }
 
+    private void handleMiddlePlayerTile() {
+        Tile playerTile = middle.popPlayerTile();
+        if (playerTile != null) {
+            List<Tile> remainder = turnOrder.get(0).getBoard().performMoveFloorLine(List.of(playerTile));
+            if (remainder != null) {   
+                box.addAll(remainder);
+            }
+        }
+    }
+
     @Override
     public void performMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
-        Player player = turnOrder.get(0);
-        Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popTiles(color);
-        Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMovePatternLine(patternLineRow, tiles);
-        Function<List<Tile>, List<Tile>> dumpFloorLine = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
-        performMove(popTiles, popAllTiles, putTiles, dumpFloorLine, tileColor, false);
+        List<TileColor> tiles = factories.get(factoryIndex).popTiles(tileColor);
+        List<Tile> overflowTiles = turnOrder.get(0).getBoard().performMovePatternLine(patternLineRow, new ArrayList<Tile>(tiles));
+        box.addAll(turnOrder.get(0).getBoard().performMoveFloorLine(overflowTiles));
+        middle.addTiles((new ArrayList<Tile>(factories.get(factoryIndex).popAllTiles())));
+        handleMove();
     }
 
     @Override
     public void performMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
-        Player player = turnOrder.get(0);
-        Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popTiles(color);
-        Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
-        performMove(popTiles, popAllTiles, putTiles, putTiles, tileColor, false);
+        List<TileColor> tiles = factories.get(factoryIndex).popTiles(tileColor);
+        box.addAll(turnOrder.get(0).getBoard().performMoveFloorLine(new ArrayList<Tile>(tiles)));
+        middle.addTiles((new ArrayList<Tile>(factories.get(factoryIndex).popAllTiles())));
+        handleMove();
     }
 
     @Override
     public void performMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
-        Player player = turnOrder.get(0);
-        Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) middle.popTiles(color);
-        Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) middle.popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMovePatternLine(patternLineRow, tiles);
-        Function<List<Tile>, List<Tile>> dumpFloorLine = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
-        performMove(popTiles, popAllTiles, putTiles, dumpFloorLine, tileColor, true);
+        List<Tile> tiles = middle.popTiles(tileColor);
+        List<Tile> overflowTiles = turnOrder.get(0).getBoard().performMovePatternLine(patternLineRow, tiles);
+        box.addAll(turnOrder.get(0).getBoard().performMoveFloorLine(overflowTiles));
+        handleMiddlePlayerTile();
+        handleMove();
     }
 
     @Override
     public void performMoveMiddleFloorLine(TileColor tileColor) {
-        Player player = turnOrder.get(0);
-        Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) middle.popTiles(color);
-        Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) middle.popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
-        performMove(popTiles, popAllTiles, putTiles, putTiles, tileColor, true);
+        List<Tile> tiles = middle.popTiles(tileColor);
+        box.addAll(turnOrder.get(0).getBoard().performMoveFloorLine(tiles));
+        handleMiddlePlayerTile();
+        handleMove();
     }
 
     @Override

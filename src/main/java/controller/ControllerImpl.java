@@ -9,6 +9,8 @@ import shared.TileColor;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.util.Pair;
+
 public class ControllerImpl implements Controller {
     private Model model;
     private List<ControllerEventListener> listeners;
@@ -51,18 +53,18 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void performMove(Location from, Location to, int fromIndex, int toIndex, int playerID, TileColor color) {
+    public void performMove(Pair<Location, Integer> from, Pair<Location, Integer> to, int playerID, TileColor color) {
         if (playerID == model.getCurrentPlayer()) {
-            if (from == Location.FACTORY && to == Location.PATTERN_LINE) {
-                performMoveFactoryPatternLine(fromIndex, toIndex, color);
+            if (from.getKey() == Location.FACTORY && to.getKey() == Location.PATTERN_LINE) {
+                performMoveFactoryPatternLine(from.getValue(), to.getValue(), color);
             }
-            if (from == Location.MIDDLE && to == Location.PATTERN_LINE) {
-                performMoveMiddlePatternLine(toIndex, color);
+            if (from.getKey() == Location.MIDDLE && to.getKey() == Location.PATTERN_LINE) {
+                performMoveMiddlePatternLine(to.getValue(), color);
             }
-            if (from == Location.FACTORY && to == Location.FLOOR_LINE) {
-                performMoveFactoryFloorLine(fromIndex, color);
+            if (from.getKey() == Location.FACTORY && to.getKey() == Location.FLOOR_LINE) {
+                performMoveFactoryFloorLine(from.getValue(), color);
             }
-            if (from == Location.MIDDLE && to == Location.FLOOR_LINE) {
+            if (from.getKey() == Location.MIDDLE && to.getKey() == Location.FLOOR_LINE) {
                 performMoveMiddleFloorLine(color);
             }
         } else {

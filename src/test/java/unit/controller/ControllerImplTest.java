@@ -2,6 +2,7 @@ package unit.controller;
 
 import controller.ControllerImpl;
 import controller.GameProxy;
+import javafx.util.Pair;
 import model.Game;
 import model.Model;
 import shared.Location;
@@ -139,7 +140,7 @@ public class ControllerImplTest {
         when(model.isValidMoveMiddleFloorLine(any(TileColor.class))).thenReturn(true);
 
         // Call the performMoveMiddleFloorLine method and verify the result
-        controller.performMove(Location.MIDDLE,Location.FLOOR_LINE,0,0, model.getCurrentPlayer(), TileColor.RED);
+        controller.performMove(new Pair<>(Location.MIDDLE,0),new Pair<>(Location.FLOOR_LINE,0), model.getCurrentPlayer(), TileColor.RED);
         verify(model).performMoveMiddleFloorLine(TileColor.RED);
         verify(view).update();
         verify(view).toast("Performing move... (tile: RED from the Middle to the Floor Line)");
@@ -152,7 +153,7 @@ public class ControllerImplTest {
         when(model.isValidMoveMiddleFloorLine(any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveMiddleFloorLine method and verify the result
-        controller.performMove(Location.MIDDLE,Location.FLOOR_LINE,0,0, model.getCurrentPlayer(), TileColor.RED);
+        controller.performMove(new Pair<>(Location.MIDDLE,0),new Pair<>(Location.FLOOR_LINE,0), model.getCurrentPlayer(), TileColor.RED);
         verify(model).isValidMoveMiddleFloorLine(TileColor.RED);
     }
 
@@ -162,7 +163,7 @@ public class ControllerImplTest {
         when(model.isValidMoveMiddlePatternLine(anyInt(), any(TileColor.class))).thenReturn(true);
 
         // Call the performMoveMiddlePatternLine method and verify the result
-        controller.performMove(Location.MIDDLE,Location.PATTERN_LINE,0,2, model.getCurrentPlayer(), TileColor.BLUE);
+        controller.performMove(new Pair<>(Location.MIDDLE,0),new Pair<>(Location.PATTERN_LINE,2), model.getCurrentPlayer(), TileColor.BLUE);
         verify(model).performMoveMiddlePatternLine(2, TileColor.BLUE);
         verify(view).update();
         verify(view).toast("Performing move... (tile: BLUE from the Middle to the row 2 in the Pattern Line)");
@@ -175,7 +176,7 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryFloorLine(anyInt(), any(TileColor.class))).thenReturn(true);
 
         // Call the performMoveFactoryFloorLine method and verify the result
-        controller.performMove(Location.FACTORY,Location.FLOOR_LINE,3,0, model.getCurrentPlayer(), TileColor.BLACK);
+        controller.performMove(new Pair<>(Location.FACTORY,3), new Pair<>(Location.FLOOR_LINE,0), model.getCurrentPlayer(), TileColor.BLACK);
         verify(model).performMoveFactoryFloorLine(3, TileColor.BLACK);
         verify(view).update();
         verify(view).toast("Performing move... (tile: BLACK from the Factory 3 to the Floor Line)");
@@ -188,7 +189,7 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryFloorLine(anyInt(), any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveFactoryFloorLine method and verify the result
-        controller.performMove(Location.FACTORY,Location.FLOOR_LINE,2,0, model.getCurrentPlayer(), TileColor.RED);
+        controller.performMove(new Pair<>(Location.FACTORY,2), new Pair<>(Location.FLOOR_LINE,0), model.getCurrentPlayer(), TileColor.RED);
         verify(model).isValidMoveFactoryFloorLine(2, TileColor.RED);
     }
 
@@ -198,7 +199,7 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryPatternLine(anyInt(), anyInt(), any(TileColor.class))).thenReturn(true);
 
         // Call the performMoveFactoryPatternLine method and verify the result
-        controller.performMove(Location.FACTORY,Location.PATTERN_LINE,0,3, model.getCurrentPlayer(), TileColor.CYAN);
+        controller.performMove(new Pair<>(Location.FACTORY,0), new Pair<>(Location.PATTERN_LINE,3), model.getCurrentPlayer(), TileColor.CYAN);
         verify(model).performMoveFactoryPatternLine(0, 3, TileColor.CYAN);
         verify(view).update();
         verify(view).toast("Performing move... (tile: CYAN from the Factory 0 to the row 3 in the Pattern Line)");
@@ -211,7 +212,7 @@ public class ControllerImplTest {
         when(model.isValidMoveFactoryPatternLine(anyInt(), anyInt(), any(TileColor.class))).thenReturn(false);
 
         // Call the performMoveFactoryPatternLine method and verify the result
-        controller.performMove(Location.FACTORY,Location.PATTERN_LINE,1,2, model.getCurrentPlayer(), TileColor.YELLOW);
+        controller.performMove(new Pair<>(Location.FACTORY,1), new Pair<>(Location.PATTERN_LINE,2), model.getCurrentPlayer(), TileColor.YELLOW);
         verify(model).isValidMoveFactoryPatternLine(1, 2, TileColor.YELLOW);
     }
 

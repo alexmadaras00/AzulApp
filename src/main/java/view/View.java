@@ -6,6 +6,6 @@ public interface View {
     
     void update();
     void toast(String message);
-    void setController(Controller conroller);
+    void setController(Controller controller);
 
 }

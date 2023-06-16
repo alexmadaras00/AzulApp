@@ -23,7 +23,7 @@ public class FloorLine {
         if (t.contains(PlayerTile.getInstance())) {
             // t.remove(PlayerTile.getInstance()); apparently this is not possible
             if (tiles.size() == 7) {
-                excessTiles.add(tiles.remove(0));
+                excessTiles.add(tiles.remove(6));
             }
             tiles.add(0, PlayerTile.getInstance());
         }

@@ -1,6 +1,6 @@
 package controller;
 
-import model.Model;
+import javafx.util.Pair;
 import shared.EventType;
 import shared.Location;
 import shared.TileColor;
@@ -9,7 +9,7 @@ import shared.TileColor;
 public interface Controller {
     void joinPlayer(String name);
     void startGame();
-    void performMove(Location from, Location to, int fromIndex, int toIndex, int playerID, TileColor color);
+    void performMove(Pair<Location, Integer> from, Pair<Location, Integer> to, int playerID, TileColor color);
     void terminateGame();
     void addListener(ControllerEventListener listener);
     void removeListener(ControllerEventListener listener);

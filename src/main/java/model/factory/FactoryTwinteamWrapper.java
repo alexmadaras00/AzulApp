@@ -18,36 +18,24 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
 
     private TileColor translateTileColor(TileColour colour) {
         switch (colour) {
-            case RED:
-                return TileColor.RED;
-            case GREEN:
-                return TileColor.CYAN;
-            case YELLOW:
-                return TileColor.YELLOW;
-            case BLUE:
-                return TileColor.BLUE;
-            case WHITE:
-                return TileColor.BLACK;
-            default:
-                return null;
+            case RED -> {return TileColor.RED;}
+            case GREEN -> {return TileColor.CYAN;}
+            case YELLOW -> {return TileColor.YELLOW;}
+            case BLUE -> {return TileColor.BLUE;}
+            case WHITE -> {return TileColor.BLACK;}
         }
+        return null;
     }
 
     private TileColour translateTwinTileColour(TileColor color) {
         switch (color) {
-            case RED:
-                return TileColour.RED;
-            case CYAN:
-                return TileColour.GREEN;
-            case YELLOW:
-                return TileColour.YELLOW;
-            case BLUE:
-                return TileColour.BLUE;
-            case BLACK:
-                return TileColour.WHITE;
-            default:
-                return null;
+            case RED -> {return TileColour.RED;}
+            case CYAN -> {return TileColour.GREEN;}
+            case YELLOW -> {return TileColour.YELLOW;}
+            case BLUE -> {return TileColour.BLUE;}
+            case BLACK -> {return TileColour.WHITE;}
         }
+        return null;
     }
 
     @Override
