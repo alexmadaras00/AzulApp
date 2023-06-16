@@ -2,6 +2,8 @@ package integration.model;
 
 import model.*;
 import model.factory.FactoryInterface;
+import model.factory.FactoryTwinteamWrapper;
+import model.factory.TwinteamFactoryCreator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -359,6 +361,15 @@ public class GameTest {
         assertEquals(null, game.getPatternLine(player1.getIdentifier(),1)[0]);
         assertEquals(TileColor.BLUE, game.getPatternLine(player1.getIdentifier(),1)[1]);
         assertEquals(TileColor.BLUE, gameProxy.getPatternLine(player1.getIdentifier(),1)[1]);
+    }
+
+    @Test
+    public void testSetTwinteamFactory() {
+        game.useTwinteamFactory();
+        game.addPlayer("a");
+        game.addPlayer("a");
+        game.startGame();
+        assertEquals(true, game.getFactories().get(0) instanceof FactoryTwinteamWrapper);
     }
 }
 
