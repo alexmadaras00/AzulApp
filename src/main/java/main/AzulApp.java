@@ -22,6 +22,7 @@ public class AzulApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.model = new Game();
+        this.model.useTwinteamFactory();
         this.controllerImpl = new ControllerImpl();
         this.view = new View();
 
