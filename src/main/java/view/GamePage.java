@@ -22,11 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import model.ModelProxy;
-import model.Player;
-import model.PlayerTile;
-import model.Tile;
-import model.TileColor;
+import model.*;
 
 public class GamePage implements View {
     private ModelProxy model;
@@ -449,7 +445,7 @@ public class GamePage implements View {
     }
 
     private void updatePlayers() {
-        List<Player> players = model.getPlayerList();
+        List<PlayerBoard> players = model.getPlayerBoardList();
         switch (players.size()) {
             case 2:
                 playerboard3.setVisible(false);
@@ -460,7 +456,7 @@ public class GamePage implements View {
         }
         for (int i = 0; i < players.size(); i++) {
             Border border = Border.EMPTY;
-            if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
+            if (model.getCurrentPlayer() == players.get(i).getPlayerIdentifier()) {
                 border = selectionBorder;
             }
             getElementByName("playerboard" + (i + 1), VBox.class).setBorder(border);
@@ -468,7 +464,7 @@ public class GamePage implements View {
         }
     }
 
-    private void updatePlayer(Player player, int place) {
+    private void updatePlayer(PlayerBoard player, int place) {
         updateWall(player, place);
         updatePatternLine(player, place);
         updateFloorLine(player, place);
@@ -477,12 +473,12 @@ public class GamePage implements View {
 
     }
 
-    private void updateScore(Player player, int place) {
-        getElementByName("player" + place + "Score", Label.class).setText("Score: " + player.getBoard().getScore());
+    private void updateScore(PlayerBoard player, int place) {
+        getElementByName("player" + place + "Score", Label.class).setText("Score: " + player.getScore());
     }
 
-    private void updateName(Player player, int place) {
-        getElementByName("player" + place + "Name", Label.class).setText(player.getName());
+    private void updateName(PlayerBoard player, int place) {
+        getElementByName("player" + place + "Name", Label.class).setText(player.getPlayerName());
     }
 
     private void setFloorLine(HBox floorLine, List<Tile> tiles) {
@@ -492,13 +488,13 @@ public class GamePage implements View {
         }
     }
 
-    private void updateFloorLine(Player player, int place) {
-        List<Tile> floorTiles = player.getBoard().getFloorLine().getCopyTiles();
+    private void updateFloorLine(PlayerBoard player, int place) {
+        List<Tile> floorTiles = player.getFloorLine().getCopyTiles();
         setFloorLine(getElementByName("player" + place + "Floor", HBox.class), floorTiles);
     }
 
-    private void updatePatternLine(Player player, int place) {
-        List<List<Tile>> floorTiles = player.getBoard().getPatternLine().getCopyTable();
+    private void updatePatternLine(PlayerBoard player, int place) {
+        List<List<Tile>> floorTiles = player.getPatternLine().getCopyTable();
         for (int line = 1; line <= 5; line++) {
             setPatternLine(getElementByName("player" + place + "PL" + line, GridPane.class), floorTiles.get(line - 1));
         }
@@ -513,8 +509,8 @@ public class GamePage implements View {
 
     }
 
-    private void updateWall(Player player, int place) {
-        List<List<Tile>> wallTiles = player.getBoard().getWall().getCopyTable();
+    private void updateWall(PlayerBoard player, int place) {
+        List<List<Tile>> wallTiles = player.getWall().getCopyTable();
         for (int line = 1; line <= 5; line++) {
             setWallLine(getElementByName("player" + place + "W" + line, GridPane.class), wallTiles.get(line - 1));
         }

@@ -12,6 +12,8 @@ public interface ModelProxy {
 
     List<Player> getPlayerList();
 
+    List<PlayerBoard> getPlayerBoardList();
+
     String getName(int identifier);
 
     Tile getWall(int identifier, int row, int col);
