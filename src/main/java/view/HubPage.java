@@ -2,7 +2,7 @@ package view;
 
 import java.util.List;
 
-import controller.ControllerImpl;
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,10 +10,10 @@ import javafx.scene.control.TextField;
 import model.ModelProxy;
 import model.Player;
 
-public class HubPage {
+public class HubPage implements View{
     private ModelProxy model;
-    private ControllerImpl controllerImpl;
-    private View view;
+    private Controller controller;
+    private GUI view;
 
     @FXML
     private Button joinButton1;
@@ -42,7 +42,8 @@ public class HubPage {
     @FXML
     private Button startButton;
 
-    void update() {
+    @Override
+    public void update() {
         List<Player> players = model.getPlayerList();
         enableAllPlayers();
         for (Player player : players) {
@@ -59,8 +60,9 @@ public class HubPage {
 
     }
 
-    void toast(String text) {
-        System.out.println(text);
+    @Override
+    public void toast(String message) {
+        System.out.println(message);
     }
 
     private void disablePlayer(int place) {
@@ -103,7 +105,7 @@ public class HubPage {
             toast("no name provided");
             return;
         }
-        controllerImpl.joinPlayer(playerName1.getText());
+        controller.joinPlayer(playerName1.getText());
 
     }
 
@@ -113,7 +115,7 @@ public class HubPage {
             toast("no name provided");
             return;
         }
-        controllerImpl.joinPlayer(playerName2.getText());
+        controller.joinPlayer(playerName2.getText());
     }
 
     @FXML
@@ -122,7 +124,7 @@ public class HubPage {
             toast("no name provided");
             return;
         }
-        controllerImpl.joinPlayer(playerName3.getText());
+        controller.joinPlayer(playerName3.getText());
     }
 
     @FXML
@@ -131,26 +133,28 @@ public class HubPage {
             toast("no name provided");
             return;
         }
-        controllerImpl.joinPlayer(playerName4.getText());
+        controller.joinPlayer(playerName4.getText());
     }
 
     @FXML
     void startGame(ActionEvent event) {
-        controllerImpl.startGame();
+        controller.startGame();
         if (model.isPlaying()) {
             view.showGame();
         }
     }
 
-    public void setView(View view) {
+    public void setView(GUI view) {
         this.view = view;
     }
 
+    @Override
     public void setModel(ModelProxy model) {
         this.model = model;
     }
 
-    public void setController(ControllerImpl controllerImpl) {
-        this.controllerImpl = controllerImpl;
+    @Override
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 }

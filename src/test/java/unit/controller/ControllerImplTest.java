@@ -1,6 +1,7 @@
 package unit.controller;
 
 import controller.ControllerImpl;
+import controller.Location;
 import model.Game;
 import model.Model;
 import model.TileColor;
@@ -8,8 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import view.Location;
-import view.View;
+
+import view.GUI;
+import view.ViewUpdateListener;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -24,14 +26,15 @@ public class ControllerImplTest {
     private Model model;
 
     @Mock
-    private View view;
+    private GUI view;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         controller = new ControllerImpl();
         controller.setModel(model);
-        controller.setView(view);
+        ViewUpdateListener listener = new ViewUpdateListener(view);
+        controller.addListener(listener);
     }
 
     @Test

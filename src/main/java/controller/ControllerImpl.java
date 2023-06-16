@@ -2,13 +2,17 @@ package controller;
 
 import model.Model;
 import model.TileColor;
-import view.Location;
-import view.View;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControllerImpl implements Controller {
     private Model model;
-    private View view;
+    private List<ControllerEventListener> listeners;
+
+    public ControllerImpl() {
+        listeners = new ArrayList<>();
+    }
 
     @Override
     public void joinPlayer(String name) {
@@ -106,15 +110,30 @@ public class ControllerImpl implements Controller {
         this.model = model;
     }
 
-    public void setView(View view) {
-        this.view = view;
-    }
-
     private void pushMessage(String message) {
-        view.toast(message);
+        notifyListeners(EventType.MESSAGE, message);
     }
 
     private void pushUpdate() {
-        view.update();
+        notifyListeners(EventType.UPDATE, null);
     }
+
+    @Override
+    public void addListener(ControllerEventListener listener) {
+        listeners.add(listener);
+    }
+
+    @Override
+    public void notifyListeners(EventType type, String message) {
+        for (ControllerEventListener listener : listeners) {
+            listener.update(type, message);
+        }
+    }
+
+    @Override
+    public void removeListener(ControllerEventListener listener) {
+        listeners.remove(listener);
+    }
+
+    
 }

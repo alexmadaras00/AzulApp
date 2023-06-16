@@ -7,12 +7,12 @@ import javafx.stage.Stage;
 import model.Game;
 import model.GameProxy;
 import model.Model;
-import view.View;
+import view.GUI;
 
 public class AzulApp extends Application {
     private Model model;
     private ControllerImpl controllerImpl;
-    private View view;
+    private GUI view;
 
     public static void main(String[] args) {
         System.out.println("YES");
@@ -23,10 +23,9 @@ public class AzulApp extends Application {
     public void start(Stage stage) throws Exception {
         this.model = new Game();
         this.controllerImpl = new ControllerImpl();
-        this.view = new View();
+        this.view = new GUI();
 
         controllerImpl.setModel(model);
-        controllerImpl.setView(view);
         view.setController(controllerImpl);
         GameProxy proxy = new GameProxy();
         proxy.setProxy(model);
