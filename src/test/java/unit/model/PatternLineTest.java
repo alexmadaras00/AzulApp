@@ -1,8 +1,9 @@
 package unit.model;
 
-import model.TileColor;
 import model.PatternLine;
-import model.Tile;
+import shared.Tile;
+import shared.TileColor;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

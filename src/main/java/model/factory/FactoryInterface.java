@@ -2,7 +2,7 @@ package model.factory;
 
 import java.util.List;
 
-import model.TileColor;
+import shared.TileColor;
 
 public interface FactoryInterface {
 

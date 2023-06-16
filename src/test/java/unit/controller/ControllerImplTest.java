@@ -1,10 +1,12 @@
 package unit.controller;
 
 import controller.ControllerImpl;
-import controller.Location;
+import controller.GameProxy;
 import model.Game;
 import model.Model;
-import model.TileColor;
+import shared.Location;
+import shared.TileColor;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -17,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
+
+import java.lang.reflect.Field;
 
 public class ControllerImplTest {
 
@@ -32,7 +36,19 @@ public class ControllerImplTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         controller = new ControllerImpl();
-        controller.setModel(model);
+        try {
+            Field field = ControllerImpl.class.getDeclaredField("model");
+            field.setAccessible(true);
+            field.set(controller, model);
+            GameProxy proxy = new GameProxy();
+            proxy.setProxy(model);
+            field = GUI.class.getDeclaredField("model");
+            field.setAccessible(true);
+            field.set(view, proxy);
+        } catch (NoSuchFieldException | SecurityException  | IllegalArgumentException | IllegalAccessException e3) {
+            e3.printStackTrace();
+        }
+    
         ViewUpdateListener listener = new ViewUpdateListener(view);
         controller.addListener(listener);
     }
@@ -51,9 +67,14 @@ public class ControllerImplTest {
     @Test
     public void testJoinPlayerWhenTooManyPlayers() {
         // Set up the mock model
-        when(model.isPlaying()).thenReturn(false);
         model = new Game();
-        controller.setModel(model);
+        try {
+            Field field = ControllerImpl.class.getDeclaredField("model");
+            field.setAccessible(true);
+            field.set(controller, model);
+        } catch (NoSuchFieldException | SecurityException  | IllegalArgumentException | IllegalAccessException e3) {
+            e3.printStackTrace();
+        }
         model.addPlayer("");
         model.addPlayer("");
         model.addPlayer("");
@@ -67,9 +88,14 @@ public class ControllerImplTest {
     @Test
     public void testJoinPlayerWhenPlayerIsAdded() {
         // Set up the mock model
-        when(model.isPlaying()).thenReturn(false);
         model = new Game();
-        controller.setModel(model);
+        try {
+            Field field = ControllerImpl.class.getDeclaredField("model");
+            field.setAccessible(true);
+            field.set(controller, model);
+        } catch (NoSuchFieldException | SecurityException  | IllegalArgumentException | IllegalAccessException e3) {
+            e3.printStackTrace();
+        }
         controller.joinPlayer("Player 1");
         verify(view).update();
         controller.joinPlayer("Player 2");

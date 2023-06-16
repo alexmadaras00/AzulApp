@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import shared.TileColor;
+
 public class Bag {
     private final List<TileColor> tiles = new ArrayList<>();
 

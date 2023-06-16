@@ -4,10 +4,15 @@ import model.*;
 import model.factory.FactoryInterface;
 import model.factory.FactoryTwinteamWrapper;
 import model.factory.TwinteamFactoryCreator;
+import shared.PlayerTile;
+import shared.Tile;
+import shared.TileColor;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import controller.GameProxy;
 
 import java.util.ArrayList;
 import java.util.Arrays;

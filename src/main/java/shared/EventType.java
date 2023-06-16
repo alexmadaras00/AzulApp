@@ -1,4 +1,4 @@
-package controller;
+package shared;
 
 public enum EventType {
     UPDATE, 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import model.TileColor;
+import shared.TileColor;
 
 public class Factory implements FactoryInterface {
     private List<TileColor> tiles = new ArrayList<>();

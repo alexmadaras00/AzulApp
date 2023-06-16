@@ -1,8 +1,9 @@
 package unit.model;
 
-import model.TileColor;
 import model.Player;
 import model.PlayerBoard;
+import shared.TileColor;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

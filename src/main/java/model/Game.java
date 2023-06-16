@@ -4,6 +4,9 @@ import model.factory.FactoryCreator;
 import model.factory.FactoryInterface;
 import model.factory.OurFactoryCreator;
 import model.factory.TwinteamFactoryCreator;
+import shared.PlayerTile;
+import shared.Tile;
+import shared.TileColor;
 
 import java.util.*;
 import java.util.function.Function;

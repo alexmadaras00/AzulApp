@@ -1,7 +1,9 @@
 package controller;
 
 import model.Model;
-import model.TileColor;
+import shared.EventType;
+import shared.Location;
+import shared.TileColor;
 
 
 public interface Controller {
@@ -12,6 +14,6 @@ public interface Controller {
     void addListener(ControllerEventListener listener);
     void removeListener(ControllerEventListener listener);
     void notifyListeners(EventType type, String message);
-    void setModel(Model model);
+    ModelProxy getProxy();
 
 }

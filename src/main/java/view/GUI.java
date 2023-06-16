@@ -3,11 +3,11 @@ package view;
 import java.net.URL;
 
 import controller.Controller;
+import controller.ModelProxy;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.ModelProxy;
 
 public class GUI implements View {
     private ModelProxy model;
@@ -24,15 +24,11 @@ public class GUI implements View {
     private Object currentPage;
 
     @Override
-    public void setModel(ModelProxy model) {
-        this.model = model;
-    }
-
-    @Override
     public void setController(Controller controller) {
         this.controller = controller;
         listener = new ViewUpdateListener(this);
         controller.addListener(listener);
+        model = controller.getProxy();
     }
 
     public void showHub() {

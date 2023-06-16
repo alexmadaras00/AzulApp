@@ -1,5 +1,9 @@
-package model;
+package controller;
 import java.util.List;
+
+import model.Model;
+import model.Player;
+import shared.Tile;
 
 public class GameProxy implements ModelProxy {
 

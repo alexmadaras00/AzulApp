@@ -3,11 +3,11 @@ package view;
 import java.util.List;
 
 import controller.Controller;
+import controller.ModelProxy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import model.ModelProxy;
 import model.Player;
 
 public class HubPage implements View{
@@ -148,7 +148,6 @@ public class HubPage implements View{
         this.view = view;
     }
 
-    @Override
     public void setModel(ModelProxy model) {
         this.model = model;
     }

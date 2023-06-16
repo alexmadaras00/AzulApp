@@ -1,7 +1,10 @@
 package controller;
 
+import model.Game;
 import model.Model;
-import model.TileColor;
+import shared.EventType;
+import shared.Location;
+import shared.TileColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,15 @@ public class ControllerImpl implements Controller {
 
     public ControllerImpl() {
         listeners = new ArrayList<>();
+        model = new Game();
+    }
+
+    public ControllerImpl(boolean useTwinTeamImplementation) {
+        listeners = new ArrayList<>();
+        model = new Game();
+        if (useTwinTeamImplementation) {
+            model.useTwinteamFactory();
+        }
     }
 
     @Override
@@ -106,8 +118,10 @@ public class ControllerImpl implements Controller {
         pushUpdate();
     }
 
-    public void setModel(Model model) {
-        this.model = model;
+    public ModelProxy getProxy() {
+        GameProxy proxy = new GameProxy();
+        proxy.setProxy(model);
+        return proxy;
     }
 
     private void pushMessage(String message) {

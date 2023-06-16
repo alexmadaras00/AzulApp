@@ -1,7 +1,7 @@
 package view;
 
 import controller.ControllerEventListener;
-import controller.EventType;
+import shared.EventType;
 
 public class ViewUpdateListener implements ControllerEventListener {
 

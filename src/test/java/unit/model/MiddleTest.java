@@ -1,9 +1,9 @@
 package unit.model;
 
-import model.TileColor;
 import model.Middle;
-import model.PlayerTile;
-import model.Tile;
+import shared.PlayerTile;
+import shared.Tile;
+import shared.TileColor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
