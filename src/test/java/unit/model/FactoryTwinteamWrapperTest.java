@@ -3,11 +3,11 @@ package unit.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.TileColor;
 import model.factory.FactoryCreator;
 import model.factory.FactoryInterface;
 import model.factory.FactoryTwinteamWrapper;
 import model.factory.TwinteamFactoryCreator;
-import shared.TileColor;
 
 import java.util.ArrayList;
 import java.util.Collections;

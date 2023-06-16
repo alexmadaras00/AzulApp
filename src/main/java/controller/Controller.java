@@ -1,9 +1,10 @@
 package controller;
 
 import javafx.util.Pair;
+import model.TileColor;
 import shared.EventType;
 import shared.Location;
-import shared.TileColor;
+import shared.ModelProxy;
 
 
 public interface Controller {

@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import shared.PlayerTile;
-import shared.Tile;
-import shared.TileColor;
-
 public class Middle {
     private final List<Tile> tiles = new ArrayList<>();
 

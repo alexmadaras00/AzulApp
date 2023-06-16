@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import controller.Controller;
-import controller.ModelProxy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,10 +24,11 @@ import javafx.scene.paint.Paint;
 import javafx.util.Pair;
 import model.Player;
 import model.PlayerBoard;
+import model.PlayerTile;
+import model.Tile;
+import model.TileColor;
 import shared.Location;
-import shared.PlayerTile;
-import shared.Tile;
-import shared.TileColor;
+import shared.ModelProxy;
 
 public class GamePage implements View {
     private ModelProxy model;

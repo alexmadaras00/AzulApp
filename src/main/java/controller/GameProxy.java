@@ -4,7 +4,8 @@ import java.util.List;
 import model.Model;
 import model.Player;
 import model.PlayerBoard;
-import shared.Tile;
+import model.Tile;
+import shared.ModelProxy;
 
 public class GameProxy implements ModelProxy {
 

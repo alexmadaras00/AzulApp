@@ -1,10 +1,10 @@
-package controller;
+package shared;
 
 import java.util.List;
 
 import model.Player;
 import model.PlayerBoard;
-import shared.Tile;
+import model.Tile;
 
 public interface ModelProxy {
     

@@ -2,7 +2,7 @@ package unit.model;
 
 import org.junit.jupiter.api.Test;
 
-import shared.TileColor;
+import model.TileColor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

@@ -8,9 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import shared.Tile;
-import shared.TileColor;
-
 public class Wall {
     private Tile[][] wall;
     private Tile[] colors;

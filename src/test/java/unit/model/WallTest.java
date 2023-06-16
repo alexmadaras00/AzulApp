@@ -11,9 +11,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.Tile;
+import model.TileColor;
 import model.Wall;
-import shared.Tile;
-import shared.TileColor;
 
 public class WallTest {
     private static Tile[][] template;

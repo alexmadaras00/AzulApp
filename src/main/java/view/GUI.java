@@ -3,11 +3,11 @@ package view;
 import java.net.URL;
 
 import controller.Controller;
-import controller.ModelProxy;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import shared.ModelProxy;
 
 public class GUI implements View {
     private ModelProxy model;

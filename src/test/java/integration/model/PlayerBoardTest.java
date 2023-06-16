@@ -2,8 +2,8 @@ package integration.model;
 
 
 import model.PlayerBoard;
-import shared.Tile;
-import shared.TileColor;
+import model.Tile;
+import model.TileColor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
