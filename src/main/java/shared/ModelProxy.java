@@ -2,7 +2,6 @@ package shared;
 
 import java.util.List;
 
-import model.Player;
 import model.PlayerBoard;
 import model.Tile;
 
@@ -16,11 +15,9 @@ public interface ModelProxy {
 
     List<Player> getPlayerList();
 
-    List<PlayerBoard> getPlayerBoardList();
-
     String getName(int identifier);
 
-    Tile getWall(int identifier, int row, int col);
+    List<List<Tile>> getWall(int identifier);
 
     Tile[] getPatternLine(int identifier, int row);
 

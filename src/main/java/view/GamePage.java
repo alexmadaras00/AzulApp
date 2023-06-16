@@ -1,12 +1,14 @@
 package view;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,14 +23,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Pair;
-import model.Player;
-import model.PlayerBoard;
 import model.PlayerTile;
 import model.Tile;
 import model.TileColor;
 import shared.Location;
 import shared.ModelProxy;
+import shared.Player;
 
 public class GamePage implements View {
     private ModelProxy model;
@@ -433,7 +435,7 @@ public class GamePage implements View {
     }
 
     private void updatePlayers() {
-        List<PlayerBoard> players = model.getPlayerBoardList();
+        List<Player> players = model.getPlayerList();
         switch (players.size()) {
             case 2:
                 playerboard3.setVisible(false);
@@ -444,7 +446,7 @@ public class GamePage implements View {
         }
         for (int i = 0; i < players.size(); i++) {
             Border border = Border.EMPTY;
-            if (model.getCurrentPlayer() == players.get(i).getPlayerIdentifier()) {
+            if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
                 border = selectionBorder;
             }
             getElementByName("playerboard" + (i + 1), VBox.class).setBorder(border);
@@ -452,7 +454,7 @@ public class GamePage implements View {
         }
     }
 
-    private void updatePlayer(PlayerBoard player, int place) {
+    private void updatePlayer(Player player, int place) {
         updateWall(player, place);
         updatePatternLine(player, place);
         updateFloorLine(player, place);
@@ -460,44 +462,62 @@ public class GamePage implements View {
         updateScore(player, place);
     }
 
-    private void updateScore(PlayerBoard player, int place) {
-        getElementByName("player" + place + "Score", Label.class).setText("Score: " + player.getScore());
+    private void updateScore(Player player, int place) {
+        getElementByName("player" + place + "Score", Label.class).setText("Score: " + model.getScore(player.getIdentifier()));
     }
 
-    private void updateName(PlayerBoard player, int place) {
-        getElementByName("player" + place + "Name", Label.class).setText(player.getPlayerName());
+    private void updateName(Player player, int place) {
+        getElementByName("player" + place + "Name", Label.class).setText(model.getName(player.getIdentifier()));
     }
 
-    private void setFloorLine(HBox floorLine, List<Tile> tiles) {
+    private void setFloorLine(HBox floorLine, Tile[] tiles) {
         floorLine.getChildren().clear();
+        List<Integer> scorePenalties = new ArrayList<>(List.of(-1,-1,-2,-2,-2,-3,-3));
         for (Tile tile : tiles) {
-            floorLine.getChildren().add(new TileButton(tile));
+            Button button = new TileButton(tile);
+            button.setDisable(true);
+            button.setBorder(new Border(new BorderStroke(Color.BROWN, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+            button.setOpacity(1);
+            if (tile != null) {
+                scorePenalties.remove(0);
+            } else {
+                button.setText(scorePenalties.remove(0).toString());
+            }
+            floorLine.getChildren().add(button);
         }
     }
 
-    private void updateFloorLine(PlayerBoard player, int place) {
-        List<Tile> floorTiles = player.getFloorLine().getCopyTiles();
+    private void updateFloorLine(Player player, int place) {
+        Tile[] floorTiles = model.getFloorLine(player.getIdentifier());
         setFloorLine(getElementByName("player" + place + "Floor", HBox.class), floorTiles);
     }
 
-    private void updatePatternLine(PlayerBoard player, int place) {
-        List<List<Tile>> floorTiles = player.getPatternLine().getCopyTable();
+    private void updatePatternLine(Player player, int place) {
         for (int line = 1; line <= 5; line++) {
-            setPatternLine(getElementByName("player" + place + "PL" + line, GridPane.class), floorTiles.get(line - 1));
+            setPatternLine(getElementByName("player" + place + "PL" + line, GridPane.class), model.getPatternLine(player.getIdentifier(), line-1));
+            // setBorderPatternLIne(getElementByName("player" + place + "PL" + line, GridPane.class));
         }
-
     }
 
-    private void setPatternLine(GridPane patternLine, List<Tile> tiles) {
+    // private void setBorderPatternLIne(GridPane patternLine) {
+    //     patternLine.setBorder(new Border(new BorderStroke(Color.BROWN, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+    // }
+
+
+
+    private void setPatternLine(GridPane patternLine, Tile[] tiles) {
         patternLine.getChildren().clear();
-        for (int i = 0; i < tiles.size(); i++) {
-            patternLine.add(new TileButton(tiles.get(i)), 4 - i, 0);
+        for (int i = 0; i < tiles.length; i++) {
+            Button button = new TileButton(tiles[i]);
+            button.setDisable(true);
+            button.setBorder(new Border(new BorderStroke(Color.BROWN, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+            button.setOpacity(1);
+            patternLine.add(button, 5-tiles.length+i, 0);
         }
-
     }
 
-    private void updateWall(PlayerBoard player, int place) {
-        List<List<Tile>> wallTiles = player.getWall().getCopyTable();
+    private void updateWall(Player player, int place) {
+        List<List<Tile>> wallTiles = model.getWall(player.getIdentifier());
         for (int line = 1; line <= 5; line++) {
             setWallLine(getElementByName("player" + place + "W" + line, GridPane.class), wallTiles.get(line - 1));
         }

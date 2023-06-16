@@ -4,6 +4,7 @@ import model.factory.FactoryCreator;
 import model.factory.FactoryInterface;
 import model.factory.OurFactoryCreator;
 import model.factory.TwinteamFactoryCreator;
+import shared.Player;
 
 import java.util.*;
 import java.util.function.Function;
@@ -135,18 +136,13 @@ public class Game implements Model {
     }
 
     @Override
-    public List<PlayerBoard> getPlayerBoardList(){
-        return playerBoards;
-    }
-
-    @Override
     public int getScore(int identifier) {
         return getPlayerBoardByIdentifier(identifier).getScore();
     }
 
     @Override
-    public Tile getWall(int identifier, int row, int col) {
-        return getPlayerBoardByIdentifier(identifier).getWallTiles().get(row).get(col);
+    public List<List<Tile>> getWall(int identifier) {
+        return getPlayerBoardByIdentifier(identifier).getWallTiles();
     }
 
     @Override

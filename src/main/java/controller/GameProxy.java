@@ -2,10 +2,10 @@ package controller;
 import java.util.List;
 
 import model.Model;
-import model.Player;
 import model.PlayerBoard;
 import model.Tile;
 import shared.ModelProxy;
+import shared.Player;
 
 public class GameProxy implements ModelProxy {
 
@@ -33,19 +33,10 @@ public class GameProxy implements ModelProxy {
     }
 
     @Override
-    public List<PlayerBoard> getPlayerBoardList(){
-        return game.getPlayerBoardList();
-    }
-
-    @Override
     public String getName(int identifier) {
         return game.getName(identifier);
     }
 
-    @Override
-    public Tile getWall(int identifier, int row, int col) {
-        return game.getWall(identifier, row, col);
-    }
 
     @Override
     public Tile[] getPatternLine(int identifier, int row) {
@@ -85,4 +76,11 @@ public class GameProxy implements ModelProxy {
     public void setProxy(Model game) {
         this.game = game;
     }
+
+    @Override
+    public List<List<Tile>> getWall(int identifier) {
+        return game.getWall(identifier);
+    }
+
+    
 }
