@@ -1,8 +1,9 @@
 package unit.model;
 
-import model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import shared.Player;
 
 import static org.junit.jupiter.api.Assertions.*;
 
