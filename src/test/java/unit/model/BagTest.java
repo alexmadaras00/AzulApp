@@ -1,7 +1,7 @@
 package unit.model;
 
 import model.Bag;
-import shared.TileColor;
+import model.TileColor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

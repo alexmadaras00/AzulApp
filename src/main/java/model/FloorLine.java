@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import shared.PlayerTile;
-import shared.Tile;
-
 public class FloorLine {
     private List<Tile> tiles = new ArrayList<>();
     private List<Integer> scores = Arrays.asList(-1,-1,-2,-2,-2,-3,-3);

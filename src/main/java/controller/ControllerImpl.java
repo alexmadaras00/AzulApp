@@ -2,9 +2,10 @@ package controller;
 
 import model.Game;
 import model.Model;
+import model.TileColor;
 import shared.EventType;
 import shared.Location;
-import shared.TileColor;
+import shared.ModelProxy;
 
 import java.util.ArrayList;
 import java.util.List;

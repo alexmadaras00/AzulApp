@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import model.TileColor;
 import model.factory.twinteam.CollectionOverCapacityException;
 import model.factory.twinteam.FactoryDisplay;
 import model.factory.twinteam.TileColour;
-import shared.TileColor;
 
 public class FactoryTwinteamWrapper implements FactoryInterface {
     private FactoryDisplay factory;

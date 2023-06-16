@@ -5,8 +5,8 @@ import controller.GameProxy;
 import javafx.util.Pair;
 import model.Game;
 import model.Model;
+import model.TileColor;
 import shared.Location;
-import shared.TileColor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

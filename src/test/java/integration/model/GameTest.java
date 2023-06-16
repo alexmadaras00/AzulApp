@@ -4,9 +4,6 @@ import model.*;
 import model.factory.FactoryInterface;
 import model.factory.FactoryTwinteamWrapper;
 import model.factory.TwinteamFactoryCreator;
-import shared.PlayerTile;
-import shared.Tile;
-import shared.TileColor;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

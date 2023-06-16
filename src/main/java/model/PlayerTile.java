@@ -1,4 +1,4 @@
-package shared;
+package model;
 
 public class PlayerTile implements Tile {
     private static PlayerTile instance;

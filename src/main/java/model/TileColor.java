@@ -1,4 +1,4 @@
-package shared;
+package model;
 
 public enum TileColor implements Tile {
     BLUE,

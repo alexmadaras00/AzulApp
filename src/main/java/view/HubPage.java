@@ -3,12 +3,12 @@ package view;
 import java.util.List;
 
 import controller.Controller;
-import controller.ModelProxy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Player;
+import shared.ModelProxy;
 
 public class HubPage implements View{
     private ModelProxy model;
