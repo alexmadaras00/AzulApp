@@ -32,11 +32,6 @@ public class GamePage {
 
     private ControllerImpl controllerImpl;
 
-    private View view;
-
-    public void setView(View view) {
-        this.view = view;
-    }
 
     public void setModel(ModelProxy model) {
         this.model = model;
