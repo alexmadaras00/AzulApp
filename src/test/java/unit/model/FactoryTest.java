@@ -5,19 +5,32 @@ import org.junit.jupiter.api.Test;
 
 import model.TileColor;
 import model.factory.Factory;
+import model.factory.FactoryCreator;
+import model.factory.FactoryInterface;
+import model.factory.OurFactoryCreator;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FactoryTest {
-    private Factory factory;
+    private static FactoryCreator factoryCreator = new OurFactoryCreator();
+    private FactoryInterface factory;
     private List<TileColor> tiles;
 
     @BeforeEach
     public void setUp() {
-        factory = new Factory();
-        tiles = List.of(TileColor.BLUE, TileColor.BLUE, TileColor.YELLOW, TileColor.RED);
+        factory = factoryCreator.createFactory();
+        tiles = new ArrayList<>(List.of(TileColor.BLUE, TileColor.BLUE, TileColor.YELLOW, TileColor.RED));
+        Collections.sort(tiles);
+    }
+
+    @Test
+    public void testCreation() {
+        factory = factoryCreator.createFactory();
+        assertEquals(true, factory instanceof Factory);
     }
 
     // In each round there are no more than 4 tiles on a factory
@@ -30,7 +43,9 @@ public class FactoryTest {
     @Test
     public void testAddTiles() {
         factory.addTiles(tiles);
-        assertEquals(tiles, factory.getAllTiles());
+        List<TileColor> getTiles = factory.getAllTiles();
+        Collections.sort(getTiles);
+        assertEquals(tiles, getTiles);
     }
 
     @Test

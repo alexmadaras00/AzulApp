@@ -1,24 +1,36 @@
 package unit.model;
 
-import model.factory.twinteam.CollectionOverCapacityException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.TileColor;
+import model.factory.FactoryCreator;
+import model.factory.FactoryInterface;
 import model.factory.FactoryTwinteamWrapper;
+import model.factory.TwinteamFactoryCreator;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FactoryTwinteamWrapperTest {
-    private FactoryTwinteamWrapper factory;
+       private static FactoryCreator factoryCreator = new TwinteamFactoryCreator();
+    private FactoryInterface factory;
     private List<TileColor> tiles;
 
     @BeforeEach
     public void setUp() {
-        factory = new FactoryTwinteamWrapper();
-        tiles = List.of(TileColor.BLUE, TileColor.BLACK, TileColor.YELLOW, TileColor.RED);
+        factory = factoryCreator.createFactory();
+        tiles = new ArrayList<>(List.of(TileColor.BLUE, TileColor.BLUE, TileColor.YELLOW, TileColor.RED));
+        Collections.sort(tiles);
+    }
+
+    @Test
+    public void testCreation() {
+        factory = factoryCreator.createFactory();
+        assertEquals(true, factory instanceof FactoryTwinteamWrapper);
     }
 
     // In each round there are no more than 4 tiles on a factory
@@ -31,32 +43,32 @@ public class FactoryTwinteamWrapperTest {
     @Test
     public void testAddTiles() {
         factory.addTiles(tiles);
-        assertEquals(true, tiles.containsAll(factory.getAllTiles()));
+        List<TileColor> getTiles = factory.getAllTiles();
+        Collections.sort(getTiles);
+        assertEquals(tiles, getTiles);
     }
 
     @Test
     public void testPopTiles() {
         factory.addTiles(tiles);
         List<TileColor> blueTiles = factory.popTiles(TileColor.BLUE);
-        assertEquals(1, blueTiles.size());
+        assertEquals(2, blueTiles.size());
         assertEquals(TileColor.BLUE, blueTiles.get(0));
+        assertEquals(TileColor.BLUE, blueTiles.get(1));
     }
 
     @Test
-    public void testpopAllTiles() throws CollectionOverCapacityException{
+    public void testpopAllTiles() {
         factory.addTiles(tiles);
         assertEquals(4, factory.getAllTiles().size());
         factory.popAllTiles();
         assertEquals(0, factory.getAllTiles().size());
-        tiles = List.of(TileColor.CYAN, TileColor.BLACK, TileColor.YELLOW, TileColor.RED);
-        factory.addTiles(tiles);
-        factory.addTiles(tiles);
     }
 
     @Test
     public void testHasTiles() {
         factory.addTiles(tiles);
         assertTrue(factory.hasTiles(TileColor.RED));
-        assertFalse(factory.hasTiles(TileColor.CYAN));
+        assertFalse(factory.hasTiles(TileColor.BLACK));
     }
 }

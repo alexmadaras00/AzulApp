@@ -1,6 +1,10 @@
 package model;
 
-import model.factory.Factory;
+import model.factory.FactoryCreator;
+import model.factory.FactoryInterface;
+import model.factory.OurFactoryCreator;
+import model.factory.TwinteamFactoryCreator;
+
 import java.util.*;
 import java.util.function.Function;
 
@@ -9,12 +13,13 @@ public class Game implements Model {
     private Boolean isPlaying;
     private int round;
     private List<Tile> box;
-    private List<Factory> factories;
+    private List<FactoryInterface> factories;
     private List<Integer> winners;
     private GamePhase gamePhase;
     private List<Player> turnOrder;
     private Bag bag;
     private Middle middle;
+    private FactoryCreator factoryCreator;
 
     public Game() {
         this.players = new ArrayList<>();
@@ -27,6 +32,7 @@ public class Game implements Model {
         this.round = 0;
         this.turnOrder = new ArrayList<>();
         this.winners = new ArrayList<>();
+        this.factoryCreator = new OurFactoryCreator();
     }
 
     // --- Getters for testing ---
@@ -50,7 +56,7 @@ public class Game implements Model {
         return gamePhase;
     }
 
-    public List<Factory> getFactories() {
+    public List<FactoryInterface> getFactories() {
         return factories;
     }
 
@@ -164,7 +170,7 @@ public class Game implements Model {
 
     private void initFactories() {
         for (int i = 0; i < players.size()*2+1; i++) {
-            factories.add(new Factory());
+            factories.add(factoryCreator.createFactory());
         }
     }
 
@@ -284,7 +290,7 @@ public class Game implements Model {
     }
 
     private boolean isEndOfRound() {
-        for (Factory factory : factories) {
+        for (FactoryInterface factory : factories) {
             if (factory.getAllTiles().size() > 0) {
                 return false;
             }
@@ -380,6 +386,11 @@ public class Game implements Model {
     @Override
     public boolean isValidMoveMiddleFloorLine(TileColor tileColor) {
         return middle.hasTiles(tileColor);
+    }
+
+    @Override
+    public void useTwinteamFactory() {
+        factoryCreator = new TwinteamFactoryCreator();
     }
 }
 

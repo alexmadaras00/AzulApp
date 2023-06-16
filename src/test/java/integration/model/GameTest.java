@@ -1,7 +1,8 @@
 package integration.model;
 
 import model.*;
-import model.factory.Factory;
+import model.factory.FactoryInterface;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
-    static List<Factory> factories;
+    static List<FactoryInterface> factories;
     static List<Player> players;
     static Player player1;
     static Player player2;
@@ -134,7 +135,7 @@ public class GameTest {
 
     private void restartingRound() {
         factories = game.getFactories();
-        factories.forEach(Factory::popAllTiles);
+        factories.forEach(FactoryInterface::popAllTiles);
         game.getCenter().getAllTiles().clear();
         game.getCenter().addTiles(List.of(PlayerTile.getInstance()));
         factories.get(1).addTiles(List.of(TileColor.RED, TileColor.RED, TileColor.BLUE, TileColor.BLACK));
