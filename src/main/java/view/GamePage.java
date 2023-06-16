@@ -3,7 +3,8 @@ package view;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import controller.ControllerImpl;
+import controller.Controller;
+import controller.Location;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,18 +28,20 @@ import model.PlayerTile;
 import model.Tile;
 import model.TileColor;
 
-public class GamePage {
+public class GamePage implements View {
     private ModelProxy model;
 
-    private ControllerImpl controllerImpl;
+    private Controller controller;
 
 
+    @Override
     public void setModel(ModelProxy model) {
         this.model = model;
     }
 
-    public void setController(ControllerImpl controllerImpl) {
-        this.controllerImpl = controllerImpl;
+    @Override
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     @FXML
@@ -306,7 +309,7 @@ public class GamePage {
                     + fromIndex
                     + " of player " + playerId);
 
-            controllerImpl.performMove(fromLocation, toLocation, fromIndex, toIndex, playerId, color);
+            controller.performMove(fromLocation, toLocation, fromIndex, toIndex, playerId, color);
             clearSelection();
         }
     }
