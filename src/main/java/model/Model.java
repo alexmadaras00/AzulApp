@@ -26,4 +26,6 @@ public interface Model extends ModelProxy{
     boolean isValidMoveMiddlePatternLine(int patternLineRow, TileColor tileColor);
 
     boolean isValidMoveMiddleFloorLine(TileColor tileColor);
+
+    void useTwinteamFactory();
 }

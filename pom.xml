@@ -34,6 +34,8 @@
                 <configuration>
                     <excludes>
                         <exclude>**/AzulApp.class</exclude>
+                        <exclude>**/twinteam/*</exclude>
+                        <exclude>**/View.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

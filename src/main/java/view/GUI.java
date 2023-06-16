@@ -84,7 +84,6 @@ public class GUI implements View {
         hubPageController.setView(this);
         hubPageController.setController(controller);
         hubPageController.setModel(model);
-        gamePageController.setView(this);
         gamePageController.setController(controller);
         gamePageController.setModel(model);
     }

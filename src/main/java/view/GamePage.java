@@ -33,11 +33,6 @@ public class GamePage implements View {
 
     private Controller controller;
 
-    private GUI view;
-
-    public void setView(GUI view) {
-        this.view = view;
-    }
 
     @Override
     public void setModel(ModelProxy model) {
