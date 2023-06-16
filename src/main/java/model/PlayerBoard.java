@@ -8,12 +8,21 @@ public class PlayerBoard {
     private int score;
     private FloorLine floorLine;
     private PatternLine patternLine;
+    private Player player;
 
     public PlayerBoard() {
         floorLine = new FloorLine();
         wall = new Wall();
         patternLine = new PatternLine();
         score = 0;
+        player = new Player();
+    }
+    public PlayerBoard(Player player) {
+        floorLine = new FloorLine();
+        wall = new Wall();
+        patternLine = new PatternLine();
+        score = 0;
+        this.player = player;
     }
     // -- getters for testing --
     public FloorLine getFloorLine() {
@@ -25,6 +34,7 @@ public class PlayerBoard {
     public Wall getWall() {
         return wall;
     }
+    public Player getPlayer() {return player;}
     // -------------------------
 
     public int getScore() {
@@ -46,12 +56,16 @@ public class PlayerBoard {
     public List<Tile> getFloorLineTiles() {
         return floorLine.getCopyTiles();
     }
+    public int getPlayerIdentifier(){return player.getIdentifier();}
+    public String getPlayerName(){return player.getName();}
 
     public boolean hasFulfilledEndCondition(){
         return wall.getCompletedRowCount()>0;
     }
 
     public boolean canAddTypePatternLine(int rowIndex, TileColor type) {
+        Boolean wallCan = wall.canAddTile(rowIndex, type);
+        Boolean pattern = patternLine.canAddTile(rowIndex, type);
         return wall.canAddTile(rowIndex, type) && patternLine.canAddTile(rowIndex, type);
     }
 

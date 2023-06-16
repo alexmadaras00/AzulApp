@@ -9,20 +9,20 @@ import java.util.*;
 import java.util.function.Function;
 
 public class Game implements Model {
-    private List<Player> players;
+    private List<PlayerBoard> playerBoards;
     private Boolean isPlaying;
     private int round;
     private List<Tile> box;
     private List<FactoryInterface> factories;
     private List<Integer> winners;
     private GamePhase gamePhase;
-    private List<Player> turnOrder;
+    private List<PlayerBoard> turnOrder;
     private Bag bag;
     private Middle middle;
     private FactoryCreator factoryCreator;
 
     public Game() {
-        this.players = new ArrayList<>();
+        this.playerBoards = new ArrayList<>();
         this.factories = new ArrayList<>();
         this.gamePhase = GamePhase.INITIALIZED;
         this.middle = new Middle();
@@ -40,12 +40,20 @@ public class Game implements Model {
         return box;
     }
 
-    public List<Player> getTurnOrder() {
+    public List<PlayerBoard> getTurnOrder() {
         return turnOrder;
     }
 
     public List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
+        for (PlayerBoard p : playerBoards){
+            players.add(p.getPlayer());
+        }
         return players;
+    }
+
+    public List<PlayerBoard> getPlayerBoards(){
+        return playerBoards;
     }
 
     public Middle getCenter() {
@@ -98,31 +106,23 @@ public class Game implements Model {
     @Override
     public Tile[] getFloorLine(int identifier) {
         Tile[] result = new Tile[7];
-        List<Tile> floorLineTiles = getPlayerByIdentifier(identifier).getBoard().getFloorLineTiles();
+        List<Tile> floorLineTiles = getPlayerBoardByIdentifier(identifier).getFloorLineTiles();
         for (int i = 0; i < Math.min(7,floorLineTiles.size()); i++) {
             result[i] = floorLineTiles.get(i);
         }
         return result;
     }
 
-    private Player getPlayerByIdentifier(int identifier) {
-        for (Player player: players) {
-            if (player.getIdentifier() == identifier) {
-                return player;
-            }
-        }
-        return null;
-    }
 
     @Override
     public String getName(int identifier) {
-        return getPlayerByIdentifier(identifier).getName();
+        return getPlayerBoardByIdentifier(identifier).getPlayerName();
     }
 
     @Override
     public Tile[] getPatternLine(int identifier, int row) {
         Tile[] result = new Tile[row+1];
-        List<Tile> patternLineTiles = getPlayerByIdentifier(identifier).getBoard().getPatternLineTiles().get(row);
+        List<Tile> patternLineTiles = getPlayerBoardByIdentifier(identifier).getPatternLineTiles().get(row);
         for (int i = 0; i < Math.min(row+1,patternLineTiles.size()); i++) {
             result[row-i] = patternLineTiles.get(i);
         }
@@ -131,17 +131,22 @@ public class Game implements Model {
 
     @Override
     public List<Player> getPlayerList() {
-        return new ArrayList<>(players);
+        return getPlayers();
+    }
+
+    @Override
+    public List<PlayerBoard> getPlayerBoardList(){
+        return playerBoards;
     }
 
     @Override
     public int getScore(int identifier) {
-        return getPlayerByIdentifier(identifier).getBoard().getScore();
+        return getPlayerBoardByIdentifier(identifier).getScore();
     }
 
     @Override
     public Tile getWall(int identifier, int row, int col) {
-        return getPlayerByIdentifier(identifier).getBoard().getWallTiles().get(row).get(col);
+        return getPlayerBoardByIdentifier(identifier).getWallTiles().get(row).get(col);
     }
 
     @Override
@@ -169,7 +174,7 @@ public class Game implements Model {
     }
 
     private void initFactories() {
-        for (int i = 0; i < players.size()*2+1; i++) {
+        for (int i = 0; i < playerBoards.size()*2+1; i++) {
             factories.add(factoryCreator.createFactory());
         }
     }
@@ -196,9 +201,9 @@ public class Game implements Model {
     private void endRound() {
         gamePhase = GamePhase.WALL_TILLING;
         wallTilling();
-        players.forEach(player -> {
+        playerBoards.forEach(playerBoard -> {
             if (isEndOfGame()) {
-                player.getBoard().addFinalScores();
+                playerBoard.addFinalScores();
             }
         });
         if (isEndOfGame()) {
@@ -209,19 +214,20 @@ public class Game implements Model {
     }
 
     private void wallTilling() {
-        this.players.forEach(player -> {
-            List<Tile> remainingTiles = player.getBoard().wallTilling();
+        this.playerBoards.forEach(playerBoard -> {
+            List<Tile> remainingTiles = playerBoard.wallTilling();
             if (remainingTiles.contains(PlayerTile.getInstance())) {
-                setStartingPlayer(player);
+                setStartingPlayer(playerBoard.getPlayer());
                 remainingTiles.remove(PlayerTile.getInstance());
             }
             box.addAll(remainingTiles);
         });
     }
 
+
     private void setStartingPlayer(Player player) {
         for (int i = 0; i < turnOrder.size(); i++) {
-            if (turnOrder.get(0).equals(player)) {
+            if (turnOrder.get(0).getPlayer().equals(player)) {
                 return;
             } else {
                 turnOrder.add(turnOrder.remove(0));
@@ -243,10 +249,10 @@ public class Game implements Model {
 
     private List<Integer> determineWinners() {
         List<Integer> winners = new ArrayList<>();
-        List<Player> possibleWinners = new ArrayList<>();
+        List<PlayerBoard> possibleWinners = new ArrayList<>();
         int maxScore = 0;
-        for (Player p : players) {
-            int playerScore = p.getBoard().getScore();
+        for (PlayerBoard p : playerBoards) {
+            int playerScore = p.getScore();
             if (playerScore > maxScore) {
                 maxScore = playerScore;
                 possibleWinners = new ArrayList<>();
@@ -256,13 +262,14 @@ public class Game implements Model {
             }
         }
         int maxCompletedRows = 0;
-        for (Player p : possibleWinners) {
-            int completedRowCount = p.getBoard().getCompletedRowCount();
+        for (PlayerBoard p : possibleWinners) {
+            int completedRowCount = p.getCompletedRowCount();
             if (completedRowCount > maxCompletedRows) {
+                maxScore = completedRowCount;
                 winners = new ArrayList<>();
-                winners.add(p.getIdentifier());
+                winners.add(p.getPlayerIdentifier());
             } else if (completedRowCount == maxCompletedRows) {
-                winners.add(p.getIdentifier());
+                winners.add(p.getPlayerIdentifier());
             }
         }
         return winners;
@@ -270,20 +277,21 @@ public class Game implements Model {
 
     @Override
     public int getCurrentPlayer() {
-        return turnOrder.get(0).getIdentifier();
+        return turnOrder.get(0).getPlayerIdentifier();
     }
 
     @Override
     public void addPlayer(String name) {
         Player player = new Player(name);
-        players.add(player);
-        turnOrder.add(player);
+        PlayerBoard playerBoard = new PlayerBoard(player);
+        playerBoards.add(playerBoard);
+        turnOrder.add(playerBoard);
     }
 
     @Override
     public boolean canStartGame() {
-        return players.size() >= 2 && players.size() <= 4 && !isPlaying && round == 0
-                && middle.getAllTiles().size() == 0 && turnOrder.size() == players.size()
+        return playerBoards.size() >= 2 && playerBoards.size() <= 4 && !isPlaying && round == 0
+                && middle.getAllTiles().size() == 0 && turnOrder.size() == playerBoards.size()
                 && box.size() == 0 && bag.getTiles().size() == 0
                 && factories.stream().allMatch(factory -> factory.getAllTiles().size() == 0);
     }
@@ -298,8 +306,8 @@ public class Game implements Model {
     }
 
     private boolean isEndOfGame() {
-        for (Player p : players) {
-            if (p.getBoard().hasFulfilledEndCondition())
+        for (PlayerBoard p : playerBoards) {
+            if (p.hasFulfilledEndCondition())
                 return true;
         }
         return false;
@@ -329,46 +337,47 @@ public class Game implements Model {
 
     @Override
     public void performMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
-        Player player = turnOrder.get(0);
+        PlayerBoard player = turnOrder.get(0);
         Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popTiles(color);
         Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMovePatternLine(patternLineRow, tiles);
-        Function<List<Tile>, List<Tile>> dumpFloorLine = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
+        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.performMovePatternLine(patternLineRow, tiles);
+        Function<List<Tile>, List<Tile>> dumpFloorLine = (tiles) -> player.performMoveFloorLine(tiles);
         performMove(popTiles, popAllTiles, putTiles, dumpFloorLine, tileColor, false);
     }
 
     @Override
     public void performMoveFactoryFloorLine(int factoryIndex, TileColor tileColor) {
-        Player player = turnOrder.get(0);
+        PlayerBoard playerBoard = turnOrder.get(0);
         Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popTiles(color);
         Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) factories.get(factoryIndex).popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
+        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> playerBoard.performMoveFloorLine(tiles);
         performMove(popTiles, popAllTiles, putTiles, putTiles, tileColor, false);
     }
 
     @Override
     public void performMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
-        Player player = turnOrder.get(0);
+        PlayerBoard playerBoard = turnOrder.get(0);
         Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) middle.popTiles(color);
         Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) middle.popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMovePatternLine(patternLineRow, tiles);
-        Function<List<Tile>, List<Tile>> dumpFloorLine = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
+        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> playerBoard.performMovePatternLine(patternLineRow, tiles);
+        Function<List<Tile>, List<Tile>> dumpFloorLine = (tiles) -> playerBoard.performMoveFloorLine(tiles);
         performMove(popTiles, popAllTiles, putTiles, dumpFloorLine, tileColor, true);
     }
 
     @Override
     public void performMoveMiddleFloorLine(TileColor tileColor) {
-        Player player = turnOrder.get(0);
+        PlayerBoard playerBoard = turnOrder.get(0);
         Function<TileColor, List<Tile>> popTiles = (color) -> (List<Tile>) (Object) middle.popTiles(color);
         Function<TileColor, List<Tile>> popAllTiles = (color) -> (List<Tile>) (Object) middle.popAllTiles();
-        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> player.getBoard().performMoveFloorLine(tiles);
+        Function<List<Tile>, List<Tile>> putTiles = (tiles) -> playerBoard.performMoveFloorLine(tiles);
         performMove(popTiles, popAllTiles, putTiles, putTiles, tileColor, true);
     }
 
     @Override
     public boolean isValidMoveFactoryPatternLine(int factoryIndex, int patternLineRow, TileColor tileColor) {
+        Boolean canAddTypePatternLine = turnOrder.get(0).canAddTypePatternLine(patternLineRow, tileColor);
         return factories.get(factoryIndex).hasTiles(tileColor) &&
-                turnOrder.get(0).getBoard().canAddTypePatternLine(patternLineRow, tileColor);
+                turnOrder.get(0).canAddTypePatternLine(patternLineRow, tileColor);
     }
 
     @Override
@@ -379,7 +388,7 @@ public class Game implements Model {
     @Override
     public boolean isValidMoveMiddlePatternLine(int patternLineRow, TileColor tileColor) {
         return middle.hasTiles(tileColor) &&
-                turnOrder.get(0).getBoard().canAddTypePatternLine(patternLineRow, tileColor);
+                turnOrder.get(0).canAddTypePatternLine(patternLineRow, tileColor);
     }
 
     @Override
@@ -390,6 +399,15 @@ public class Game implements Model {
     @Override
     public void useTwinteamFactory() {
         factoryCreator = new TwinteamFactoryCreator();
+    }
+
+    private PlayerBoard getPlayerBoardByIdentifier(int identifier){
+        for (PlayerBoard playerBoard:playerBoards){
+            if (playerBoard.getPlayerIdentifier()==identifier){
+                return playerBoard;
+            }
+        }
+        return null;
     }
 }
 

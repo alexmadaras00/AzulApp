@@ -27,6 +27,11 @@ public class GameProxy implements ModelProxy {
     }
 
     @Override
+    public List<PlayerBoard> getPlayerBoardList(){
+        return game.getPlayerBoardList();
+    }
+
+    @Override
     public String getName(int identifier) {
         return game.getName(identifier);
     }
