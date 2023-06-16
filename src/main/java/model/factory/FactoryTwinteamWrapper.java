@@ -53,14 +53,7 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
     @Override
     public List<TileColor> getAllTiles() {
         Collection<model.factory.twinteam.Tile> twinTiles = factory.getTiles();
-        List<TileColor> ourTiles = new ArrayList<>();
-        for (model.factory.twinteam.Tile twinTile : twinTiles) {
-            TileColor ourTile = translateTileColor(twinTile.getColour());
-            if (ourTile != null) {
-                ourTiles.add(ourTile);
-            }
-        }
-        return ourTiles;
+        return convertToOwnTiles(twinTiles);
     }
 
     @Override
@@ -73,14 +66,7 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
     @Override
     public List<TileColor> popTiles(TileColor tile) {
         Collection<model.factory.twinteam.Tile> twinTiles = factory.grab(translateTwinTileColour(tile));
-        List<TileColor> ourTiles = new ArrayList<>();
-        for (model.factory.twinteam.Tile twinTile : twinTiles) {
-            TileColor ourTile = translateTileColor(twinTile.getColour());
-            if (ourTile != null) {
-                ourTiles.add(ourTile);
-            }
-        }
-        return ourTiles;
+        return convertToOwnTiles(twinTiles);
     }
 
     @Override
@@ -100,6 +86,17 @@ public class FactoryTwinteamWrapper implements FactoryInterface {
     public boolean hasTiles(TileColor type) {
         List<TileColor> tilesInFactory = this.getAllTiles();
         return tilesInFactory.contains(type);
+    }
+
+    private List<TileColor> convertToOwnTiles(Collection<model.factory.twinteam.Tile> twinTiles) {
+        List<TileColor> ourTiles = new ArrayList<>();
+        for (model.factory.twinteam.Tile twinTile : twinTiles) {
+            TileColor ourTile = translateTileColor(twinTile.getColour());
+            if (ourTile != null) {
+                ourTiles.add(ourTile);
+            }
+        }
+        return ourTiles;
     }
 
 }
