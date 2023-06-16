@@ -10,19 +10,22 @@ import model.Model;
 import view.View;
 
 public class AzulApp extends Application {
+    private static boolean useTwinteamFactory = true;
     private Model model;
     private ControllerImpl controllerImpl;
     private View view;
 
     public static void main(String[] args) {
-        System.out.println("YES");
         launch();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         this.model = new Game();
-        this.model.useTwinteamFactory();
+        if (AzulApp.useTwinteamFactory) {
+            this.model.useTwinteamFactory();
+            System.out.println("using twinteam Factory");
+        }
         this.controllerImpl = new ControllerImpl();
         this.view = new View();
 
