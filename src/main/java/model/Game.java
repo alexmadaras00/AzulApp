@@ -183,13 +183,13 @@ public class Game implements Model {
     }
 
     private void fillFactories() {
-        for (int i = 0; i < factories.size(); i++) {
+        for (FactoryInterface factory : factories) {
             if (bag.getTiles().size() < 4) {
                 bag.addTiles((List<TileColor>) (Object) box);
                 box = new ArrayList<>();
             }
             List<TileColor> tiles = bag.popTiles(4);
-            factories.get(i).addTiles(tiles);
+            factory.addTiles(tiles);
         }
     }
 
@@ -259,7 +259,6 @@ public class Game implements Model {
         for (Player p : possibleWinners) {
             int completedRowCount = p.getBoard().getCompletedRowCount();
             if (completedRowCount > maxCompletedRows) {
-                maxScore = completedRowCount;
                 winners = new ArrayList<>();
                 winners.add(p.getIdentifier());
             } else if (completedRowCount == maxCompletedRows) {
@@ -315,7 +314,7 @@ public class Game implements Model {
         box.addAll(returnedTilesFloorLine);
 
         if (!isMiddle) {
-            List<Tile> otherTiles = popAllTiles.apply(tileColor);            
+            List<Tile> otherTiles = popAllTiles.apply(tileColor);
             middle.addTiles(otherTiles);
         } else if (middle.hasPlayerTile()) {
             box.addAll(dumpFloorLine.apply(List.of(middle.popPlayerTile())));
