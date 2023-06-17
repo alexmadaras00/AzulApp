@@ -1,4 +1,4 @@
-package model;
+package shared;
 
 public class Player {
     private String name;

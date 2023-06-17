@@ -4,6 +4,7 @@ import model.*;
 import model.factory.FactoryInterface;
 import model.factory.FactoryTwinteamWrapper;
 import model.factory.TwinteamFactoryCreator;
+import shared.Player;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -385,13 +386,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGetPlayerBoardList() {
-        assertEquals(List.of(playerBoard1, playerBoard2), game.getPlayerBoardList());
-        assertEquals(List.of(playerBoard1, playerBoard2), gameProxy.getPlayerBoardList());
-    }
-
-
-    @Test
     public void testGetPlayerByIdentifier() {
         Player nonExistentPlayer = new Player("Adrian");
         assertEquals(playerBoard1.getScore(), game.getScore(playerBoard1.getPlayerIdentifier()));
@@ -410,9 +404,9 @@ public class GameTest {
     @Test
     public void testGetWall() {
         playerBoard1.getWall().addTile(0, TileColor.BLUE);
-        assertEquals(TileColor.BLUE, game.getWall(playerBoard1.getPlayerIdentifier(), 0, 0));
-        assertEquals(TileColor.BLUE, gameProxy.getWall(playerBoard1.getPlayerIdentifier(), 0, 0));
-        assertEquals(null, game.getWall(playerBoard1.getPlayerIdentifier(), 1, 1));
+        assertEquals(TileColor.BLUE, game.getWall(playerBoard1.getPlayerIdentifier()).get(0).get(0));
+        assertEquals(TileColor.BLUE, gameProxy.getWall(playerBoard1.getPlayerIdentifier()).get(0).get(0));
+        assertEquals(null, game.getWall(playerBoard1.getPlayerIdentifier()).get(1).get(1));
     }
 
     @Test

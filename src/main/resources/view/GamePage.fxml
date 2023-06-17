@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GamePage">
    <children>
-      <GridPane prefHeight="720.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: beige;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0" />
@@ -35,7 +35,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <GridPane fx:id="factory1" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0">
+                  <GridPane fx:id="factory1" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -54,7 +54,7 @@
                         <Insets bottom="60.0" left="30.0" right="30.0" top="60.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="factory2" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0" GridPane.columnIndex="1">
+                  <GridPane fx:id="factory2" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0" GridPane.columnIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -73,7 +73,7 @@
                         <Insets bottom="60.0" left="30.0" right="30.0" top="60.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="factory3" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0" GridPane.rowIndex="1">
+                  <GridPane fx:id="factory3" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0" GridPane.rowIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -92,7 +92,7 @@
                         <Insets bottom="60.0" left="30.0" right="30.0" top="60.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="factory4" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <GridPane fx:id="factory4" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -111,7 +111,7 @@
                         <Insets bottom="60.0" left="30.0" right="30.0" top="60.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="factory5" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0" GridPane.rowIndex="2">
+                  <GridPane fx:id="factory5" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0" GridPane.rowIndex="2">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -130,7 +130,7 @@
                         <Insets bottom="60.0" left="30.0" right="30.0" top="60.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="factory6" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <GridPane fx:id="factory6" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -149,7 +149,7 @@
                         <Insets bottom="60.0" left="30.0" right="30.0" top="60.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="factory7" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0" GridPane.rowIndex="3">
+                  <GridPane fx:id="factory7" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0" GridPane.rowIndex="3">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -168,7 +168,7 @@
                         <Insets bottom="60.0" left="30.0" right="30.0" top="60.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="factory8" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <GridPane fx:id="factory8" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -187,7 +187,7 @@
                         <Insets bottom="60.0" left="30.0" right="30.0" top="60.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane fx:id="factory9" hgap="3.0" style="-fx-background-color: gray; -fx-background-radius: 10;" vgap="3.0" GridPane.rowIndex="4">
+                  <GridPane fx:id="factory9" hgap="3.0" style="-fx-background-color: f3e5d3; -fx-background-radius: 10;" vgap="3.0" GridPane.rowIndex="4">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -239,7 +239,7 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: beige;" HBox.hgrow="NEVER">
                                  <children>
-                                    <GridPane fx:id="player1PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
+                                    <GridPane fx:id="player1PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;" VBox.vgrow="NEVER">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -257,7 +257,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player1PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player1PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -276,7 +276,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player1PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player1PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -296,7 +296,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player1PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player1PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -317,7 +317,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player1PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player1PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -462,7 +462,7 @@
                         </HBox>
                         <HBox fx:id="player1Floor" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: beige;">
                            <VBox.margin>
-                              <Insets left="150.0" right="150.0" />
+                              <Insets left="150.0" right="163.0" bottom="15.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -490,7 +490,7 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: beige;" HBox.hgrow="NEVER">
                                  <children>
-                                    <GridPane fx:id="player3PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
+                                    <GridPane fx:id="player3PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;" VBox.vgrow="NEVER">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -508,7 +508,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player3PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player3PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -527,7 +527,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player3PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player3PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -547,7 +547,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player3PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player3PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -568,7 +568,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player3PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player3PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -718,7 +718,7 @@
                               <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
                            </children>
                            <VBox.margin>
-                              <Insets left="150.0" right="150.0" />
+                              <Insets left="150.0" right="163.0" bottom="15.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -741,7 +741,7 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: beige;" HBox.hgrow="NEVER">
                                  <children>
-                                    <GridPane fx:id="player2PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
+                                    <GridPane fx:id="player2PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;" VBox.vgrow="NEVER">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -759,7 +759,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player2PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player2PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -778,7 +778,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player2PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player2PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -798,7 +798,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player2PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player2PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -819,7 +819,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player2PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player2PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -969,7 +969,7 @@
                               <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
                            </children>
                            <VBox.margin>
-                              <Insets left="150.0" right="150.0" />
+                              <Insets left="150.0" right="163.0" bottom="15.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -992,7 +992,7 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: beige;" HBox.hgrow="NEVER">
                                  <children>
-                                    <GridPane fx:id="player4PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
+                                    <GridPane fx:id="player4PL1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;" VBox.vgrow="NEVER">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1010,7 +1010,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player4PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player4PL2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1029,7 +1029,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player4PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player4PL3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1049,7 +1049,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player4PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player4PL4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1070,7 +1070,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </VBox.margin>
                                     </GridPane>
-                                    <GridPane fx:id="player4PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: gray;">
+                                    <GridPane fx:id="player4PL5" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectToLocation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1220,7 +1220,7 @@
                               <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
                            </children>
                            <VBox.margin>
-                              <Insets left="150.0" right="150.0" />
+                              <Insets left="150.0" right="163.0" bottom="15.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
