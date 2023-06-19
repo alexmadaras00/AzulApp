@@ -3,12 +3,16 @@ package ui;
 import controller.Controller;
 import controller.ControllerImpl;
 import controller.GameProxy;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Game;
 import model.Model;
 
+import org.hamcrest.beans.HasProperty;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIf;
+import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import view.GUI;
@@ -61,6 +65,15 @@ public class GUITest extends ApplicationTest {
     }
 
     @Test
+    public void testJoinGame() {
+        clickOn("#playerName1").write("Stan");
+        clickOn("#joinButton1");
+        FxAssert.verifyThat("#joinButton1", (Button b) ->  b.isDisabled());
+        clickOn("#joinButton2");
+        FxAssert.verifyThat("#joinButton2", (Button b) ->  !b.isDisabled());
+    }
+
+    @Test
     public void testShowGame() {
         clickOn("#playerName1").write("Stan");
         clickOn("#joinButton1");
@@ -68,5 +81,18 @@ public class GUITest extends ApplicationTest {
         clickOn("#joinButton2");
         clickOn("#startButton");
         assertEquals(view.getCurrentPage(), view.getGamePageController());
+    }
+
+    @Test
+    public void testDoGame() {
+        clickOn("#playerName3").write("Stan");
+        clickOn("#joinButton3");
+        clickOn("#playerName4").write("LexxFlexx");
+        clickOn("#joinButton4");
+        clickOn("#startButton");
+        assertEquals(view.getCurrentPage(), view.getGamePageController());
+        clickOn("#buttonF1T1");
+        clickOn("#player1PL5");
+        FxAssert.verifyThat("#player1PL5", (GridPane g) -> g.getChildren().size() > 0);
     }
 }
