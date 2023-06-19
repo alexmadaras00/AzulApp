@@ -6,7 +6,9 @@ import controller.GameProxy;
 import javafx.stage.Stage;
 import model.Game;
 import model.Model;
+
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIf;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import view.GUI;
@@ -17,6 +19,7 @@ import java.net.URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
 public class GUITest extends ApplicationTest {
     private GUI view;
     private Model game;
