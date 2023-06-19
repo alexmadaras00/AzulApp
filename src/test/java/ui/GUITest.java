@@ -36,7 +36,7 @@ public class GUITest extends ApplicationTest {
         game.addPlayer("Lian");
         game.addPlayer("Stan");
         this.modelProxy = new GameProxy();
-        modelProxy.setGame(game);
+        modelProxy.setProxy(game);
         URL urlHub = getClass().getResource("/view/HubPage.fxml");
         URL urlGame = getClass().getResource("/view/GamePage.fxml");
         this.controller = new ControllerImpl();

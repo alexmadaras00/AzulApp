@@ -11,10 +11,6 @@ public class GameProxy implements ModelProxy {
 
     private Model game;
 
-    public void setGame(Model game) {
-        this.game = game;
-    }
-
     @Override
     public int getFactoryCount() {
         return game.getFactoryCount();
@@ -39,7 +35,6 @@ public class GameProxy implements ModelProxy {
     public String getName(int identifier) {
         return game.getName(identifier);
     }
-
 
     @Override
     public Tile[] getPatternLine(int identifier, int row) {
