@@ -9,32 +9,27 @@ import javafx.stage.Stage;
 import model.Game;
 import model.Model;
 
-import org.hamcrest.beans.HasProperty;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIf;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import view.GUI;
-import view.ViewUpdateListener;
 
 import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
+// @DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
 public class GUITest extends ApplicationTest {
     private GUI view;
     private Model game;
     private Controller controller;
-    private ViewUpdateListener listener;
     private GameProxy modelProxy;
-    private Stage stage;
 
     @Override
     public void start(Stage stage) throws Exception {
-        this.stage = stage;
         this.view = new GUI();
         this.game = new Game();
         game.addPlayer("Lian");
