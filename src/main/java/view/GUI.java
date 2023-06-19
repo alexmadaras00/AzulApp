@@ -3,6 +3,7 @@ package view;
 import java.net.URL;
 
 import controller.Controller;
+import controller.ControllerEventListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,11 +12,8 @@ import shared.ModelProxy;
 
 public class GUI implements View {
     private ModelProxy model;
-
     private Controller controller;
-
     private ViewUpdateListener listener;
-
     private Stage stage;
     private GamePage gamePageController;
     private HubPage hubPageController;
@@ -30,13 +28,52 @@ public class GUI implements View {
         controller.addListener(listener);
         model = controller.getProxy();
     }
+    public Controller getController(){
+        return this.controller;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+    public ControllerEventListener getListener() {
+        return this.listener;
+    }
+    public ModelProxy getModel() {
+        return model;
+    }
+
+    public Object getCurrentPage() {
+        return currentPage;
+    }
+
+    public HubPage getHubPageController() {
+        return hubPageController;
+    }
+
+    public Parent getHubPageView() {
+        return hubPageView;
+    }
+
+    public GamePage getGamePageController() {
+        return gamePageController;
+    }
+
+    public Parent getGamePageView() {
+        return gamePageView;
+    }
+
+    public void setModel(ModelProxy model) {
+        this.model = model;
+    }
 
     public void showHub() {
-        Scene scene = new Scene(hubPageView);
+        Scene scene = new Scene(this.hubPageView);
         stage.setScene(scene);
         stage.show();
         hubPageController.update();
         this.currentPage = this.hubPageController;
+        System.out.println(hubPageController);
+        System.out.println(currentPage);
     }
 
     public void showGame() {
@@ -80,7 +117,7 @@ public class GUI implements View {
         hubPageController.setView(this);
         hubPageController.setController(controller);
         hubPageController.setModel(model);
-        gamePageController.setController(controller);
-        gamePageController.setModel(model);
     }
+
+
 }

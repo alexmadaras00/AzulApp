@@ -11,6 +11,9 @@ public class GameProxy implements ModelProxy {
 
     private Model game;
 
+    public void setGame(Model game) {
+        this.game = game;
+    }
 
     @Override
     public int getFactoryCount() {
