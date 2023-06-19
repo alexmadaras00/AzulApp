@@ -72,8 +72,6 @@ public class GUI implements View {
         stage.show();
         hubPageController.update();
         this.currentPage = this.hubPageController;
-        System.out.println(hubPageController);
-        System.out.println(currentPage);
     }
 
     public void showGame() {
