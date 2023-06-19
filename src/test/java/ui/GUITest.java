@@ -15,11 +15,16 @@ import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import view.GUI;
+import view.GamePage;
+import view.HubPage;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.net.URL;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
 public class GUITest extends ApplicationTest {
@@ -63,9 +68,9 @@ public class GUITest extends ApplicationTest {
     public void testJoinGame() {
         clickOn("#playerName1").write("Stan");
         clickOn("#joinButton1");
-        FxAssert.verifyThat("#joinButton1", (Button b) ->  b.isDisabled());
+        FxAssert.verifyThat("#joinButton1", (Button b) -> b.isDisabled());
         clickOn("#joinButton2");
-        FxAssert.verifyThat("#joinButton2", (Button b) ->  !b.isDisabled());
+        FxAssert.verifyThat("#joinButton2", (Button b) -> !b.isDisabled());
     }
 
     @Test
@@ -89,5 +94,26 @@ public class GUITest extends ApplicationTest {
         clickOn("#buttonF1T1");
         clickOn("#player1PL5");
         FxAssert.verifyThat("#player1PL5", (GridPane g) -> g.getChildren().size() > 0);
+    }
+
+    @Test
+    public void testToastHubPage() {
+        String message = "Belgium is Netherlands!";
+        assertInstanceOf(HubPage.class, view.getCurrentPage());
+        view.toast(message);
+
+    }
+    @Test
+    public void testToastGamePage() {
+        String message = "Belgium is Netherlands!";
+        clickOn("#playerName3").write("Stan");
+        clickOn("#joinButton3");
+        clickOn("#playerName4").write("LexxFlexx");
+        clickOn("#joinButton4");
+        clickOn("#startButton");
+        assertInstanceOf(GamePage.class, view.getCurrentPage());
+        view.toast(message);
+
+
     }
 }
