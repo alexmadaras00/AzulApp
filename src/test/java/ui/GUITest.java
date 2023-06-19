@@ -8,12 +8,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Game;
 import model.Model;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIf;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
-
 import view.GUI;
 import view.GamePage;
 import view.HubPage;
@@ -23,8 +21,6 @@ import java.io.PrintStream;
 import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
 public class GUITest extends ApplicationTest {
@@ -99,10 +95,14 @@ public class GUITest extends ApplicationTest {
     @Test
     public void testToastHubPage() {
         String message = "Belgium is Netherlands!";
+        final PrintStream standardOut = System.out;
+        final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
         assertInstanceOf(HubPage.class, view.getCurrentPage());
         view.toast(message);
-
+        assertEquals(message, outputStreamCaptor.toString().trim());
     }
+
     @Test
     public void testToastGamePage() {
         String message = "Belgium is Netherlands!";
@@ -111,9 +111,19 @@ public class GUITest extends ApplicationTest {
         clickOn("#playerName4").write("LexxFlexx");
         clickOn("#joinButton4");
         clickOn("#startButton");
+        final PrintStream standardOut = System.out;
+        final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
         assertInstanceOf(GamePage.class, view.getCurrentPage());
         view.toast(message);
-
-
+        assertEquals(message, outputStreamCaptor.toString().trim());
     }
+
+    @Test
+    public void testUpdate() {
+        assertInstanceOf(HubPage.class, view.getCurrentPage());
+        view.update();
+    }
+
+
 }

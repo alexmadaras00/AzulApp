@@ -88,8 +88,6 @@ public class GUI implements View {
             gamePageController.toast(message);
         } else if (this.currentPage instanceof HubPage) {
             hubPageController.toast(message);
-        } else {
-            return;
         }
     }
 
@@ -99,8 +97,6 @@ public class GUI implements View {
             this.gamePageController.update();
         } else if (this.currentPage instanceof HubPage) {
             this.hubPageController.update();
-        } else {
-            return;
         }
     }
 

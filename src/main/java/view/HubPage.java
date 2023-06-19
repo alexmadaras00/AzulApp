@@ -67,24 +67,25 @@ public class HubPage implements View{
 
     private void disablePlayer(int place) {
         switch (place) {
-            case 1:
+            case 1 -> {
                 joinButton1.setDisable(true);
                 playerName1.setEditable(false);
-                break;
-            case 2:
+            }
+            case 2 -> {
                 joinButton2.setDisable(true);
                 playerName2.setEditable(false);
-                break;
-            case 3:
+            }
+            case 3 -> {
                 joinButton3.setDisable(true);
                 playerName3.setEditable(false);
-                break;
-            case 4:
+            }
+            case 4 -> {
                 joinButton4.setDisable(true);
                 playerName4.setEditable(false);
-                break;
-            default:
+            }
+            default -> {
                 return;
+            }
         }
     }
 
