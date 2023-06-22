@@ -19,7 +19,7 @@ public class Game implements Model {
     private final List<FactoryInterface> factories;
     private List<Integer> winners;
     private GamePhase gamePhase;
-    private final List<PlayerBoard> turnOrder;
+    private List<PlayerBoard> turnOrder;
     private final Bag bag;
     private final Middle middle;
     private FactoryCreator factoryCreator;
