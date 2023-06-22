@@ -107,7 +107,7 @@ public class ControllerImplTest {
         controller.joinPlayer("Player 4");
         verify(view).toast("Player 4 added");
         verify(view, times(4)).update();
-        assertEquals(4, model.getPlayerList().size());
+        assertEquals(4, model.getPlayers().size());
     }
 
     @Test

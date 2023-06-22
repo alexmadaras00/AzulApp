@@ -46,7 +46,7 @@ public class Game implements Model {
     public List<PlayerBoard> getTurnOrder() {
         return turnOrder;
     }
-
+    @Override
     public List<Player> getPlayers() {
         List<Player> players = new ArrayList<>();
         for (PlayerBoard p : getPlayerBoards()) {
@@ -130,11 +130,6 @@ public class Game implements Model {
             result[row - i] = patternLineTiles.get(i);
         }
         return result;
-    }
-
-    @Override
-    public List<Player> getPlayerList() {
-        return getPlayers();
     }
 
     @Override

@@ -292,7 +292,7 @@ public class GamePage implements View {
     void selectToLocation(MouseEvent event) {
         if (selectedId != null) {
             String clickedId = ((Node) event.getSource()).getId();
-            playerId = model.getPlayerList().get(Integer.parseInt(clickedId.substring(6, 7)) - 1).getIdentifier();
+            playerId = model.getPlayers().get(Integer.parseInt(clickedId.substring(6, 7)) - 1).getIdentifier();
             to = new Pair<>(Location.FLOOR_LINE,0);
             if (clickedId.contains("PL")) {
                 to = new Pair<>(Location.PATTERN_LINE, Integer.parseInt(clickedId.substring(9, 10)) - 1);
@@ -430,7 +430,7 @@ public class GamePage implements View {
     }
 
     private void updatePlayers() {
-        List<Player> players = model.getPlayerList();
+        List<Player> players = model.getPlayers();
         switch (players.size()) {
             case 2:
                 playerboard3.setVisible(false);

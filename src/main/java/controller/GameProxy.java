@@ -2,7 +2,6 @@ package controller;
 import java.util.List;
 
 import model.Model;
-import model.PlayerBoard;
 import model.Tile;
 import shared.ModelProxy;
 import shared.Player;
@@ -27,8 +26,8 @@ public class GameProxy implements ModelProxy {
     }
 
     @Override
-    public List<Player> getPlayerList() {
-        return game.getPlayerList();
+    public List<Player> getPlayers() {
+        return game.getPlayers();
     }
 
     @Override
