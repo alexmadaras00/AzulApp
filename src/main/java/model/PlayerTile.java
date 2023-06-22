@@ -5,7 +5,7 @@ public class PlayerTile implements Tile {
 
     private PlayerTile() {
     }
-    public static synchronized PlayerTile getInstance() {
+    public static PlayerTile getInstance() {
         if (instance == null) {
             instance = new PlayerTile();
         }
