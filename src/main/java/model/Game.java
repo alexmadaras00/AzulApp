@@ -195,7 +195,6 @@ public class Game implements Model {
             factory.addTiles(tiles);
         }
     }
-
     private void endRound() {
         gamePhase = GamePhase.WALL_TILLING;
         wallTilling();
