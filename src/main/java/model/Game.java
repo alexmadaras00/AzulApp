@@ -6,8 +6,9 @@ import model.factory.OurFactoryCreator;
 import model.factory.TwinteamFactoryCreator;
 import shared.Player;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Game implements Model {
     private List<PlayerBoard> playerBoards;
@@ -245,18 +246,8 @@ public class Game implements Model {
 
     private List<Integer> determineWinners() {
         List<Integer> winners = new ArrayList<>();
-        List<PlayerBoard> possibleWinners = new ArrayList<>();
         int maxScore = 0;
-        for (PlayerBoard p : playerBoards) {
-            int playerScore = p.getScore();
-            if (playerScore > maxScore) {
-                maxScore = playerScore;
-                possibleWinners = new ArrayList<>();
-                possibleWinners.add(p);
-            } else if (playerScore == maxScore) {
-                possibleWinners.add(p);
-            }
-        }
+        List<PlayerBoard> possibleWinners = determinePossibleWinners(maxScore);
         int maxCompletedRows = 0;
         for (PlayerBoard p : possibleWinners) {
             int completedRowCount = p.getCompletedRowCount();
@@ -269,6 +260,21 @@ public class Game implements Model {
             }
         }
         return winners;
+    }
+
+    private List<PlayerBoard> determinePossibleWinners(int maxScore) {
+        List<PlayerBoard> possibleWinners = new ArrayList<>();
+        for (PlayerBoard p : playerBoards) {
+            int playerScore = p.getScore();
+            if (playerScore > maxScore) {
+                maxScore = playerScore;
+                possibleWinners = new ArrayList<>();
+                possibleWinners.add(p);
+            } else if (playerScore == maxScore) {
+                possibleWinners.add(p);
+            }
+        }
+        return possibleWinners;
     }
 
     @Override

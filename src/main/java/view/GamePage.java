@@ -1,29 +1,16 @@
 package view;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.TextAlignment;
 import javafx.util.Pair;
 import model.PlayerTile;
 import model.Tile;
@@ -31,6 +18,10 @@ import model.TileColor;
 import shared.Location;
 import shared.ModelProxy;
 import shared.Player;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GamePage implements View {
     private ModelProxy model;
@@ -272,6 +263,19 @@ public class GamePage implements View {
             new BorderWidths(2)));
 
     private void selectTiles(Pair<Location, Integer> from, TileColor color) {
+        makeBordersFactory();
+        for (Node node : middle.getChildren()) {
+            Button button = (Button) node;
+            Border border = Border.EMPTY;
+            if (from.getKey() == Location.MIDDLE && getBackwardsColor(button) == color) {
+                border = selectionBorder;
+            }
+            button.setBorder(border);
+        }
+
+    }
+
+    private void makeBordersFactory() {
         for (int i = 1; i < 10; i++) {
             for (int j = 1; j < 5; j++) {
                 Button button = getElementByName("buttonF" + i + "T" + j, Button.class);
@@ -282,15 +286,6 @@ public class GamePage implements View {
                 button.setBorder(border);
             }
         }
-        for (Node node : middle.getChildren()) {
-            Button button = (Button) node;
-            Border border = Border.EMPTY;
-            if (from.getKey() == Location.MIDDLE && getBackwardsColor(button) == color) {
-                border = selectionBorder;
-            }
-            button.setBorder(border);
-        }
-
     }
 
     @FXML

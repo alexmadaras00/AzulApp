@@ -28,15 +28,18 @@ public class ControllerImpl implements Controller {
             model.useTwinteamFactory();
         }
     }
+    public Model getModel(){
+        return model;
+    }
 
     @Override
     public void joinPlayer(String name) {
-        if (model.isPlaying()) {
+        if (getModel().isPlaying()) {
             pushMessage("Game already playing. Wait until the game is finished.");
-        } else if (model.getPlayerList().size() >= 4) {
+        } else if (getModel().getPlayerList().size() >= 4) {
             pushMessage("Too many players");
         } else {
-            model.addPlayer(name);
+            getModel().addPlayer(name);
             pushMessage(name + " added");
             pushUpdate();
         }
@@ -44,8 +47,8 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void startGame() {
-        if (model.canStartGame()) {
-            model.startGame();
+        if (getModel().canStartGame()) {
+            getModel().startGame();
             pushMessage("Game started");
             pushUpdate();
         } else {
@@ -55,7 +58,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void performMove(Pair<Location, Integer> from, Pair<Location, Integer> to, int playerID, TileColor color) {
-        if (playerID == model.getCurrentPlayer()) {
+        if (playerID == getModel().getCurrentPlayer()) {
             if (from.getKey() == Location.FACTORY && to.getKey() == Location.PATTERN_LINE) {
                 performMoveFactoryPatternLine(from.getValue(), to.getValue(), color);
             }
@@ -74,16 +77,16 @@ public class ControllerImpl implements Controller {
     }
 
     private void performMoveMiddleFloorLine(TileColor tileColor) {
-        if (model.isValidMoveMiddleFloorLine(tileColor)) {
-            model.performMoveMiddleFloorLine(tileColor);
+        if (getModel().isValidMoveMiddleFloorLine(tileColor)) {
+            getModel().performMoveMiddleFloorLine(tileColor);
             pushMessage("Performing move... (tile: " + tileColor + " from the Middle to the Floor Line)");
             pushUpdate();
         }
     }
 
     private void performMoveMiddlePatternLine(int row, TileColor tileColor) {
-        if (model.isValidMoveMiddlePatternLine(row, tileColor)) {
-            model.performMoveMiddlePatternLine(row, tileColor);
+        if (getModel().isValidMoveMiddlePatternLine(row, tileColor)) {
+            getModel().performMoveMiddlePatternLine(row, tileColor);
             pushMessage("Performing move... (tile: " + tileColor + " from the Middle to the row " + row + " in the" +
                     " Pattern Line)");
             pushUpdate();
@@ -92,8 +95,8 @@ public class ControllerImpl implements Controller {
     }
 
     private void performMoveFactoryFloorLine(int index, TileColor tileColor) {
-        if (model.isValidMoveFactoryFloorLine(index, tileColor)) {
-            model.performMoveFactoryFloorLine(index, tileColor);
+        if (getModel().isValidMoveFactoryFloorLine(index, tileColor)) {
+            getModel().performMoveFactoryFloorLine(index, tileColor);
             pushMessage("Performing move... (tile: " + tileColor + " from the Factory " + index + " to the " +
                     "Floor Line)");
             pushUpdate();
@@ -103,8 +106,8 @@ public class ControllerImpl implements Controller {
 
 
     private void performMoveFactoryPatternLine(int index, int row, TileColor tileColor) {
-        if (model.isValidMoveFactoryPatternLine(index, row, tileColor)) {
-            model.performMoveFactoryPatternLine(index, row, tileColor);
+        if (getModel().isValidMoveFactoryPatternLine(index, row, tileColor)) {
+            getModel().performMoveFactoryPatternLine(index, row, tileColor);
             pushMessage("Performing move... (tile: " + tileColor + " from the Factory " + index + " to the row " + row + " in the" +
                     " Pattern Line)");
             pushUpdate();
@@ -114,8 +117,8 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void terminateGame() {
-        if (model.isPlaying()) {
-            model.terminateGame();
+        if (getModel().isPlaying()) {
+            getModel().terminateGame();
             pushMessage("Terminating game...");
         }
         pushUpdate();
