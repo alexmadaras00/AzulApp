@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.Objects;
 
 import controller.Controller;
 import javafx.event.ActionEvent;
@@ -44,7 +45,7 @@ public class HubPage implements View{
 
     @Override
     public void update() {
-        List<Player> players = model.getPlayerList();
+        List<Player> players = model.getPlayers();
         enableAllPlayers();
         for (Player player : players) {
             if (playerName1.getText().equals(player.getName())) {
@@ -84,7 +85,6 @@ public class HubPage implements View{
                 playerName4.setEditable(false);
             }
             default -> {
-                return;
             }
         }
     }
@@ -101,8 +101,8 @@ public class HubPage implements View{
     }
 
     @FXML
-    void joinPlayer1(ActionEvent event) {
-        if (playerName1.getText() == null || playerName1.getText() == "") {
+    void joinPlayer1() {
+        if (playerName1.getText() == null || Objects.equals(playerName1.getText(), "")) {
             toast("no name provided");
             return;
         }
@@ -111,8 +111,8 @@ public class HubPage implements View{
     }
 
     @FXML
-    void joinPlayer2(ActionEvent event) {
-        if (playerName2.getText() == null || playerName2.getText() == "") {
+    void joinPlayer2() {
+        if (playerName2.getText() == null || Objects.equals(playerName2.getText(), "")) {
             toast("no name provided");
             return;
         }
@@ -120,8 +120,8 @@ public class HubPage implements View{
     }
 
     @FXML
-    void joinPlayer3(ActionEvent event) {
-        if (playerName3.getText() == null || playerName3.getText() == "") {
+    void joinPlayer3() {
+        if (playerName3.getText() == null || Objects.equals(playerName3.getText(), "")) {
             toast("no name provided");
             return;
         }
@@ -129,8 +129,8 @@ public class HubPage implements View{
     }
 
     @FXML
-    void joinPlayer4(ActionEvent event) {
-        if (playerName4.getText() == null || playerName4.getText() == "") {
+    void joinPlayer4() {
+        if (playerName4.getText() == null || Objects.equals(playerName4.getText(), "")) {
             toast("no name provided");
             return;
         }

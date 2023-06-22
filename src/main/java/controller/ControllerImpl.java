@@ -13,7 +13,7 @@ import java.util.List;
 import javafx.util.Pair;
 
 public class ControllerImpl implements Controller {
-    private Model model;
+    private final Model model;
     private List<ControllerEventListener> listeners;
 
     public ControllerImpl() {
@@ -36,7 +36,7 @@ public class ControllerImpl implements Controller {
     public void joinPlayer(String name) {
         if (getModel().isPlaying()) {
             pushMessage("Game already playing. Wait until the game is finished.");
-        } else if (getModel().getPlayerList().size() >= 4) {
+        } else if (getModel().getPlayers().size() >= 4) {
             pushMessage("Too many players");
         } else {
             getModel().addPlayer(name);

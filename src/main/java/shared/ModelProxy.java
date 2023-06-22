@@ -2,7 +2,6 @@ package shared;
 
 import java.util.List;
 
-import model.PlayerBoard;
 import model.Tile;
 
 public interface ModelProxy {
@@ -13,7 +12,7 @@ public interface ModelProxy {
 
     List<Tile> getMiddle();
 
-    List<Player> getPlayerList();
+    List<Player> getPlayers();
 
     String getName(int identifier);
 

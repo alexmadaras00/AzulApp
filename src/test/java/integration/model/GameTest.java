@@ -3,7 +3,6 @@ package integration.model;
 import model.*;
 import model.factory.FactoryInterface;
 import model.factory.FactoryTwinteamWrapper;
-import model.factory.TwinteamFactoryCreator;
 import shared.Player;
 
 import org.junit.jupiter.api.Assertions;
@@ -62,14 +61,13 @@ public class GameTest {
         assertEquals(GamePhase.INITIALIZED, game.getGamePhase());
         game.startGame();
         assertPostConditionsStart();
-        Game gameFailFewerPlayers = null;
-        Game gameFailTooManyPlayers = null;
+        Game gameFailFewerPlayers;
+        Game gameFailTooManyPlayers;
         gameFailFewerPlayers = new Game();
         game.addPlayer("Nano");
         gameFailFewerPlayers.startGame();
         assertTrue(gameFailFewerPlayers.getPlayers().size() < 2);
         assertFalse(gameFailFewerPlayers.canStartGame());
-        assert gameFailFewerPlayers != null;
         assertFalse(gameFailFewerPlayers.isPlaying());
         assertEquals(GamePhase.INITIALIZED, gameFailFewerPlayers.getGamePhase());
 
@@ -82,7 +80,6 @@ public class GameTest {
         gameFailTooManyPlayers.startGame();
         assertTrue(gameFailTooManyPlayers.getPlayers().size() > 4);
         assertFalse(gameFailTooManyPlayers.canStartGame());
-        assert gameFailTooManyPlayers != null;
         assertFalse(gameFailTooManyPlayers.isPlaying());
         assertEquals(GamePhase.INITIALIZED, gameFailTooManyPlayers.getGamePhase());
     }
@@ -128,7 +125,7 @@ public class GameTest {
         assertFactoryUpdates();
         game.getPlayerBoards().forEach(playerBoard -> {
             List<Integer> completedRows = playerBoard.getPatternLine().completedRows();
-            assertEquals(new HashSet<Tile>(List.of(TileColor.BLACK, TileColor.RED)), new HashSet<Tile>(game.getBox()));
+            assertEquals(new HashSet<Tile>(List.of(TileColor.BLACK, TileColor.RED)), new HashSet<>(game.getBox()));
             assertEquals(0, playerBoard.getFloorLine().getCopyTiles().size());
             completedRows.forEach(completedRow -> assertEquals(0, playerBoard.getPatternLine().getCopyTable().get(completedRow).size()));
         });
@@ -224,11 +221,8 @@ public class GameTest {
     @Test
     public void testEndGame() {
         game.startGame();
-        List<List<TileColor>> factoryTiles = new ArrayList<>();
-        game.getFactories().forEach(factory -> factoryTiles.add(factory.getAllTiles()));
         endingGame();
         assertEquals(GamePhase.FINISHED, game.getGamePhase());
-
         assertEquals(10, playerBoard2.getScore());
         assertEquals(6, playerBoard1.getScore());
         assertEquals(playerBoard1.getScore(), gameProxy.getScore(playerBoard1.getPlayerIdentifier()));
@@ -381,8 +375,8 @@ public class GameTest {
 
     @Test
     public void testGetPlayerList() {
-        assertEquals(List.of(playerBoard1.getPlayer(), playerBoard2.getPlayer()), game.getPlayerList());
-        assertEquals(List.of(playerBoard1.getPlayer(), playerBoard2.getPlayer()), gameProxy.getPlayerList());
+        assertEquals(List.of(playerBoard1.getPlayer(), playerBoard2.getPlayer()), game.getPlayers());
+        assertEquals(List.of(playerBoard1.getPlayer(), playerBoard2.getPlayer()), gameProxy.getPlayers());
     }
 
     @Test
@@ -406,13 +400,13 @@ public class GameTest {
         playerBoard1.getWall().addTile(0, TileColor.BLUE);
         assertEquals(TileColor.BLUE, game.getWall(playerBoard1.getPlayerIdentifier()).get(0).get(0));
         assertEquals(TileColor.BLUE, gameProxy.getWall(playerBoard1.getPlayerIdentifier()).get(0).get(0));
-        assertEquals(null, game.getWall(playerBoard1.getPlayerIdentifier()).get(1).get(1));
+        assertNull(game.getWall(playerBoard1.getPlayerIdentifier()).get(1).get(1));
     }
 
     @Test
     public void testGetPatternLine() {
         playerBoard1.getPatternLine().addTiles(1, List.of(TileColor.BLUE));
-        assertEquals(null, game.getPatternLine(playerBoard1.getPlayerIdentifier(), 1)[0]);
+        assertNull(game.getPatternLine(playerBoard1.getPlayerIdentifier(), 1)[0]);
         assertEquals(TileColor.BLUE, game.getPatternLine(playerBoard1.getPlayerIdentifier(), 1)[1]);
         assertEquals(TileColor.BLUE, gameProxy.getPatternLine(playerBoard1.getPlayerIdentifier(), 1)[1]);
     }
@@ -423,7 +417,7 @@ public class GameTest {
         game.addPlayer("a");
         game.addPlayer("a");
         game.startGame();
-        assertEquals(true, game.getFactories().get(0) instanceof FactoryTwinteamWrapper);
+        assertTrue(game.getFactories().get(0) instanceof FactoryTwinteamWrapper);
     }
 }
 
