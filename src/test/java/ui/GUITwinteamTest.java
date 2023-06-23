@@ -25,22 +25,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
 public class GUITwinteamTest extends ApplicationTest {
     private GUI view;
-    private Model game;
     private Controller controller;
-    private GameProxy modelProxy;
 
     @Override
     public void start(Stage stage) throws Exception {
         this.view = new GUI();
-        this.game = new Game();
-        game.addPlayer("Lian");
-        game.addPlayer("Stan");
-        this.modelProxy = new GameProxy();
-        modelProxy.setProxy(game);
         URL urlHub = getClass().getResource("/view/HubPage.fxml");
         URL urlGame = getClass().getResource("/view/GamePage.fxml");
-        this.controller = new ControllerImpl();
-        view.setModel(modelProxy);
+        this.controller = new ControllerImpl(true); // use twin team factory
         view.setController(controller);
         view.setup(stage, urlHub, urlGame);
         view.showHub();

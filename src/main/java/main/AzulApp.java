@@ -10,7 +10,7 @@ import model.Model;
 import view.GUI;
 
 public class AzulApp extends Application {
-    private static boolean useTwinteamFactory = true;
+    private static boolean useTwinteamFactory = false;
     private Model model;
     private ControllerImpl controller;
     private GUI view;
