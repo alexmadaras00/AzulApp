@@ -239,15 +239,14 @@ public class Game implements Model {
     }
 
     private List<Integer> determineWinners() {
-        List<Integer> winners = new ArrayList<>();
-        int maxScore = 0;
-        List<PlayerBoard> possibleWinners = determinePossibleWinners(maxScore);
-        winners = determineFinalWinners(possibleWinners);
+        List<PlayerBoard> possibleWinners = determinePossibleWinners();
+        List<Integer> winners = determineFinalWinners(possibleWinners);
         return winners;
     }
 
     private List<Integer> determineFinalWinners(List<PlayerBoard> possibleWinners) {
         int maxCompletedRows = 0;
+        List<Integer> winners = new ArrayList<>();
         for (PlayerBoard p : possibleWinners) {
             int completedRowCount = p.getCompletedRowCount();
             if (completedRowCount > maxCompletedRows) {
@@ -260,7 +259,8 @@ public class Game implements Model {
         return winners;
     }
 
-    private List<PlayerBoard> determinePossibleWinners(int maxScore) {
+    private List<PlayerBoard> determinePossibleWinners() {
+        int maxScore = 0;
         List<PlayerBoard> possibleWinners = new ArrayList<>();
         for (PlayerBoard p : getPlayerBoards()) {
             int playerScore = p.getScore();
