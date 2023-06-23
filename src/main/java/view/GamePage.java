@@ -438,10 +438,10 @@ public class GamePage implements View {
             default:
                 break;
         }
-       makeBordersPlayerBoard(players);
+       makeBordersWinners(players);
     }
 
-    private void makeBordersPlayerBoard(List<Player> players) {
+    private void makeBordersWinners(List<Player> players) {
         for (int i = 0; i < players.size(); i++) {
             Border border = Border.EMPTY;
             if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
