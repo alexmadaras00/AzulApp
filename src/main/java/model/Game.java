@@ -239,7 +239,7 @@ public class Game implements Model {
     }
 
     private List<Integer> determineWinners() {
-        List<Integer> winners;
+        List<Integer> winners = new ArrayList<>();
         int maxScore = 0;
         List<PlayerBoard> possibleWinners = determinePossibleWinners(maxScore);
         winners = determineFinalWinners(possibleWinners);
