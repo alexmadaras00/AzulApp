@@ -11,9 +11,6 @@ import java.util.Map;
 public class Wall {
     private Tile[][] wall;
     private Tile[] colors;
-    private int completedColorScore = 10;
-    private int completedRowScore = 2;
-    private int completedColumnScore = 7;
 
     public Wall() {
         colors = TileColor.values();
@@ -22,10 +19,10 @@ public class Wall {
     }
 
     public static List<List<TileColor>> wallPattern() {
-        List<List<TileColor>> wallTemplate = new ArrayList<List<TileColor>>();
+        List<List<TileColor>> wallTemplate = new ArrayList<>();
         List<TileColor> colors = Arrays.asList(TileColor.values());
         for (int i = 0; i < colors.size(); i++) {
-            List<TileColor> wallLine = new ArrayList<TileColor>();
+            List<TileColor> wallLine = new ArrayList<>();
             for (int j = 0; j < colors.size(); j++) {
                 TileColor color = getTemplateColor(i,j);
                 wallLine.add(color);
@@ -41,10 +38,9 @@ public class Wall {
     }
 
     public int addTile(int row, Tile tile) {
-        Tile newTile = tile;
-        int index = getIndexOfTile(row, newTile);
+        int index = getIndexOfTile(row, tile);
         int score = getPlacementScore(row, index);
-        wall[row][index] = newTile;
+        wall[row][index] = tile;
         return score;
     }
 
@@ -52,16 +48,6 @@ public class Wall {
         int index = getIndexOfTile(row, type);
         return wall[row][index] == null;
     }
-
-    // public boolean hasCompleteRow() {
-    //     for (int row = 0; row < colors.length; row++) {
-    //         if (isCompleteRow(row)) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
-
     public int getCompletedRowCount() {
         int count = 0;
         for (int row = 0; row < colors.length; row++) {
@@ -73,10 +59,9 @@ public class Wall {
     }
 
     public List<Integer> getCompletionScores() {
-        List<Integer> scoreList = new LinkedList<Integer>();
 
         List<Tile> completedColors = getColorCompletions();
-        scoreList.addAll(generateColorScoreChange(completedColors));
+        List<Integer> scoreList = new LinkedList<>(generateColorScoreChange(completedColors));
         List<Integer> completedRows = getHorizontalCompletions();
         scoreList.addAll(generateLineScoreChange(completedRows, true));
         List<Integer> completedColums = getVerticalCompletions();
@@ -85,7 +70,7 @@ public class Wall {
     }
 
     public List<List<Tile>> getCopyTable() {
-        ArrayList<List<Tile>> listCopy = new ArrayList<List<Tile>>();
+        ArrayList<List<Tile>> listCopy = new ArrayList<>();
         for (Tile[] row : wall) {
             listCopy.add(Collections.unmodifiableList(Arrays.asList(row)));
         }
@@ -95,6 +80,7 @@ public class Wall {
     private List<Integer> generateColorScoreChange(List<Tile> completedColor) {
         List<Integer> scoreChanges = new LinkedList<>();
         for (Tile color : completedColor) {
+            int completedColorScore = 10;
             scoreChanges.add(completedColorScore);
         }
         return scoreChanges;
@@ -103,6 +89,8 @@ public class Wall {
     private List<Integer> generateLineScoreChange(List<Integer> completedLines, boolean isRow) {
         List<Integer> scoreChanges = new LinkedList<>();
         for (int line : completedLines) {
+            int completedColumnScore = 7;
+            int completedRowScore = 2;
             scoreChanges.add(isRow ? completedRowScore : completedColumnScore);
         }
         return scoreChanges;
@@ -122,16 +110,12 @@ public class Wall {
         for (int rowPlus = row + 1; rowPlus < colors.length; rowPlus++) {
             if (wall[rowPlus][col] != null) {
                 score++;
-            } else {
-                break;
-            }
+            } else { break; }
         }
         for (int rowMinus = row - 1; rowMinus >= 0; rowMinus--) {
             if (wall[rowMinus][col] != null) {
                 score++;
-            } else {
-                break;
-            }
+            } else { break;}
         }
         return score;
     }
@@ -141,16 +125,12 @@ public class Wall {
         for (int colPlus = col + 1; colPlus < colors.length; colPlus++) {
             if (wall[row][colPlus] != null) {
                 score++;
-            } else {
-                break;
-            }
+            } else { break; }
         }
         for (int colMinus = col - 1; colMinus >= 0; colMinus--) {
             if (wall[row][colMinus] != null) {
                 score++;
-            } else {
-                break;
-            }
+            } else { break;}
         }
         return score;
     }
@@ -202,7 +182,7 @@ public class Wall {
     }
 
     private List<Integer> getHorizontalCompletions() {
-        List<Integer> completedRows = new LinkedList<Integer>();
+        List<Integer> completedRows = new LinkedList<>();
         for (int row = 0; row < colors.length; row++) {
             if (isCompleteRow(row)) {
                 completedRows.add(row);
@@ -212,7 +192,7 @@ public class Wall {
     }
 
     private List<Integer> getVerticalCompletions() {
-        List<Integer> completedColumns = new LinkedList<Integer>();
+        List<Integer> completedColumns = new LinkedList<>();
         for (int col = 0; col < colors.length; col++) {
             if (isCompleteCol(col)) {
                 completedColumns.add(col);
