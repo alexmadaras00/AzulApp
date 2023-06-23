@@ -22,6 +22,7 @@ import shared.Player;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GamePage implements View {
     private ModelProxy model;
@@ -402,7 +403,6 @@ public class GamePage implements View {
             this.setPrefHeight(30.0);
             this.setPrefWidth(30.0);
 
-            // TODO more button configs to make it similar as other buttons;
         }
 
     }
@@ -444,7 +444,7 @@ public class GamePage implements View {
             if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
                 border = selectionBorder;
             }
-            getElementByName("playerboard" + (i + 1), VBox.class).setBorder(border);
+            Objects.requireNonNull(getElementByName("playerboard" + (i + 1), VBox.class)).setBorder(border);
             updatePlayer(players.get(i), i + 1);
         }
     }
@@ -458,11 +458,11 @@ public class GamePage implements View {
     }
 
     private void updateScore(Player player, int place) {
-        getElementByName("player" + place + "Score", Label.class).setText("Score: " + model.getScore(player.getIdentifier()));
+        Objects.requireNonNull(getElementByName("player" + place + "Score", Label.class)).setText("Score: " + model.getScore(player.getIdentifier()));
     }
 
     private void updateName(Player player, int place) {
-        getElementByName("player" + place + "Name", Label.class).setText(model.getName(player.getIdentifier()));
+        Objects.requireNonNull(getElementByName("player" + place + "Name", Label.class)).setText(model.getName(player.getIdentifier()));
     }
 
     private void setFloorLine(HBox floorLine, Tile[] tiles) {
@@ -484,22 +484,15 @@ public class GamePage implements View {
 
     private void updateFloorLine(Player player, int place) {
         Tile[] floorTiles = model.getFloorLine(player.getIdentifier());
-        setFloorLine(getElementByName("player" + place + "Floor", HBox.class), floorTiles);
+        setFloorLine(Objects.requireNonNull(getElementByName("player" + place + "Floor", HBox.class)), floorTiles);
     }
 
     private void updatePatternLine(Player player, int place) {
         for (int line = 1; line <= 5; line++) {
-            setPatternLine(getElementByName("player" + place + "PL" + line, GridPane.class), model.getPatternLine(player.getIdentifier(), line-1));
-            // setBorderPatternLIne(getElementByName("player" + place + "PL" + line, GridPane.class));
+            setPatternLine(Objects.requireNonNull(getElementByName("player" + place + "PL" + line, GridPane.class)), model.getPatternLine(player.getIdentifier(), line-1));
+
         }
     }
-
-    // private void setBorderPatternLIne(GridPane patternLine) {
-    //     patternLine.setBorder(new Border(new BorderStroke(Color.BROWN, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-    // }
-
-
-
     private void setPatternLine(GridPane patternLine, Tile[] tiles) {
         patternLine.getChildren().clear();
         for (int i = 0; i < tiles.length; i++) {

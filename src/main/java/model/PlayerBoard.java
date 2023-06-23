@@ -37,7 +37,6 @@ public class PlayerBoard {
         return wall;
     }
     public Player getPlayer() {return player;}
-    // -------------------------
 
     public int getScore() {
         return score;

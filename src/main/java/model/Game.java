@@ -74,7 +74,6 @@ public class Game implements Model {
     public Bag getBag() {
         return bag;
     }
-    // ------------------------
 
     @Override
     public List<Tile> getMiddle() {
