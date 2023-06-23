@@ -23,7 +23,7 @@ import java.net.URL;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisabledIf(value = "java.awt.GraphicsEnvironment#isHeadless", disabledReason = "headless environment")
-public class GUITest extends ApplicationTest {
+public class GUITwinteamTest extends ApplicationTest {
     private GUI view;
     private Model game;
     private Controller controller;
@@ -35,7 +35,6 @@ public class GUITest extends ApplicationTest {
         this.game = new Game();
         game.addPlayer("Lian");
         game.addPlayer("Stan");
-        game.useTwinteamFactory();
         this.modelProxy = new GameProxy();
         modelProxy.setProxy(game);
         URL urlHub = getClass().getResource("/view/HubPage.fxml");
