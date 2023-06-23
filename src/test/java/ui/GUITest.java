@@ -5,6 +5,8 @@ import controller.ControllerImpl;
 import controller.GameProxy;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Game;
 import model.Model;
@@ -19,6 +21,7 @@ import view.HubPage;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.net.URL;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,12 +71,26 @@ public class GUITest extends ApplicationTest {
         clickOn("#joinButton2");
         FxAssert.verifyThat("#joinButton2", (Button b) -> !b.isDisabled());
     }
+
     @Test
-    public void testNotAbleJoinGame(){
+    public void testNotAbleJoinGameEmptyPlayers() {
         clickOn("#startButton");
         assertEquals(view.getCurrentPage(), view.getHubPageController());
-        clickOn("#playerName1").write("Stan");
+
+    }
+
+    @Test
+    public void testNotAbleToJoinOnePlayer() {
+        clickOn("#playerName1").write("SergeTheBelgian");
         clickOn("#joinButton1");
+        clickOn("#startButton");
+        assertEquals(view.getCurrentPage(), view.getHubPageController());
+    }
+
+    @Test
+    public void testNoGivenNames() {
+        clickOn("#joinButton1");
+        clickOn("#joinButton2");
         clickOn("#startButton");
         assertEquals(view.getCurrentPage(), view.getHubPageController());
     }
@@ -98,13 +115,39 @@ public class GUITest extends ApplicationTest {
         assertEquals(view.getCurrentPage(), view.getGamePageController());
         clickOn("#buttonF1T1");
         clickOn("#player1PL5");
+        FxAssert.verifyThat("#middle", (VBox b) -> b.getChildren().size() > 0);
         FxAssert.verifyThat("#player1PL5", (GridPane g) -> g.getChildren().size() > 0);
+    }
+
+    @Test
+    public void testDoGameMoveFactoryNotAllowed() {
+        clickOn("#playerName3").write("Stan");
+        clickOn("#joinButton3");
+        clickOn("#playerName4").write("LexxFlexx");
+        clickOn("#joinButton4");
+        clickOn("#startButton");
+        clickOn("#buttonF2T1");
+        clickOn("#player2PL5");
+        FxAssert.verifyThat("#buttonF2T1", (Button b) -> !Objects.equals(b.getBackground().getFills().get(0).getFill(), Color.rgb(0, 0, 0, 0)));
+    }
+
+    @Test
+    public void testDoGameMoveMiddleNotAllowed() {
+        clickOn("#playerName3").write("Stan");
+        clickOn("#joinButton3");
+        clickOn("#playerName4").write("LexxFlexx");
+        clickOn("#joinButton4");
+        clickOn("#startButton");
+        clickOn("#middle");
+        clickOn("#player1PL3");
+        FxAssert.verifyThat("#middle", (VBox b) -> b.getChildren().size() == 1);
     }
 
     @Test
     public void testToastHubPage() {
         String message = "Belgium is Netherlands!";
-        final PrintStream standardOut = System.out;
+        clickOn("#playerName3").write("Stan");
+        clickOn("#joinButton3");
         final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
         assertInstanceOf(HubPage.class, view.getCurrentPage());
@@ -120,7 +163,6 @@ public class GUITest extends ApplicationTest {
         clickOn("#playerName4").write("LexxFlexx");
         clickOn("#joinButton4");
         clickOn("#startButton");
-        final PrintStream standardOut = System.out;
         final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
         assertInstanceOf(GamePage.class, view.getCurrentPage());
