@@ -3,7 +3,6 @@ package view;
 import controller.Controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -288,10 +287,10 @@ public class GamePage implements View {
             for (int j = 1; j < 5; j++) {
                 Button button = getElementByName("buttonF" + i + "T" + j, Button.class);
                 Border border = Border.EMPTY;
-                if (from.getKey() == Location.FACTORY && from.getValue() == i - 1 && getBackwardsColor(button) == color) {
+                if (from.getKey() == Location.FACTORY && from.getValue() == i - 1 && getBackwardsColor(Objects.requireNonNull(button)) == color) {
                     border = selectionBorder;
                 }
-                button.setBorder(border);
+                Objects.requireNonNull(button).setBorder(border);
             }
         }
     }
@@ -328,7 +327,7 @@ public class GamePage implements View {
             buttonLocationIndex = Integer.parseInt(buttonId.substring(7, 8)) - 1;
         }
 
-        if (selectedId == null || (selectedId != buttonId)) {
+        if (selectedId == null || (!selectedId.equals(buttonId))) {
             selectedId = buttonId;
             from = new Pair<>(buttonLocation, buttonLocationIndex);
             color = buttonColor;
@@ -367,9 +366,7 @@ public class GamePage implements View {
         if (tile == null) {
             return Color.rgb(0, 0, 0, 0);
         }
-        if (!(tile instanceof TileColor)) {
-            return Color.ANTIQUEWHITE;
-        }
+        if (!(tile instanceof TileColor)) { return Color.ANTIQUEWHITE; }
         switch ((TileColor) tile) {
             case RED -> {return Color.RED;}
             case BLACK -> {return Color.BLACK;}
@@ -394,7 +391,7 @@ public class GamePage implements View {
         for (int i = 0; i < model.getFactoryCount(); i++) {
             Tile[] factoryTiles = model.getFactory(i);
             for (int j = 0; j < 4; j++) {
-                setTileColor(getElementByName("buttonF" + (i + 1) + "T" + (j + 1), Button.class), factoryTiles[j]);
+                setTileColor(Objects.requireNonNull(getElementByName("buttonF" + (i + 1) + "T" + (j + 1), Button.class)), factoryTiles[j]);
             }
         }
     }
@@ -418,12 +415,7 @@ public class GamePage implements View {
 
         MiddleButton(Tile tile) {
             super(tile);
-            this.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    selectTile(event);
-                }
-            });
+            this.setOnAction(GamePage.this::selectTile);
         }
 
     }
@@ -446,6 +438,10 @@ public class GamePage implements View {
             default:
                 break;
         }
+       makeBordersWinners(players);
+    }
+
+    private void makeBordersWinners(List<Player> players) {
         for (int i = 0; i < players.size(); i++) {
             Border border = Border.EMPTY;
             if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
@@ -577,9 +573,9 @@ public class GamePage implements View {
         if (winners.size() == 1) {
             return "The winner is " + model.getName(winners.get(0));
         } else {
-            String winnerMessage = "The winners are ";
+            StringBuilder winnerMessage = new StringBuilder("The winners are ");
             for (Integer winner : winners) {
-                winnerMessage += model.getName(winner) + " & ";
+                winnerMessage.append(model.getName(winner)).append(" & ");
             }
             return winnerMessage.substring(0, winnerMessage.length()-3);
         }
@@ -587,7 +583,7 @@ public class GamePage implements View {
 
     private void hideFactories() {
         for (int i = 1; i < 10; i++) {
-            getElementByName("factory" + i, GridPane.class).setVisible(false);
+            Objects.requireNonNull(getElementByName("factory" + i, GridPane.class)).setVisible(false);
         }
     }
 

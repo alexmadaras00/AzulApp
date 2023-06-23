@@ -60,20 +60,14 @@ public class ControllerImpl implements Controller {
     public void performMove(Pair<Location, Integer> from, Pair<Location, Integer> to, int playerID, TileColor color) {
         if (playerID == getModel().getCurrentPlayer()) {
             if (from.getKey() == Location.FACTORY && to.getKey() == Location.PATTERN_LINE) {
-                performMoveFactoryPatternLine(from.getValue(), to.getValue(), color);
-            }
+                performMoveFactoryPatternLine(from.getValue(), to.getValue(), color);}
             if (from.getKey() == Location.MIDDLE && to.getKey() == Location.PATTERN_LINE) {
-                performMoveMiddlePatternLine(to.getValue(), color);
-            }
+                performMoveMiddlePatternLine(to.getValue(), color);}
             if (from.getKey() == Location.FACTORY && to.getKey() == Location.FLOOR_LINE) {
-                performMoveFactoryFloorLine(from.getValue(), color);
-            }
+                performMoveFactoryFloorLine(from.getValue(), color);}
             if (from.getKey() == Location.MIDDLE && to.getKey() == Location.FLOOR_LINE) {
-                performMoveMiddleFloorLine(color);
-            }
-        } else {
-            pushMessage("Invalid move. Wait for your turn!");
-        }
+                performMoveMiddleFloorLine(color);}
+        } else {pushMessage("Invalid move. Wait for your turn!"); }
     }
 
     private void performMoveMiddleFloorLine(TileColor tileColor) {

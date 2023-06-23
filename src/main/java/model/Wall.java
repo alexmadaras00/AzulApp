@@ -24,7 +24,7 @@ public class Wall {
         for (int i = 0; i < colors.size(); i++) {
             List<TileColor> wallLine = new ArrayList<>();
             for (int j = 0; j < colors.size(); j++) {
-                TileColor color = getTemplateColor(i,j);
+                TileColor color = getTemplateColor(i, j);
                 wallLine.add(color);
             }
             wallTemplate.add(wallLine);
@@ -48,6 +48,7 @@ public class Wall {
         int index = getIndexOfTile(row, type);
         return wall[row][index] == null;
     }
+
     public int getCompletedRowCount() {
         int count = 0;
         for (int row = 0; row < colors.length; row++) {
@@ -110,12 +111,16 @@ public class Wall {
         for (int rowPlus = row + 1; rowPlus < colors.length; rowPlus++) {
             if (wall[rowPlus][col] != null) {
                 score++;
-            } else { break; }
+            } else {
+                break;
+            }
         }
         for (int rowMinus = row - 1; rowMinus >= 0; rowMinus--) {
             if (wall[rowMinus][col] != null) {
                 score++;
-            } else { break;}
+            } else {
+                break;
+            }
         }
         return score;
     }
@@ -125,12 +130,16 @@ public class Wall {
         for (int colPlus = col + 1; colPlus < colors.length; colPlus++) {
             if (wall[row][colPlus] != null) {
                 score++;
-            } else { break; }
+            } else {
+                break;
+            }
         }
         for (int colMinus = col - 1; colMinus >= 0; colMinus--) {
             if (wall[row][colMinus] != null) {
                 score++;
-            } else { break;}
+            } else {
+                break;
+            }
         }
         return score;
     }
@@ -171,13 +180,9 @@ public class Wall {
                 if (tile != null) {
                     tileCount.put(tile, tileCount.get(tile) != null ? tileCount.get(tile) + 1 : 1);
                 }
-            }
-        }
-        for (Map.Entry<Tile, Integer> entry : tileCount.entrySet()) {
-            if (entry.getValue() == colors.length) {
-                completedColors.add(entry.getKey());
-            }
-        }
+            }}
+        for (Map.Entry<Tile, Integer> entry : tileCount.entrySet())
+            if (entry.getValue() == colors.length) { completedColors.add(entry.getKey());}
         return completedColors;
     }
 
