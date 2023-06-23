@@ -68,6 +68,15 @@ public class GUITest extends ApplicationTest {
         clickOn("#joinButton2");
         FxAssert.verifyThat("#joinButton2", (Button b) -> !b.isDisabled());
     }
+    @Test
+    public void testNotAbleJoinGame(){
+        clickOn("#startButton");
+        assertEquals(view.getCurrentPage(), view.getHubPageController());
+        clickOn("#playerName1").write("Stan");
+        clickOn("#joinButton1");
+        clickOn("#startButton");
+        assertEquals(view.getCurrentPage(), view.getHubPageController());
+    }
 
     @Test
     public void testShowGame() {
