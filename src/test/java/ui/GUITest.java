@@ -115,7 +115,7 @@ public class GUITest extends ApplicationTest {
         assertEquals(view.getCurrentPage(), view.getGamePageController());
         clickOn("#buttonF1T1");
         clickOn("#player1PL5");
-        FxAssert.verifyThat("#middle", (VBox b) -> b.getChildren().size() > 0);
+        FxAssert.verifyThat("#middle", (VBox b) -> b.getChildren().size() > 1);
         FxAssert.verifyThat("#player1PL5", (GridPane g) -> g.getChildren().size() > 0);
     }
 
