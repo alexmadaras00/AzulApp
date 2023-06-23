@@ -1,9 +1,11 @@
 package view;
 
 import controller.Controller;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.util.Pair;
 import model.PlayerTile;
 import model.Tile;
@@ -259,6 +262,10 @@ public class GamePage implements View {
         selectTiles(from, color);
     }
 
+    private boolean isEndOfGame() {
+        return model.getWinners().size() > 0;
+    }
+
     private Border selectionBorder = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID,
             null,
             new BorderWidths(2)));
@@ -442,7 +449,7 @@ public class GamePage implements View {
         for (int i = 0; i < players.size(); i++) {
             Border border = Border.EMPTY;
             if (model.getCurrentPlayer() == players.get(i).getIdentifier()) {
-                border = selectionBorder;
+                if (!isEndOfGame()) {border = selectionBorder;}
             }
             Objects.requireNonNull(getElementByName("playerboard" + (i + 1), VBox.class)).setBorder(border);
             updatePlayer(players.get(i), i + 1);
@@ -536,6 +543,52 @@ public class GamePage implements View {
         updateFactories();
         updateMiddle();
         updatePlayers();
+        updateEndScreen();
+    }
+
+    private void updateEndScreen() {
+        if (isEndOfGame()) {
+            VBox screen = new VBox();
+            screen.setPrefWidth(400);
+            screen.setPrefHeight(200);
+            screen.setBorder(selectionBorder);
+            addStatisticsEndScreen(screen);
+            screen.setAlignment(Pos.CENTER);
+            Button exitButton = new Button("Quit to desktop");
+            exitButton.setOnAction((ActionEvent event) -> {Platform.exit();});
+            screen.getChildren().add(exitButton);
+            GridPane root = (GridPane) middle.getParent();
+            root.getChildren().add(screen);
+            hideFactories();
+        }
+    }
+
+    private void addStatisticsEndScreen(VBox screen) {
+            Text roundText = new Text("Game ended after round " + model.getRound());
+            roundText.setStyle("--fx-font: 24: arial;");
+            screen.getChildren().add(roundText);
+            Text winnersText = new Text(getWinnerDisplayMessage());
+            winnersText.setStyle("--fx-font: 24: arial;");
+            screen.getChildren().add(winnersText);
+    }
+
+    private String getWinnerDisplayMessage() {
+        List<Integer> winners = model.getWinners();
+        if (winners.size() == 1) {
+            return "The winner is " + model.getName(winners.get(0));
+        } else {
+            String winnerMessage = "The winners are ";
+            for (Integer winner : winners) {
+                winnerMessage += model.getName(winner) + " & ";
+            }
+            return winnerMessage.substring(0, winnerMessage.length()-3);
+        }
+    }
+
+    private void hideFactories() {
+        for (int i = 1; i < 10; i++) {
+            getElementByName("factory" + i, GridPane.class).setVisible(false);
+        }
     }
 
     private <T> T getElementByName(String name, Class<T> clazz) {
