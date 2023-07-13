@@ -17,19 +17,19 @@ The repository is structured as follows:
 - docs/ - Contains the documentation for the project, including user manuals and technical specifications.
 - src/ - Contains the source code for the project, organized into subdirectories for each module or component.
 - tests/ - Contains the test code for the project, organized into subdirectories for each module or component.
-##Starting the Game
+## Starting the Game
 To start the Azul application, run the following command:
 ```
 ./mvnw.cmd javafx:run
 ```
 
-##Testing
+## Testing
 Testing for this project is handled using JUnit. To run the tests, navigate to the tests/ directory and run the TestSuite.java file. This will run all the unit tests for the project and output the results to the console. Alternatively, you can run them with this GIT command:
 ```
 ./mvnw test
 ```
 
-##Contributing
+## Contributing
 We welcome contributions from anyone interested in this project! If you would like to contribute, please follow these steps:
 
 - Fork this repository to your own GitLab account.
