@@ -44,6 +44,6 @@ We welcome contributions from anyone interested in this project! If you would li
 - We will review your changes and merge them into the main repository if they meet our quality standards.
 
 ## Demo
-[![Azul Game Overview](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://youtu.be/vTB8TIt_PJw)
+[![Azul Game Overview (https://www.boardgamequest.com/wp-content/uploads/2017/10/Azul.jpg)](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://youtu.be/vTB8TIt_PJw)
 
 
