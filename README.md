@@ -1,6 +1,6 @@
 # AzulApp
 This project is a collaborative effort between 5 students from the University of Twente.
-This repository contains the source code and documentation for the Azul game, developed using Java with JavaFX for the user interface. Testing is handled using JUnit.
+This repository contains the source code and documentation for the Azul game, developed using Java with JavaFX for the user interface. Testing is handled using JUnit. 
 
 ## Getting Started
 To get started with this project, you will need to have the Java Development Kit (JDK) installed on your machine, as well as JavaFX. You can download the latest version of the JDK from the Oracle website, and JavaFX can be installed using the following command:
@@ -28,6 +28,10 @@ Testing for this project is handled using JUnit. To run the tests, navigate to t
 ```
 ./mvnw test
 ```
+
+## CI/CD & Sigrid Integration
+This project implements a three-phase pipeline for building and testing the code (coverage generated) and reporting the source code to Sigrid - integrated tool for maintainability.
+It performs the unit tests with JUnit by executing the testing command (previous section) and all resulting reports, located in target/surefire-reports.
 
 ## Contributing
 We welcome contributions from anyone interested in this project! If you would like to contribute, please follow these steps:
