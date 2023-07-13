@@ -11,7 +11,7 @@ Once you have installed the necessary software, you can clone this repository to
 ```
 git clone https://gitlab.utwente.nl/p4/2023Team03.git
 ```
-##Project Structure
+## Project Structure
 The repository is structured as follows:
 
 - docs/ - Contains the documentation for the project, including user manuals and technical specifications.
