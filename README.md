@@ -2,7 +2,7 @@
 This project is a collaborative effort between 5 students from the University of Twente.
 This repository contains the source code and documentation for the Azul game, developed using Java with JavaFX for the user interface. Testing is handled using JUnit.
 
-##Getting Started
+## Getting Started
 To get started with this project, you will need to have the Java Development Kit (JDK) installed on your machine, as well as JavaFX. You can download the latest version of the JDK from the Oracle website, and JavaFX can be installed using the following command:
 ```
 sudo apt-get install openjfx
